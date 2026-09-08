@@ -1,0 +1,23 @@
+[
+  {
+    "question": { "ar": "ما الذي يحدث بعد إرسال الطلب؟", "en": "What happens after I submit an order?", "tr": "Sipariş gönderdikten sonra ne olur?" },
+    "answer": { "ar": "نراجع التفاصيل ونؤكد نطاق التسليم والخطوات التالية معك.", "en": "We review the details and confirm the delivery scope and next steps with you.", "tr": "Detayları inceler, teslim kapsamını ve sonraki adımları sizinle netleştiririz." },
+    "category": "orders",
+    "order_index": 1,
+    "is_active": true
+  },
+  {
+    "question": { "ar": "كيف يتم الدفع؟", "en": "How does payment work?", "tr": "Ödeme nasıl çalışır?" },
+    "answer": { "ar": "يتم إرسال الدفع عبر Polygon USDC، ثم نتحقق من المعاملة قبل بدء التسليم.", "en": "Payment is submitted through Polygon USDC, and the transaction is verified before fulfilment begins.", "tr": "Ödeme Polygon USDC üzerinden gönderilir ve teslimat başlamadan önce işlem doğrulanır." },
+    "category": "payments",
+    "order_index": 2,
+    "is_active": true
+  },
+  {
+    "question": { "ar": "هل يمكنني طلب دعم؟", "en": "Can I request support?", "tr": "Destek isteyebilir miyim?" },
+    "answer": { "ar": "نعم، يمكنك إنشاء تذكرة دعم من لوحة التحكم بعد تسجيل الدخول.", "en": "Yes. You can create a support ticket from the dashboard after signing in.", "tr": "Evet. Giriş yaptıktan sonra panelden destek talebi oluşturabilirsiniz." },
+    "category": "support",
+    "order_index": 3,
+    "is_active": true
+  }
+]

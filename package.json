@@ -1,0 +1,28 @@
+{
+  "name": "bisis-platform",
+  "private": true,
+  "version": "1.0.0",
+  "description": "BİŞIŞ V1 full-stack services platform",
+  "scripts": {
+    "typecheck": "npm --prefix frontend run typecheck",
+    "build": "npm --prefix frontend run build",
+    "lint": "npm --prefix backend run lint && npm --prefix frontend run lint",
+    "test": "npm --prefix backend test",
+    "check:backend": "npm --prefix backend run check",
+    "check": "npm run migration:check && npm run env:check && npm run deployment:check && npm run secrets:check && npm run check:backend && npm test && npm run lint && npm run typecheck && npm run build",
+    "production:check": "npm run install:all && npm run check && npm --prefix backend audit --omit=dev --audit-level=moderate && npm --prefix frontend audit --omit=dev --audit-level=moderate",
+    "release:check": "npm run check && npm --prefix backend audit --omit=dev --audit-level=high && npm --prefix frontend audit --omit=dev --audit-level=high",
+    "seed": "npm --prefix backend run seed",
+    "dev:backend": "npm --prefix backend run dev",
+    "dev:frontend": "npm --prefix frontend run dev",
+    "start": "npm --prefix backend start",
+    "install:all": "npm --prefix backend ci && npm --prefix frontend ci",
+    "migration:check": "node scripts/validate-migration-chain.mjs",
+    "env:check": "node scripts/validate-environment-contract.mjs",
+    "deployment:check": "node scripts/validate-deployment-contract.mjs",
+    "secrets:check": "node scripts/validate-secret-boundary.mjs"
+  },
+  "dependencies": {
+    "react-google-recaptcha-v3": "^1.11.0"
+  }
+}

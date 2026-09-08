@@ -1,0 +1,267 @@
+{
+  "label": "[redacted-fixture]",
+  "status": "PASS",
+  "checks": {
+    "auth_profile_staff": {
+      "pass": true,
+      "id_match": true,
+      "role": "client"
+    },
+    "auth_profile_client-a": {
+      "pass": true,
+      "id_match": true,
+      "role": "client"
+    },
+    "auth_profile_client-b": {
+      "pass": true,
+      "id_match": true,
+      "role": "client"
+    },
+    "staff_promotion": {
+      "pass": true,
+      "role": "admin"
+    },
+    "client_template_admin_denied": {
+      "pass": true,
+      "status": 403
+    },
+    "template_list_with_structure": {
+      "pass": true,
+      "milestones": 1,
+      "tasks": 1
+    },
+    "template_edit": {
+      "pass": true,
+      "description": "Updated template metadata."
+    },
+    "template_duplicate_structure": {
+      "pass": true,
+      "milestones": 1,
+      "tasks": 1
+    },
+    "template_nested_crud": {
+      "pass": true,
+      "milestone": "[redacted-fixture] Edited milestone",
+      "priority": "urgent"
+    },
+    "template_archive": {
+      "pass": true,
+      "is_active": false
+    },
+    "template_restore": {
+      "pass": true,
+      "is_active": true
+    },
+    "project_initialization_contract": {
+      "pass": true,
+      "status": "initialized"
+    },
+    "project_initialization_idempotent": {
+      "pass": true,
+      "idempotent": true
+    },
+    "client360_client_denied": {
+      "pass": true,
+      "status": 403
+    },
+    "project_ticket_create": {
+      "pass": true,
+      "project_id": 83
+    },
+    "project_ticket_client_read": {
+      "pass": true,
+      "tickets": 1
+    },
+    "project_ticket_staff_read": {
+      "pass": true,
+      "tickets": 1
+    },
+    "client360_batched_overview": {
+      "pass": true,
+      "projects": 1,
+      "includes_own_project": true,
+      "excludes_other_client": true,
+      "includes_files": true,
+      "includes_activity": true
+    },
+    "project_ticket_staff_update": {
+      "pass": true,
+      "status": "in_progress"
+    },
+    "project_ticket_cross_create_denied": {
+      "pass": true,
+      "status": 404
+    },
+    "project_ticket_cross_rls_isolation": {
+      "pass": true,
+      "rows": 0
+    },
+    "ticket_external_workspace_isolation": {
+      "pass": true,
+      "api_rows": 0,
+      "direct_rows": 0
+    },
+    "project_initialization": {
+      "pass": true,
+      "milestones": 1,
+      "tasks": 1,
+      "requirements": 2
+    },
+    "operations_queue_state": {
+      "pass": true,
+      "state": "waiting_on_client",
+      "pending_requirements": 2
+    },
+    "staff_authorized_project_access": {
+      "pass": true,
+      "project_rows": 1,
+      "task_rows": 1
+    },
+    "staff_unauthorized_workspace_denied": {
+      "pass": true,
+      "rows": 0
+    },
+    "project_initialization_idempotency": {
+      "pass": true,
+      "idempotent": true
+    },
+    "client_project_projection": {
+      "pass": true,
+      "requirements": 2,
+      "tasks": 1
+    },
+    "client_own_rls_visible": {
+      "pass": true,
+      "project_rows": 1,
+      "milestone_rows": 1,
+      "task_rows": 1
+    },
+    "client_home_projection": {
+      "pass": true,
+      "projects": 1,
+      "actions": 1
+    },
+    "client_project_idor_denied": {
+      "pass": true,
+      "status": 404
+    },
+    "client_cross_project_rls_isolation": {
+      "pass": true,
+      "projects": 0,
+      "milestones": 0,
+      "requirements": 0,
+      "tasks": 0,
+      "activity": 0
+    },
+    "client_inverse_project_rls_isolation": {
+      "pass": true,
+      "projects": 0,
+      "milestones": 0,
+      "requirements": 0,
+      "tasks": 0,
+      "activity": 0
+    },
+    "client_tasks_activity_rls_isolation": {
+      "pass": true,
+      "tasks": 0,
+      "activity": 0
+    },
+    "client_requirement_submit": {
+      "pass": true,
+      "status": "submitted"
+    },
+    "client_own_activity_visibility": {
+      "pass": true,
+      "rows": 2,
+      "all_client_visible": true
+    },
+    "client_file_kind_forced_safe": {
+      "pass": true,
+      "file_kind": "customer_input"
+    },
+    "file_requirement_submit": {
+      "pass": true,
+      "status": "submitted",
+      "file_id": "[redacted-id]"
+    },
+    "state_after_requirement": {
+      "pass": true,
+      "state": "in_progress"
+    },
+    "client_write_denied": {
+      "pass": true,
+      "insert_denied": true,
+      "update_rows": 0,
+      "delete_rows": 0,
+      "milestone_update_rows": 0,
+      "activity_denied": true,
+      "task_unchanged": true,
+      "milestone_unchanged": true
+    },
+    "task_completion_state": {
+      "pass": true,
+      "status": "done"
+    },
+    "delivery_prepare": {
+      "pass": true,
+      "status": "prepared"
+    },
+    "staff_delivery_file_kind": {
+      "pass": true,
+      "file_kind": "delivery"
+    },
+    "delivery_send": {
+      "pass": true,
+      "status": "client_review"
+    },
+    "client_review_visible": {
+      "pass": true,
+      "delivery": "client_review",
+      "state": "waiting_on_review",
+      "files": 1
+    },
+    "client_approval_completion": {
+      "pass": true,
+      "status": "completed"
+    },
+    "project_completed_state": {
+      "pass": true,
+      "state": "completed"
+    },
+    "client_delivery_rls_isolation": {
+      "pass": true,
+      "rows": 0
+    },
+    "client_delivery_notification": {
+      "pass": true,
+      "notifications": 3
+    },
+    "notification_project_context": {
+      "pass": true,
+      "notifications": 3,
+      "project_context": 3
+    },
+    "notification_mark_all_read": {
+      "pass": true,
+      "updated": 3
+    },
+    "client_file_kind_forced_safe_b": {
+      "pass": true,
+      "file_kind": "customer_input"
+    },
+    "delivery_revision_request": {
+      "pass": true,
+      "status": "revision_requested",
+      "revision_count": 1
+    },
+    "delivery_revision_completion": {
+      "pass": true,
+      "status": "completed"
+    }
+  },
+  "cleanup": {
+    "attempted": true,
+    "errors": [],
+    "ok": true
+  }
+}

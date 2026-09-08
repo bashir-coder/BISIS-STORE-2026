@@ -1,0 +1,68 @@
+name: BİŞIŞ V1 Quality Gate
+
+on:
+  push:
+    branches: [main, master, release/**]
+  pull_request:
+    branches: [main, master, release/**]
+
+permissions:
+  contents: read
+
+concurrency:
+  group: bisis-quality-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  quality:
+    name: Install, validate, test, build, audit
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+          cache-dependency-path: |
+            package-lock.json
+            backend/package-lock.json
+            frontend/package-lock.json
+
+      - name: Install root dependencies
+        run: npm ci
+
+      - name: Install backend dependencies
+        run: npm ci --prefix backend
+
+      - name: Install frontend dependencies
+        run: npm ci --prefix frontend
+
+      - name: Validate migration chain
+        run: npm run migration:check
+
+      - name: Validate environment contract
+        run: npm run env:check
+
+      - name: Validate deployment contract
+        run: npm run deployment:check
+
+      - name: Validate secret boundary
+        run: npm run secrets:check
+
+      - name: Run full project check
+        run: npm run check
+
+      - name: Fail on high or critical backend advisories
+        run: npm --prefix backend audit --omit=dev --audit-level=high
+
+      - name: Fail on high or critical frontend advisories
+        run: npm --prefix frontend audit --omit=dev --audit-level=high
+
+      - name: Report known moderate advisories without hiding them
+        run: |
+          npm --prefix backend audit --omit=dev --audit-level=moderate || true
+          npm --prefix frontend audit --omit=dev --audit-level=moderate || true

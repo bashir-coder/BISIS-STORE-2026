@@ -1,0 +1,3482 @@
+[
+  {
+    "key": "about.eyebrow",
+    "ar": "عن BİŞIŞ",
+    "en": "About BİŞIŞ",
+    "tr": "BİŞIŞ hakkında"
+  },
+  {
+    "key": "about.text",
+    "ar": "نساعدك على تحويل احتياجك التجاري إلى نطاق واضح وخطوات عملية وتسليم يمكن متابعته.",
+    "en": "We turn your business need into a clear scope, practical actions, and trackable delivery.",
+    "tr": "İş ihtiyacınızı net bir kapsama, uygulanabilir adımlara ve takip edilebilir teslimata dönüştürüyoruz."
+  },
+  {
+    "key": "about.title",
+    "ar": "من الوضوح إلى التنفيذ",
+    "en": "From clarity to execution",
+    "tr": "Netlikten uygulamaya"
+  },
+  {
+    "key": "admin.action",
+    "ar": "إجراء",
+    "en": "Action",
+    "tr": "İşlem"
+  },
+  {
+    "key": "admin.action_center",
+    "ar": "مركز الإجراءات",
+    "en": "Action center",
+    "tr": "Aksiyon merkezi"
+  },
+  {
+    "key": "admin.action_center_source",
+    "ar": "تُحسب هذه الإشارات من الطلبات والتذاكر والمشاريع الحالية المحمّلة من الخادم.",
+    "en": "These signals are calculated from the current orders, tickets, and projects loaded from the backend.",
+    "tr": "Bu sinyaller backend üzerinden yüklenen mevcut sipariş, destek talebi ve projelerden hesaplanır."
+  },
+  {
+    "key": "admin.active",
+    "ar": "نشط",
+    "en": "Active",
+    "tr": "Aktif"
+  },
+  {
+    "key": "admin.activity_update",
+    "ar": "تم تحديث نشاط الطلب.",
+    "en": "Order activity updated",
+    "tr": "Sipariş etkinliği güncellendi"
+  },
+  {
+    "key": "admin.add",
+    "ar": "إضافة",
+    "en": "Add",
+    "tr": "Ekle"
+  },
+  {
+    "key": "admin.add_milestone",
+    "ar": "إضافة مرحلة",
+    "en": "Add milestone",
+    "tr": "Aşama ekle"
+  },
+  {
+    "key": "admin.all_clear",
+    "ar": "لا توجد عناصر تحتاج إلى انتباه",
+    "en": "All clear",
+    "tr": "Her şey yolunda"
+  },
+  {
+    "key": "admin.all_status",
+    "ar": "كل الحالات",
+    "en": "All statuses",
+    "tr": "Tüm durumlar"
+  },
+  {
+    "key": "admin.answer",
+    "ar": "الإجابة",
+    "en": "Answer",
+    "tr": "Yanıt"
+  },
+  {
+    "key": "admin.answer_ar",
+    "ar": "الإجابة بالعربية",
+    "en": "Answer in Arabic",
+    "tr": "Arapça yanıt"
+  },
+  {
+    "key": "admin.answer_en",
+    "ar": "الإجابة بالإنجليزية",
+    "en": "Answer in English",
+    "tr": "İngilizce yanıt"
+  },
+  {
+    "key": "admin.answer_tr",
+    "ar": "الإجابة بالتركية",
+    "en": "Answer in Turkish",
+    "tr": "Türkçe yanıt"
+  },
+  {
+    "key": "admin.archive",
+    "ar": "أرشفة",
+    "en": "Archive",
+    "tr": "Arşivle"
+  },
+  {
+    "key": "admin.archive_confirm",
+    "ar": "هل تريد أرشفة هذا العنصر؟",
+    "en": "Archive this item?",
+    "tr": "Bu öğe arşivlensin mi?"
+  },
+  {
+    "key": "admin.archive_warning",
+    "ar": "ستتم أرشفة هذا العنصر وإزالته من الكتالوج النشط.",
+    "en": "This item will be archived and removed from the active catalog.",
+    "tr": "Bu öğe arşivlenecek ve aktif katalogdan kaldırılacaktır."
+  },
+  {
+    "key": "admin.archived",
+    "ar": "مؤرشف",
+    "en": "Archived",
+    "tr": "Arşivlendi"
+  },
+  {
+    "key": "admin.attention_summary",
+    "ar": "{{count}} عناصر تحتاج إلى انتباهك.",
+    "en": "{{count}} items need your attention.",
+    "tr": "{{count}} öğe dikkatinizi bekliyor."
+  },
+  {
+    "key": "admin.cancel",
+    "ar": "إلغاء",
+    "en": "Cancel",
+    "tr": "İptal"
+  },
+  {
+    "key": "admin.catalog",
+    "ar": "إدارة الكتالوج",
+    "en": "Catalog management",
+    "tr": "Katalog yönetimi"
+  },
+  {
+    "key": "admin.catalog_error",
+    "ar": "تعذر حفظ التغيير.",
+    "en": "Unable to save the change.",
+    "tr": "Değişiklik kaydedilemedi."
+  },
+  {
+    "key": "admin.catalog_saved",
+    "ar": "تم حفظ التغيير.",
+    "en": "Change saved.",
+    "tr": "Değişiklik kaydedildi."
+  },
+  {
+    "key": "admin.category",
+    "ar": "الفئة",
+    "en": "Category",
+    "tr": "Kategori"
+  },
+  {
+    "key": "admin.client_visible",
+    "ar": "ظاهر للعميل",
+    "en": "client visible",
+    "tr": "müşteriye görünür"
+  },
+  {
+    "key": "admin.close_editor",
+    "ar": "إغلاق المحرر",
+    "en": "Close editor",
+    "tr": "Düzenleyiciyi kapat"
+  },
+  {
+    "key": "admin.completed",
+    "ar": "مكتملة",
+    "en": "Completed",
+    "tr": "Tamamlandı"
+  },
+  {
+    "key": "admin.continue_ticket",
+    "ar": "تابع الرد على هذه التذكرة.",
+    "en": "Continue the response on this ticket.",
+    "tr": "Bu talepteki yanıtı sürdürün."
+  },
+  {
+    "key": "admin.delivery_exceptions",
+    "ar": "استثناءات تسليم الخدمات",
+    "en": "Service delivery exceptions",
+    "tr": "Hizmet teslimatı istisnaları"
+  },
+  {
+    "key": "admin.description",
+    "ar": "الوصف",
+    "en": "Description",
+    "tr": "Açıklama"
+  },
+  {
+    "key": "admin.duplicate",
+    "ar": "استنساخ",
+    "en": "Duplicate",
+    "tr": "Çoğalt"
+  },
+  {
+    "key": "admin.edit",
+    "ar": "تعديل",
+    "en": "Edit",
+    "tr": "Düzenle"
+  },
+  {
+    "key": "admin.execution_templates",
+    "ar": "إدارة التنفيذ",
+    "en": "Execution control",
+    "tr": "Yürütme kontrolü"
+  },
+  {
+    "key": "admin.faqs",
+    "ar": "الأسئلة الشائعة",
+    "en": "FAQs",
+    "tr": "SSS"
+  },
+  {
+    "key": "admin.features",
+    "ar": "المزايا، كل سطر ميزة",
+    "en": "Features, one per line",
+    "tr": "Özellikler, her satır bir özellik"
+  },
+  {
+    "key": "admin.filtered_by_project",
+    "ar": "مصفاة حسب المشروع",
+    "en": "Filtered by project",
+    "tr": "Projeye göre filtrelendi"
+  },
+  {
+    "key": "admin.good_afternoon",
+    "ar": "مساء الخير",
+    "en": "Good afternoon",
+    "tr": "Tünaydın"
+  },
+  {
+    "key": "admin.good_evening",
+    "ar": "مساء الخير",
+    "en": "Good evening",
+    "tr": "İyi akşamlar"
+  },
+  {
+    "key": "admin.good_morning",
+    "ar": "صباح الخير",
+    "en": "Good morning",
+    "tr": "Günaydın"
+  },
+  {
+    "key": "admin.in_progress",
+    "ar": "قيد التنفيذ",
+    "en": "In progress",
+    "tr": "Devam ediyor"
+  },
+  {
+    "key": "admin.internal",
+    "ar": "داخلي",
+    "en": "internal",
+    "tr": "dahili"
+  },
+  {
+    "key": "admin.items_need_attention",
+    "ar": "عناصر تحتاج إلى انتباه",
+    "en": "items need attention",
+    "tr": "öğe dikkat gerektiriyor"
+  },
+  {
+    "key": "admin.live",
+    "ar": "مباشر",
+    "en": "Live",
+    "tr": "Canlı"
+  },
+  {
+    "key": "admin.mark_completed",
+    "ar": "تحديد كمكتمل",
+    "en": "Mark completed",
+    "tr": "Tamamlandı olarak işaretle"
+  },
+  {
+    "key": "admin.mark_processing",
+    "ar": "تحديد قيد التنفيذ",
+    "en": "Mark processing",
+    "tr": "Devam ediyor olarak işaretle"
+  },
+  {
+    "key": "admin.milestones",
+    "ar": "مراحل",
+    "en": "milestones",
+    "tr": "aşama"
+  },
+  {
+    "key": "admin.monitor_requests",
+    "ar": "مراقبة الطلبات والتسليمات من مكان واحد.",
+    "en": "Monitor requests and delivery from one place.",
+    "tr": "Talepleri ve teslimatı tek yerden izleyin."
+  },
+  {
+    "key": "admin.new_template",
+    "ar": "قالب جديد",
+    "en": "New template",
+    "tr": "Yeni şablon"
+  },
+  {
+    "key": "admin.no_attention_summary",
+    "ar": "الأمور هادئة الآن. راجع النشاط الأخير أدناه.",
+    "en": "Everything is quiet right now. Keep an eye on recent activity below.",
+    "tr": "Şu an her şey sakin. Aşağıdaki son etkinlikleri takip edin."
+  },
+  {
+    "key": "admin.no_in_progress",
+    "ar": "لا يوجد شيء قيد الحركة الآن.",
+    "en": "Nothing is moving right now.",
+    "tr": "Şu anda devam eden bir iş yok."
+  },
+  {
+    "key": "admin.no_priority_items",
+    "ar": "لا توجد عناصر عاجلة. هذه علامة جيدة.",
+    "en": "No urgent items. That is a good sign.",
+    "tr": "Acil bir öğe yok. Bu iyiye işaret."
+  },
+  {
+    "key": "admin.no_recent_activity",
+    "ar": "لم يحدث أي نشاط بعد.",
+    "en": "No activity has happened yet.",
+    "tr": "Henüz bir etkinlik olmadı."
+  },
+  {
+    "key": "admin.no_recently_completed",
+    "ar": "ستظهر الأعمال المكتملة هنا.",
+    "en": "Completed work will appear here.",
+    "tr": "Tamamlanan işler burada görünecek."
+  },
+  {
+    "key": "admin.no_service",
+    "ar": "بدون ربط بخدمة",
+    "en": "No service association",
+    "tr": "Hizmet bağlantısı yok"
+  },
+  {
+    "key": "admin.none",
+    "ar": "لا يوجد",
+    "en": "None",
+    "tr": "Yok"
+  },
+  {
+    "key": "admin.open_client_360",
+    "ar": "فتح ملف العميل 360",
+    "en": "Open Client 360",
+    "tr": "Client 360’ı aç"
+  },
+  {
+    "key": "admin.open_client_360_hint",
+    "ar": "شاهد سياق العلاقة عبر الطلبات والدعم.",
+    "en": "See relationship context across orders and support.",
+    "tr": "Siparişler ve destek üzerinden ilişki bağlamını görün."
+  },
+  {
+    "key": "admin.open_requests",
+    "ar": "الطلبات المفتوحة",
+    "en": "Open requests",
+    "tr": "Açık talepler"
+  },
+  {
+    "key": "admin.open_workbench",
+    "ar": "فتح مساحة التنفيذ",
+    "en": "Open Workbench",
+    "tr": "Workbench’i aç"
+  },
+  {
+    "key": "admin.open_workbench_hint",
+    "ar": "انتقل من القرارات إلى التنفيذ المركّز.",
+    "en": "Move from decisions to focused execution.",
+    "tr": "Kararlardan odaklı uygulamaya geçin."
+  },
+  {
+    "key": "admin.operations_center",
+    "ar": "مركز العمليات",
+    "en": "Operations center",
+    "tr": "Operasyon merkezi"
+  },
+  {
+    "key": "admin.order_completed_recently",
+    "ar": "اكتمل الطلب بنجاح.",
+    "en": "Order completed successfully.",
+    "tr": "Sipariş başarıyla tamamlandı."
+  },
+  {
+    "key": "admin.order_distribution",
+    "ar": "توزيع الطلبات",
+    "en": "Order distribution",
+    "tr": "Sipariş dağılımı"
+  },
+  {
+    "key": "admin.order_in_progress",
+    "ar": "الطلب قيد المعالجة حاليًا.",
+    "en": "Order is currently being processed.",
+    "tr": "Sipariş şu anda işleniyor."
+  },
+  {
+    "key": "admin.order_needs_assignment",
+    "ar": "هذا الطلب غير مسند إلى مشروع بعد.",
+    "en": "This order is not assigned to a project yet.",
+    "tr": "Bu sipariş henüz bir projeye atanmadı."
+  },
+  {
+    "key": "admin.packages",
+    "ar": "الباقات",
+    "en": "Packages",
+    "tr": "Paketler"
+  },
+  {
+    "key": "admin.pending_order_action",
+    "ar": "هذا الطلب ينتظر الخطوة التشغيلية التالية.",
+    "en": "This order is waiting for the next operational step.",
+    "tr": "Bu sipariş bir sonraki operasyon adımını bekliyor."
+  },
+  {
+    "key": "admin.priority",
+    "ar": "الأولوية",
+    "en": "Priority",
+    "tr": "Öncelik"
+  },
+  {
+    "key": "admin.priority_critical",
+    "ar": "حرج",
+    "en": "Critical",
+    "tr": "Kritik"
+  },
+  {
+    "key": "admin.priority_disclaimer",
+    "ar": "الأولوية التشغيلية مبنية على السجلات الحالية.",
+    "en": "Operational priority is based on current records.",
+    "tr": "Operasyonel öncelik mevcut kayıtlara dayanır."
+  },
+  {
+    "key": "admin.priority_high",
+    "ar": "مرتفع",
+    "en": "High",
+    "tr": "Yüksek"
+  },
+  {
+    "key": "admin.priority_low",
+    "ar": "منخفض",
+    "en": "Low",
+    "tr": "Düşük"
+  },
+  {
+    "key": "admin.priority_medium",
+    "ar": "متوسط",
+    "en": "Medium",
+    "tr": "Orta"
+  },
+  {
+    "key": "admin.project_active_next",
+    "ar": "المشروع نشط وجاهز للتحديث التالي.",
+    "en": "Project is active and ready for its next update.",
+    "tr": "Proje aktif ve bir sonraki güncellemeye hazır."
+  },
+  {
+    "key": "admin.project_needs_attention",
+    "ar": "هذا المشروع يحتاج إلى متابعة.",
+    "en": "This project needs attention.",
+    "tr": "Bu proje takip gerektiriyor."
+  },
+  {
+    "key": "admin.pulse_live_operations",
+    "ar": "العمليات المباشرة",
+    "en": "Live operations",
+    "tr": "Canlı operasyonlar"
+  },
+  {
+    "key": "admin.pulse_snapshot",
+    "ar": "لقطة تشغيلية مباشرة",
+    "en": "Live operational snapshot",
+    "tr": "Canlı operasyon özeti"
+  },
+  {
+    "key": "admin.question",
+    "ar": "السؤال",
+    "en": "Question",
+    "tr": "Soru"
+  },
+  {
+    "key": "admin.question_ar",
+    "ar": "السؤال بالعربية",
+    "en": "Question in Arabic",
+    "tr": "Arapça soru"
+  },
+  {
+    "key": "admin.question_en",
+    "ar": "السؤال بالإنجليزية",
+    "en": "Question in English",
+    "tr": "İngilizce soru"
+  },
+  {
+    "key": "admin.question_tr",
+    "ar": "السؤال بالتركية",
+    "en": "Question in Turkish",
+    "tr": "Türkçe soru"
+  },
+  {
+    "key": "admin.quick_action",
+    "ar": "إجراء سريع",
+    "en": "Quick action",
+    "tr": "Hızlı işlem"
+  },
+  {
+    "key": "admin.quick_stats",
+    "ar": "إحصاءات سريعة",
+    "en": "Quick stats",
+    "tr": "Hızlı istatistikler"
+  },
+  {
+    "key": "admin.recent_activity",
+    "ar": "النشاط الأخير",
+    "en": "Recent activity",
+    "tr": "Son etkinlik"
+  },
+  {
+    "key": "admin.recent_requests",
+    "ar": "أحدث الطلبات",
+    "en": "Recent requests",
+    "tr": "Son talepler"
+  },
+  {
+    "key": "admin.recently_completed",
+    "ar": "اكتمل مؤخرًا",
+    "en": "Recently completed",
+    "tr": "Yakın zamanda tamamlananlar"
+  },
+  {
+    "key": "admin.request_details",
+    "ar": "تفاصيل الطلب",
+    "en": "Request details",
+    "tr": "Talep ayrıntıları"
+  },
+  {
+    "key": "admin.request_id",
+    "ar": "معرّف الطلب",
+    "en": "Request ID",
+    "tr": "Talep kimliği"
+  },
+  {
+    "key": "admin.restore",
+    "ar": "استعادة",
+    "en": "Restore",
+    "tr": "Geri yükle"
+  },
+  {
+    "key": "admin.revenue",
+    "ar": "الإيرادات",
+    "en": "Revenue",
+    "tr": "Gelir"
+  },
+  {
+    "key": "admin.review_chat_assign",
+    "ar": "راجع المحادثة وعيّن الطلب للمشروع المناسب.",
+    "en": "Review the chat and assign the request to the right project.",
+    "tr": "Sohbeti inceleyin ve talebi doğru projeye atayın."
+  },
+  {
+    "key": "admin.review_open_ticket",
+    "ar": "راجع تذكرة الدعم غير المحلولة.",
+    "en": "Review this unresolved support ticket.",
+    "tr": "Çözülmemiş destek talebini inceleyin."
+  },
+  {
+    "key": "admin.review_order_named",
+    "ar": "راجع الطلب {{order}}",
+    "en": "Review order {{order}}",
+    "tr": "{{order}} siparişini inceleyin"
+  },
+  {
+    "key": "admin.save",
+    "ar": "حفظ",
+    "en": "Save",
+    "tr": "Kaydet"
+  },
+  {
+    "key": "admin.search",
+    "ar": "بحث",
+    "en": "Search",
+    "tr": "Ara"
+  },
+  {
+    "key": "admin.select_request",
+    "ar": "اختر طلبًا",
+    "en": "Select a request",
+    "tr": "Bir talep seçin"
+  },
+  {
+    "key": "admin.services",
+    "ar": "الخدمات",
+    "en": "Services",
+    "tr": "Hizmetler"
+  },
+  {
+    "key": "admin.template_create_hint",
+    "ar": "ابدأ بهوية القالب ثم أضف المراحل والمهام.",
+    "en": "Start with the template identity, then add milestones and tasks.",
+    "tr": "Şablon bilgileriyle başlayın, ardından aşama ve görev ekleyin."
+  },
+  {
+    "key": "admin.template_delete_confirm",
+    "ar": "هل تريد حذف هذا العنصر من القالب؟",
+    "en": "Delete this template item?",
+    "tr": "Bu şablon öğesi silinsin mi?"
+  },
+  {
+    "key": "admin.template_duplicated",
+    "ar": "تم استنساخ القالب.",
+    "en": "Template duplicated.",
+    "tr": "Şablon çoğaltıldı."
+  },
+  {
+    "key": "admin.template_milestone_title",
+    "ar": "عنوان المرحلة",
+    "en": "Milestone title",
+    "tr": "Aşama başlığı"
+  },
+  {
+    "key": "admin.template_name",
+    "ar": "اسم القالب",
+    "en": "Template name",
+    "tr": "Şablon adı"
+  },
+  {
+    "key": "admin.template_name_required",
+    "ar": "اسم القالب مطلوب.",
+    "en": "Template name is required.",
+    "tr": "Şablon adı gereklidir."
+  },
+  {
+    "key": "admin.template_saved",
+    "ar": "تم حفظ القالب.",
+    "en": "Template saved.",
+    "tr": "Şablon kaydedildi."
+  },
+  {
+    "key": "admin.template_task_title",
+    "ar": "إضافة مهمة",
+    "en": "Add task",
+    "tr": "Görev ekle"
+  },
+  {
+    "key": "admin.templates",
+    "ar": "قوالب المشاريع",
+    "en": "Project templates",
+    "tr": "Proje şablonları"
+  },
+  {
+    "key": "admin.templates_hint",
+    "ar": "أدر المراحل والمهام المستخدمة عند تهيئة المشاريع.",
+    "en": "Manage the milestones and tasks used to initialize projects.",
+    "tr": "Projeleri başlatırken kullanılan aşamaları ve görevleri yönetin."
+  },
+  {
+    "key": "admin.ticket_closed_recently",
+    "ar": "تم حل تذكرة الدعم.",
+    "en": "Support ticket is resolved.",
+    "tr": "Destek talebi çözüldü."
+  },
+  {
+    "key": "admin.title",
+    "ar": "لوحة الإدارة",
+    "en": "Admin panel",
+    "tr": "Yönetim paneli"
+  },
+  {
+    "key": "admin.total_orders",
+    "ar": "إجمالي الطلبات",
+    "en": "Total orders",
+    "tr": "Toplam sipariş"
+  },
+  {
+    "key": "admin.unassigned_orders",
+    "ar": "طلبات غير مسندة",
+    "en": "Unassigned orders",
+    "tr": "Atanmamış siparişler"
+  },
+  {
+    "key": "admin.updating",
+    "ar": "جارٍ التحديث...",
+    "en": "Updating...",
+    "tr": "Güncelleniyor..."
+  },
+  {
+    "key": "auth.create_account",
+    "ar": "إنشاء حساب",
+    "en": "Create account",
+    "tr": "Hesap oluştur"
+  },
+  {
+    "key": "auth.email",
+    "ar": "البريد الإلكتروني",
+    "en": "Email",
+    "tr": "E-posta"
+  },
+  {
+    "key": "auth.google_only",
+    "ar": "تسجيل الدخول متاح عبر Google حاليًا.",
+    "en": "Google sign-in is currently available.",
+    "tr": "Şu anda Google ile giriş kullanılabilir."
+  },
+  {
+    "key": "auth.google_unavailable",
+    "ar": "تسجيل الدخول عبر Google غير مهيأ حاليًا.",
+    "en": "Google sign-in is not configured yet.",
+    "tr": "Google ile giriş henüz yapılandırılmadı."
+  },
+  {
+    "key": "auth.login",
+    "ar": "تسجيل الدخول",
+    "en": "Sign in",
+    "tr": "Giriş yap"
+  },
+  {
+    "key": "auth.password",
+    "ar": "كلمة المرور",
+    "en": "Password",
+    "tr": "Şifre"
+  },
+  {
+    "key": "auth.password_min",
+    "ar": "يجب أن تكون كلمة المرور 8 أحرف على الأقل.",
+    "en": "Password must be at least 8 characters.",
+    "tr": "Şifre en az 8 karakter olmalıdır."
+  },
+  {
+    "key": "auth.signup_success",
+    "ar": "تم إنشاء الحساب. تحقق من بريدك الإلكتروني لإكمال التسجيل.",
+    "en": "Account created. Check your email to finish signing up.",
+    "tr": "Hesap oluşturuldu. Kaydı tamamlamak için e-postanızı kontrol edin."
+  },
+  {
+    "key": "auth.submit",
+    "ar": "دخول",
+    "en": "Sign in",
+    "tr": "Giriş yap"
+  },
+  {
+    "key": "auth.switch_to_login",
+    "ar": "لديك حساب؟ سجّل الدخول",
+    "en": "Already have an account? Sign in",
+    "tr": "Zaten hesabınız var mı? Giriş yapın"
+  },
+  {
+    "key": "auth.switch_to_signup",
+    "ar": "ليس لديك حساب؟ أنشئ حسابًا",
+    "en": "Don't have an account? Create one",
+    "tr": "Hesabınız yok mu? Oluşturun"
+  },
+  {
+    "key": "brand.tagline",
+    "ar": "خدمات عملية لنقل فكرتك إلى التنفيذ",
+    "en": "Practical services to move your idea into execution",
+    "tr": "Fikrinizi uygulamaya taşıyan pratik hizmetler"
+  },
+  {
+    "key": "chat.new_messages",
+    "ar": "رسائل جديدة",
+    "en": "new messages",
+    "tr": "yeni mesaj"
+  },
+  {
+    "key": "chat.no_messages",
+    "ar": "لا توجد رسائل بعد.",
+    "en": "No messages yet.",
+    "tr": "Henüz mesaj yok."
+  },
+  {
+    "key": "chat.page.badge",
+    "ar": "مساعدة سريعة",
+    "en": "Quick guidance",
+    "tr": "Hızlı rehber"
+  },
+  {
+    "key": "chat.page.footer",
+    "ar": "يمكنك العودة إلى الباقات في أي وقت.",
+    "en": "You can return to packages at any time.",
+    "tr": "Paketlere istediğiniz zaman dönebilirsiniz."
+  },
+  {
+    "key": "chat.page.subtitle",
+    "ar": "أجب عن أسئلتك حول الخدمات والباقات ومسار الطلب.",
+    "en": "Get answers about services, packages, and the request journey.",
+    "tr": "Hizmetler, paketler ve talep süreci hakkında yanıt alın."
+  },
+  {
+    "key": "chat.page.title",
+    "ar": "كيف يمكننا مساعدتك؟",
+    "en": "How can we help?",
+    "tr": "Size nasıl yardımcı olabiliriz?"
+  },
+  {
+    "key": "chat.placeholder",
+    "ar": "اكتب رسالتك...",
+    "en": "Write a message...",
+    "tr": "Mesajınızı yazın..."
+  },
+  {
+    "key": "chat.send",
+    "ar": "إرسال الرسالة",
+    "en": "Send message",
+    "tr": "Mesaj gönder"
+  },
+  {
+    "key": "chat.send_error",
+    "ar": "تعذر إرسال الرسالة.",
+    "en": "Could not send the message.",
+    "tr": "Mesaj gönderilemedi."
+  },
+  {
+    "key": "chat.title",
+    "ar": "محادثة الطلب",
+    "en": "Order chat",
+    "tr": "Sipariş sohbeti"
+  },
+  {
+    "key": "client_portal.completed",
+    "ar": "مكتمل",
+    "en": "Completed",
+    "tr": "Tamamlandı"
+  },
+  {
+    "key": "client_portal.create_another_request",
+    "ar": "إنشاء طلب جديد",
+    "en": "Create another request",
+    "tr": "Yeni talep oluştur"
+  },
+  {
+    "key": "client_portal.in_progress",
+    "ar": "قيد التنفيذ",
+    "en": "In progress",
+    "tr": "Devam ediyor"
+  },
+  {
+    "key": "client_portal.journey_description",
+    "ar": "نتابع طلبك عبر خطوات واضحة.",
+    "en": "We move your request through clear steps.",
+    "tr": "Talebinizi net adımlarla ilerletiyoruz."
+  },
+  {
+    "key": "client_portal.latest_orders",
+    "ar": "أحدث طلباتك",
+    "en": "Your latest requests",
+    "tr": "Son talepleriniz"
+  },
+  {
+    "key": "client_portal.no_requests_context",
+    "ar": "مساحة عملك جاهزة. سيظهر أول طلب هنا بعد اختيار باقة.",
+    "en": "Your workspace is ready. Your first request will appear here after you choose a package.",
+    "tr": "Çalışma alanınız hazır. Bir paket seçtiğinizde ilk talebiniz burada görünecek."
+  },
+  {
+    "key": "client_portal.no_requests_yet",
+    "ar": "لا توجد طلبات بعد.",
+    "en": "No requests yet.",
+    "tr": "Henüz talep yok."
+  },
+  {
+    "key": "client_portal.open_dashboard",
+    "ar": "فتح لوحة التحكم",
+    "en": "Open dashboard",
+    "tr": "Paneli aç"
+  },
+  {
+    "key": "client_portal.step1_desc",
+    "ar": "نراجع نطاق الطلب والمعلومات المرسلة.",
+    "en": "We review the request scope and submitted information.",
+    "tr": "Talep kapsamını ve gönderilen bilgileri inceleriz."
+  },
+  {
+    "key": "client_portal.step1_title",
+    "ar": "مراجعة الطلب",
+    "en": "Request review",
+    "tr": "Talep incelemesi"
+  },
+  {
+    "key": "client_portal.step2_desc",
+    "ar": "نحدد الخطوة التالية ونتابع التنفيذ معك.",
+    "en": "We define the next step and keep execution visible.",
+    "tr": "Sonraki adımı belirler ve süreci görünür tutarız."
+  },
+  {
+    "key": "client_portal.step2_title",
+    "ar": "تأكيد الخطة",
+    "en": "Confirm the plan",
+    "tr": "Planı onaylayın"
+  },
+  {
+    "key": "client_portal.step3_desc",
+    "ar": "تستلم النتيجة وتتابع حالتها من مساحة العمل.",
+    "en": "You receive the result and track its status from the workspace.",
+    "tr": "Sonucu alır ve durumunu çalışma alanından takip edersiniz."
+  },
+  {
+    "key": "client_portal.step3_title",
+    "ar": "التسليم والمتابعة",
+    "en": "Delivery and follow-up",
+    "tr": "Teslim ve takip"
+  },
+  {
+    "key": "client_portal.title",
+    "ar": "مساحة العميل",
+    "en": "Client space",
+    "tr": "Müşteri alanı"
+  },
+  {
+    "key": "client_portal.total_spent",
+    "ar": "إجمالي الإنفاق",
+    "en": "Total spent",
+    "tr": "Toplam harcama"
+  },
+  {
+    "key": "client_portal.track_requests",
+    "ar": "تابع طلباتك وحالة التسليم من مكان واحد.",
+    "en": "Track your requests and delivery status in one place.",
+    "tr": "Taleplerinizi ve teslimat durumunu tek yerden takip edin."
+  },
+  {
+    "key": "client_portal.what_happens_next",
+    "ar": "ماذا يحدث بعد ذلك؟",
+    "en": "What happens next?",
+    "tr": "Sırada ne var?"
+  },
+  {
+    "key": "client_portal.your_requests",
+    "ar": "طلباتك",
+    "en": "Your requests",
+    "tr": "Talepleriniz"
+  },
+  {
+    "key": "client_portal.your_service_workspace",
+    "ar": "مساحة عمل خدماتك",
+    "en": "Your service workspace",
+    "tr": "Hizmet çalışma alanınız"
+  },
+  {
+    "key": "client.action_center.eyebrow",
+    "ar": "إجراء مطلوب",
+    "en": "Action required",
+    "tr": "İşlem gerekli"
+  },
+  {
+    "key": "client.action_center.subtitle",
+    "ar": "سنخبرك بوضوح بما تحتاج إلى إرساله أو مراجعته.",
+    "en": "We’ll clearly show what you need to submit or review.",
+    "tr": "Göndermeniz veya incelemeniz gerekenleri açıkça göstereceğiz."
+  },
+  {
+    "key": "client.delivery.approve",
+    "ar": "اعتماد التسليم",
+    "en": "Approve delivery",
+    "tr": "Teslimatı onayla"
+  },
+  {
+    "key": "client.delivery.approve_error",
+    "ar": "تعذر اعتماد التسليم الآن.",
+    "en": "We couldn’t approve the delivery right now.",
+    "tr": "Teslimat şu anda onaylanamadı."
+  },
+  {
+    "key": "client.delivery.download",
+    "ar": "تنزيل",
+    "en": "Download",
+    "tr": "İndir"
+  },
+  {
+    "key": "client.delivery.eyebrow",
+    "ar": "مركز التسليم",
+    "en": "Delivery center",
+    "tr": "Teslimat merkezi"
+  },
+  {
+    "key": "client.delivery.file_error",
+    "ar": "تعذر تجهيز تنزيل الملف الآن.",
+    "en": "We couldn’t prepare the file download right now.",
+    "tr": "Dosya indirme şu anda hazırlanamadı."
+  },
+  {
+    "key": "client.delivery.files",
+    "ar": "ملفات التسليم",
+    "en": "Delivery files",
+    "tr": "Teslimat dosyaları"
+  },
+  {
+    "key": "client.delivery.no_notes",
+    "ar": "ستظهر ملاحظات التسليم هنا عند تجهيزها.",
+    "en": "Delivery notes will appear here when prepared.",
+    "tr": "Teslimat notları hazırlandığında burada görünecek."
+  },
+  {
+    "key": "client.delivery.request_revision",
+    "ar": "طلب تعديل",
+    "en": "Request changes",
+    "tr": "Değişiklik iste"
+  },
+  {
+    "key": "client.delivery.revision_error",
+    "ar": "تعذر إرسال طلب التعديل الآن.",
+    "en": "We couldn’t send the change request right now.",
+    "tr": "Değişiklik isteği şu anda gönderilemedi."
+  },
+  {
+    "key": "client.delivery.revision_placeholder",
+    "ar": "اشرح باختصار ما الذي يحتاج إلى تعديل…",
+    "en": "Briefly explain what needs to change…",
+    "tr": "Nelerin değişmesi gerektiğini kısaca açıklayın…"
+  },
+  {
+    "key": "client.delivery.send_revision",
+    "ar": "إرسال طلب التعديل",
+    "en": "Send change request",
+    "tr": "Değişiklik isteğini gönder"
+  },
+  {
+    "key": "client.delivery.status.approved",
+    "ar": "تم اعتماد التسليم",
+    "en": "Delivery approved",
+    "tr": "Teslimat onaylandı"
+  },
+  {
+    "key": "client.delivery.status.client_review",
+    "ar": "جاهز لمراجعتك",
+    "en": "Ready for your review",
+    "tr": "İncelemeniz için hazır"
+  },
+  {
+    "key": "client.delivery.status.completed",
+    "ar": "اكتمل المشروع",
+    "en": "Project completed",
+    "tr": "Proje tamamlandı"
+  },
+  {
+    "key": "client.delivery.status.delivered",
+    "ar": "تم إرسال التسليم",
+    "en": "Delivery sent",
+    "tr": "Teslimat gönderildi"
+  },
+  {
+    "key": "client.delivery.status.prepared",
+    "ar": "تم تجهيز التسليم",
+    "en": "Delivery prepared",
+    "tr": "Teslimat hazırlandı"
+  },
+  {
+    "key": "client.delivery.status.ready_for_delivery",
+    "ar": "التسليم جاهز للتحضير",
+    "en": "Ready for delivery preparation",
+    "tr": "Teslimat hazırlığına hazır"
+  },
+  {
+    "key": "client.delivery.status.revision_requested",
+    "ar": "طلب التعديل قيد المتابعة",
+    "en": "Change request is being handled",
+    "tr": "Değişiklik isteği ele alınıyor"
+  },
+  {
+    "key": "client.delivery.working",
+    "ar": "جارٍ التنفيذ…",
+    "en": "Working…",
+    "tr": "İşleniyor…"
+  },
+  {
+    "key": "client.home.actions_count",
+    "ar": "{{count}} إجراءات تحتاج إلى متابعة",
+    "en": "{{count}} actions need your attention",
+    "tr": "{{count}} işlem dikkatinizi bekliyor"
+  },
+  {
+    "key": "client.home.active_projects",
+    "ar": "المشاريع النشطة",
+    "en": "Active projects",
+    "tr": "Aktif projeler"
+  },
+  {
+    "key": "client.home.all_clear",
+    "ar": "لا توجد إجراءات معلقة الآن",
+    "en": "You are all caught up",
+    "tr": "Şu anda bekleyen bir işlem yok"
+  },
+  {
+    "key": "client.home.error",
+    "ar": "تعذر تحميل مساحة العمل الآن.",
+    "en": "We couldn’t load your workspace right now.",
+    "tr": "Çalışma alanınız şu anda yüklenemedi."
+  },
+  {
+    "key": "client.home.eyebrow",
+    "ar": "مساحة عملك",
+    "en": "Your workspace",
+    "tr": "Çalışma alanınız"
+  },
+  {
+    "key": "client.home.loading",
+    "ar": "جارٍ تحميل مساحة BİŞIŞ…",
+    "en": "Loading your BİŞIŞ workspace…",
+    "tr": "BİŞIŞ çalışma alanınız yükleniyor…"
+  },
+  {
+    "key": "client.home.no_actions",
+    "ar": "سنعرض لك هنا أي إجراء مطلوب منك.",
+    "en": "We’ll show any action needed from you here.",
+    "tr": "Sizden gereken işlemleri burada göstereceğiz."
+  },
+  {
+    "key": "client.home.progress",
+    "ar": "التقدم",
+    "en": "Progress",
+    "tr": "İlerleme"
+  },
+  {
+    "key": "client.home.progress_not_available",
+    "ar": "سيظهر التقدم بعد بدء خطوات التنفيذ.",
+    "en": "Progress will appear when execution steps begin.",
+    "tr": "İlerleme, yürütme adımları başladığında görünecek."
+  },
+  {
+    "key": "client.home.retry",
+    "ar": "حاول مرة أخرى",
+    "en": "Try again",
+    "tr": "Tekrar dene"
+  },
+  {
+    "key": "client.home.steps_done",
+    "ar": "{{completed}} من {{total}} خطوات مكتملة",
+    "en": "{{completed}} of {{total}} steps complete",
+    "tr": "{{total}} adımdan {{completed}} tamamlandı"
+  },
+  {
+    "key": "client.home.subtitle",
+    "ar": "نُدير خطوات العمل ونوضح لك ما تم إنجازه وما سيأتي بعد ذلك.",
+    "en": "We manage the work and show you what is complete and what comes next.",
+    "tr": "Çalışmayı yönetiyor, tamamlananları ve sıradaki adımı gösteriyoruz."
+  },
+  {
+    "key": "client.home.title",
+    "ar": "ماذا يحتاج انتباهك الآن؟",
+    "en": "What needs your attention now?",
+    "tr": "Şu anda ne dikkatinizi gerektiriyor?"
+  },
+  {
+    "key": "client.home.updated",
+    "ar": "آخر تحديث",
+    "en": "Updated",
+    "tr": "Güncellendi"
+  },
+  {
+    "key": "client.project.current_work",
+    "ar": "ما يحدث الآن",
+    "en": "What is happening now",
+    "tr": "Şu anda ne oluyor"
+  },
+  {
+    "key": "client.project.current_work_hint",
+    "ar": "نُظهر لك الخطوات المرئية التي يعمل عليها فريق BİŞIŞ.",
+    "en": "We show the visible steps BİŞIŞ is working through.",
+    "tr": "BİŞIŞ ekibinin yürüttüğü görünür adımları gösteriyoruz."
+  },
+  {
+    "key": "client.project.eyebrow",
+    "ar": "مساحة مشروعك",
+    "en": "Your project",
+    "tr": "Projeniz"
+  },
+  {
+    "key": "client.project.no_next_action",
+    "ar": "لا توجد إجراءات مطلوبة منك الآن.",
+    "en": "There is no action needed from you right now.",
+    "tr": "Şu anda sizden beklenen bir işlem yok."
+  },
+  {
+    "key": "client.project.order_context_hint",
+    "ar": "هذا هو الطلب الذي بدأ تجربة التسليم الحالية.",
+    "en": "This is the order that started this delivery experience.",
+    "tr": "Bu teslimat deneyimini başlatan sipariş."
+  },
+  {
+    "key": "client.project.timeline",
+    "ar": "آخر ما تغير",
+    "en": "What changed",
+    "tr": "Neler değişti"
+  },
+  {
+    "key": "client.project.waiting_on",
+    "ar": "بانتظار",
+    "en": "Waiting on",
+    "tr": "Bekleyen"
+  },
+  {
+    "key": "client.requirements.empty",
+    "ar": "لا توجد معلومات مطلوبة منك الآن.",
+    "en": "Nothing is required from you right now.",
+    "tr": "Şu anda sizden gereken bir bilgi yok."
+  },
+  {
+    "key": "client.requirements.no_description",
+    "ar": "أرسل المعلومات المطلوبة لهذا العنصر.",
+    "en": "Send the information requested for this item.",
+    "tr": "Bu öğe için istenen bilgileri gönderin."
+  },
+  {
+    "key": "client.requirements.required",
+    "ar": "مطلوب",
+    "en": "Required",
+    "tr": "Gerekli"
+  },
+  {
+    "key": "client.requirements.response_placeholder",
+    "ar": "اكتب إجابتك هنا…",
+    "en": "Write your response here…",
+    "tr": "Yanıtınızı buraya yazın…"
+  },
+  {
+    "key": "client.requirements.status.approved",
+    "ar": "تمت الموافقة",
+    "en": "Approved",
+    "tr": "Onaylandı"
+  },
+  {
+    "key": "client.requirements.status.needs_revision",
+    "ar": "يحتاج تحديثًا",
+    "en": "Needs an update",
+    "tr": "Güncelleme gerekiyor"
+  },
+  {
+    "key": "client.requirements.status.not_applicable",
+    "ar": "غير منطبق",
+    "en": "Not applicable",
+    "tr": "Uygulanamaz"
+  },
+  {
+    "key": "client.requirements.status.requested",
+    "ar": "بانتظارك",
+    "en": "Waiting for you",
+    "tr": "Siz bekleniyorsunuz"
+  },
+  {
+    "key": "client.requirements.status.submitted",
+    "ar": "تم الإرسال",
+    "en": "Submitted",
+    "tr": "Gönderildi"
+  },
+  {
+    "key": "client.requirements.submit",
+    "ar": "إرسال",
+    "en": "Submit",
+    "tr": "Gönder"
+  },
+  {
+    "key": "client.requirements.submit_error",
+    "ar": "تعذر إرسال المتطلب الآن.",
+    "en": "We couldn’t submit this requirement right now.",
+    "tr": "Bu gereksinim şu anda gönderilemedi."
+  },
+  {
+    "key": "client.requirements.submitting",
+    "ar": "جارٍ الإرسال…",
+    "en": "Submitting…",
+    "tr": "Gönderiliyor…"
+  },
+  {
+    "key": "client.requirements.subtitle",
+    "ar": "أكمل هذه العناصر حتى يتمكن الفريق من متابعة العمل بثقة.",
+    "en": "Complete these items so the team can continue with confidence.",
+    "tr": "Ekibin güvenle ilerleyebilmesi için bu öğeleri tamamlayın."
+  },
+  {
+    "key": "client.requirements.title",
+    "ar": "ما نحتاجه منك",
+    "en": "What we need from you",
+    "tr": "Sizden istediklerimiz"
+  },
+  {
+    "key": "client.state.blocked",
+    "ar": "توجد عائق يحتاج إلى متابعة",
+    "en": "This project needs attention",
+    "tr": "Bu projenin takibi gerekiyor"
+  },
+  {
+    "key": "client.state.completed",
+    "ar": "اكتمل المشروع",
+    "en": "Project completed",
+    "tr": "Proje tamamlandı"
+  },
+  {
+    "key": "client.state.in_progress",
+    "ar": "نعمل على مشروعك",
+    "en": "We’re working on your project",
+    "tr": "Projeniz üzerinde çalışıyoruz"
+  },
+  {
+    "key": "client.state.not_started",
+    "ar": "سيبدأ العمل بعد اكتمال المتطلبات.",
+    "en": "Work will begin after requirements are complete.",
+    "tr": "Çalışma, gereksinimler tamamlandıktan sonra başlayacak."
+  },
+  {
+    "key": "client.state.ready_for_delivery",
+    "ar": "التسليم قيد التحضير",
+    "en": "Your delivery is being prepared",
+    "tr": "Teslimatınız hazırlanıyor"
+  },
+  {
+    "key": "client.state.ready_for_review",
+    "ar": "المشروع جاهز للمراجعة",
+    "en": "Your project is ready for review",
+    "tr": "Projeniz incelemeye hazır"
+  },
+  {
+    "key": "client.state.waiting_on_client",
+    "ar": "بانتظار معلومات منك",
+    "en": "Waiting for your information",
+    "tr": "Bilgileriniz bekleniyor"
+  },
+  {
+    "key": "client.state.waiting_on_founder",
+    "ar": "فريق BİŞIŞ يتابع الخطوة التالية",
+    "en": "The BİŞIŞ team is on the next step",
+    "tr": "BİŞIŞ ekibi sıradaki adımda"
+  },
+  {
+    "key": "client.state.waiting_on_review",
+    "ar": "التسليم بانتظار مراجعتك",
+    "en": "Your delivery is waiting for your review",
+    "tr": "Teslimatınız incelemenizi bekliyor"
+  },
+  {
+    "key": "client.support.create_error",
+    "ar": "تعذر التواصل مع BİŞIŞ حول هذا المشروع.",
+    "en": "Unable to contact BİŞIŞ about this project.",
+    "tr": "Bu proje hakkında BİŞIŞ ile iletişim kurulamadı."
+  },
+  {
+    "key": "client.support.description_placeholder",
+    "ar": "صف المشكلة أو السؤال.",
+    "en": "Describe the issue or question.",
+    "tr": "Sorunu veya soruyu açıklayın."
+  },
+  {
+    "key": "client.support.previous",
+    "ar": "سجل دعم المشروع",
+    "en": "Project support history",
+    "tr": "Proje destek geçmişi"
+  },
+  {
+    "key": "client.support.send",
+    "ar": "إرسال إلى BİŞIŞ",
+    "en": "Send to BİŞIŞ",
+    "tr": "BİŞIŞ'a gönder"
+  },
+  {
+    "key": "client.support.sending",
+    "ar": "جارٍ الإرسال…",
+    "en": "Sending…",
+    "tr": "Gönderiliyor…"
+  },
+  {
+    "key": "client.support.subtitle",
+    "ar": "اربط سؤالك بالمشروع الحالي ليملك الفريق السياق الصحيح.",
+    "en": "Keep your question connected to the current project so the team has the right context.",
+    "tr": "Ekibin doğru bağlama sahip olması için sorunuzu mevcut projeye bağlayın."
+  },
+  {
+    "key": "client.support.title",
+    "ar": "تواصل مع BİŞIŞ حول هذا المشروع",
+    "en": "Contact BİŞIŞ about this project",
+    "tr": "Bu proje hakkında BİŞIŞ ile iletişime geçin"
+  },
+  {
+    "key": "client.support.title_placeholder",
+    "ar": "بماذا تحتاج إلى مساعدة؟",
+    "en": "What do you need help with?",
+    "tr": "Neye ihtiyacınız var?"
+  },
+  {
+    "key": "client.waiting_on.client",
+    "ar": "العميل",
+    "en": "you",
+    "tr": "siz"
+  },
+  {
+    "key": "client.waiting_on.founder",
+    "ar": "فريق BİŞIŞ",
+    "en": "the BİŞIŞ team",
+    "tr": "BİŞIŞ ekibi"
+  },
+  {
+    "key": "client.waiting_on.payment",
+    "ar": "الدفع",
+    "en": "payment",
+    "tr": "ödeme"
+  },
+  {
+    "key": "client.waiting_on.review",
+    "ar": "المراجعة",
+    "en": "review",
+    "tr": "inceleme"
+  },
+  {
+    "key": "clients.active",
+    "ar": "نشط",
+    "en": "Active",
+    "tr": "Aktif"
+  },
+  {
+    "key": "clients.active_work",
+    "ar": "العمل النشط",
+    "en": "Active work",
+    "tr": "Aktif işler"
+  },
+  {
+    "key": "clients.activity_short",
+    "ar": "النشاط",
+    "en": "Activity",
+    "tr": "Etkinlik"
+  },
+  {
+    "key": "clients.deliveries_short",
+    "ar": "تسليمات",
+    "en": "deliveries",
+    "tr": "teslimat"
+  },
+  {
+    "key": "clients.delivery_short",
+    "ar": "التسليم",
+    "en": "Delivery",
+    "tr": "Teslimat"
+  },
+  {
+    "key": "clients.directory",
+    "ar": "العملاء",
+    "en": "Clients",
+    "tr": "Müşteriler"
+  },
+  {
+    "key": "clients.empty",
+    "ar": "سيظهر العملاء هنا بعد تفاعلهم مع BİŞIŞ.",
+    "en": "Clients will appear here after they interact with BİŞIŞ.",
+    "tr": "Müşteriler BİŞIŞ ile etkileşime geçtiğinde burada görünür."
+  },
+  {
+    "key": "clients.execution_short",
+    "ar": "التنفيذ",
+    "en": "Execution",
+    "tr": "Yürütme"
+  },
+  {
+    "key": "clients.eyebrow",
+    "ar": "فهم العلاقة",
+    "en": "Relationship intelligence",
+    "tr": "İlişki görünümü"
+  },
+  {
+    "key": "clients.files_short",
+    "ar": "الملفات",
+    "en": "Files",
+    "tr": "Dosyalar"
+  },
+  {
+    "key": "clients.inactive",
+    "ar": "غير نشط",
+    "en": "Inactive",
+    "tr": "Pasif"
+  },
+  {
+    "key": "clients.latest_context",
+    "ar": "السياق الأحدث",
+    "en": "Latest context",
+    "tr": "Son bağlam"
+  },
+  {
+    "key": "clients.latest_ticket",
+    "ar": "آخر تذكرة",
+    "en": "Latest ticket",
+    "tr": "Son destek talebi"
+  },
+  {
+    "key": "clients.load_error",
+    "ar": "تعذر تحميل عمليات العملاء.",
+    "en": "Unable to load client operations.",
+    "tr": "Müşteri operasyonları yüklenemedi."
+  },
+  {
+    "key": "clients.next_action",
+    "ar": "الإجراء التالي",
+    "en": "Next action",
+    "tr": "Sıradaki işlem"
+  },
+  {
+    "key": "clients.next_order_action",
+    "ar": "أبقِ الطلب النشط متحركًا وحدّث حالته عند اكتمال الخطوة التالية.",
+    "en": "Keep the active order moving and update its status when the next step is complete.",
+    "tr": "Aktif siparişi ilerletin ve sonraki adım tamamlandığında durumunu güncelleyin."
+  },
+  {
+    "key": "clients.next_quiet_action",
+    "ar": "لا يوجد إجراء معلق ظاهر في السجلات الحالية.",
+    "en": "No pending action is visible from the current records.",
+    "tr": "Mevcut kayıtlarda bekleyen bir işlem görünmüyor."
+  },
+  {
+    "key": "clients.next_ticket_action",
+    "ar": "راجع تذكرة الدعم المفتوحة ورد عليها عندما تكون جاهزًا.",
+    "en": "Review the open support ticket and respond when ready.",
+    "tr": "Açık destek talebini inceleyip hazır olduğunuzda yanıtlayın."
+  },
+  {
+    "key": "clients.no_match",
+    "ar": "لا يوجد عميل يطابق البحث.",
+    "en": "No clients match this search.",
+    "tr": "Aramanızla eşleşen müşteri yok."
+  },
+  {
+    "key": "clients.no_orders",
+    "ar": "لا توجد طلبات لهذا العميل بعد.",
+    "en": "No orders for this client yet.",
+    "tr": "Bu müşterinin henüz siparişi yok."
+  },
+  {
+    "key": "clients.no_tickets",
+    "ar": "لا توجد مشاكل دعم حاليًا.",
+    "en": "No support issues right now.",
+    "tr": "Şu anda destek sorunu yok."
+  },
+  {
+    "key": "clients.open",
+    "ar": "مفتوح",
+    "en": "open",
+    "tr": "açık"
+  },
+  {
+    "key": "clients.open_short",
+    "ar": "مفتوح",
+    "en": "open",
+    "tr": "açık"
+  },
+  {
+    "key": "clients.open_tickets",
+    "ar": "تذاكر مفتوحة",
+    "en": "Open tickets",
+    "tr": "Açık talepler"
+  },
+  {
+    "key": "clients.orders",
+    "ar": "الطلبات",
+    "en": "Orders",
+    "tr": "Siparişler"
+  },
+  {
+    "key": "clients.orders_short",
+    "ar": "طلبات",
+    "en": "orders",
+    "tr": "sipariş"
+  },
+  {
+    "key": "clients.overview_error",
+    "ar": "تعذر تحميل تفاصيل العميل المختار.",
+    "en": "Unable to load the selected client overview.",
+    "tr": "Seçilen müşteri özeti yüklenemedi."
+  },
+  {
+    "key": "clients.overview_loading",
+    "ar": "جارٍ تحميل تفاصيل العمليات…",
+    "en": "Loading operational project detail…",
+    "tr": "Operasyonel proje ayrıntıları yükleniyor…"
+  },
+  {
+    "key": "clients.pending_short",
+    "ar": "معلّق",
+    "en": "pending",
+    "tr": "bekleyen"
+  },
+  {
+    "key": "clients.profile",
+    "ar": "ملف العميل",
+    "en": "Client profile",
+    "tr": "Müşteri profili"
+  },
+  {
+    "key": "clients.project_operations",
+    "ar": "عمليات المشاريع",
+    "en": "Project operations",
+    "tr": "Proje operasyonları"
+  },
+  {
+    "key": "clients.project_operations_hint",
+    "ar": "عرض مجمع للمتطلبات والتنفيذ والتسليم والدعم.",
+    "en": "A batched view of requirements, execution, delivery, and support context.",
+    "tr": "Gereksinimler, yürütme, teslimat ve destek bağlamının toplu görünümü."
+  },
+  {
+    "key": "clients.projects",
+    "ar": "المشاريع",
+    "en": "Projects",
+    "tr": "Projeler"
+  },
+  {
+    "key": "clients.requirements_short",
+    "ar": "المتطلبات",
+    "en": "Requirements",
+    "tr": "Gereksinimler"
+  },
+  {
+    "key": "clients.revisions_short",
+    "ar": "تعديلات",
+    "en": "revisions",
+    "tr": "revizyon"
+  },
+  {
+    "key": "clients.search",
+    "ar": "بحث عن العملاء",
+    "en": "Search clients",
+    "tr": "Müşteri ara"
+  },
+  {
+    "key": "clients.search_placeholder",
+    "ar": "ابحث بالاسم أو البريد",
+    "en": "Search name or email",
+    "tr": "Ad veya e-posta ara"
+  },
+  {
+    "key": "clients.select_description",
+    "ar": "اختر عميلًا لرؤية سياق العلاقة والعمل النشط وما يحتاج إلى انتباه.",
+    "en": "Choose a client to see their relationship context, active work, and pending attention.",
+    "tr": "İlişki bağlamını, aktif işleri ve bekleyen ilgiyi görmek için bir müşteri seçin."
+  },
+  {
+    "key": "clients.select_title",
+    "ar": "اختر عميلًا",
+    "en": "Select a client",
+    "tr": "Müşteri seçin"
+  },
+  {
+    "key": "clients.subtitle",
+    "ar": "افهم علاقة كل عميل عبر الطلبات والمشاريع والدعم الموجود فعليًا في BİŞIŞ.",
+    "en": "Understand each client relationship through the real orders, projects, and support records already in BİŞIŞ.",
+    "tr": "BİŞIŞ içindeki gerçek sipariş, proje ve destek kayıtları üzerinden müşteri ilişkisini anlayın."
+  },
+  {
+    "key": "clients.support_short",
+    "ar": "الدعم",
+    "en": "Support",
+    "tr": "Destek"
+  },
+  {
+    "key": "clients.tasks_short",
+    "ar": "مهام",
+    "en": "tasks",
+    "tr": "görev"
+  },
+  {
+    "key": "clients.tickets",
+    "ar": "الدعم",
+    "en": "Support",
+    "tr": "Destek"
+  },
+  {
+    "key": "clients.title",
+    "ar": "ملف العميل 360",
+    "en": "Client 360",
+    "tr": "Client 360"
+  },
+  {
+    "key": "clients.total_orders",
+    "ar": "الطلبات",
+    "en": "Orders",
+    "tr": "Siparişler"
+  },
+  {
+    "key": "clients.visible_short",
+    "ar": "ظاهر للعميل",
+    "en": "visible",
+    "tr": "görünür"
+  },
+  {
+    "key": "common.back",
+    "ar": "رجوع",
+    "en": "Back",
+    "tr": "Geri"
+  },
+  {
+    "key": "common.back_to_admin",
+    "ar": "العودة إلى العمليات",
+    "en": "Back to operations",
+    "tr": "Operasyonlara dön"
+  },
+  {
+    "key": "common.back_to_dashboard",
+    "ar": "العودة إلى لوحة العميل",
+    "en": "Back to dashboard",
+    "tr": "Kontrol paneline dön"
+  },
+  {
+    "key": "common.cancel",
+    "ar": "إلغاء",
+    "en": "Cancel",
+    "tr": "İptal"
+  },
+  {
+    "key": "common.close",
+    "ar": "إغلاق",
+    "en": "Close",
+    "tr": "Kapat"
+  },
+  {
+    "key": "contact.address",
+    "ar": "العنوان",
+    "en": "Address",
+    "tr": "Adres"
+  },
+  {
+    "key": "contact.address_text",
+    "ar": "متاح عند تأكيد موعد التواصل.",
+    "en": "Shared when a meeting is confirmed.",
+    "tr": "Görüşme onaylandığında paylaşılır."
+  },
+  {
+    "key": "contact.email",
+    "ar": "البريد الإلكتروني",
+    "en": "Email",
+    "tr": "E-posta"
+  },
+  {
+    "key": "contact.phone",
+    "ar": "الهاتف",
+    "en": "Phone",
+    "tr": "Telefon"
+  },
+  {
+    "key": "contact.subtitle",
+    "ar": "أخبرنا بما تحتاجه وسنساعدك على تحديد الخطوة التالية.",
+    "en": "Tell us what you need and we will help define the next step.",
+    "tr": "İhtiyacınızı paylaşın; sonraki adımı birlikte netleştirelim."
+  },
+  {
+    "key": "contact.title",
+    "ar": "تواصل معنا",
+    "en": "Contact us",
+    "tr": "Bize ulaşın"
+  },
+  {
+    "key": "dashboard.all_caught_up",
+    "ar": "لا توجد إجراءات معلقة",
+    "en": "You are all caught up",
+    "tr": "Her şey güncel"
+  },
+  {
+    "key": "dashboard.amount",
+    "ar": "المبلغ",
+    "en": "Amount",
+    "tr": "Tutar"
+  },
+  {
+    "key": "dashboard.anonymous",
+    "ar": "مستخدم",
+    "en": "User",
+    "tr": "Kullanıcı"
+  },
+  {
+    "key": "dashboard.cancelled",
+    "ar": "ملغى",
+    "en": "Cancelled",
+    "tr": "İptal edildi"
+  },
+  {
+    "key": "dashboard.client",
+    "ar": "عميل",
+    "en": "Client",
+    "tr": "Müşteri"
+  },
+  {
+    "key": "dashboard.completed",
+    "ar": "مكتمل",
+    "en": "Completed",
+    "tr": "Tamamlandı"
+  },
+  {
+    "key": "dashboard.created_at",
+    "ar": "تاريخ الإنشاء",
+    "en": "Created",
+    "tr": "Oluşturulma"
+  },
+  {
+    "key": "dashboard.email",
+    "ar": "البريد الإلكتروني",
+    "en": "Email",
+    "tr": "E-posta"
+  },
+  {
+    "key": "dashboard.error",
+    "ar": "تعذر تحميل البيانات. حاول مرة أخرى.",
+    "en": "We could not load the data. Please try again.",
+    "tr": "Veriler yüklenemedi. Lütfen tekrar deneyin."
+  },
+  {
+    "key": "dashboard.general_notifications",
+    "ar": "إشعارات عامة",
+    "en": "General",
+    "tr": "Genel"
+  },
+  {
+    "key": "dashboard.loading",
+    "ar": "جاري التحميل...",
+    "en": "Loading...",
+    "tr": "Yükleniyor..."
+  },
+  {
+    "key": "dashboard.locale",
+    "ar": "ar-SA",
+    "en": "en-US",
+    "tr": "tr-TR"
+  },
+  {
+    "key": "dashboard.login_required",
+    "ar": "يرجى تسجيل الدخول لعرض لوحة التحكم.",
+    "en": "Please sign in to view your dashboard.",
+    "tr": "Panelinizi görmek için giriş yapın."
+  },
+  {
+    "key": "dashboard.mark_all_read",
+    "ar": "تعليم الكل كمقروء",
+    "en": "Mark all as read",
+    "tr": "Tümünü okundu olarak işaretle"
+  },
+  {
+    "key": "dashboard.new",
+    "ar": "جديد",
+    "en": "New",
+    "tr": "Yeni"
+  },
+  {
+    "key": "dashboard.new_count",
+    "ar": "طلبات جديدة",
+    "en": "new requests",
+    "tr": "yeni talep"
+  },
+  {
+    "key": "dashboard.new_request",
+    "ar": "طلب جديد",
+    "en": "New request",
+    "tr": "Yeni talep"
+  },
+  {
+    "key": "dashboard.next_empty",
+    "ar": "لا توجد طلبات أو إجراءات دعم معلقة الآن.",
+    "en": "There are no pending requests or support actions right now.",
+    "tr": "Şu anda bekleyen sipariş veya destek işlemi yok."
+  },
+  {
+    "key": "dashboard.next_new",
+    "ar": "تم استلام طلبك وينتظر الخطوة التشغيلية التالية.",
+    "en": "Your request is received and waiting for the next operational step.",
+    "tr": "Talebiniz alındı ve bir sonraki operasyon adımını bekliyor."
+  },
+  {
+    "key": "dashboard.next_processing",
+    "ar": "طلبك قيد المعالجة حاليًا. سنبقي الحالة محدثة هنا.",
+    "en": "Your order is currently being processed. We will keep the status updated here.",
+    "tr": "Siparişiniz şu anda işleniyor. Durumu burada güncel tutacağız."
+  },
+  {
+    "key": "dashboard.next_step_title",
+    "ar": "إليك ما سيحدث بعد ذلك",
+    "en": "Here is what happens next",
+    "tr": "Sırada ne olduğunu görün"
+  },
+  {
+    "key": "dashboard.next_ticket",
+    "ar": "طلب الدعم مفتوح. راجع الرد الأخير عند وصوله.",
+    "en": "Your support request is open. Check the latest response when it arrives.",
+    "tr": "Destek talebiniz açık. Yanıt geldiğinde kontrol edin."
+  },
+  {
+    "key": "dashboard.no_data",
+    "ar": "لا توجد بيانات بعد.",
+    "en": "No data yet.",
+    "tr": "Henüz veri yok."
+  },
+  {
+    "key": "dashboard.no_notifications",
+    "ar": "لا توجد إشعارات جديدة.",
+    "en": "No new notifications.",
+    "tr": "Yeni bildirim yok."
+  },
+  {
+    "key": "dashboard.no_orders",
+    "ar": "لا توجد طلبات بعد.",
+    "en": "No orders yet.",
+    "tr": "Henüz sipariş yok."
+  },
+  {
+    "key": "dashboard.no_orders_context",
+    "ar": "مساحة عملك جاهزة. سيظهر أول طلب هنا بعد اختيار باقة.",
+    "en": "Your workspace is ready. Your first request will appear here when you choose a package.",
+    "tr": "Çalışma alanınız hazır. Bir paket seçtiğinizde ilk talebiniz burada görünecek."
+  },
+  {
+    "key": "dashboard.no_unread_hint",
+    "ar": "أنت على اطلاع بكل جديد.",
+    "en": "You are up to date.",
+    "tr": "Her şey güncel."
+  },
+  {
+    "key": "dashboard.notifications",
+    "ar": "الإشعارات",
+    "en": "Notifications",
+    "tr": "Bildirimler"
+  },
+  {
+    "key": "dashboard.order_completed",
+    "ar": "مكتمل",
+    "en": "Completed",
+    "tr": "Tamamlandı"
+  },
+  {
+    "key": "dashboard.order_details",
+    "ar": "تفاصيل الطلب",
+    "en": "Order details",
+    "tr": "Sipariş ayrıntıları"
+  },
+  {
+    "key": "dashboard.order_processing",
+    "ar": "قيد المعالجة",
+    "en": "Processing",
+    "tr": "İşleniyor"
+  },
+  {
+    "key": "dashboard.order_progress",
+    "ar": "تقدم الطلب",
+    "en": "Order progress",
+    "tr": "Sipariş ilerlemesi"
+  },
+  {
+    "key": "dashboard.order_received",
+    "ar": "تم استلام الطلب",
+    "en": "Order received",
+    "tr": "Sipariş alındı"
+  },
+  {
+    "key": "dashboard.orders",
+    "ar": "الطلبات",
+    "en": "Orders",
+    "tr": "Siparişler"
+  },
+  {
+    "key": "dashboard.package",
+    "ar": "الباقة",
+    "en": "Package",
+    "tr": "Paket"
+  },
+  {
+    "key": "dashboard.price",
+    "ar": "السعر",
+    "en": "Price",
+    "tr": "Fiyat"
+  },
+  {
+    "key": "dashboard.processing",
+    "ar": "قيد التنفيذ",
+    "en": "Processing",
+    "tr": "İşleniyor"
+  },
+  {
+    "key": "dashboard.project_notifications",
+    "ar": "تحديثات المشاريع",
+    "en": "Project updates",
+    "tr": "Proje güncellemeleri"
+  },
+  {
+    "key": "dashboard.refresh",
+    "ar": "تحديث",
+    "en": "Refresh",
+    "tr": "Yenile"
+  },
+  {
+    "key": "dashboard.retry",
+    "ar": "إعادة المحاولة",
+    "en": "Retry",
+    "tr": "Tekrar dene"
+  },
+  {
+    "key": "dashboard.server_unavailable",
+    "ar": "الخادم غير متاح مؤقتًا.",
+    "en": "The server is temporarily unavailable.",
+    "tr": "Sunucu geçici olarak kullanılamıyor."
+  },
+  {
+    "key": "dashboard.start_first_order",
+    "ar": "ابدأ طلبك الأول",
+    "en": "Start your first request",
+    "tr": "İlk talebinizi başlatın"
+  },
+  {
+    "key": "dashboard.status",
+    "ar": "الحالة",
+    "en": "Status",
+    "tr": "Durum"
+  },
+  {
+    "key": "dashboard.title",
+    "ar": "لوحة التحكم",
+    "en": "Dashboard",
+    "tr": "Panel"
+  },
+  {
+    "key": "dashboard.transaction",
+    "ar": "المعاملة",
+    "en": "Transaction",
+    "tr": "İşlem"
+  },
+  {
+    "key": "dashboard.txid",
+    "ar": "معرّف المعاملة",
+    "en": "Transaction ID",
+    "tr": "İşlem kimliği"
+  },
+  {
+    "key": "dashboard.unread",
+    "ar": "غير مقروء",
+    "en": "Unread",
+    "tr": "Okunmamış"
+  },
+  {
+    "key": "dashboard.unread_hint",
+    "ar": "افتح الإشعارات لمعرفة ما تغير.",
+    "en": "Open notifications to see what changed.",
+    "tr": "Nelerin değiştiğini görmek için bildirimleri açın."
+  },
+  {
+    "key": "dashboard.unread_items",
+    "ar": "العناصر غير المقروءة",
+    "en": "Unread items",
+    "tr": "Okunmamış öğeler"
+  },
+  {
+    "key": "dashboard.up_next",
+    "ar": "الخطوة التالية",
+    "en": "Up next",
+    "tr": "Sıradaki"
+  },
+  {
+    "key": "dashboard.updated",
+    "ar": "آخر تحديث:",
+    "en": "Updated:",
+    "tr": "Güncellendi:"
+  },
+  {
+    "key": "dashboard.user",
+    "ar": "العميل",
+    "en": "Client",
+    "tr": "Müşteri"
+  },
+  {
+    "key": "dashboard.view_order",
+    "ar": "عرض الطلب",
+    "en": "View order",
+    "tr": "Siparişi görüntüle"
+  },
+  {
+    "key": "dashboard.view_ticket",
+    "ar": "عرض الدعم",
+    "en": "View support",
+    "tr": "Desteği görüntüle"
+  },
+  {
+    "key": "dashboard.welcome_message",
+    "ar": "تابع طلباتك وتسليماتك من مكان واحد.",
+    "en": "Track your orders and deliveries in one place.",
+    "tr": "Siparişlerinizi ve teslimatlarınızı tek yerden takip edin."
+  },
+  {
+    "key": "execution.activity",
+    "ar": "النشاط التشغيلي",
+    "en": "Operational activity",
+    "tr": "Operasyon etkinliği"
+  },
+  {
+    "key": "execution.event.CLIENT_APPROVED",
+    "ar": "اعتمد العميل التسليم",
+    "en": "Client approved the delivery",
+    "tr": "Müşteri teslimatı onayladı"
+  },
+  {
+    "key": "execution.event.DELIVERY_SENT",
+    "ar": "تم إرسال التسليم",
+    "en": "Delivery sent",
+    "tr": "Teslimat gönderildi"
+  },
+  {
+    "key": "execution.event.PROJECT_CREATED",
+    "ar": "تم إنشاء المشروع",
+    "en": "Project started",
+    "tr": "Proje başlatıldı"
+  },
+  {
+    "key": "execution.event.REQUIREMENT_SUBMITTED",
+    "ar": "تم إرسال متطلب",
+    "en": "Requirement submitted",
+    "tr": "Gereksinim gönderildi"
+  },
+  {
+    "key": "execution.event.REVISION_REQUESTED",
+    "ar": "طُلب تعديل على التسليم",
+    "en": "Changes were requested",
+    "tr": "Değişiklik istendi"
+  },
+  {
+    "key": "execution.execution_progress_source",
+    "ar": "محسوب من مهام التنفيذ",
+    "en": "Calculated from execution tasks",
+    "tr": "Yürütme görevlerinden hesaplandı"
+  },
+  {
+    "key": "execution.milestone_status.blocked",
+    "ar": "متوقفة",
+    "en": "Blocked",
+    "tr": "Engellendi"
+  },
+  {
+    "key": "execution.milestone_status.completed",
+    "ar": "مكتملة",
+    "en": "Completed",
+    "tr": "Tamamlandı"
+  },
+  {
+    "key": "execution.milestone_status.in_progress",
+    "ar": "قيد التنفيذ",
+    "en": "In progress",
+    "tr": "Devam ediyor"
+  },
+  {
+    "key": "execution.milestone_status.not_started",
+    "ar": "لم تبدأ",
+    "en": "Not started",
+    "tr": "Başlamadı"
+  },
+  {
+    "key": "execution.milestones",
+    "ar": "المراحل",
+    "en": "Milestones",
+    "tr": "Kilometre taşları"
+  },
+  {
+    "key": "execution.no_activity",
+    "ar": "لم يُسجل نشاط للمشروع بعد.",
+    "en": "No project activity recorded yet.",
+    "tr": "Henüz proje etkinliği kaydedilmedi."
+  },
+  {
+    "key": "execution.no_milestones",
+    "ar": "لم تتم إضافة مراحل بعد.",
+    "en": "No milestones have been added yet.",
+    "tr": "Henüz kilometre taşı eklenmedi."
+  },
+  {
+    "key": "execution.not_initialized",
+    "ar": "لم تتم تهيئة هيكل التنفيذ لهذا المشروع بعد.",
+    "en": "Execution structure is not initialized for this project yet.",
+    "tr": "Bu proje için yürütme yapısı henüz başlatılmadı."
+  },
+  {
+    "key": "execution.order_progress_source",
+    "ar": "احتياطيًا من دورة حياة الطلب المرتبط",
+    "en": "Fallback from linked order lifecycle",
+    "tr": "Bağlı sipariş yaşam döngüsünden yedek hesaplama"
+  },
+  {
+    "key": "execution.priority.high",
+    "ar": "أولوية مرتفعة",
+    "en": "High priority",
+    "tr": "Yüksek öncelik"
+  },
+  {
+    "key": "execution.priority.low",
+    "ar": "أولوية منخفضة",
+    "en": "Low priority",
+    "tr": "Düşük öncelik"
+  },
+  {
+    "key": "execution.priority.medium",
+    "ar": "أولوية عادية",
+    "en": "Normal priority",
+    "tr": "Normal öncelik"
+  },
+  {
+    "key": "execution.priority.urgent",
+    "ar": "أولوية عاجلة",
+    "en": "Urgent priority",
+    "tr": "Acil öncelik"
+  },
+  {
+    "key": "execution.structure",
+    "ar": "هيكل التنفيذ",
+    "en": "Execution structure",
+    "tr": "Yürütme yapısı"
+  },
+  {
+    "key": "execution.structure_hint",
+    "ar": "المراحل والمهام سجلات تشغيلية محفوظة.",
+    "en": "Milestones and tasks are persisted operational records.",
+    "tr": "Kilometre taşları ve görevler kalıcı operasyon kayıtlarıdır."
+  },
+  {
+    "key": "execution.task_status.blocked",
+    "ar": "متوقفة",
+    "en": "Blocked",
+    "tr": "Engellendi"
+  },
+  {
+    "key": "execution.task_status.cancelled",
+    "ar": "ملغاة",
+    "en": "Cancelled",
+    "tr": "İptal edildi"
+  },
+  {
+    "key": "execution.task_status.done",
+    "ar": "مكتملة",
+    "en": "Done",
+    "tr": "Tamamlandı"
+  },
+  {
+    "key": "execution.task_status.in_progress",
+    "ar": "قيد التنفيذ",
+    "en": "In progress",
+    "tr": "Devam ediyor"
+  },
+  {
+    "key": "execution.task_status.todo",
+    "ar": "للتنفيذ",
+    "en": "To do",
+    "tr": "Yapılacak"
+  },
+  {
+    "key": "execution.task_status.unknown",
+    "ar": "الخطوة الحالية",
+    "en": "Current step",
+    "tr": "Mevcut adım"
+  },
+  {
+    "key": "execution.tasks",
+    "ar": "المهام",
+    "en": "Tasks",
+    "tr": "Görevler"
+  },
+  {
+    "key": "faq.answer1",
+    "ar": "نبدأ بنطاق واضح، ثم نتابع التنفيذ والتسليم عبر مساحة العمل.",
+    "en": "We start with a clear scope, then track execution and delivery through the workspace.",
+    "tr": "Net bir kapsamla başlar, uygulama ve teslimatı çalışma alanından takip ederiz."
+  },
+  {
+    "key": "faq.answer2",
+    "ar": "اختر باقة مناسبة من صفحة الباقات، ثم تابع الخطوات الظاهرة في مسار الطلب.",
+    "en": "Choose a suitable package, then follow the steps in the request flow.",
+    "tr": "Uygun bir paket seçin ve talep akışındaki adımları izleyin."
+  },
+  {
+    "key": "faq.answer3",
+    "ar": "تظهر حالة الطلب والإشعارات داخل لوحة التحكم بعد تسجيل الدخول.",
+    "en": "Order status and notifications appear in the dashboard after sign-in.",
+    "tr": "Giriş yaptıktan sonra sipariş durumu ve bildirimler panelde görünür."
+  },
+  {
+    "key": "faq.ask_question",
+    "ar": "أرسل سؤالك",
+    "en": "Send your question",
+    "tr": "Sorunuzu gönderin"
+  },
+  {
+    "key": "faq.no_questions",
+    "ar": "لا توجد أسئلة بعد.",
+    "en": "No questions yet.",
+    "tr": "Henüz soru yok."
+  },
+  {
+    "key": "faq.not_found",
+    "ar": "لم نعثر على هذا السؤال.",
+    "en": "We could not find that question.",
+    "tr": "Bu soruyu bulamadık."
+  },
+  {
+    "key": "faq.question",
+    "ar": "السؤال",
+    "en": "Question",
+    "tr": "Soru"
+  },
+  {
+    "key": "faq.question_error",
+    "ar": "تعذر تحميل الأسئلة.",
+    "en": "Could not load questions.",
+    "tr": "Sorular yüklenemedi."
+  },
+  {
+    "key": "faq.question_sent",
+    "ar": "تم إرسال سؤالك.",
+    "en": "Your question was sent.",
+    "tr": "Sorunuz gönderildi."
+  },
+  {
+    "key": "faq.question1",
+    "ar": "كيف يعمل BİŞIŞ؟",
+    "en": "How does BİŞIŞ work?",
+    "tr": "BİŞIŞ nasıl çalışır?"
+  },
+  {
+    "key": "faq.question2",
+    "ar": "كيف أختار الباقة؟",
+    "en": "How do I choose a package?",
+    "tr": "Paketi nasıl seçerim?"
+  },
+  {
+    "key": "faq.question3",
+    "ar": "أين أتابع طلبي؟",
+    "en": "Where do I track my request?",
+    "tr": "Talebimi nereden takip ederim?"
+  },
+  {
+    "key": "faq.subtitle",
+    "ar": "إجابات واضحة تساعدك على اختيار المسار المناسب ومتابعة التنفيذ.",
+    "en": "Clear answers to help you choose the right path and follow delivery.",
+    "tr": "Doğru yolu seçmenize ve teslimatı takip etmenize yardımcı olacak net yanıtlar."
+  },
+  {
+    "key": "faq.support_request_title",
+    "ar": "تحتاج إلى مساعدة؟",
+    "en": "Need help?",
+    "tr": "Yardıma mı ihtiyacınız var?"
+  },
+  {
+    "key": "faq.title",
+    "ar": "الأسئلة الشائعة",
+    "en": "Frequently asked questions",
+    "tr": "Sık sorulan sorular"
+  },
+  {
+    "key": "floating.back_to_top",
+    "ar": "العودة إلى الأعلى",
+    "en": "Back to top",
+    "tr": "Başa dön"
+  },
+  {
+    "key": "floating.contact",
+    "ar": "ابدأ محادثة",
+    "en": "Start a conversation",
+    "tr": "Görüşme başlat"
+  },
+  {
+    "key": "floating.telegram",
+    "ar": "مشاركة عبر تيليجرام",
+    "en": "Share via Telegram",
+    "tr": "Telegram ile paylaş"
+  },
+  {
+    "key": "floating.telegram_hint",
+    "ar": "فتح مشاركة تيليجرام",
+    "en": "Open Telegram share",
+    "tr": "Telegram paylaşımını aç"
+  },
+  {
+    "key": "floating.whatsapp",
+    "ar": "تواصل عبر واتساب",
+    "en": "Chat on WhatsApp",
+    "tr": "WhatsApp üzerinden yazın"
+  },
+  {
+    "key": "floating.whatsapp_hint",
+    "ar": "فتح واتساب",
+    "en": "Open WhatsApp",
+    "tr": "WhatsApp'ı aç"
+  },
+  {
+    "key": "footer.contact",
+    "ar": "تواصل معنا",
+    "en": "Contact us",
+    "tr": "Bize ulaşın"
+  },
+  {
+    "key": "footer.copyright",
+    "ar": "© BİŞIŞ. جميع الحقوق محفوظة.",
+    "en": "© BİŞIŞ. All rights reserved.",
+    "tr": "© BİŞIŞ. Tüm hakları saklıdır."
+  },
+  {
+    "key": "footer.cta_body",
+    "ar": "اختر المسار المناسب، ودعنا نساعدك على الوصول من الوضوح إلى التنفيذ.",
+    "en": "Choose the right path and let us help you move from clarity to execution.",
+    "tr": "Doğru yolu seçin; netlikten uygulamaya geçmenize yardımcı olalım."
+  },
+  {
+    "key": "footer.cta_primary",
+    "ar": "استكشف الباقات",
+    "en": "Explore packages",
+    "tr": "Paketleri keşfet"
+  },
+  {
+    "key": "footer.cta_secondary",
+    "ar": "تحدث مع BİŞIŞ",
+    "en": "Talk to BİŞIŞ",
+    "tr": "BİŞIŞ ile konuşun"
+  },
+  {
+    "key": "footer.cta_title",
+    "ar": "جاهز لتحويل فكرتك إلى خطوات عملية؟",
+    "en": "Ready to turn your idea into practical steps?",
+    "tr": "Fikrinizi uygulanabilir adımlara dönüştürmeye hazır mısınız?"
+  },
+  {
+    "key": "footer.sub",
+    "ar": "خدمات عملية للأعمال في مراحلها المختلفة.",
+    "en": "Practical services for businesses at different stages.",
+    "tr": "Farklı aşamalardaki işletmeler için pratik hizmetler."
+  },
+  {
+    "key": "hero.badge",
+    "ar": "خدمات أعمال مركزة",
+    "en": "Focused business services",
+    "tr": "Odaklı iş hizmetleri"
+  },
+  {
+    "key": "hero.cta",
+    "ar": "استكشف الباقات",
+    "en": "Explore packages",
+    "tr": "Paketleri keşfet"
+  },
+  {
+    "key": "hero.cta2",
+    "ar": "كيف نعمل؟",
+    "en": "How it works",
+    "tr": "Nasıl çalışır?"
+  },
+  {
+    "key": "hero.description",
+    "ar": "اختر نطاقًا واضحًا، أرسل طلبك، وتابع التسليم من مساحة عمل واحدة.",
+    "en": "Choose a clear scope, submit your order, and follow delivery from one workspace.",
+    "tr": "Net bir kapsam seçin, siparişinizi gönderin ve teslimatı tek bir çalışma alanından takip edin."
+  },
+  {
+    "key": "hero.stats.packages",
+    "ar": "باقات واضحة",
+    "en": "Clear packages",
+    "tr": "Net paket"
+  },
+  {
+    "key": "hero.stats.services",
+    "ar": "خدمة أساسية",
+    "en": "Core services",
+    "tr": "Temel hizmet"
+  },
+  {
+    "key": "hero.subtitle",
+    "ar": "من التشخيص إلى التسليم",
+    "en": "From diagnosis to delivery",
+    "tr": "Teşhisten teslimata"
+  },
+  {
+    "key": "hero.title",
+    "ar": "ابنِ عملك بخطوات أوضح",
+    "en": "Build your business with a clearer path",
+    "tr": "İşinizi daha net bir yolla büyütün"
+  },
+  {
+    "key": "invoices.no_invoices",
+    "ar": "لا توجد فواتير بعد.",
+    "en": "No invoices yet.",
+    "tr": "Henüz fatura yok."
+  },
+  {
+    "key": "invoices.title",
+    "ar": "الفواتير",
+    "en": "Invoices",
+    "tr": "Faturalar"
+  },
+  {
+    "key": "nav.about",
+    "ar": "عن BİŞIŞ",
+    "en": "About",
+    "tr": "Hakkımızda"
+  },
+  {
+    "key": "nav.chat",
+    "ar": "المحادثة",
+    "en": "Chat",
+    "tr": "Sohbet"
+  },
+  {
+    "key": "nav.close_menu",
+    "ar": "إغلاق القائمة",
+    "en": "Close menu",
+    "tr": "Menüyü kapat"
+  },
+  {
+    "key": "nav.contact",
+    "ar": "تواصل معنا",
+    "en": "Contact",
+    "tr": "İletişim"
+  },
+  {
+    "key": "nav.dashboard",
+    "ar": "لوحة التحكم",
+    "en": "Dashboard",
+    "tr": "Panel"
+  },
+  {
+    "key": "nav.faq",
+    "ar": "الأسئلة الشائعة",
+    "en": "FAQ",
+    "tr": "SSS"
+  },
+  {
+    "key": "nav.home",
+    "ar": "الرئيسية",
+    "en": "Home",
+    "tr": "Ana Sayfa"
+  },
+  {
+    "key": "nav.language",
+    "ar": "اختيار اللغة",
+    "en": "Choose language",
+    "tr": "Dil seç"
+  },
+  {
+    "key": "nav.login",
+    "ar": "تسجيل الدخول",
+    "en": "Sign in",
+    "tr": "Giriş yap"
+  },
+  {
+    "key": "nav.logout",
+    "ar": "تسجيل الخروج",
+    "en": "Sign out",
+    "tr": "Çıkış yap"
+  },
+  {
+    "key": "nav.open_menu",
+    "ar": "فتح القائمة",
+    "en": "Open menu",
+    "tr": "Menüyü aç"
+  },
+  {
+    "key": "nav.packages",
+    "ar": "الباقات",
+    "en": "Packages",
+    "tr": "Paketler"
+  },
+  {
+    "key": "nav.start",
+    "ar": "ابدأ الآن",
+    "en": "Get started",
+    "tr": "Başla"
+  },
+  {
+    "key": "notFound.homeCta",
+    "ar": "العودة إلى الرئيسية",
+    "en": "Back to home",
+    "tr": "Ana sayfaya dön"
+  },
+  {
+    "key": "notFound.packagesCta",
+    "ar": "استكشف الباقات",
+    "en": "Explore packages",
+    "tr": "Paketleri keşfet"
+  },
+  {
+    "key": "notFound.subtitle",
+    "ar": "قد يكون الرابط قديمًا أو نُقلت الصفحة. اختر وجهة مناسبة للمتابعة.",
+    "en": "The link may be outdated or the page may have moved. Choose a safe place to continue.",
+    "tr": "Bağlantı eski olabilir veya sayfa taşınmış olabilir. Devam etmek için güvenli bir yer seçin."
+  },
+  {
+    "key": "notFound.title",
+    "ar": "هذه الصفحة غير موجودة",
+    "en": "This page could not be found",
+    "tr": "Bu sayfa bulunamadı"
+  },
+  {
+    "key": "notifications.error",
+    "ar": "حدث خطأ. حاول مرة أخرى.",
+    "en": "Something went wrong. Please try again.",
+    "tr": "Bir hata oluştu. Lütfen tekrar deneyin."
+  },
+  {
+    "key": "packages.all",
+    "ar": "الكل",
+    "en": "All",
+    "tr": "Tümü"
+  },
+  {
+    "key": "packages.allPackagesHint",
+    "ar": "يمكنك استكشاف جميع الباقات المتاحة.",
+    "en": "You can explore all available packages.",
+    "tr": "Mevcut tüm paketleri keşfedebilirsiniz."
+  },
+  {
+    "key": "packages.continue",
+    "ar": "متابعة إلى الدفع",
+    "en": "Continue to payment",
+    "tr": "Ödemeye devam et"
+  },
+  {
+    "key": "packages.cta",
+    "ar": "ابدأ الطلب",
+    "en": "Start order",
+    "tr": "Siparişi başlat"
+  },
+  {
+    "key": "packages.customSubtitle",
+    "ar": "اختر الباقة التي تناسب مرحلتك الحالية.",
+    "en": "Choose the package that fits your current stage.",
+    "tr": "Mevcut aşamanıza uygun paketi seçin."
+  },
+  {
+    "key": "packages.customTitle",
+    "ar": "باقات مناسبة لاحتياجك",
+    "en": "Packages for your needs",
+    "tr": "İhtiyaçlarınıza uygun paketler"
+  },
+  {
+    "key": "packages.growth.name",
+    "ar": "Growth",
+    "en": "Growth",
+    "tr": "Growth"
+  },
+  {
+    "key": "packages.investmentReadiness",
+    "ar": "جاهز للاستثمار",
+    "en": "Investor-ready",
+    "tr": "Yatırıma hazır"
+  },
+  {
+    "key": "packages.investor.name",
+    "ar": "Investor-Ready",
+    "en": "Investor-Ready",
+    "tr": "Investor-Ready"
+  },
+  {
+    "key": "packages.noPackages",
+    "ar": "لا توجد باقات متاحة حاليًا.",
+    "en": "No packages are currently available.",
+    "tr": "Şu anda kullanılabilir paket yok."
+  },
+  {
+    "key": "packages.noPackagesPersona",
+    "ar": "لا توجد باقات مطابقة لهذه الشخصية حاليًا.",
+    "en": "No packages match this persona yet.",
+    "tr": "Bu kişiliğe uygun paket henüz yok."
+  },
+  {
+    "key": "packages.popular",
+    "ar": "الأكثر طلبًا",
+    "en": "Most popular",
+    "tr": "En popüler"
+  },
+  {
+    "key": "packages.select",
+    "ar": "اختيار الباقة",
+    "en": "Select package",
+    "tr": "Paketi seç"
+  },
+  {
+    "key": "packages.selected",
+    "ar": "الباقة المختارة",
+    "en": "Selected package",
+    "tr": "Seçilen paket"
+  },
+  {
+    "key": "packages.selection_hint",
+    "ar": "اختر باقة لمقارنة القرار قبل المتابعة.",
+    "en": "Choose a package to review your decision before continuing.",
+    "tr": "Devam etmeden önce kararınızı gözden geçirmek için bir paket seçin."
+  },
+  {
+    "key": "packages.starter.name",
+    "ar": "Starter",
+    "en": "Starter",
+    "tr": "Starter"
+  },
+  {
+    "key": "packages.subtitle",
+    "ar": "باقات عملية بنطاق وتسعير واضحين.",
+    "en": "Practical packages with clear scope and pricing.",
+    "tr": "Net kapsam ve fiyatlandırmaya sahip pratik paketler."
+  },
+  {
+    "key": "packages.title",
+    "ar": "اختر الباقة المناسبة",
+    "en": "Choose the right package",
+    "tr": "Doğru paketi seçin"
+  },
+  {
+    "key": "payment.attach_file",
+    "ar": "إرفاق ملف",
+    "en": "Attach a file",
+    "tr": "Dosya ekle"
+  },
+  {
+    "key": "payment.choose_package",
+    "ar": "العودة إلى الباقات",
+    "en": "Back to packages",
+    "tr": "Paketlere dön"
+  },
+  {
+    "key": "payment.click_to_select_file",
+    "ar": "انقر لاختيار ملف",
+    "en": "Click to select a file",
+    "tr": "Dosya seçmek için tıklayın"
+  },
+  {
+    "key": "payment.copySuccess",
+    "ar": "تم نسخ العنوان.",
+    "en": "Address copied.",
+    "tr": "Adres kopyalandı."
+  },
+  {
+    "key": "payment.desc",
+    "ar": "أرسل معاملة Polygon USDC ثم أدخل رقمها للتحقق.",
+    "en": "Send a Polygon USDC transaction, then enter its hash for verification.",
+    "tr": "Polygon USDC işlemini gönderin ve doğrulama için hash bilgisini girin."
+  },
+  {
+    "key": "payment.error_submitting",
+    "ar": "تعذر إرسال الطلب.",
+    "en": "Could not submit the request.",
+    "tr": "Talep gönderilemedi."
+  },
+  {
+    "key": "payment.eyebrow",
+    "ar": "الدفع الآمن",
+    "en": "Secure payment",
+    "tr": "Güvenli ödeme"
+  },
+  {
+    "key": "payment.file_size_error",
+    "ar": "يجب ألا يتجاوز الملف 10MB.",
+    "en": "The file must be 10MB or smaller.",
+    "tr": "Dosya 10 MB veya daha küçük olmalıdır."
+  },
+  {
+    "key": "payment.file_support",
+    "ar": "الصيغ المدعومة: JPG وPNG وGIF وPDF وDOC وDOCX.",
+    "en": "Supported formats: JPG, PNG, GIF, PDF, DOC, and DOCX.",
+    "tr": "Desteklenen biçimler: JPG, PNG, GIF, PDF, DOC ve DOCX."
+  },
+  {
+    "key": "payment.file_type_error",
+    "ar": "صيغة الملف غير مدعومة.",
+    "en": "This file type is not supported.",
+    "tr": "Bu dosya türü desteklenmiyor."
+  },
+  {
+    "key": "payment.file_upload_error",
+    "ar": "تعذر رفع الملف.",
+    "en": "Could not upload the file.",
+    "tr": "Dosya yüklenemedi."
+  },
+  {
+    "key": "payment.file_upload_success",
+    "ar": "تم رفع الملف.",
+    "en": "File uploaded.",
+    "tr": "Dosya yüklendi."
+  },
+  {
+    "key": "payment.file_uploaded",
+    "ar": "تم إرفاق الملف",
+    "en": "File attached",
+    "tr": "Dosya eklendi"
+  },
+  {
+    "key": "payment.go_to_dashboard",
+    "ar": "اذهب إلى لوحة التحكم",
+    "en": "Go to dashboard",
+    "tr": "Panele git"
+  },
+  {
+    "key": "payment.networkBadge",
+    "ar": "Polygon · USDC",
+    "en": "Polygon · USDC",
+    "tr": "Polygon · USDC"
+  },
+  {
+    "key": "payment.step1",
+    "ar": "أرسل المبلغ المحدد عبر Polygon USDC.",
+    "en": "Send the specified amount via Polygon USDC.",
+    "tr": "Belirtilen tutarı Polygon USDC ile gönderin."
+  },
+  {
+    "key": "payment.step2",
+    "ar": "انسخ transaction hash من محفظتك.",
+    "en": "Copy the transaction hash from your wallet.",
+    "tr": "Cüzdanınızdaki işlem hash bilgisini kopyalayın."
+  },
+  {
+    "key": "payment.step3",
+    "ar": "أرسل hash لبدء التحقق من الدفع.",
+    "en": "Submit the hash to start payment verification.",
+    "tr": "Ödeme doğrulamasını başlatmak için hash bilgisini gönderin."
+  },
+  {
+    "key": "payment.steps_title",
+    "ar": "خطوات الدفع",
+    "en": "Payment steps",
+    "tr": "Ödeme adımları"
+  },
+  {
+    "key": "payment.title",
+    "ar": "إرسال الدفع",
+    "en": "Submit payment",
+    "tr": "Ödemeyi gönder"
+  },
+  {
+    "key": "payment.txidBtn",
+    "ar": "إرسال المعاملة",
+    "en": "Submit transaction",
+    "tr": "İşlemi gönder"
+  },
+  {
+    "key": "payment.txidPlaceholder",
+    "ar": "أدخل transaction hash",
+    "en": "Enter transaction hash",
+    "tr": "İşlem hash bilgisini girin"
+  },
+  {
+    "key": "payment.txidSent",
+    "ar": "تم إرسال المعاملة للمراجعة.",
+    "en": "The transaction was submitted for review.",
+    "tr": "İşlem inceleme için gönderildi."
+  },
+  {
+    "key": "payment.unavailable_desc",
+    "ar": "لم يتم تهيئة التحقق من الدفع بعد. يمكنك العودة إلى الباقات واختيار خدمة، وسيتم تفعيل الدفع بعد إعداد النظام.",
+    "en": "Payment verification has not been configured yet. You can return to the packages and continue when payment is enabled.",
+    "tr": "Ödeme doğrulaması henüz yapılandırılmadı. Paketlere dönüp ödeme etkinleştirildiğinde devam edebilirsiniz."
+  },
+  {
+    "key": "payment.unavailable_title",
+    "ar": "الدفع غير متاح حاليًا",
+    "en": "Payments are currently unavailable",
+    "tr": "Ödemeler şu anda kullanılamıyor"
+  },
+  {
+    "key": "payment.upload_file",
+    "ar": "رفع الملف",
+    "en": "Upload file",
+    "tr": "Dosyayı yükle"
+  },
+  {
+    "key": "payment.uploading",
+    "ar": "جارٍ الرفع...",
+    "en": "Uploading...",
+    "tr": "Yükleniyor..."
+  },
+  {
+    "key": "payment.view",
+    "ar": "عرض",
+    "en": "View",
+    "tr": "Görüntüle"
+  },
+  {
+    "key": "projects.active",
+    "ar": "نشط",
+    "en": "Active",
+    "tr": "Aktif"
+  },
+  {
+    "key": "projects.active_orders",
+    "ar": "الطلبات النشطة",
+    "en": "Active orders",
+    "tr": "Aktif siparişler"
+  },
+  {
+    "key": "projects.archived",
+    "ar": "مؤرشف",
+    "en": "Archived",
+    "tr": "Arşivlendi"
+  },
+  {
+    "key": "projects.completed_orders",
+    "ar": "الطلبات المكتملة",
+    "en": "Completed orders",
+    "tr": "Tamamlanan siparişler"
+  },
+  {
+    "key": "projects.create",
+    "ar": "إنشاء مشروع",
+    "en": "Create project",
+    "tr": "Proje oluştur"
+  },
+  {
+    "key": "projects.delivery_stage",
+    "ar": "التسليم",
+    "en": "Delivery",
+    "tr": "Teslimat"
+  },
+  {
+    "key": "projects.derived_progress",
+    "ar": "التقدم المستنتج",
+    "en": "Derived progress",
+    "tr": "Türetilen ilerleme"
+  },
+  {
+    "key": "projects.description",
+    "ar": "الوصف",
+    "en": "Description",
+    "tr": "Açıklama"
+  },
+  {
+    "key": "projects.edit",
+    "ar": "تعديل المشروع",
+    "en": "Edit project",
+    "tr": "Projeyi düzenle"
+  },
+  {
+    "key": "projects.execution_progress_source",
+    "ar": "مصدر التقدم: خطوات التنفيذ المحفوظة",
+    "en": "Progress source: persisted execution steps",
+    "tr": "İlerleme kaynağı: kalıcı yürütme adımları"
+  },
+  {
+    "key": "projects.execution_stage",
+    "ar": "التنفيذ",
+    "en": "Execution",
+    "tr": "Uygulama"
+  },
+  {
+    "key": "projects.intake_stage",
+    "ar": "استلام الطلب",
+    "en": "Order intake",
+    "tr": "Sipariş alımı"
+  },
+  {
+    "key": "projects.linked_orders",
+    "ar": "الطلبات المرتبطة",
+    "en": "Linked orders",
+    "tr": "Bağlı siparişler"
+  },
+  {
+    "key": "projects.name",
+    "ar": "اسم المشروع",
+    "en": "Project name",
+    "tr": "Proje adı"
+  },
+  {
+    "key": "projects.new",
+    "ar": "مشروع جديد",
+    "en": "New project",
+    "tr": "Yeni proje"
+  },
+  {
+    "key": "projects.next_action",
+    "ar": "الإجراء التالي",
+    "en": "Next action",
+    "tr": "Sıradaki işlem"
+  },
+  {
+    "key": "projects.next_active",
+    "ar": "تابع عمل الطلب المرتبط وحدّث دورة حياته عند تأكيد الخطوة التالية.",
+    "en": "Continue the linked order work and update its lifecycle as progress is confirmed.",
+    "tr": "Bağlı sipariş işine devam edin ve ilerleme doğrulandıkça yaşam döngüsünü güncelleyin."
+  },
+  {
+    "key": "projects.next_completed",
+    "ar": "راجع سياق الطلب المكتمل وجهز خطوة التسليم.",
+    "en": "Review the completed order context and prepare the delivery step.",
+    "tr": "Tamamlanan sipariş bağlamını inceleyip teslimat adımını hazırlayın."
+  },
+  {
+    "key": "projects.next_no_order",
+    "ar": "أكد ارتباط الطلب الأول قبل استنتاج مزيد من تقدم المشروع.",
+    "en": "Confirm the first order association before deriving further project progress.",
+    "tr": "Daha fazla proje ilerlemesi çıkarmadan önce ilk sipariş bağlantısını doğrulayın."
+  },
+  {
+    "key": "projects.no_description",
+    "ar": "لا يوجد وصف.",
+    "en": "No description.",
+    "tr": "Açıklama yok."
+  },
+  {
+    "key": "projects.no_linked_orders",
+    "ar": "لا توجد طلبات مرتبطة ظاهرة بعد.",
+    "en": "No linked orders are visible yet.",
+    "tr": "Henüz bağlı sipariş görünmüyor."
+  },
+  {
+    "key": "projects.no_projects",
+    "ar": "لا توجد مشاريع بعد.",
+    "en": "No projects yet.",
+    "tr": "Henüz proje yok."
+  },
+  {
+    "key": "projects.not_found",
+    "ar": "المشروع غير موجود.",
+    "en": "Project not found.",
+    "tr": "Proje bulunamadı."
+  },
+  {
+    "key": "projects.order_context",
+    "ar": "سياق الطلب",
+    "en": "Order context",
+    "tr": "Sipariş bağlamı"
+  },
+  {
+    "key": "projects.order_context_hint",
+    "ar": "التقدم مستنتج فقط من سجلات دورة الطلبات المرتبطة.",
+    "en": "Progress is inferred from linked order lifecycle records only.",
+    "tr": "İlerleme yalnızca bağlı sipariş yaşam döngüsü kayıtlarından çıkarılır."
+  },
+  {
+    "key": "projects.title",
+    "ar": "المشاريع",
+    "en": "Projects",
+    "tr": "Projeler"
+  },
+  {
+    "key": "projects.updated_on",
+    "ar": "آخر تحديث",
+    "en": "Updated",
+    "tr": "Güncellendi"
+  },
+  {
+    "key": "projects.waiting_for_linked_order",
+    "ar": "بانتظار الطلب المرتبط",
+    "en": "Waiting for a linked order",
+    "tr": "Bağlı sipariş bekleniyor"
+  },
+  {
+    "key": "projects.waiting_for_order",
+    "ar": "بانتظار طلب مرتبط",
+    "en": "Waiting for linked order",
+    "tr": "Bağlı sipariş bekleniyor"
+  },
+  {
+    "key": "projects.workspace",
+    "ar": "مساحة المشروع",
+    "en": "Project workspace",
+    "tr": "Proje çalışma alanı"
+  },
+  {
+    "key": "projects.workspace_load_error",
+    "ar": "تعذر تحميل مساحة المشروع.",
+    "en": "Unable to load this project workspace.",
+    "tr": "Proje çalışma alanı yüklenemedi."
+  },
+  {
+    "key": "stats.categories",
+    "ar": "فئات",
+    "en": "Categories",
+    "tr": "Kategoriler"
+  },
+  {
+    "key": "stats.packages",
+    "ar": "باقات",
+    "en": "Packages",
+    "tr": "Paketler"
+  },
+  {
+    "key": "stats.scope",
+    "ar": "نطاق V1",
+    "en": "V1 scope",
+    "tr": "V1 kapsamı"
+  },
+  {
+    "key": "stats.services",
+    "ar": "خدمات أساسية",
+    "en": "Core services",
+    "tr": "Temel hizmetler"
+  },
+  {
+    "key": "steps.eyebrow",
+    "ar": "كيف نعمل",
+    "en": "How it works",
+    "tr": "Nasıl çalışır"
+  },
+  {
+    "key": "steps.step1.desc",
+    "ar": "اختر نطاقًا واضحًا للخدمة التي تحتاجها.",
+    "en": "Choose a clear scope for the service you need.",
+    "tr": "İhtiyacınız olan hizmet için net bir kapsam seçin."
+  },
+  {
+    "key": "steps.step1.title",
+    "ar": "حدد احتياجك",
+    "en": "Define your need",
+    "tr": "İhtiyacınızı belirleyin"
+  },
+  {
+    "key": "steps.step2.desc",
+    "ar": "قارن الباقات والأسعار والمخرجات المتاحة.",
+    "en": "Compare the available packages, prices, and deliverables.",
+    "tr": "Mevcut paketleri, fiyatları ve teslimatları karşılaştırın."
+  },
+  {
+    "key": "steps.step2.title",
+    "ar": "اختر الباقة",
+    "en": "Choose a package",
+    "tr": "Bir paket seçin"
+  },
+  {
+    "key": "steps.step3.desc",
+    "ar": "أرسل بياناتك وأكمل الخطوة المطلوبة في المسار.",
+    "en": "Submit your details and complete the required step in the flow.",
+    "tr": "Bilgilerinizi gönderin ve akıştaki gerekli adımı tamamlayın."
+  },
+  {
+    "key": "steps.step3.title",
+    "ar": "أرسل الطلب",
+    "en": "Submit the request",
+    "tr": "Talebi gönderin"
+  },
+  {
+    "key": "steps.step4.desc",
+    "ar": "تابع حالة طلبك وتواصل من مساحة العمل.",
+    "en": "Track your request status and communicate from the workspace.",
+    "tr": "Talep durumunuzu takip edin ve çalışma alanından iletişim kurun."
+  },
+  {
+    "key": "steps.step4.title",
+    "ar": "تابع التسليم",
+    "en": "Track delivery",
+    "tr": "Teslimatı takip edin"
+  },
+  {
+    "key": "steps.sub",
+    "ar": "مسار واضح من اختيار النطاق إلى متابعة التسليم.",
+    "en": "A clear path from choosing scope to tracking delivery.",
+    "tr": "Kapsam seçiminden teslimat takibine net bir yol."
+  },
+  {
+    "key": "steps.title",
+    "ar": "خطوات عملية بلا تعقيد",
+    "en": "Practical steps without complexity",
+    "tr": "Karmaşıklık olmadan pratik adımlar"
+  },
+  {
+    "key": "tickets.admin_response",
+    "ar": "رد الإدارة",
+    "en": "Admin response",
+    "tr": "Yönetici yanıtı"
+  },
+  {
+    "key": "tickets.change_status",
+    "ar": "تغيير الحالة",
+    "en": "Change status",
+    "tr": "Durumu değiştir"
+  },
+  {
+    "key": "tickets.closed",
+    "ar": "مغلقة",
+    "en": "Closed",
+    "tr": "Kapalı"
+  },
+  {
+    "key": "tickets.create_error",
+    "ar": "تعذر إنشاء التذكرة.",
+    "en": "Could not create the ticket.",
+    "tr": "Talep oluşturulamadı."
+  },
+  {
+    "key": "tickets.create_success",
+    "ar": "تم إنشاء التذكرة.",
+    "en": "Ticket created.",
+    "tr": "Talep oluşturuldu."
+  },
+  {
+    "key": "tickets.description_label",
+    "ar": "وصف المشكلة",
+    "en": "Issue description",
+    "tr": "Sorun açıklaması"
+  },
+  {
+    "key": "tickets.in_progress",
+    "ar": "قيد المعالجة",
+    "en": "In progress",
+    "tr": "Devam ediyor"
+  },
+  {
+    "key": "tickets.new",
+    "ar": "تذكرة جديدة",
+    "en": "New ticket",
+    "tr": "Yeni talep"
+  },
+  {
+    "key": "tickets.no_tickets",
+    "ar": "لا توجد تذاكر بعد.",
+    "en": "No tickets yet.",
+    "tr": "Henüz talep yok."
+  },
+  {
+    "key": "tickets.open",
+    "ar": "مفتوحة",
+    "en": "Open",
+    "tr": "Açık"
+  },
+  {
+    "key": "tickets.open_project",
+    "ar": "فتح المشروع",
+    "en": "Open project",
+    "tr": "Projeyi aç"
+  },
+  {
+    "key": "tickets.resolved",
+    "ar": "تم الحل",
+    "en": "Resolved",
+    "tr": "Çözüldü"
+  },
+  {
+    "key": "tickets.respond",
+    "ar": "إرسال الرد",
+    "en": "Send response",
+    "tr": "Yanıt gönder"
+  },
+  {
+    "key": "tickets.title",
+    "ar": "تذاكر الدعم",
+    "en": "Support tickets",
+    "tr": "Destek talepleri"
+  },
+  {
+    "key": "tickets.title_label",
+    "ar": "عنوان التذكرة",
+    "en": "Ticket title",
+    "tr": "Talep başlığı"
+  },
+  {
+    "key": "trust.badges.payment",
+    "ar": "دفع محكوم بالتحقق",
+    "en": "Verified payment flow",
+    "tr": "Doğrulamalı ödeme akışı"
+  },
+  {
+    "key": "trust.badges.payment_detail",
+    "ar": "الدفع محجوب بأمان حتى تكتمل إعدادات التحقق.",
+    "en": "Payments stay safely blocked until verification is configured.",
+    "tr": "Doğrulama yapılandırılana kadar ödemeler güvenle engellenir."
+  },
+  {
+    "key": "trust.badges.recaptcha",
+    "ar": "حماية من الإساءة",
+    "en": "Abuse protection",
+    "tr": "Kötüye kullanım koruması"
+  },
+  {
+    "key": "trust.badges.recaptcha_detail",
+    "ar": "طبقة حماية إضافية ضد الاستخدام الآلي.",
+    "en": "An extra layer against automated abuse.",
+    "tr": "Otomatik kötüye kullanıma karşı ek koruma."
+  },
+  {
+    "key": "trust.badges.ssl",
+    "ar": "اتصال آمن",
+    "en": "Secure connection",
+    "tr": "Güvenli bağlantı"
+  },
+  {
+    "key": "trust.badges.ssl_detail",
+    "ar": "اتصال آمن لحماية جلسة المستخدم.",
+    "en": "Secure connections protect every session.",
+    "tr": "Güvenli bağlantılar her oturumu korur."
+  },
+  {
+    "key": "trust.badges.support",
+    "ar": "متابعة واضحة",
+    "en": "Clear follow-up",
+    "tr": "Net takip"
+  },
+  {
+    "key": "trust.badges.support_detail",
+    "ar": "دعم واضح ومسار متابعة للطلبات.",
+    "en": "Clear support and a trackable delivery path.",
+    "tr": "Net destek ve takip edilebilir teslimat yolu."
+  },
+  {
+    "key": "trust.eyebrow",
+    "ar": "مصمم للوضوح",
+    "en": "Built for clarity",
+    "tr": "Netlik için tasarlandı"
+  },
+  {
+    "key": "trust.title",
+    "ar": "نطاق واضح، تسليم يمكن متابعته",
+    "en": "Clear scope, trackable delivery",
+    "tr": "Net kapsam, takip edilebilir teslimat"
+  },
+  {
+    "key": "workbench.active_orders",
+    "ar": "طلبات نشطة",
+    "en": "Active orders",
+    "tr": "Aktif siparişler"
+  },
+  {
+    "key": "workbench.active_projects",
+    "ar": "مشاريع نشطة",
+    "en": "Active projects",
+    "tr": "Aktif projeler"
+  },
+  {
+    "key": "workbench.choose_template",
+    "ar": "اختر قالبًا",
+    "en": "Choose a template",
+    "tr": "Şablon seçin"
+  },
+  {
+    "key": "workbench.completed",
+    "ar": "مكتمل",
+    "en": "Completed",
+    "tr": "Tamamlandı"
+  },
+  {
+    "key": "workbench.delivery_queue",
+    "ar": "طابور تسليم الخدمات",
+    "en": "Service delivery queue",
+    "tr": "Hizmet teslimat kuyruğu"
+  },
+  {
+    "key": "workbench.delivery_queue_hint",
+    "ar": "مرتّب من حالة المشاريع والمتطلبات والمهام والتسليم الفعلية.",
+    "en": "Prioritized from persisted project state, requirements, tasks, and delivery.",
+    "tr": "Kalıcı proje durumu, gereksinimler, görevler ve teslimattan önceliklendirilir."
+  },
+  {
+    "key": "workbench.eyebrow",
+    "ar": "مساحة التنفيذ",
+    "en": "Execution workspace",
+    "tr": "Uygulama çalışma alanı"
+  },
+  {
+    "key": "workbench.in_progress",
+    "ar": "قيد التنفيذ",
+    "en": "In progress",
+    "tr": "Devam ediyor"
+  },
+  {
+    "key": "workbench.initialization_error",
+    "ar": "تعذر تهيئة المشروع الآن.",
+    "en": "Unable to initialize this project right now.",
+    "tr": "Bu proje şu anda başlatılamadı."
+  },
+  {
+    "key": "workbench.initialize",
+    "ar": "تهيئة",
+    "en": "Initialize",
+    "tr": "Başlat"
+  },
+  {
+    "key": "workbench.initialize_project",
+    "ar": "تهيئة المشروع",
+    "en": "Initialize project",
+    "tr": "Projeyi başlat"
+  },
+  {
+    "key": "workbench.initializing",
+    "ar": "جارٍ التهيئة…",
+    "en": "Initializing…",
+    "tr": "Başlatılıyor…"
+  },
+  {
+    "key": "workbench.load_error",
+    "ar": "تعذر تحميل مساحة التنفيذ.",
+    "en": "Unable to load the workbench.",
+    "tr": "Workbench yüklenemedi."
+  },
+  {
+    "key": "workbench.no_active",
+    "ar": "لا يوجد شيء قيد التنفيذ الآن.",
+    "en": "Nothing is in progress right now.",
+    "tr": "Şu anda devam eden bir iş yok."
+  },
+  {
+    "key": "workbench.no_completed",
+    "ar": "ستظهر الأعمال المكتملة هنا.",
+    "en": "Completed work will appear here.",
+    "tr": "Tamamlanan işler burada görünecek."
+  },
+  {
+    "key": "workbench.no_delivery_queue",
+    "ar": "لا توجد عناصر تسليم تحتاج إلى انتباه.",
+    "en": "No service delivery items need attention.",
+    "tr": "Dikkat gerektiren hizmet teslimatı yok."
+  },
+  {
+    "key": "workbench.no_projects",
+    "ar": "لا توجد مشاريع بعد.",
+    "en": "No projects yet.",
+    "tr": "Henüz proje yok."
+  },
+  {
+    "key": "workbench.no_waiting",
+    "ar": "لا يوجد شيء بانتظار الانتباه.",
+    "en": "Nothing is waiting for attention.",
+    "tr": "İlgi bekleyen bir şey yok."
+  },
+  {
+    "key": "workbench.open_clients",
+    "ar": "فتح Client 360",
+    "en": "Open Client 360",
+    "tr": "Client 360’ı aç"
+  },
+  {
+    "key": "workbench.open_clients_hint",
+    "ar": "انتقل من العمل التشغيلي إلى سياق علاقة العميل.",
+    "en": "Move from operational work to the client relationship context.",
+    "tr": "Operasyonel işten müşteri ilişkisi bağlamına geçin."
+  },
+  {
+    "key": "workbench.open_command_center",
+    "ar": "فتح مركز العمليات",
+    "en": "Open Command Center",
+    "tr": "Komuta merkezini aç"
+  },
+  {
+    "key": "workbench.open_command_hint",
+    "ar": "عد إلى رؤية المؤسس للقرارات والأولويات التشغيلية.",
+    "en": "Return to the founder view for decisions and operational priority.",
+    "tr": "Kararlar ve operasyonel öncelik için kurucu görünümüne dönün."
+  },
+  {
+    "key": "workbench.open_project",
+    "ar": "فتح المشروع",
+    "en": "Open project",
+    "tr": "Projeyi aç"
+  },
+  {
+    "key": "workbench.open_tickets",
+    "ar": "تذاكر مفتوحة",
+    "en": "Open tickets",
+    "tr": "Açık talepler"
+  },
+  {
+    "key": "workbench.project_workspaces",
+    "ar": "مساحات المشاريع",
+    "en": "Project workspaces",
+    "tr": "Proje çalışma alanları"
+  },
+  {
+    "key": "workbench.project_workspaces_hint",
+    "ar": "افتح المشروع لرؤية دورة الطلب المرتبط والإجراء التالي.",
+    "en": "Open a project to see its linked order lifecycle and next action.",
+    "tr": "Bağlı sipariş yaşam döngüsünü ve sonraki işlemi görmek için projeyi açın."
+  },
+  {
+    "key": "workbench.requirements_pending",
+    "ar": "متطلبات معلقة",
+    "en": "requirements pending",
+    "tr": "bekleyen gereksinim"
+  },
+  {
+    "key": "workbench.subtitle",
+    "ar": "رؤية مركزة لما يتحرك وما ينتظر وما اكتمل.",
+    "en": "A focused view of what is moving, what is waiting, and what has been completed.",
+    "tr": "Nelerin ilerlediğini, beklediğini ve tamamlandığını gösteren odaklı görünüm."
+  },
+  {
+    "key": "workbench.template_select",
+    "ar": "قالب التنفيذ",
+    "en": "Execution template",
+    "tr": "Yürütme şablonu"
+  },
+  {
+    "key": "workbench.title",
+    "ar": "مساحة العمل",
+    "en": "Workbench",
+    "tr": "Workbench"
+  },
+  {
+    "key": "workbench.waiting",
+    "ar": "بانتظار إجراء",
+    "en": "Waiting",
+    "tr": "Bekliyor"
+  },
+  {
+    "key": "workbench.waiting_on",
+    "ar": "بانتظار",
+    "en": "Waiting on",
+    "tr": "Bekleyen"
+  },
+  {
+    "key": "workbench.waiting_orders",
+    "ar": "طلبات منتظرة",
+    "en": "Waiting orders",
+    "tr": "Bekleyen siparişler"
+  }
+]

@@ -1,0 +1,73 @@
+services:
+  frontend:
+    build:
+      context: ../frontend
+      dockerfile: Dockerfile
+      args:
+        VITE_SUPABASE_URL: ${VITE_SUPABASE_URL:?VITE_SUPABASE_URL is required}
+        VITE_SUPABASE_ANON_KEY: ${VITE_SUPABASE_ANON_KEY:?VITE_SUPABASE_ANON_KEY is required}
+        VITE_GOOGLE_CLIENT_ID: ${VITE_GOOGLE_CLIENT_ID:-}
+        VITE_ENABLE_GOOGLE_OAUTH: ${VITE_ENABLE_GOOGLE_OAUTH:-false}
+        VITE_API_URL: ${VITE_API_URL:-}
+    expose:
+      - "80"
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD-SHELL", wget -q -O - http://127.0.0.1/ >/dev/null || exit 1]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+    networks:
+      - bisis-network
+
+  backend:
+    build:
+      context: ../backend
+      dockerfile: Dockerfile
+    expose:
+      - "5000"
+    restart: unless-stopped
+    environment:
+      NODE_ENV: production
+      PORT: 5000
+      SUPABASE_URL: ${SUPABASE_URL:?SUPABASE_URL is required}
+      SUPABASE_SERVICE_ROLE_KEY: ${SUPABASE_SERVICE_ROLE_KEY:?SUPABASE_SERVICE_ROLE_KEY is required}
+      AI_PROVIDER: ${AI_PROVIDER:-disabled}
+      OPENAI_MODEL: ${OPENAI_MODEL:-gpt-3.5-turbo}
+      OPENAI_API_KEY: ${OPENAI_API_KEY:-}
+      WEB3_NETWORK: ${WEB3_NETWORK:-polygon}
+      WEB3_RPC_URL: ${WEB3_RPC_URL}
+      USDC_CONTRACT_ADDRESS: ${USDC_CONTRACT_ADDRESS}
+      WEB3_RECIPIENT_ADDRESS: ${WEB3_RECIPIENT_ADDRESS}
+      WEB3_REQUIRED_CONFIRMATIONS: ${WEB3_REQUIRED_CONFIRMATIONS:-12}
+      ALLOWED_ORIGINS: ${ALLOWED_ORIGINS:?ALLOWED_ORIGINS is required}
+    healthcheck:
+      test: ["CMD-SHELL", "wget -q -O - http://localhost:5000/api/ready >/dev/null || exit 1"]
+      timeout: 10s
+      retries: 3
+    networks:
+      - bisis-network
+
+  nginx:
+    image: nginx:alpine
+    ports:
+      - "80:80"
+    restart: unless-stopped
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf:ro
+    healthcheck:
+      test: ["CMD-SHELL", "wget -q -O - http://127.0.0.1/ >/dev/null || exit 1"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+    depends_on:
+      frontend:
+        condition: service_healthy
+      backend:
+        condition: service_healthy
+    networks:
+      - bisis-network
+
+networks:
+  bisis-network:
+    driver: bridge

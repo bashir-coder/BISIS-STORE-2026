@@ -1,0 +1,38 @@
+[
+	{
+		"slug": "foundation",
+		"category": "core",
+		"name": "Foundation",
+		"description": "Clarity & Direction",
+		"price": 699,
+		"features": ["The Mission Statement", "The Quick Decision", "The Compass Session", "The Trinity Report", "The Core Thesis Report", "The Story", "1 × The 30-Minute Session"],
+		"services": ["svc-001", "svc-002", "svc-003", "svc-005", "svc-007", "svc-008", "svc-004"],
+		"persona_ids": [],
+		"is_popular": false,
+		"is_active": true
+	},
+	{
+		"slug": "growth",
+		"category": "core",
+		"name": "Growth",
+		"description": "Strategy & Growth",
+		"price": 1499,
+		"features": ["All Foundation services", "The Objection Simulator", "Vision Gap Analysis", "Competitive Content Gap", "Stress Test Report", "Founder OS Blueprint", "Unique Positioning Strategy", "Executive Vision Blueprint", "1 × Additional 30-Minute Session"],
+		"services": ["svc-001", "svc-002", "svc-003", "svc-005", "svc-007", "svc-008", "svc-004", "svc-006", "svc-010", "svc-011", "svc-012", "svc-013", "svc-014", "svc-016"],
+		"persona_ids": [],
+		"is_popular": true,
+		"is_active": true
+	},
+	{
+		"slug": "scale",
+		"category": "core",
+		"name": "Scale",
+		"description": "Growth, Automation & Investment Readiness",
+		"price": 2499,
+		"features": ["All Growth services", "7-Day Automation Roadmap", "The Pitch Deck Blueprint", "1 × Additional 30-Minute Session"],
+		"services": ["svc-001", "svc-002", "svc-003", "svc-005", "svc-007", "svc-008", "svc-004", "svc-006", "svc-010", "svc-011", "svc-012", "svc-013", "svc-014", "svc-016", "svc-015", "svc-017"],
+		"persona_ids": [],
+		"is_popular": false,
+		"is_active": true
+	}
+]

@@ -1,0 +1,28 @@
+{
+  "categories": [
+    {
+      "id": "official",
+      "name": "Official Services",
+      "services": [
+        { "id": "svc-001", "name": "The Mission Statement", "level": 1, "price": 199, "delivery": "1–24h", "description": "يحوّل التشتت إلى اتجاه واضح وخريطة عمل من 3 نقاط." },
+        { "id": "svc-002", "name": "The Quick Decision", "level": 1, "price": 199, "delivery": "1–24h", "description": "تحليل معضلة استراتيجية مع الخيارات، التوصية، والخطة البديلة." },
+        { "id": "svc-003", "name": "The Compass Session", "level": 1, "price": 249, "delivery": "1–24h", "description": "جلسة استراتيجية واحدة لتحديد البوصلة للمرحلة القادمة." },
+        { "id": "svc-004", "name": "The 30-Minute Session", "level": 1, "price": 149, "delivery": "1–24h", "description": "جلسة دعم نصي مركزة لقرار أو مشكلة محددة." },
+        { "id": "svc-005", "name": "The Trinity Report", "level": 1, "price": 249, "delivery": "1–24h", "description": "تحويل الفكرة إلى 3 رسائل: للمستثمر، للعميل، للجمهور." },
+        { "id": "svc-006", "name": "The Objection Simulator", "level": 1, "price": 299, "delivery": "1–24h", "description": "أقوى الاعتراضات المتوقعة مع ردود عملية جاهزة." },
+        { "id": "svc-007", "name": "The Core Thesis Report", "level": 1, "price": 349, "delivery": "1–24h", "description": "الاختيار الأساسي + المخاطر + أول خطوة تنفيذية." },
+        { "id": "svc-008", "name": "The Story", "level": 1, "price": 299, "delivery": "1–24h", "description": "تحويل الفكرة التقنية إلى سردية إنسانية قابلة للاستخدام." },
+        { "id": "svc-009", "name": "Strategic Time Audit", "level": 1, "price": 299, "delivery": "2–3 days", "description": "تحليل استخدام الوقت وتحديد أهم فرص التفويض والتحسين." },
+        { "id": "svc-010", "name": "Vision Gap Analysis", "level": 1, "price": 399, "delivery": "2–3 days", "description": "تحديد الفجوة بين الوضع الحالي والرؤية مع حلول لسدها." },
+        { "id": "svc-011", "name": "Competitive Content Gap", "level": 1, "price": 449, "delivery": "2–3 days", "description": "تحليل المنافسين وتحديد فرص محتوى غير مستغلة." },
+        { "id": "svc-012", "name": "Stress Test Report", "level": 1, "price": 399, "delivery": "2–3 days", "description": "اختبار الفكرة من وجهات نظر نقدية متعددة." },
+        { "id": "svc-013", "name": "Founder OS Blueprint", "level": 1, "price": 449, "delivery": "2–3 days", "description": "تصميم نظام أسبوعي عملي لإدارة وقت المؤسس." },
+        { "id": "svc-014", "name": "Unique Positioning Strategy", "level": 1, "price": 549, "delivery": "2–3 days", "description": "بناء positioning واضح ومميز وقابل للاستخدام تجاريًا." },
+        { "id": "svc-015", "name": "7-Day Automation Roadmap", "level": 1, "price": 699, "delivery": "3–5 days", "description": "خريطة أتمتة عملية لتقليل الأعمال المتكررة." },
+        { "id": "svc-016", "name": "Executive Vision Blueprint", "level": 1, "price": 799, "delivery": "3–5 days", "description": "خارطة استراتيجية 12–18 شهرًا مع milestones وKPIs." },
+        { "id": "svc-017", "name": "The Pitch Deck Blueprint", "level": 1, "price": 999, "delivery": "3–5 days", "description": "هيكلة ومحتوى وقصة عرض استثماري متكامل، وليس مجرد تصميم شرائح." },
+        { "id": "svc-018", "name": "The Life Plan™", "level": 1, "price": 150, "delivery": "subscription", "billing_period": "month", "service_type": "signature_subscription", "description": "نظام تخطيط حياة مستمر: العميل يقدم أفكاره وأهدافه وظروفه، والـAI يساعد في التحليل والتنظيم، ثم تتم المراجعة البشرية وإعداد الخطة والروتين والمتابعة والتحديث المستمر." }
+      ]
+    }
+  ]
+}
