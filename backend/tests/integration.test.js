@@ -18,7 +18,7 @@ describe('Runtime Integration Verification Suite', () => {
     email: 'userB@example.com',
     full_name: 'User B',
     role: 'client',
-    workspace_id: 'bbbb2222-bbbb-2222-bbbb-222222222222',
+    workspace_id: 'bbbBİŞİŞ-bbbb-2222-bbbb-222222222222',
     is_active: true,
   }
 
@@ -36,7 +36,7 @@ describe('Runtime Integration Verification Suite', () => {
     email: 'staffB@example.com',
     full_name: 'Staff Workspace B',
     role: 'admin',
-    workspace_id: 'bbbb2222-bbbb-2222-bbbb-222222222222',
+    workspace_id: 'bbbBİŞİŞ-bbbb-2222-bbbb-222222222222',
     is_active: true,
   }
 
@@ -482,7 +482,7 @@ describe('Execution Engine authorization', () => {
       email: 'client@example.com',
       full_name: 'Client',
       role: 'client',
-      workspace_id: 'bbbb2222-bbbb-2222-bbbb-222222222222',
+      workspace_id: 'bbbBİŞİŞ-bbbb-2222-bbbb-222222222222',
       is_active: true,
     }
     jest.spyOn(supabase.auth, 'getUser').mockResolvedValue({
@@ -508,7 +508,7 @@ describe('Execution Engine authorization', () => {
       email: 'client@example.com',
       full_name: 'Client',
       role: 'client',
-      workspace_id: 'bbbb2222-bbbb-2222-bbbb-222222222222',
+      workspace_id: 'bbbBİŞİŞ-bbbb-2222-bbbb-222222222222',
       is_active: true,
     }
     jest.spyOn(supabase.auth, 'getUser').mockResolvedValue({
@@ -533,7 +533,7 @@ describe('Execution Engine authorization', () => {
       email: 'client@example.com',
       full_name: 'Client',
       role: 'client',
-      workspace_id: 'bbbb2222-bbbb-2222-bbbb-222222222222',
+      workspace_id: 'bbbBİŞİŞ-bbbb-2222-bbbb-222222222222',
       is_active: true,
     }
     jest.spyOn(supabase.auth, 'getUser').mockResolvedValue({
@@ -558,7 +558,7 @@ describe('Execution Engine authorization', () => {
       email: 'client@example.com',
       full_name: 'Client',
       role: 'client',
-      workspace_id: 'bbbb2222-bbbb-2222-bbbb-222222222222',
+      workspace_id: 'bbbBİŞİŞ-bbbb-2222-bbbb-222222222222',
       is_active: true,
     }
     jest.spyOn(supabase.auth, 'getUser').mockResolvedValue({

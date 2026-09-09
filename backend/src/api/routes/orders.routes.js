@@ -766,7 +766,7 @@ router.post(
           orderDescription:
             order.package ||
             order.service ||
-            `BISIS Order #${order.id}`,
+            `BİŞİŞ Order #${order.id}`,
 
           ipnCallbackUrl,
 

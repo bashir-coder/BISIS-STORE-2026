@@ -17,7 +17,7 @@ const API_URL =
   import.meta.env.VITE_API_URL || ''
 
 const HUMAN_VERIFIED_KEY =
-  'bisis_human_verified'
+  'BİŞİŞ_human_verified'
 
 type VerifyPageProps = {
   onVerified?: () => void

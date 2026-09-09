@@ -1,4 +1,4 @@
-﻿import React from 'react'
+import React from 'react'
 import { motion } from 'framer-motion'
 import { useTranslation } from 'react-i18next'
 import { Mail, MapPin, Phone } from 'lucide-react'
@@ -19,7 +19,7 @@ const ContactPage: React.FC = () => {
             <div className="glass rounded-2xl border-gold/10 p-6 text-center">
               <Mail className="w-10 h-10 text-gold mx-auto mb-4" />
               <h3 className="text-white font-semibold mb-2">{t('contact.email')}</h3>
-              <a href="mailto:info@bisis.com" className="text-white/60 hover:text-gold transition">info@bisis.com</a>
+              <a href="mailto:info@BİŞİŞ.com" className="text-white/60 hover:text-gold transition">info@BİŞİŞ.com</a>
             </div>
             
             <div className="glass rounded-2xl border-gold/10 p-6 text-center">

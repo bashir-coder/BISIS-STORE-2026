@@ -22,9 +22,7 @@ const verifyRecaptcha = async (req, res, next) => {
       process.env.RECAPTCHA_SECRET_KEY
 
     if (!secret) {
-      console.error(
-        '[reCAPTCHA] RECAPTCHA_SECRET_KEY is not configured',
-      )
+      logger.error('[reCAPTCHA] The verification key is not configured')
 
       return res.status(500).json({
         success: false,

@@ -146,8 +146,8 @@ const Header: React.FC = () => {
   const handleLogout = () => {
     void supabase.auth.signOut()
 
-    localStorage.removeItem('bisis_token')
-    localStorage.removeItem('bisis_user')
+    localStorage.removeItem('BİŞİŞ_token')
+    localStorage.removeItem('BİŞİŞ_user')
 
     setUserProfile(null)
     setIsUserMenuOpen(false)
@@ -191,7 +191,7 @@ const Header: React.FC = () => {
           >
             <div className="relative w-10 h-10 rounded-xl overflow-hidden border border-gold/40 shadow-md shadow-gold/20 group-hover:border-gold group-hover:shadow-gold/40 transition-all duration-300">
               <img
-                src="/bisis-logo.jpg"
+                src="/BİŞİŞ-logo.jpg"
                 alt="BİŠIŠ"
                 className="w-full h-full object-cover"
               />

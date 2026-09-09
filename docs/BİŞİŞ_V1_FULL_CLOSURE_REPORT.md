@@ -4,7 +4,7 @@
 
 > **READY AFTER EXTERNAL CONFIGURATION — NOT PRODUCTION-READY.**
 
-هذا التقرير محدث بعد `Maximum Safe Internal Completion Pass`. مصدر التفاصيل والأدلة الكامل هو [`BISIS_V1_MAXIMUM_INTERNAL_COMPLETION_REPORT.md`](./BISIS_V1_MAXIMUM_INTERNAL_COMPLETION_REPORT.md).
+هذا التقرير محدث بعد `Maximum Safe Internal Completion Pass`. مصدر التفاصيل والأدلة الكامل هو [`BİŞİŞ_V1_MAXIMUM_INTERNAL_COMPLETION_REPORT.md`](./BİŞİŞ_V1_MAXIMUM_INTERNAL_COMPLETION_REPORT.md).
 
 لم تُلمس Production، ولم تُستخدم بيانات إنتاجية أو نجاحات وهمية، ولم تُعد تشغيل Launch Contract، ولم تُعدل migrations 001–007، ولم يُستخدم `database/legacy/schema.sql`، ولم تُستخدم service-role لإثبات Client RLS.
 
@@ -63,4 +63,4 @@
 
 ## Final recommendation
 
-جمّد نطاق V1. انتقل إلى external release configuration فقط عند توفر المدخلات أعلاه. لا تُضف AI أو agents، لا تنفذ text matching، لا توهم payment/OAuth success، ولا تحذف Dashboard/ClientPortal legacy sections قبل UX decision. استخدم التقرير النهائي كمصدر الحقيقة: [`BISIS_V1_MAXIMUM_INTERNAL_COMPLETION_REPORT.md`](./BISIS_V1_MAXIMUM_INTERNAL_COMPLETION_REPORT.md).
+جمّد نطاق V1. انتقل إلى external release configuration فقط عند توفر المدخلات أعلاه. لا تُضف AI أو agents، لا تنفذ text matching، لا توهم payment/OAuth success، ولا تحذف Dashboard/ClientPortal legacy sections قبل UX decision. استخدم التقرير النهائي كمصدر الحقيقة: [`BİŞİŞ_V1_MAXIMUM_INTERNAL_COMPLETION_REPORT.md`](./BİŞİŞ_V1_MAXIMUM_INTERNAL_COMPLETION_REPORT.md).

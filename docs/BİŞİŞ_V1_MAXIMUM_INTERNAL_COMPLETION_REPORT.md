@@ -1,4 +1,4 @@
-# BISIS V1 — MAXIMUM INTERNAL COMPLETION REPORT
+# BİŞİŞ V1 — MAXIMUM INTERNAL COMPLETION REPORT
 
 **تاريخ التنفيذ:** 25 أغسطس 2026
 
@@ -24,7 +24,7 @@
 | KNOWN DEBT مستقل | 0 | أُغلق قياس الأداء كـmeasurement؛ بقي hardening ضمن PARTIAL |
 | **الإجمالي** | **21** | كل النقاط الصفّية القابلة للتتبع |
 
-المصدر المحدث للجرد التفصيلي هو [`BISIS_V1_FULL_CLOSURE_OPEN_LOOP_INVENTORY.md`](./BISIS_V1_FULL_CLOSURE_OPEN_LOOP_INVENTORY.md) [1].
+المصدر المحدث للجرد التفصيلي هو [`BİŞİŞ_V1_FULL_CLOSURE_OPEN_LOOP_INVENTORY.md`](./BİŞİŞ_V1_FULL_CLOSURE_OPEN_LOOP_INVENTORY.md) [1].
 
 ## ما أُغلق فعليًا
 
@@ -135,7 +135,7 @@
 
 ## References
 
-[1]: ./BISIS_V1_FULL_CLOSURE_OPEN_LOOP_INVENTORY.md "BİSİŞ V1 Full Closure Open-Loop Inventory"
+[1]: ./BİŞİŞ_V1_FULL_CLOSURE_OPEN_LOOP_INVENTORY.md "BİSİŞ V1 Full Closure Open-Loop Inventory"
 [2]: Evidence results are retained in the internal archive outside the public repository.
 [3]: ./service-delivery-live-smoke-result.redacted.json "Redacted Service Delivery Live Smoke Result"
 [4]: Bundle measurements are summarized in this report and retained in the internal archive.

@@ -44,7 +44,7 @@ npm --prefix frontend ci
 
 ## Database Setup
 
-طبّق migrations على مشروع Supabase الاختباري أو بيئة جديدة بالترتيب الموضح في [`docs/BISIS_V1_CANONICAL_MIGRATION_ORDER.md`](docs/BISIS_V1_CANONICAL_MIGRATION_ORDER.md)، ولا تستخدم `database/legacy/schema.sql`:
+طبّق migrations على مشروع Supabase الاختباري أو بيئة جديدة بالترتيب الموضح في [`docs/BİŞİŞ_V1_CANONICAL_MIGRATION_ORDER.md`](docs/BİŞİŞ_V1_CANONICAL_MIGRATION_ORDER.md)، ولا تستخدم `database/legacy/schema.sql`:
 
 ```text
 database/migrations/001_launch_contract.sql
@@ -193,7 +193,7 @@ docs/           launch map and verification documentation
 
 ## CI and release gate
 
-يحتوي `.github/workflows/bisis-quality.yml` على تثبيت lockfiles وفحوص migration/env/deployment/secrets ثم backend tests وlint وtypecheck وbuild. استخدم `npm run release:check` محليًا قبل الإصدار. advisory moderate الحالية في frontend لا تُعالج بـ`npm audit fix --force` دون branch واختبار توافق.
+يحتوي `.github/workflows/BİŞİŞ-quality.yml` على تثبيت lockfiles وفحوص migration/env/deployment/secrets ثم backend tests وlint وtypecheck وbuild. استخدم `npm run release:check` محليًا قبل الإصدار. advisory moderate الحالية في frontend لا تُعالج بـ`npm audit fix --force` دون branch واختبار توافق.
 
 ## Known limitations
 

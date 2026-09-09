@@ -30,7 +30,7 @@ const FloatingButtons: React.FC = () => {
     return () => observer.disconnect()
   }, [])
 
-  const telegramShareUrl = 'https://t.me/share/url?url=https%3A%2F%2Fbisis.com&text=BISIS'
+  const telegramShareUrl = 'https://t.me/share/url?url=https%3A%2F%2FBİŞİŞ.com&text=BİŞİŞ'
   const language = (document.documentElement.lang || 'en').split('-')[0] as keyof typeof socialLabels
   const labels = socialLabels[language] || socialLabels.en
 
@@ -79,7 +79,7 @@ const FloatingButtons: React.FC = () => {
               <span className="pointer-events-none absolute right-14 whitespace-nowrap rounded-lg border border-white/10 bg-black/70 px-3 py-2 text-xs text-white/80 opacity-0 shadow-xl transition-opacity group-hover:opacity-100">{labels.instagram}</span>
             </a>
 
-            <a href="https://x.com/BISISHQ" target="_blank" rel="noreferrer" aria-label="X" title="X" className="group relative flex h-12 w-12 items-center justify-center rounded-full border border-white/25 bg-white/[0.06] text-white shadow-[0_0_24px_rgba(255,255,255,0.12)] backdrop-blur-xl transition-all hover:-translate-x-1 hover:bg-white hover:text-black">
+            <a href="https://x.com/BİŞİŞHQ" target="_blank" rel="noreferrer" aria-label="X" title="X" className="group relative flex h-12 w-12 items-center justify-center rounded-full border border-white/25 bg-white/[0.06] text-white shadow-[0_0_24px_rgba(255,255,255,0.12)] backdrop-blur-xl transition-all hover:-translate-x-1 hover:bg-white hover:text-black">
               <i aria-hidden="true" className="fa-brands fa-x-twitter text-xl" />
               <span className="pointer-events-none absolute right-14 whitespace-nowrap rounded-lg border border-white/10 bg-black/70 px-3 py-2 text-xs text-white/80 opacity-0 shadow-xl transition-opacity group-hover:opacity-100">{labels.x}</span>
             </a>

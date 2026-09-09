@@ -3,7 +3,7 @@
 هذه هي بنية المشروع canonical. يجب فتح المجلد الذي يحتوي على `package.json` الرئيسي في VS Code، وليس `frontend` وحده عند تشغيل المشروع كاملًا.
 
 ```text
-bisis-project/
+BİŞİŞ-project/
 ├── package.json              # أوامر التشغيل الموحدة
 ├── package-lock.json
 ├── .env.example              # قالب backend؛ لا يحتوي أسرارًا

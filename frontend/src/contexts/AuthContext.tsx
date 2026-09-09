@@ -74,8 +74,8 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
   const logout = async () => {
     const { error } = await supabase.auth.signOut();
     if (error) throw error;
-    localStorage.removeItem('bisis_user');
-    localStorage.removeItem('bisis_token');
+    localStorage.removeItem('BİŞİŞ_user');
+    localStorage.removeItem('BİŞİŞ_token');
   };
 
   const register = async (email: string, password: string, fullName: string) => {

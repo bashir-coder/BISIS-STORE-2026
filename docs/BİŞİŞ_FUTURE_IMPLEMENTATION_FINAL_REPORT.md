@@ -6,7 +6,7 @@
 
 تم تنفيذ أكبر نواة مستقبلية آمنة يمكن دمجها دون كسر BİŞIŞ V1 أو تعديل قاعدة البيانات أو تفعيل مزودات خارجية. التنفيذ ليس مجرد placeholder: يحتوي على domain logic، validation، error handling، tenant scoping، approval boundaries، idempotency، repositories، local adapters، واختبارات حقيقية.
 
-النواة معزولة في `backend/src/future/` وغير مستوردة في `server.js` أو أي route حالي. تفعيلها يحتاج قرارًا منفصلًا وربطًا مقصودًا، بينما `BISIS_FUTURE_ENABLED=false` هو الوضع الافتراضي. لذلك بقيت Authentication وAuthorization وRLS وIDOR وPayments وroutes وdatabase contract الخاصة بـV1 دون تغيير.
+النواة معزولة في `backend/src/future/` وغير مستوردة في `server.js` أو أي route حالي. تفعيلها يحتاج قرارًا منفصلًا وربطًا مقصودًا، بينما `BİŞİŞ_FUTURE_ENABLED=false` هو الوضع الافتراضي. لذلك بقيت Authentication وAuthorization وRLS وIDOR وPayments وroutes وdatabase contract الخاصة بـV1 دون تغيير.
 
 > **Final status:** Future foundations are **IMPLEMENTED/PARTIALLY IMPLEMENTED** where stated below; no future version is declared Production Ready.
 
@@ -82,13 +82,13 @@
 | `backend/tests/future/future-services.test.js` | 10 service tests |
 | `backend/tests/future/future-adapters.test.js` | 8 adapter tests |
 | `docs/FUTURE_IMPLEMENTATION_SPRINT_REPORT.md` | sprint summary |
-| `docs/BISIS_FUTURE_IMPLEMENTATION_FINAL_REPORT.md` | هذا التقرير |
+| `docs/BİŞİŞ_FUTURE_IMPLEMENTATION_FINAL_REPORT.md` | هذا التقرير |
 
 ### Modified inside V1 repository
 
 | File | Change |
 |---|---|
-| `.env.example` | إضافة `BISIS_FUTURE_ENABLED=false` كخيار اختياري مغلق |
+| `.env.example` | إضافة `BİŞİŞ_FUTURE_ENABLED=false` كخيار اختياري مغلق |
 
 لم يتم تعديل `server.js` لربط future routes، ولم تتم إضافة routes أو frontend pages مستقبلية كي لا تظهر قدرات غير مكتملة في V1.
 
@@ -96,8 +96,8 @@
 
 | File | Change |
 |---|---|
-| `/home/ubuntu/bisis-internal-archive-2026-08-27/archive/future-platform/archive-manifest.json` | إضافة implementation status لكل version وربط التقرير |
-| `/home/ubuntu/bisis-future-architecture-archive-2026-08-27.zip` | إعادة حزم archive بعد تحديث الحالات |
+| `/home/ubuntu/BİŞİŞ-internal-archive-2026-08-27/archive/future-platform/archive-manifest.json` | إضافة implementation status لكل version وربط التقرير |
+| `/home/ubuntu/BİŞİŞ-future-architecture-archive-2026-08-27.zip` | إعادة حزم archive بعد تحديث الحالات |
 
 ## 5. Tests and exact commands
 
@@ -131,7 +131,7 @@ Known non-blocking outputs: frontend audit لديه 2 moderate React Router advi
 
 **Integration safety.** local adapters disabled by default. الواجهات موجودة لـPayment/CRM/Communication/ProjectManagement/Storage/Identity، لكن كل provider خارجي يحتاج credentials وscopes وcontract tests قبل التفعيل.
 
-**Feature flag.** `BISIS_FUTURE_ENABLED=false` في `.env.example`. الكود غير مربوط بـV1 startup أو routes، وبالتالي لا يعتمد تشغيل V1 على المستقبل.
+**Feature flag.** `BİŞİŞ_FUTURE_ENABLED=false` في `.env.example`. الكود غير مربوط بـV1 startup أو routes، وبالتالي لا يعتمد تشغيل V1 على المستقبل.
 
 ## 7. Database, external integrations, and frontend status
 
@@ -173,5 +173,5 @@ Known non-blocking outputs: frontend audit لديه 2 moderate React Router advi
 ## References
 
 [1]: [Future Architecture Archive](../archive/future-platform/README.md) — متاح في الأرشيف الداخلي فقط، وليس داخل Public V1 package.
-[2]: [BİŞIŞ V1 Canonical Migration Order](BISIS_V1_CANONICAL_MIGRATION_ORDER.md)
-[3]: [BİŞIŞ V1 Final Autonomous Closure Report](BISIS_V1_FINAL_AUTONOMOUS_CLOSURE_REPORT.md)
+[2]: [BİŞIŞ V1 Canonical Migration Order](BİŞİŞ_V1_CANONICAL_MIGRATION_ORDER.md)
+[3]: [BİŞIŞ V1 Final Autonomous Closure Report](BİŞİŞ_V1_FINAL_AUTONOMOUS_CLOSURE_REPORT.md)

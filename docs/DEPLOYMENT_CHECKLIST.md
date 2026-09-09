@@ -16,7 +16,7 @@
 | Step | Required evidence |
 |---|---|
 | Create separate Production Supabase project | ref/region/plan record; never reuse test project |
-| Run canonical migrations | 001–011 in [`BISIS_V1_CANONICAL_MIGRATION_ORDER.md`](BISIS_V1_CANONICAL_MIGRATION_ORDER.md), with ledger and fresh-database evidence |
+| Run canonical migrations | 001–011 in [`BİŞİŞ_V1_CANONICAL_MIGRATION_ORDER.md`](BİŞİŞ_V1_CANONICAL_MIGRATION_ORDER.md), with ledger and fresh-database evidence |
 | Exclude auxiliary/legacy SQL | do not run `005_execution_engine_policies.sql` as second migration; never use `database/legacy/schema.sql` |
 | Verify schema | tables, columns, PK/FK, constraints, indexes, functions, triggers |
 | Verify security | RLS on every exposed table, policies, grants, SECURITY DEFINER ACLs, search_path, advisors |

@@ -1,6 +1,6 @@
 # BİŞIŞ V1 — FINAL PRODUCTION READINESS REPORT
 
-> **Superseded by:** `BISIS_V1_ZERO_COST_GITHUB_DEPLOYMENT_READINESS_REPORT.md`. This file is a historical snapshot; the newer report defines the current canonical chain and public-readiness status.
+> **Superseded by:** `BİŞİŞ_V1_ZERO_COST_GITHUB_DEPLOYMENT_READINESS_REPORT.md`. This file is a historical snapshot; the newer report defines the current canonical chain and public-readiness status.
 
 **تاريخ التنفيذ:** 26 أغسطس 2026  
 **نطاق التنفيذ:** مستودع BİŞIŞ وSupabase disposable test environment فقط.  
@@ -38,7 +38,7 @@
 | `scripts/validate-deployment-contract.mjs` | تحقق static من Compose/Docker/nginx services، healthchecks، routing، restart، secret boundary | `npm run deployment:check` PASS؛ runtime intentionally not run |
 | `scripts/validate-secret-boundary.mjs` | تحقق من ignore rules، credential-like files/content، وlogs التي قد تحتوي password/token/authorization/email | `npm run secrets:check` PASS بلا findings |
 | `package.json` | validators داخل `npm run check`، وإضافة `migration:check`, `env:check`, `deployment:check`, `secrets:check`, `release:check` | `npm run check` و`npm run release:check` PASS |
-| `.github/workflows/bisis-quality.yml` | clean installs، validators، full check، high/critical audit gates، وإظهار moderate advisories | static assertions PASS؛ runner لم يُشغّل داخل sandbox |
+| `.github/workflows/BİŞİŞ-quality.yml` | clean installs، validators، full check، high/critical audit gates، وإظهار moderate advisories | static assertions PASS؛ runner لم يُشغّل داخل sandbox |
 | `infrastructure/docker-compose.yml` | frontend/nginx healthchecks، backend `/api/ready` healthcheck، nginx waits for healthy dependencies | static deployment validator PASS |
 | `backend/server.js` | bounded `TRUST_PROXY_HOPS`؛ existing CORS fail-fast/readiness/log privacy hardening preserved | syntax/full check، production-mode local smoke، live/browser regression PASS |
 | `.env.example` | عقد كامل مصنف للbackend secrets/frontend public/payment/AI boundary | env validator PASS |
@@ -134,7 +134,7 @@
 
 ## References
 
-[1]: [BİŞIŞ V1 Canonical Migration Order](BISIS_V1_CANONICAL_MIGRATION_ORDER.md)  
+[1]: [BİŞIŞ V1 Canonical Migration Order](BİŞİŞ_V1_CANONICAL_MIGRATION_ORDER.md)  
 [2]: [BİŞIŞ V1 Database Production Ready](DATABASE_PRODUCTION_READY.md)  
 [3]: [Production Environment Checklist](PRODUCTION_ENV_CHECKLIST.md)  
 [4]: [Deployment Checklist](DEPLOYMENT_CHECKLIST.md)  

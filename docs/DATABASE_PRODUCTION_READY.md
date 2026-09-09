@@ -95,7 +95,7 @@ metadata الحي يثبت وجود auth provisioning trigger على `auth.users
 
 ## References
 
-[1]: [BİŞIŞ V1 Canonical Migration Order](BISIS_V1_CANONICAL_MIGRATION_ORDER.md)  
+[1]: [BİŞIŞ V1 Canonical Migration Order](BİŞİŞ_V1_CANONICAL_MIGRATION_ORDER.md)  
 [2]: [Migration 010 production security hardening](../database/migrations/010_production_security_hardening.sql)  
 [3]: [Supabase Row Level Security](https://supabase.com/docs/guides/database/postgres/row-level-security)  
 [4]: [Supabase Database Backups](https://supabase.com/docs/guides/platform/backups)  

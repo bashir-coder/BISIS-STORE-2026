@@ -1,5 +1,18 @@
 const supabase = require('../../config/supabase.config')
 
+const VALID_ROLES = ['client', 'manager', 'editor', 'admin', 'super_admin']
+
+const resolveRole = (authUser) => {
+  const raw =
+    authUser.app_metadata?.role ||
+    authUser.raw_app_meta_data?.role ||
+    authUser.user_metadata?.role
+  if (typeof raw === 'string' && VALID_ROLES.includes(raw)) {
+    return raw
+  }
+  return 'client'
+}
+
 const profileFromAuthUser = (authUser) => {
   const rawProvider = authUser.app_metadata?.provider || authUser.raw_app_meta_data?.provider
   const provider = rawProvider === 'google' ? 'google' : 'email'
@@ -11,7 +24,7 @@ const profileFromAuthUser = (authUser) => {
     full_name: fullName,
     avatar: authUser.user_metadata?.avatar_url || authUser.user_metadata?.picture || null,
     auth_provider: provider,
-    role: 'client',
+    role: resolveRole(authUser),
     is_verified: Boolean(authUser.email_confirmed_at),
     is_active: true,
   }

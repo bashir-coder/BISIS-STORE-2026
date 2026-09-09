@@ -338,7 +338,7 @@ const LabPage: React.FC = () => {
       </section>
 
       {/* =========================================================
-          WHAT IS BISIS
+          WHAT IS BİŞİŞ
       ========================================================== */}
       <section className="px-4 py-20 sm:px-6 lg:px-8">
         <motion.div
@@ -1206,7 +1206,7 @@ const LabPage: React.FC = () => {
       <section className="px-4 py-20 sm:px-6 lg:px-8">
         <motion.div
           {...fadeUp}
-          className="mx-auto max-w-6xl overflow-hidden rounded-3xl border border-white/10 bg-[#0b0b0b]"
+          className="mx-auto max-w-6xl overflow-hidden rounded-3xl border border-white/10 bg-[#0BİŞİŞ]"
         >
           <div className="border-b border-white/[0.07] p-6 sm:p-8">
             <div className="flex flex-col justify-between gap-5 sm:flex-row sm:items-center">
@@ -1242,7 +1242,7 @@ const LabPage: React.FC = () => {
           </div>
 
           <div className="grid gap-px bg-white/[0.06] md:grid-cols-3">
-            <div className="bg-[#0b0b0b] p-6">
+            <div className="bg-[#0BİŞİŞ] p-6">
               <div className="text-xs text-white/35">
                 {t('lab.status.service', 'Application')}
               </div>
@@ -1251,7 +1251,7 @@ const LabPage: React.FC = () => {
               </div>
             </div>
 
-            <div className="bg-[#0b0b0b] p-6">
+            <div className="bg-[#0BİŞİŞ] p-6">
               <div className="text-xs text-white/35">
                 {t('lab.status.database', 'Database')}
               </div>
@@ -1260,7 +1260,7 @@ const LabPage: React.FC = () => {
               </div>
             </div>
 
-            <div className="bg-[#0b0b0b] p-6">
+            <div className="bg-[#0BİŞİŞ] p-6">
               <div className="text-xs text-white/35">
                 {t('lab.status.readiness', 'Readiness')}
               </div>

@@ -7,10 +7,10 @@ if not exist ".env" (
   exit /b 1
 )
 if not exist "backend\package.json" (
-  echo ERROR: Open this file from the extracted BISIS project root.
+  echo ERROR: Open this file from the extracted BİŞİŞ project root.
   pause
   exit /b 1
 )
-echo Starting BISIS backend on http://127.0.0.1:5000
+echo Starting BİŞİŞ backend on http://127.0.0.1:5000
 npm --prefix backend run dev
 pause

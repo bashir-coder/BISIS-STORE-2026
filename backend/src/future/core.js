@@ -9,7 +9,7 @@ const crypto = require('crypto')
  * the filesystem, external providers, payment networks, or production data.
  */
 
-const FUTURE_ENABLED = String(process.env.BISIS_FUTURE_ENABLED || '').toLowerCase() === 'true'
+const FUTURE_ENABLED = String(process.env.BİŞİŞ_FUTURE_ENABLED || '').toLowerCase() === 'true'
 
 function assertTenantContext(context) {
   if (!context || typeof context.tenantId !== 'string' || context.tenantId.trim() === '') {

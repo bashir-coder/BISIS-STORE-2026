@@ -17,7 +17,7 @@
 | Secret boundary | validator يمسح كامل working tree مع استثناء build/dependencies فقط، ويعرض warnings لملفات `.env` المحلية دون طباعة قيمها | `npm run secrets:check` = PASS؛ warnings محلية فقط |
 | Public hygiene | نُقلت `docs/evidence` و`docs/archive` إلى أرشيف داخلي خارج المستودع، وحُذفت raw execution evidence وstale inventory وruntime logs وbuild/coverage الناتجة | ZIP النهائي لا يحتوي هذه المسارات |
 | Report redaction | أزيلت project refs وtest UUIDs وtest emails وprovider error UUIDs من التقارير العامة | scan docs/repository بعد التنقيح لم يجد المعرفات المعروفة؛ `.env` المحلي مستثنى وغير متتبع |
-| GitHub documentation | إضافة `SECURITY.md`, `CONTRIBUTING.md`, `docs/BISIS_PUBLIC_GITHUB_REMEDIATION.md`, ودليل النشر المجاني | الملفات موجودة ضمن baseline |
+| GitHub documentation | إضافة `SECURITY.md`, `CONTRIBUTING.md`, `docs/BİŞİŞ_PUBLIC_GITHUB_REMEDIATION.md`, ودليل النشر المجاني | الملفات موجودة ضمن baseline |
 | Payment safety | verifier يرفض confirmation counts غير الصالحة fail-closed، مع assertions إضافية | payment suite = 12/12 PASS ضمن `npm run check` |
 | Frontend hygiene | إزالة duplicate Vite import، وإبقاء التحسينات الحالية دون إضافة Feature أو تغيير استراتيجية V1 | lint/typecheck/build ناجحة |
 | Local Git baseline | تنفيذ `git init` فقط، دون commit أو remote أو push؛ `.env` وdependencies ظلت ignored | `git status --short --ignored` و`git add --dry-run .` لا يظهران ملفات secrets أو generated output |
@@ -109,7 +109,7 @@
 
 تم إنشاء ZIP نظيف للحزمة العامة في:
 
-`/home/ubuntu/BISIS-V1-public-github-baseline-2026-08-27.zip`
+`/home/ubuntu/BİŞİŞ-V1-public-github-baseline-2026-08-27.zip`
 
 حجمه التقريبي **640 KB**. تم التحقق من أنه لا يحتوي `.env` أو `frontend/.env` أو `node_modules` أو `dist` أو `coverage` أو `logs` أو `archive` أو `evidence` أو مفاتيح/certificates.
 

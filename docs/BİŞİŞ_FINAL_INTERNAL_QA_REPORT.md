@@ -2,7 +2,7 @@
 
 **تاريخ التحديث:** 25 أغسطس 2026
 
-هذا الملف يحتفظ باسم التقرير السابق، لكن مصدر الحقيقة الحالي هو [`BISIS_V1_MAXIMUM_INTERNAL_COMPLETION_REPORT.md`](./BISIS_V1_MAXIMUM_INTERNAL_COMPLETION_REPORT.md). تم تحديث حالة البنود هنا لتجنب أي قراءة قديمة بعد Maximum Safe Internal Completion Pass.
+هذا الملف يحتفظ باسم التقرير السابق، لكن مصدر الحقيقة الحالي هو [`BİŞİŞ_V1_MAXIMUM_INTERNAL_COMPLETION_REPORT.md`](./BİŞİŞ_V1_MAXIMUM_INTERNAL_COMPLETION_REPORT.md). تم تحديث حالة البنود هنا لتجنب أي قراءة قديمة بعد Maximum Safe Internal Completion Pass.
 
 ## Current verified state
 
@@ -27,4 +27,4 @@
 
 لا تعني هذه النتائج Production readiness، ولا تشمل fake OAuth/payment/provider success، ولا تعدّل migrations 001–007 أو `database/legacy/schema.sql`.
 
-راجع التقرير النهائي للـevidence والملفات والمسؤوليات: [`BISIS_V1_MAXIMUM_INTERNAL_COMPLETION_REPORT.md`](./BISIS_V1_MAXIMUM_INTERNAL_COMPLETION_REPORT.md).
+راجع التقرير النهائي للـevidence والملفات والمسؤوليات: [`BİŞİŞ_V1_MAXIMUM_INTERNAL_COMPLETION_REPORT.md`](./BİŞİŞ_V1_MAXIMUM_INTERNAL_COMPLETION_REPORT.md).

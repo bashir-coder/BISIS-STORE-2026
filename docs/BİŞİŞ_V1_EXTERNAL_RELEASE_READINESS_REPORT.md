@@ -1,6 +1,6 @@
 # BİŞIŞ V1 — External Release Readiness Report
 
-> **Historical audit snapshot.** This report predates the current Staging advisor-index reconciliation and canonical migration 011. The current closure report and `docs/BISIS_V1_CANONICAL_MIGRATION_ORDER.md` are authoritative for the latest repository state.
+> **Historical audit snapshot.** This report predates the current Staging advisor-index reconciliation and canonical migration 011. The current closure report and `docs/BİŞİŞ_V1_CANONICAL_MIGRATION_ORDER.md` are authoritative for the latest repository state.
 
 **تاريخ التدقيق:** 25 أغسطس 2026  
 **النطاق:** تدقيق read-only للمستودع وبيئة Supabase الاختبارية، استعدادًا للانتقال الآمن إلى Production.  
@@ -61,7 +61,7 @@ BİŞIŞ V1 يملك أساسًا داخليًا قابلًا للتشغيل: ا
 | P1-08 | `/api/health` يفحص وجود env فقط ولا يجري DB readiness query؛ `DEGRADED` يرجع HTTP 200 | load balancer قد يرسل traffic إلى instance غير قادر على DB/payment | فصل liveness عن readiness، وجعل readiness تفشل عندما تكون dependency حرجة غير مهيأة، أو توثيق أن payment خارج readiness لمسار public منفصل |
 | P1-09 | rate limiting موجود: global 100/15min وlogin 10/15min، لكن لا توجد طبقة edge/WAF أو distributed limiter موثقة | limits في memory لا تتوسع بأمان عبر عدة instances، وقد تتأثر بعناوين proxy | قرار hosting/edge، ضبط trusted proxy بعناية، وإضافة distributed/edge throttling عند التوسع |
 | P1-10 | bucket `order-files` private وbackend يفرض 10MB/MIME، لكن bucket-level file limit وallowed MIME غير مضبوطين، ولا توجد custom storage policies | الحماية الحالية تعتمد على route/service-role فقط؛ backup/retention/ownership غير مثبتة على مستوى المنصة | تأكيد route-only access، ضبط limits دفاعية متوافقة، اختبار signed URL expiry، وتوثيق object backup مستقل |
-| P1-11 | CORS يملك fallback إلى localhost و`https://bisis.com` إذا غاب `ALLOWED_ORIGINS`، وorigin غير المسموح أعاد HTTP 500 محليًا | misconfiguration قد تفتح origin غير مقصود أو تنتج error semantics غير واضحة | إلزام `ALLOWED_ORIGINS` في Production بلا fallback، اختبار hostname النهائي، وإرجاع status مناسب للرفض دون كشف تفاصيل |
+| P1-11 | CORS يملك fallback إلى localhost و`https://BİŞİŞ.com` إذا غاب `ALLOWED_ORIGINS`، وorigin غير المسموح أعاد HTTP 500 محليًا | misconfiguration قد تفتح origin غير مقصود أو تنتج error semantics غير واضحة | إلزام `ALLOWED_ORIGINS` في Production بلا fallback، اختبار hostname النهائي، وإرجاع status مناسب للرفض دون كشف تفاصيل |
 | P1-12 | لا يوجد تحقق Docker/nginx فعلي في هذا sandbox لأن CLIs مفقودة | syntax/build/runtime للصور والـedge غير مثبت | تشغيل `docker compose config`, image build, `nginx -t`, healthcheck وTLS smoke على CI/host النشر |
 
 ### P2 — تحسينات تشغيلية بعد إغلاق P0/P1
@@ -122,7 +122,7 @@ BİŞIŞ V1 يملك أساسًا داخليًا قابلًا للتشغيل: ا
 
 الـbackend يتحقق من Supabase JWT عبر `supabase.auth.getUser(token)`، ثم يطابق/ينشئ profile، ويطبّق role authorization من `public.users`. هذا المسار اجتاز internal auth/browser smoke، لكن Production يتطلب Supabase Auth settings فعلية: email confirmation/SMTP، password policy، leaked-password protection، rate limits، captcha عند الحاجة، site URL وredirect allow-list، وGoogle provider configuration. security advisor أثبت أن leaked-password protection معطّل حاليًا.
 
-CORS يتطلب `ALLOWED_ORIGINS` في Compose، لكن `server.js` يملك fallback يتضمن localhost و`https://bisis.com`. في Production يجب أن يكون allow-list صريحًا ومطابقًا للـdomain النهائي. الجلسات ليست server cookies؛ هي Supabase browser session وBearer API token، لذلك HTTPS وtoken exposure controls غير اختياريين.
+CORS يتطلب `ALLOWED_ORIGINS` في Compose، لكن `server.js` يملك fallback يتضمن localhost و`https://BİŞİŞ.com`. في Production يجب أن يكون allow-list صريحًا ومطابقًا للـdomain النهائي. الجلسات ليست server cookies؛ هي Supabase browser session وBearer API token، لذلك HTTPS وtoken exposure controls غير اختياريين.
 
 ### Storage
 
@@ -171,7 +171,7 @@ Supabase توضح أن daily backups متاحة حسب الخطة، وأن PITR 
 | `npm --prefix backend audit --omit=dev` | PASS | 0 vulnerabilities |
 | `npm --prefix frontend audit --omit=dev` | FAIL gate | 2 moderate: `react-router`, `react-router-dom`; fix المقترح major `7.18.2` |
 | Local `/api/health` | HTTP 200 / DEGRADED | database env configured، payment verifier missing؛ development only |
-| Local CORS probe | جزئي | localhost وbisis.com مسموحان محليًا؛ origin غير مسموح أعاد 500 |
+| Local CORS probe | جزئي | localhost وBİŞİŞ.com مسموحان محليًا؛ origin غير مسموح أعاد 500 |
 | Supabase public table/RLS SQL | FAIL security gate | `public.table_name` موجود وRLS disabled؛ بقية جداول التطبيق الظاهرة RLS enabled |
 | Supabase storage buckets SQL | PASS جزئي | `order-files` private، limits bucket-level null |
 | Supabase storage policy SQL | PASS جزئي | `storage.objects` RLS enabled، custom policies result empty؛ backend service-role path هو المسار الحالي |
@@ -179,7 +179,7 @@ Supabase توضح أن daily backups متاحة حسب الخطة، وأن PITR 
 | Supabase migration ledger | NOT VERIFIED/FAIL reproducibility gate | `list_migrations=[]` و`to_regclass= NULL` |
 | Docker/nginx/Supabase CLI availability | NOT TESTED هنا | CLIs مفقودة في sandbox؛ يجب تشغيلها على CI/host النشر |
 
-الأدلة المنقحة محفوظة داخليًا خارج شجرة المستودع تحت `/home/ubuntu/bisis-internal-archive-2026-08-27/docs/evidence/`. لا يتضمن التقرير أي secret أو UUID/email/password/token.
+الأدلة المنقحة محفوظة داخليًا خارج شجرة المستودع تحت `/home/ubuntu/BİŞİŞ-internal-archive-2026-08-27/docs/evidence/`. لا يتضمن التقرير أي secret أو UUID/email/password/token.
 
 ## 7. Owner-input checklist before GO
 

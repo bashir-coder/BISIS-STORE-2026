@@ -110,7 +110,7 @@
 | `database/migrations/007_execution_client_isolation_hotfix.sql` | reproducibility لاسم سياسة projects المكتشف حيًا |
 | `backend/scripts/service-delivery-live-smoke.js` | notification checks وRLS matrix الحية |
 | `docs/SERVICE_DELIVERY_REPOSITORY_AUDIT.txt` | سجل التنفيذ والفجوات والنتائج |
-| `docs/BISIS_V1_ATTACHMENT_GAP_REVIEW_REPORT.md` | هذا التقرير |
+| `docs/BİŞİŞ_V1_ATTACHMENT_GAP_REVIEW_REPORT.md` | هذا التقرير |
 
 ## 7. القرار العملي التالي
 

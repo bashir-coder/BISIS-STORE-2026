@@ -11,8 +11,8 @@ const screenshotDir = path.resolve(__dirname, '../../docs/evidence/visual-qa-202
 const viewportWidth = Number(process.env.BROWSER_QA_WIDTH || 1280)
 const viewportHeight = Number(process.env.BROWSER_QA_HEIGHT || 941)
 const screenshotName = process.env.BROWSER_QA_SCREENSHOT || 'dashboard-authenticated-client.png'
-const password = `BisisBrowserQA!${Date.now()}a`
-const email = `bisis.browser.qa.${Date.now()}@example.invalid`
+const password = `BİŞİŞBrowserQA!${Date.now()}a`
+const email = `BİŞİŞ.browser.qa.${Date.now()}@example.invalid`
 const admin = createClient(process.env.SUPABASE_URL, process.env.SUPABASE_SERVICE_ROLE_KEY, { auth: { autoRefreshToken: false, persistSession: false } })
 
 function requestJson(url, options = {}) {

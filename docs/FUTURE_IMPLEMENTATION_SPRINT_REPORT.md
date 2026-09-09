@@ -6,7 +6,7 @@
 
 تم تنفيذ **Maximum Future Implementation Sprint** بنجاح. بدلاً من مجرد الأرشفة، تم تحويل نواة الرؤية المستقبلية من V1.5 وV6 حتى V40 إلى **implementation حقيقي، قابل للاختبار، وprovider-neutral** داخل `backend/src/future/index.js`.
 
-النظام الجديد معزول تمامًا عن مسارات V1 الحالية، ومعطل افتراضيًا عبر `BISIS_FUTURE_ENABLED=false`. تم تنفيذ 13 فئة برمجية (Classes) تغطي AI، Workflows، CRM، Finance، Analytics، Automation، Integrations، Marketplace، Cloud، وSecurity. نجحت جميع الاختبارات الجديدة (13 اختبارًا) ضمن إجمالي 53 اختبارًا للمشروع، مع الحفاظ على استقرار V1 بالكامل.
+النظام الجديد معزول تمامًا عن مسارات V1 الحالية، ومعطل افتراضيًا عبر `BİŞİŞ_FUTURE_ENABLED=false`. تم تنفيذ 13 فئة برمجية (Classes) تغطي AI، Workflows، CRM، Finance، Analytics، Automation، Integrations، Marketplace، Cloud، وSecurity. نجحت جميع الاختبارات الجديدة (13 اختبارًا) ضمن إجمالي 53 اختبارًا للمشروع، مع الحفاظ على استقرار V1 بالكامل.
 
 ## 2. Implementation status
 
@@ -58,7 +58,7 @@
 1. **Provider Neutrality:** لا يعتمد أي كود على OpenAI أو Stripe مباشرة؛ تم استخدام Adapter Pattern للسماح بتبديل المزودات لاحقًا.
 2. **Deterministic Mocks:** تم بناء `LocalProvider` ليعطي نتائج فورية ومجانية للاختبار، مما يغلق فجوة "Blocked by API Key".
 3. **Fail-Closed Security:** أي عملية تفتقر لـtenant context أو permission أو approval تُرفض تلقائيًا.
-4. **V1 Isolation:** الوحدات الجديدة غير مستوردة في `server.js` أو أي route؛ تفعيلها يحتاج تغيير `BISIS_FUTURE_ENABLED` وربط الـroutes.
+4. **V1 Isolation:** الوحدات الجديدة غير مستوردة في `server.js` أو أي route؛ تفعيلها يحتاج تغيير `BİŞİŞ_FUTURE_ENABLED` وربط الـroutes.
 5. **No Migrations:** تم استخدام In-memory stores للاختبار؛ تحويلها لـPostgres يحتاج migrations إضافية (012+) بعد اعتماد العقد.
 
 ## 6. Final safety check

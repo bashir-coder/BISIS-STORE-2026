@@ -8,7 +8,7 @@ const options = {
       title: 'BİŞİŞ API',
       version: '1.0.0',
       description: 'BİŞİŞ Platform API Documentation',
-      contact: { name: 'BİŞİŞ Team', email: 'contact@bisis.com' }
+      contact: { name: 'BİŞİŞ Team', email: 'contact@BİŞİŞ.com' }
     },
     servers: [
       { url: 'http://localhost:5000/api', description: 'Development Server' },

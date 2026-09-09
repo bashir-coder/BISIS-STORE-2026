@@ -542,7 +542,7 @@ setOrders(ordersData)
         </table>
         <div style="margin-top: 30px; border-top: 1px solid #ddd; padding-top: 20px; text-align: center; color: #888; font-size: 12px;">
           شكراً لثقتك بنا. هذه الفاتورة صادرة من BİŞIŞ.
-          <br>للتواصل: info@bisis.com
+          <br>للتواصل: info@BİŞİŞ.com
         </div>
       `
       document.body.appendChild(container)

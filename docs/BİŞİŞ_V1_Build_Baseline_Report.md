@@ -32,7 +32,7 @@
 | `README.md` | أُعيدت كتابته ليطابق البنية الجديدة والأوامر ومسار migration |
 | `docs/STAGING_CHECKLIST.md` | صُححت أوامر التشغيل ومسار migration ومسارات V1 المجمدة |
 | `docs/STAGING_RUNBOOK.md` | صُححت أوامر Compose ومسار migration ومكان ملف البيئة |
-| `docs/BISIS_V1_Rescue_and_Launch_Plan.md` | حُدثت المراجع المحلية إلى المسارات الجديدة |
+| `docs/BİŞİŞ_V1_Rescue_and_Launch_Plan.md` | حُدثت المراجع المحلية إلى المسارات الجديدة |
 
 ### الملفات المنقولة وإعادة التصنيف
 
@@ -135,4 +135,4 @@ LEGACY_PROFILE_MIGRATION_REQUIRED
 - `database/migrations/001_launch_contract.sql`
 - `infrastructure/docker-compose.yml`
 - `infrastructure/nginx.conf`
-- `docs/BISIS_V1_Rescue_and_Launch_Plan.md`
+- `docs/BİŞİŞ_V1_Rescue_and_Launch_Plan.md`

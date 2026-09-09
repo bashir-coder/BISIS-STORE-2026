@@ -20,15 +20,15 @@
 |---|---|---|---|
 | `database/migrations/010_production_security_hardening.sql` | تفعيل RLS على `public.table_name` إن وُجد، سحب table grants من anon/authenticated، إبقاء service-role، تقليص direct RPC execution، تثبيت search paths | إغلاق exposure مثبت من Supabase advisors وmetadata | Additive/non-destructive؛ لا حذف جداول أو صفوف |
 | `backend/server.js` | منع CORS production fallback، إضافة `/api/live`، إضافة `/api/ready` مع DB reachability و503 عند exception، إبقاء `/api/health` كمؤشر عام | فصل liveness/readiness وإزالة fallback خطر | تغيير تشغيلي محدود |
-| `docs/BISIS_V1_CANONICAL_MIGRATION_ORDER.md` | توثيق 001–011، ووسم `005_execution_engine_policies.sql` كـauxiliary فقط | إزالة migration drift | توثيق |
+| `docs/BİŞİŞ_V1_CANONICAL_MIGRATION_ORDER.md` | توثيق 001–011، ووسم `005_execution_engine_policies.sql` كـauxiliary فقط | إزالة migration drift | توثيق |
 | `README.md` | تحديث migration order وشرح live/ready/health | جعل التشغيل الموثق مطابقًا للمصدر الحالي | توثيق |
-| `/home/ubuntu/bisis-internal-archive-2026-08-27/docs/evidence/` | حفظ evidence الداخلي خارج النسخة العامة | قابلية المراجعة دون secrets داخل GitHub | Internal evidence only |
+| `/home/ubuntu/BİŞİŞ-internal-archive-2026-08-27/docs/evidence/` | حفظ evidence الداخلي خارج النسخة العامة | قابلية المراجعة دون secrets داخل GitHub | Internal evidence only |
 
 لم تُعدّل migrations 001–007. لم تُستخدم `database/legacy/schema.sql`. لم تُفعل AI/Agents. لم يُستخدم fake OAuth أو fake payment success، ولم تُنشر أي صورة أو إعداد إلى Production.
 
 ## 2. Database and migration closure
 
-سلسلة BİŞIŞ V1 canonical الآن هي `001 → 002 → 003 → 004 → 005_execution_engine.sql → 006 → 007 → 008 → 009 → 010 → 011`. الملف `005_execution_engine_policies.sql` ليس migration ثانية؛ تشغيله منفصلًا ممنوع لأنه auxiliary SQL Editor/documentation material. المرجع التفصيلي هو [`BISIS_V1_CANONICAL_MIGRATION_ORDER.md`](BISIS_V1_CANONICAL_MIGRATION_ORDER.md).
+سلسلة BİŞIŞ V1 canonical الآن هي `001 → 002 → 003 → 004 → 005_execution_engine.sql → 006 → 007 → 008 → 009 → 010 → 011`. الملف `005_execution_engine_policies.sql` ليس migration ثانية؛ تشغيله منفصلًا ممنوع لأنه auxiliary SQL Editor/documentation material. المرجع التفصيلي هو [`BİŞİŞ_V1_CANONICAL_MIGRATION_ORDER.md`](BİŞİŞ_V1_CANONICAL_MIGRATION_ORDER.md).
 
 تم تطبيق `010_production_security_hardening` على مشروع Staging الاختباري disposable، وأعاد apply operation `success=true`. التغيير لم يحذف الجدول stray أو بياناته؛ فقط جعله fail-closed وسحب صلاحيات client roles. هذه نتيجة test environment وليست تصريحًا بتطبيقه على Production قبل مراجعة release owner.
 
@@ -117,7 +117,7 @@ Rollback يكون بإرجاع frontend/backend إلى artifact السابق imm
 
 ## References
 
-[1]: [BİSHIŞ V1 Canonical Migration Order](BISIS_V1_CANONICAL_MIGRATION_ORDER.md)  
+[1]: [BİSHIŞ V1 Canonical Migration Order](BİŞİŞ_V1_CANONICAL_MIGRATION_ORDER.md)  
 [2]: [Supabase database migrations and environments guidance](https://supabase.com/blog/the-vibe-coders-guide-to-supabase-environments)  
 [3]: [Supabase Database Backups](https://supabase.com/docs/guides/platform/backups)  
 [4]: [React Router security advisory GHSA-wrjc-x8rr-h8h6](https://github.com/advisories/GHSA-wrjc-x8rr-h8h6)  

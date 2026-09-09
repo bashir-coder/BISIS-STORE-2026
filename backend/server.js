@@ -860,7 +860,7 @@ app.use(
 if (require.main === module) {
   server.listen(PORT, () => {
     logger.info(
-      `🚀 BISIS Server running on port ${PORT}`,
+      `🚀 BİŞİŞ Server running on port ${PORT}`,
     )
 
     logger.info(

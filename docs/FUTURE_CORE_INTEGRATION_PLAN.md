@@ -55,7 +55,7 @@ Future Core
 
 ## Gate 9 — Production rollout
 
-نفّذ fresh migration rehearsal، RLS/IDOR/Auth tests، image scan، TLS/DNS/HTTPS/WebSocket checks، canary، monitoring، restore drill، ثم release approval. أبقِ `BISIS_FUTURE_ENABLED=false` حتى يمر كل gate الخاص بالنسخة المحددة.
+نفّذ fresh migration rehearsal، RLS/IDOR/Auth tests، image scan، TLS/DNS/HTTPS/WebSocket checks، canary، monitoring، restore drill، ثم release approval. أبقِ `BİŞİŞ_FUTURE_ENABLED=false` حتى يمر كل gate الخاص بالنسخة المحددة.
 
 ## Definition of integration-ready
 

@@ -1,4 +1,4 @@
-﻿import React, { Suspense, lazy, useState } from 'react'
+import React, { Suspense, lazy, useState } from 'react'
 import { AnimatePresence, motion } from 'framer-motion'
 import {
   Navigate,
@@ -14,7 +14,7 @@ import ScrollProgress from './components/ScrollProgress'
 import FloatingButtons from './components/FloatingButtons'
 import LiveStatusRibbon from './components/LiveStatusRibbon'
 
-const HUMAN_VERIFIED_KEY = 'bisis_human_verified'
+const HUMAN_VERIFIED_KEY = 'BİŞİŞ_human_verified'
 const LabPage = lazy(() => import('./pages/LabPage'))
 const HomePage = lazy(() => import('./pages/HomePage'))
 const ChatPage = lazy(() => import('./pages/ChatPage'))

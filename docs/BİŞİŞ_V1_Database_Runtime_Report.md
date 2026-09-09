@@ -125,5 +125,5 @@ WHERE NOT EXISTS (SELECT 1 FROM public.users WHERE id = NEW.id OR email = NEW.em
 - `backend/src/api/middleware/auth.middleware.js`
 - `database/migrations/001_launch_contract.sql`
 - `database/legacy/schema.sql`
-- `docs/BISIS_V1_Build_Baseline_Report.md`
-- `docs/BISIS_V1_Rescue_and_Launch_Plan.md`
+- `docs/BİŞİŞ_V1_Build_Baseline_Report.md`
+- `docs/BİŞİŞ_V1_Rescue_and_Launch_Plan.md`

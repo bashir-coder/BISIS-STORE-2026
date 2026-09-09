@@ -59,7 +59,7 @@ const Footer: React.FC = () => {
           <div className="space-y-6 lg:col-span-2">
             <Link to="/" className="group inline-flex items-center gap-3.5" aria-label="BİŞIŞ">
               <div className="relative h-12 w-12 overflow-hidden rounded-xl border border-gold/40 shadow-lg shadow-gold/20 transition-all duration-300 group-hover:scale-105 group-hover:shadow-gold/40">
-                <img src="/bisis-logo.jpg" alt="BİŞIŞ" className="h-full w-full object-cover" />
+                <img src="/BİŞİŞ-logo.jpg" alt="BİŞIŞ" className="h-full w-full object-cover" />
               </div>
               <span className="font-outfit text-2xl font-bold tracking-wider text-white transition-colors group-hover:text-gold">
                 BİŞIŞ
@@ -73,17 +73,17 @@ const Footer: React.FC = () => {
             >
               <Mail className="h-5 w-5" />
             </Link>
-            <div id="footer-social-links" className="mt-5 flex flex-wrap items-center gap-3" aria-label="BISIS social links">
+            <div id="footer-social-links" className="mt-5 flex flex-wrap items-center gap-3" aria-label="BİŞİŞ social links">
               <a href="https://wa.me/970597997040" target="_blank" rel="noreferrer" aria-label="WhatsApp" title="WhatsApp" className="inline-flex h-11 w-11 items-center justify-center rounded-full border border-[#25D366]/40 bg-[#10261a]/80 text-[#25D366] transition hover:bg-[#25D366] hover:text-white">
                 <i aria-hidden="true" className="fa-brands fa-whatsapp text-lg" />
               </a>
-              <a href="https://t.me/share/url?url=https%3A%2F%2Fbisis.com&text=BISIS" target="_blank" rel="noreferrer" aria-label="Telegram" title="Telegram" className="inline-flex h-11 w-11 items-center justify-center rounded-full border border-[#229ED9]/40 bg-[#10212d]/80 text-[#229ED9] transition hover:bg-[#229ED9] hover:text-white">
+              <a href="https://t.me/share/url?url=https%3A%2F%2FBİŞİŞ.com&text=BİŞİŞ" target="_blank" rel="noreferrer" aria-label="Telegram" title="Telegram" className="inline-flex h-11 w-11 items-center justify-center rounded-full border border-[#229ED9]/40 bg-[#10212d]/80 text-[#229ED9] transition hover:bg-[#229ED9] hover:text-white">
                 <i aria-hidden="true" className="fa-brands fa-telegram text-lg" />
               </a>
               <a href="https://instagram.com/bishish_30" target="_blank" rel="noreferrer" aria-label="Instagram" title="Instagram" className="inline-flex h-11 w-11 items-center justify-center rounded-full border border-[#E4405F]/40 bg-[#321521]/80 text-[#E4405F] transition hover:bg-[#E4405F] hover:text-white">
                 <i aria-hidden="true" className="fa-brands fa-instagram text-lg" />
               </a>
-              <a href="https://x.com/BISISHQ" target="_blank" rel="noreferrer" aria-label="X" title="X" className="inline-flex h-11 w-11 items-center justify-center rounded-full border border-white/25 bg-white/[0.06] text-white transition hover:bg-white hover:text-black">
+              <a href="https://x.com/BİŞİŞHQ" target="_blank" rel="noreferrer" aria-label="X" title="X" className="inline-flex h-11 w-11 items-center justify-center rounded-full border border-white/25 bg-white/[0.06] text-white transition hover:bg-white hover:text-black">
                 <i aria-hidden="true" className="fa-brands fa-x-twitter text-lg" />
               </a>
               <a href="https://www.youtube.com/@BİŞİŞ-2030" target="_blank" rel="noreferrer" aria-label="YouTube" title="YouTube" className="inline-flex h-11 w-11 items-center justify-center rounded-full border border-[#FF0000]/40 bg-[#321010]/80 text-[#FF0000] transition hover:bg-[#FF0000] hover:text-white">

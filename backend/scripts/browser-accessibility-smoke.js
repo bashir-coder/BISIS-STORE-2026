@@ -8,8 +8,8 @@ require('dotenv').config({ path: path.resolve(__dirname, '../../.env') })
 const baseUrl = process.env.BROWSER_QA_BASE_URL || 'http://localhost:3000'
 const cdpUrl = process.env.BROWSER_QA_CDP_URL || 'http://127.0.0.1:9224'
 const evidenceDir = path.resolve(__dirname, '../../docs/evidence/accessibility-qa-2026-08-25')
-const password = `BisisAccessibilityQA!${Date.now()}a`
-const email = `bisis.accessibility.qa.${Date.now()}@example.invalid`
+const password = `BİŞİŞAccessibilityQA!${Date.now()}a`
+const email = `BİŞİŞ.accessibility.qa.${Date.now()}@example.invalid`
 const admin = createClient(process.env.SUPABASE_URL, process.env.SUPABASE_SERVICE_ROLE_KEY, { auth: { autoRefreshToken: false, persistSession: false } })
 const pages = [
   { name: 'public-home', path: '/', authenticated: false },

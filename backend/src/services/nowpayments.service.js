@@ -115,7 +115,7 @@ async function createPayment({
     order_id: normalizedOrderId,
     order_description:
       orderDescription ||
-      `BISIS Order ${normalizedOrderId}`,
+      `BİŞİŞ Order ${normalizedOrderId}`,
   }
 
   if (
@@ -159,7 +159,7 @@ async function createInvoice({
     order_id: normalizedOrderId,
     order_description:
       orderDescription ||
-      `BISIS Order ${normalizedOrderId}`,
+      `BİŞİŞ Order ${normalizedOrderId}`,
   }
 
   if (

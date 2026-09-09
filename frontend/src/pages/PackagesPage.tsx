@@ -277,7 +277,7 @@ const PackagesPage: React.FC = () => {
         <section className="mb-14" aria-labelledby="official-services-title">
           <div className="mb-6 flex items-end justify-between gap-4">
             <div>
-              <p className="text-xs font-semibold uppercase tracking-[0.18em] text-gold">BISIS V1</p>
+              <p className="text-xs font-semibold uppercase tracking-[0.18em] text-gold">BİŞİŞ V1</p>
               <h2 id="official-services-title" className="mt-2 text-2xl font-bold font-outfit text-white sm:text-3xl">
                 {t('packages.official_services', 'Official services')}
               </h2>

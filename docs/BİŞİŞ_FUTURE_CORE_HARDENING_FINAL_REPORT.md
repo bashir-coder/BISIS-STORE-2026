@@ -4,7 +4,7 @@
 
 ## القرار التنفيذي
 
-تم تنفيذ refactor منظم لـFuture Core مع الحفاظ على behavior الحالي. أصبح `backend/src/future/` مقسمًا إلى domains واضحة مع barrels مستقلة، بينما بقي `core.js` مصدر التنفيذ المركزي للحفاظ على عدم تكرار المنطق وcompatibility exports. لم يتم إدخال Future Core إلى `server.js` أو أي V1 route، وما زال `BISIS_FUTURE_ENABLED=false` هو الوضع الافتراضي.
+تم تنفيذ refactor منظم لـFuture Core مع الحفاظ على behavior الحالي. أصبح `backend/src/future/` مقسمًا إلى domains واضحة مع barrels مستقلة، بينما بقي `core.js` مصدر التنفيذ المركزي للحفاظ على عدم تكرار المنطق وcompatibility exports. لم يتم إدخال Future Core إلى `server.js` أو أي V1 route، وما زال `BİŞİŞ_FUTURE_ENABLED=false` هو الوضع الافتراضي.
 
 النتيجة ليست أن V6–V40 أصبحت منتجات مكتملة. الذي أصبح functional هو concrete local Future Core primitives فقط، مع repositories وprovider contracts واختبارات boundaries. persistence الحقيقية، API routes، frontend integration، workers، providers، وProduction operations ما زالت خارج التنفيذ.
 
@@ -49,7 +49,7 @@
 | `backend/tests/future/future-architecture-contract.test.js` | contract checks for imports, secrets, network, barrels, providers, and default flag |
 | `docs/FUTURE_CORE_ARCHITECTURE.md` | actual implemented architecture and explicit non-goals |
 | `docs/FUTURE_CORE_INTEGRATION_PLAN.md` | exact sequence from core to persistence/API/frontend/workers/providers/production |
-| `docs/BISIS_FUTURE_CORE_HARDENING_FINAL_REPORT.md` | this final report |
+| `docs/BİŞİŞ_FUTURE_CORE_HARDENING_FINAL_REPORT.md` | this final report |
 
 ## Exact files modified
 
@@ -58,9 +58,9 @@
 | `backend/src/future/index.js` | became backward-compatible root barrel that exports core/services/adapters and named domains |
 | `backend/src/future/services.js` | changed dependency from `./index` to `./core` to remove circular dependency risk |
 | `backend/src/future/adapters.js` | changed dependency from `./index` to `./core`; includes NotificationProvider interface-only contract |
-| `.env.example` | documents `BISIS_FUTURE_ENABLED=false` as optional, disabled-by-default boundary |
+| `.env.example` | documents `BİŞİŞ_FUTURE_ENABLED=false` as optional, disabled-by-default boundary |
 | `docs/FUTURE_IMPLEMENTATION_SPRINT_REPORT.md` | corrected implementation claims to Partial/Foundation where persistence/UI/API are absent |
-| `/home/ubuntu/bisis-internal-archive-2026-08-27/archive/future-platform/archive-manifest.json` | synchronized implementation statuses and source paths |
+| `/home/ubuntu/BİŞİŞ-internal-archive-2026-08-27/archive/future-platform/archive-manifest.json` | synchronized implementation statuses and source paths |
 
 No V1 route, server startup path, current database schema, or historical migration was modified.
 
@@ -150,4 +150,4 @@ npm run release:check: PASS at high/critical threshold
 [1]: [Future Core Architecture](FUTURE_CORE_ARCHITECTURE.md)
 [2]: [Future Core Integration Plan](FUTURE_CORE_INTEGRATION_PLAN.md)
 [3]: [Future Core README](../backend/src/future/README.md)
-[4]: [BİŞIŞ V1 Canonical Migration Order](BISIS_V1_CANONICAL_MIGRATION_ORDER.md)
+[4]: [BİŞIŞ V1 Canonical Migration Order](BİŞİŞ_V1_CANONICAL_MIGRATION_ORDER.md)

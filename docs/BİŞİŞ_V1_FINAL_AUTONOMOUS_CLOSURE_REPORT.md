@@ -43,18 +43,18 @@
 | `frontend/.dockerignore` | إضافة `.git`, logs وZIP | static boundary review = PASS |
 | `.gitignore` | تجاهل `docs/evidence/`, `docs/archive/`, `archives/` و`*.zip` بالكامل | `git add --dry-run` لا يظهر forbidden candidates |
 | `frontend/src/App.tsx` | lazy-load لـChat وVerify Email وNot Found دون تغيير routes | lint/typecheck/build = PASS؛ entry gzip انخفض 8,142 bytes |
-| `.github/workflows/bisis-quality.yml` | جعل deployment وsecret validators خطوات مستقلة قبل full check؛ لا deploy ولا secrets مطلوبة للـPR | static workflow review = PASS |
+| `.github/workflows/BİŞİŞ-quality.yml` | جعل deployment وsecret validators خطوات مستقلة قبل full check؛ لا deploy ولا secrets مطلوبة للـPR | static workflow review = PASS |
 | `docs/STAGING_CHECKLIST.md` | تحديث chain 001–011، عدم اختراع Storage، payment/Google boundaries، health semantics | documentation consistency review |
 | `docs/STAGING_RUNBOOK.md` | إعادة كتابة التشغيل الفعلي والـrollback والـcleanup والـexternal gates | documentation consistency review |
 | `docs/LAUNCH_MAP.md` | إزالة افتراض bucket وتحديث database/payment/source-of-truth map | consistency review |
 | `docs/FINAL_LAUNCH_CHECKLIST.md` | تحديث migrations إلى 001–011 ووسم Storage evidence كـhistorical | consistency review |
 | `docs/DEPLOYMENT_CHECKLIST.md` | تحديث canonical migration requirement وإضافة fresh ledger evidence | consistency review |
-| `docs/BISIS_FINAL_PRODUCTION_READINESS_REPORT.md` | وسمه historical/superseded وتصحيح migrations وStorage claims | consistency review |
-| `docs/reports/BISIS-V1-Launch-Readiness-Final-Report.md` | إزالة تعليمات 001–004 ومسارات `/tmp` العامة وادعاء bucket المثبتة | public-document hygiene review |
+| `docs/BİŞİŞ_FINAL_PRODUCTION_READINESS_REPORT.md` | وسمه historical/superseded وتصحيح migrations وStorage claims | consistency review |
+| `docs/reports/BİŞİŞ-V1-Launch-Readiness-Final-Report.md` | إزالة تعليمات 001–004 ومسارات `/tmp` العامة وادعاء bucket المثبتة | public-document hygiene review |
 | `docs/MIGRATION_REPRODUCIBILITY_CHECKLIST.md` | إضافة إجراء قبول واضح للـfresh chain والـledger وmetadata/RLS/Auth/RLS/cleanup | file created |
 | `docs/FRONTEND_PERFORMANCE_BASELINE.md` | توثيق قياس bundle قبل/بعد دون ادعاء Lighthouse | file created |
-| `docs/BISIS_STAGING_ADVISOR_FINAL_SUMMARY.md` | توثيق Advisor الحالي من Staging دون identifiers أو secrets | file created |
-| `docs/BISIS_V1_FINAL_AUTONOMOUS_CLOSURE_REPORT.md` | هذا التقرير النهائي | file created |
+| `docs/BİŞİŞ_STAGING_ADVISOR_FINAL_SUMMARY.md` | توثيق Advisor الحالي من Staging دون identifiers أو secrets | file created |
+| `docs/BİŞİŞ_V1_FINAL_AUTONOMOUS_CLOSURE_REPORT.md` | هذا التقرير النهائي | file created |
 
 لم تُعدّل migrations `001–007`، ولم تُستخدم `database/legacy/schema.sql` كمصدر للحقيقة، ولم تُنفذ أي database mutation جديدة في هذه الجولة.
 
@@ -170,9 +170,9 @@ curl -fsS https://<real-domain>/api/health
 
 أُعيد إنشاء الحزمة النهائية هنا:
 
-`/home/ubuntu/BISIS-V1-public-github-baseline-2026-08-27.zip`
+`/home/ubuntu/BİŞİŞ-V1-public-github-baseline-2026-08-27.zip`
 
-حجمها التقريبي **664 KB**، وSHA-256 هو `ebc989a19ec1b9e2d072a19449217131cdd247e441378471ab9b3bf7192d7e30`. تم فحص أسماء archive entries برمجيًا، ولم تحتوي `.env`, `frontend/.env`, `node_modules`, `dist`, `coverage`, `logs`, `evidence`, `archive`, certificates/private keys، أو ZIP nested. `docs/evidence/` أصبحت ignored بالكامل؛ الملف المنقح `docs/service-delivery-live-smoke-result.redacted.json` مختلف عن raw evidence وغير مصنف كسر حقيقي.
+حجمها التقريبي **664 KB**، وSHA-256 هو `ebc989a19ec1b9e2d072a19449217131cdd247e441378471aBİŞİŞf7192d7e30`. تم فحص أسماء archive entries برمجيًا، ولم تحتوي `.env`, `frontend/.env`, `node_modules`, `dist`, `coverage`, `logs`, `evidence`, `archive`, certificates/private keys، أو ZIP nested. `docs/evidence/` أصبحت ignored بالكامل؛ الملف المنقح `docs/service-delivery-live-smoke-result.redacted.json` مختلف عن raw evidence وغير مصنف كسر حقيقي.
 
 ## 13. Final recommendations
 
@@ -195,7 +195,7 @@ curl -fsS https://<real-domain>/api/health
 
 ## References
 
-[1]: [Canonical migration order](BISIS_V1_CANONICAL_MIGRATION_ORDER.md)
+[1]: [Canonical migration order](BİŞİŞ_V1_CANONICAL_MIGRATION_ORDER.md)
 [2]: [Migration reproducibility checklist](MIGRATION_REPRODUCIBILITY_CHECKLIST.md)
 [3]: [Free deployment guide](FREE_DEPLOYMENT_GUIDE.md)
 [4]: [Staging checklist](STAGING_CHECKLIST.md)

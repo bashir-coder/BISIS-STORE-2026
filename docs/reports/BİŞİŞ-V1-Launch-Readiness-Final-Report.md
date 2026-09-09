@@ -1,6 +1,6 @@
 # BİŞIŞ V1 — Launch Readiness & Release Candidate Report
 
-> **Historical baseline — superseded.** الحالة الحالية موثقة في `BISIS-V1-Maximum-Launch-Acceleration-Final-Report.md` و`docs/FINAL_LAUNCH_CHECKLIST.md`. الأرقام القديمة في هذا الملف، ومنها 690 صف ترجمة، لا تمثل آخر seed حي.
+> **Historical baseline — superseded.** الحالة الحالية موثقة في `BİŞİŞ-V1-Maximum-Launch-Acceleration-Final-Report.md` و`docs/FINAL_LAUNCH_CHECKLIST.md`. الأرقام القديمة في هذا الملف، ومنها 690 صف ترجمة، لا تمثل آخر seed حي.
 
 **التاريخ:** 24 أغسطس 2026  
 **النطاق:** BİŞIŞ V1 الحالي فقط، دون دمج `database/legacy/schema.sql` ودون إعادة تصميم Authentication أو Database Contract.  

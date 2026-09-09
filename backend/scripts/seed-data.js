@@ -136,7 +136,7 @@ const countRows = async (table) => {
 }
 
 const main = async () => {
-  console.log('BISIS seed started')
+  console.log('BİŞİŞ seed started')
   const services = await ensureServices()
   const packages = await ensurePackages()
   const personas = await ensurePersonas()
@@ -145,10 +145,10 @@ const main = async () => {
   const counts = {}
   for (const table of ['services', 'packages', 'personas', 'faqs', 'translations']) counts[table] = await countRows(table)
   console.log(JSON.stringify({ services, packages, personas, faqs, translations, counts }, null, 2))
-  console.log('BISIS seed completed')
+  console.log('Biإںiإں seed completed')
 }
 
 main().catch((error) => {
-  console.error('BISIS seed failed:', error.message)
+  console.error('BİŞİŞ seed failed:', error.message)
   process.exitCode = 1
 })

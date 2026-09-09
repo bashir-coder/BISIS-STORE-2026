@@ -1,8 +1,8 @@
 {
-  "name": "bisis-backend",
+  "name": "BİŞİŞ-backend",
   "private": true,
   "version": "1.0.0",
-  "description": "BISIS API and fulfillment backend",
+  "description": "BİŞİŞ API and fulfillment backend",
   "main": "server.js",
   "scripts": {
     "dev": "node --watch server.js",

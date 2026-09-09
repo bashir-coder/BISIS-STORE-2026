@@ -17,13 +17,13 @@
 | Frontend build | `npm run build` | PASS؛ تحذير chunks أكبر من 500KB فقط |
 | Unified code check | `npm run check` | PASS؛ 24/24 tests |
 | Live seed | `npm run seed` | PASS؛ services=18، packages=3، personas=3، faqs=3، translations=1242 |
-| Auth/API smoke | `/tmp/bisis_api_smoke.js` | PASS؛ Customer A/B login والـcore endpoints أعادت 200 |
-| Persona persistence | `/tmp/bisis_verify_profile_persona.js` | PASS؛ persona محفوظة للمستخدمين، دون تسريب ملكية |
-| Payment fail-closed | `/tmp/bisis_payment_smoke.js` | PASS للحجب الآمن؛ verifier غير المهيأ أعاد 503 ولم يُنشأ order بعد محاولة invalid |
-| IDOR | `/tmp/bisis_idor_integration.js` | PASS؛ عزل orders/notifications/conversations/messages بين A/B |
-| Storage boundary | `/tmp/bisis_storage_e2e.js` | Historical evidence only؛ current public repo does not assume a bucket contract; owner must approve and re-run Storage verification |
-| Admin catalog API | `/tmp/bisis_admin_catalog_smoke.js` | PASS؛ admin list/create/edit/archive/cache وclient=403 للخدمات والباقات وFAQs |
-| Order lifecycle | `/tmp/bisis_order_lifecycle_smoke.js` | PASS؛ unverified gate=409، verified transitions=200، retry idempotent، event/notification delta=2، invoice=1 |
+| Auth/API smoke | `/tmp/BİŞİŞ_api_smoke.js` | PASS؛ Customer A/B login والـcore endpoints أعادت 200 |
+| Persona persistence | `/tmp/BİŞİŞ_verify_profile_persona.js` | PASS؛ persona محفوظة للمستخدمين، دون تسريب ملكية |
+| Payment fail-closed | `/tmp/BİŞİŞ_payment_smoke.js` | PASS للحجب الآمن؛ verifier غير المهيأ أعاد 503 ولم يُنشأ order بعد محاولة invalid |
+| IDOR | `/tmp/BİŞİŞ_idor_integration.js` | PASS؛ عزل orders/notifications/conversations/messages بين A/B |
+| Storage boundary | `/tmp/BİŞİŞ_storage_e2e.js` | Historical evidence only؛ current public repo does not assume a bucket contract; owner must approve and re-run Storage verification |
+| Admin catalog API | `/tmp/BİŞİŞ_admin_catalog_smoke.js` | PASS؛ admin list/create/edit/archive/cache وclient=403 للخدمات والباقات وFAQs |
+| Order lifecycle | `/tmp/BİŞİŞ_order_lifecycle_smoke.js` | PASS؛ unverified gate=409، verified transitions=200، retry idempotent، event/notification delta=2، invoice=1 |
 | Secrets scan | scan ساكن لأسماء الملفات، مع استبعاد `.env` والسجلات وdependencies | PASS؛ لا potential match في tracked Core source بعد استبعاد ملفات contract/config التوثيقية |
 | Live cleanup | read-only counts بعد كل fixtures | PASS؛ orders/workspaces/conversations/messages/notifications/invoices/order_files=0 |
 
