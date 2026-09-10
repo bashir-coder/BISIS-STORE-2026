@@ -31,7 +31,7 @@ Do not use service-role credentials to claim that a client can access a resource
 
 ## Database changes
 
-Do not edit or delete migrations `001` through `007`. Additive migrations must be numbered, idempotent where practical, added to `scripts/validate-migration-chain.mjs`, and documented in `docs/BISIS_V1_CANONICAL_MIGRATION_ORDER.md`. Never use `database/legacy/schema.sql` as the V1 source of truth.
+Do not edit or delete migrations `001` through `007`. Additive migrations must be numbered, idempotent where practical, added to `scripts/validate-migration-chain.mjs`, and documented in `docs/BİŞİŞ_V1_CANONICAL_MIGRATION_ORDER.md`. Never use `database/legacy/schema.sql` as the V1 source of truth.
 
 ## Pull requests
 
