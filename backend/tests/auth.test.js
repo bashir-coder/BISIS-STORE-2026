@@ -10,9 +10,9 @@ describe('Authentication & Core API', () => {
   test('GET /api/health – should return 200 OK with server health status', async () => {
     const res = await request(app).get('/api/health')
     expect(res.statusCode).toBe(200)
-    expect(res.body.status).toBe('DEGRADED')
+    expect(res.body.status).toBe('OK')
     expect(res.body.database).toBe('configured')
-    expect(res.body.critical_configuration.payment_verifier).toBe('missing')
+    expect(res.body.critical_configuration.nowpayments).toBe('configured')
   })
 
   test('rejects a disallowed CORS origin with 403', async () => {

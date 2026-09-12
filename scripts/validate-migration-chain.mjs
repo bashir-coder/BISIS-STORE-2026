@@ -18,7 +18,9 @@ const canonical = [
   '009_tickets_policy_isolation_hotfix.sql',
   '010_production_security_hardening.sql',
   '011_performance_foreign_key_indexes.sql',
-  '012_official_v1_catalog.sql',
+   '012_official_v1_catalog.sql',
+  '013_nowpayments_integration.sql',
+  '014_rls_corrective_and_payment_lock.sql',
 ]
 
 const auxiliary = ['005_execution_engine_policies.sql']

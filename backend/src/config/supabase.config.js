@@ -15,7 +15,7 @@ const supabase = createClient(supabaseUrl, supabaseKey, {
     persistSession: false,
   },
   global: {
-    headers: { 'x-application-name': 'BİŞİŞ-backend' },
+    headers: { 'x-application-name': 'bisis-backend' },
     fetch: (url, options) => {
       // إضافة timeout 10 ثواني
       const controller = new AbortController();

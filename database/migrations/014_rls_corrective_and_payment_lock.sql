@@ -95,7 +95,7 @@ CREATE POLICY "Anyone can view published blog posts"
   ON public.blog_posts
   FOR SELECT
   TO anon, authenticated
-  USING (status = 'published');
+  USING (is_active = true);
 
 -- ============================================================
 -- 7. services — enable RLS
