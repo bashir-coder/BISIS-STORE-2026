@@ -74,7 +74,7 @@ const FloatingButtons: React.FC = () => {
               </span>
             </a>
 
-            <a href="https://instagram.com/bisis_30" target="_blank" rel="noreferrer" aria-label="Instagram" title="Instagram" className="group relative flex h-12 w-12 items-center justify-center rounded-full border border-[#E4405F]/50 bg-[#321521]/90 text-[#E4405F] shadow-[0_0_24px_rgba(228,64,95,0.22)] backdrop-blur-xl transition-all hover:-translate-x-1 hover:bg-[#E4405F] hover:text-white">
+            <a href="https://instagram.com/bishish_30" target="_blank" rel="noreferrer" aria-label="Instagram" title="Instagram" className="group relative flex h-12 w-12 items-center justify-center rounded-full border border-[#E4405F]/50 bg-[#321521]/90 text-[#E4405F] shadow-[0_0_24px_rgba(228,64,95,0.22)] backdrop-blur-xl transition-all hover:-translate-x-1 hover:bg-[#E4405F] hover:text-white">
               <i aria-hidden="true" className="fa-brands fa-instagram text-xl" />
               <span className="pointer-events-none absolute right-14 whitespace-nowrap rounded-lg border border-white/10 bg-black/70 px-3 py-2 text-xs text-white/80 opacity-0 shadow-xl transition-opacity group-hover:opacity-100">{labels.instagram}</span>
             </a>
