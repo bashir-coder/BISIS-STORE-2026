@@ -1,19 +1,42 @@
-﻿import React from 'react'
+﻿import React, { useEffect, useRef } from 'react'
 import { useTranslation } from 'react-i18next'
 import { motion } from 'framer-motion'
 import { useInView } from '../hooks/useInView'
+import { useReducedMotion } from '../hooks/useReducedMotion'
 import { STEPS } from '../utils/constants'
+import { createStaggerReveal } from '../utils/gsapHelpers'
 
 const Steps: React.FC = () => {
   const { t } = useTranslation()
   const { ref, isInView } = useInView()
+  const reducedMotion = useReducedMotion()
+  const containerRef = useRef<HTMLDivElement>(null)
+  const stepRefs = useRef<(HTMLDivElement | null)[]>([])
+
+  useEffect(() => {
+    if (!isInView || reducedMotion) return
+
+    const elements = stepRefs.current.filter(Boolean) as HTMLElement[]
+
+    const anim = createStaggerReveal(elements, {
+      stagger: 0.12,
+      yOffset: 30,
+      reducedMotion,
+    })
+
+    return () => {
+      anim?.kill()
+    }
+  }, [isInView, reducedMotion])
 
   return (
     <section ref={ref} className="py-24 section-padding bg-transparent relative">
       <div className="max-w-7xl mx-auto">
         <motion.div
+          ref={containerRef}
           initial={{ opacity: 0, y: 30 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.8 }}
           className="text-center mb-16"
         >
           <span className="text-gold text-sm font-semibold tracking-wider uppercase mb-4 block">
@@ -29,6 +52,7 @@ const Steps: React.FC = () => {
           {STEPS.map((step, index) => (
             <motion.div
               key={index}
+              ref={(el) => (stepRefs.current[index] = el)}
               initial={{ opacity: 0, y: 30 }}
               animate={isInView ? { opacity: 1, y: 0 } : {}}
               transition={{ delay: index * 0.15 }}
@@ -52,4 +76,3 @@ const Steps: React.FC = () => {
 }
 
 export default Steps
-
