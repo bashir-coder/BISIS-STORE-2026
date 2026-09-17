@@ -80,7 +80,7 @@ const Footer: React.FC = () => {
               <a href="https://t.me/share/url?url=https%3A%2F%2FBİŞİŞ.com&text=BİŞİŞ" target="_blank" rel="noreferrer" aria-label="Telegram" title="Telegram" className="inline-flex h-11 w-11 items-center justify-center rounded-full border border-[#229ED9]/40 bg-[#10212d]/80 text-[#229ED9] transition hover:bg-[#229ED9] hover:text-white">
                 <i aria-hidden="true" className="fa-brands fa-telegram text-lg" />
               </a>
-              <a href="https://instagram.com/bishish_30" target="_blank" rel="noreferrer" aria-label="Instagram" title="Instagram" className="inline-flex h-11 w-11 items-center justify-center rounded-full border border-[#E4405F]/40 bg-[#321521]/80 text-[#E4405F] transition hover:bg-[#E4405F] hover:text-white">
+              <a href="https://instagram.com/bisis_30" target="_blank" rel="noreferrer" aria-label="Instagram" title="Instagram" className="inline-flex h-11 w-11 items-center justify-center rounded-full border border-[#E4405F]/40 bg-[#321521]/80 text-[#E4405F] transition hover:bg-[#E4405F] hover:text-white">
                 <i aria-hidden="true" className="fa-brands fa-instagram text-lg" />
               </a>
               <a href="https://x.com/BİŞİŞHQ" target="_blank" rel="noreferrer" aria-label="X" title="X" className="inline-flex h-11 w-11 items-center justify-center rounded-full border border-white/25 bg-white/[0.06] text-white transition hover:bg-white hover:text-black">
