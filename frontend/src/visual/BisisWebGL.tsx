@@ -12,6 +12,7 @@ import {
   createGlowSprite,
 } from './threejs-scene'
 import { useReducedMotion } from '../hooks/useReducedMotion'
+import { useDeviceDetection } from '../hooks/useDeviceDetection'
 
 type BisisWebGLProps = {
   className?: string
@@ -46,9 +47,13 @@ const BisisWebGL: React.FC<BisisWebGLProps> = ({
   const spriteRef = useRef<THREE.Sprite | null>(null)
 
   const reducedMotion = useReducedMotion()
+  const device = useDeviceDetection()
   const [webglAvailable, setWebglAvailable] = useState(true)
 
-  const particleCount = intensity === 'high' ? 1200 : intensity === 'medium' ? 800 : 400
+  const isMobile = device.isMobile
+  const isLowEnd = isMobile || device.isTouch
+  const effectiveIntensity = isLowEnd && intensity === 'high' ? 'medium' : intensity
+  const particleCount = effectiveIntensity === 'high' ? 1200 : effectiveIntensity === 'medium' ? 800 : 400
 
   const animate = useCallback(() => {
     if (!rendererRef.current || !sceneRef.current || !cameraRef.current) return
@@ -165,14 +170,14 @@ const BisisWebGL: React.FC<BisisWebGLProps> = ({
 
       if (showGeometry) {
         const geometry = createGeometricNodes(
-          intensity === 'high' ? 60 : 40,
+          effectiveIntensity === 'high' ? 60 : 40,
         )
         scene.add(geometry)
         geometryRef.current = geometry
       }
 
       if (showRings) {
-        const rings = createRings(intensity === 'high' ? 8 : 6)
+        const rings = createRings(effectiveIntensity === 'high' ? 8 : 6)
         scene.add(rings)
         ringsRef.current = rings
       }
@@ -193,7 +198,7 @@ const BisisWebGL: React.FC<BisisWebGLProps> = ({
       console.warn('[BisisWebGL] Initialization failed, falling back to CSS:', err)
       setWebglAvailable(false)
     }
-  }, [particleCount, showParticles, showGeometry, showRings, intensity, animate, handleMouseMove, handleScroll, reducedMotion, interactive])
+  }, [particleCount, showParticles, showGeometry, showRings, effectiveIntensity, animate, handleMouseMove, handleScroll, reducedMotion, interactive])
 
   useEffect(() => {
     const timeoutId = setTimeout(() => {

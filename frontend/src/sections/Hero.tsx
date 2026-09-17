@@ -4,9 +4,11 @@ import { motion } from 'framer-motion'
 import { ArrowRight, Sparkles, TrendingUp, Layers } from 'lucide-react'
 import { useTranslate } from '../hooks/useTranslate'
 import { useInView } from '../hooks/useInView'
+import { useReducedMotion } from '../hooks/useReducedMotion'
 import MagneticButton from '../components/MagneticButton'
 import AnimatedCounter from '../components/AnimatedCounter'
 import BisisWebGL from '../visual/BisisWebGL'
+import { gsap } from 'gsap'
 
 const Hero: React.FC = () => {
   const { t } = useTranslate()
@@ -18,9 +20,20 @@ const Hero: React.FC = () => {
   const descriptionRef = useRef<HTMLParagraphElement>(null)
   const ctaRef = useRef<HTMLDivElement>(null)
   const statsRef = useRef<HTMLDivElement>(null)
+  const reducedMotion = useReducedMotion()
 
   useEffect(() => {
     if (!isInView) return
+
+    if (reducedMotion) {
+      const elements = [badgeRef.current, titleRef.current, subtitleRef.current, descriptionRef.current]
+      elements.forEach((el) => {
+        if (el) gsap.set(el, { opacity: 1, y: 0 })
+      })
+      if (ctaRef.current) gsap.set(ctaRef.current, { opacity: 1, y: 0 })
+      if (statsRef.current) gsap.set(statsRef.current, { opacity: 1, y: 0 })
+      return
+    }
 
     const elements = [badgeRef.current, titleRef.current, subtitleRef.current, descriptionRef.current]
     const validElements = elements.filter(Boolean) as HTMLElement[]

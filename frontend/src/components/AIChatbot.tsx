@@ -213,13 +213,13 @@ const faqsByLang: Record<string, FAQItem[]> = {
     {
       id: 'packages',
       question: '📦 Hangi paketleri sunuyorsunuz?',
-      answer: '<strong>3 ana paket</strong> sunuyoruz:<br><br>• <strong>Starter:</strong> Temel hizmetlerle projenizi hızlıca başlatmak için ideal.<br>• <strong>Growth:</strong> Gelişmiş pazarlama ve analitik araçları içerir.<br>• <strong>Investor-Ready:</strong> Projenizi yatırımcılara sunmak için ihtiyacınız olan her şeyi kapsayan kapsamlı bir paket.<br><br>BİŞIŞ V1 kapsamındaki temel hizmetleri inceleyebilirsiniz.',
+      answer: '<strong>3 ana paket</strong> sunuyoruz:<br><br>• <strong>Foundation:</strong> Temel hizmetlerle projenizi hızlıca başlatmak için ideal.<br>• <strong>Growth:</strong> Gelişmiş pazarlama ve analitik araçları içerir.<br>• <strong>Scale:</strong> Projenizi yatırımcılara sunmak için ihtiyacınız olan her şeyi kapsayan kapsamlı bir paket.<br><br>BİŞIŞ V1 kapsamındaki temel hizmetleri inceleyebilirsiniz.',
       category: 'pricing',
     },
     {
       id: 'payment',
       question: '💳 Nasıl ödeme yapabilirim?',
-      answer: 'Planlanan ödeme yöntemi verifier yapılandırıldıktan sonra <strong>Polygon</strong> ağında <strong>USDC</strong> olacaktır. Şimdilik ödeme akışı kullanılamayan durumu açıkça gösterir ve sistem doğrulaması olmadan teslimat başlamaz.',
+      answer: 'Ödeme <strong>NOWPayments</strong> üzerinden <strong>BNB Smart Chain’de USDC</strong> ile yapılır. BİŞİŞ, teslimat başlamadan önce ödemeyi NOWPayments üzerinden onaylar.',
       category: 'payment',
     },
     {
@@ -231,7 +231,7 @@ const faqsByLang: Record<string, FAQItem[]> = {
     {
       id: 'services',
       question: '🧠 Hangi hizmetleri sunuyorsunuz?',
-      answer: 'BİŞIŞ V1 kapsamında 6 ana kategoride <strong>18 temel hizmet</strong> sunuyoruz:<br><br>• <strong>AI Automation:</strong> Yapay zeka otomasyonu.<br>• <strong>Business Strategy:</strong> İş stratejisi geliştirme.<br>• <strong>Legal & Compliance:</strong> Yasal uyumluluk çözümleri.<br>• <strong>Financial Modeling:</strong> Finansal modelleme ve analiz.<br>• <strong>Growth Marketing:</strong> Dijital pazarlama çözümleri.<br>• <strong>Product Development:</strong> Ürün geliştirme hizmetleri.<br><br>Hizmet kataloğu her hizmetin güncel ayrıntılarını ve kapsamını gösterir.',
+      answer: 'Güncel BİŞIŞ V1 kataloğu <strong>18 temel hizmet</strong> içerir ve bu hizmetler tek katalog kategorisinde toplanır: <strong>Official Services</strong>.<br><br>Her hizmetin güncel adı, fiyatı ve teslim süresi için paketler ve hizmetler sayfasını kullanın.',
       category: 'services',
     },
     {
