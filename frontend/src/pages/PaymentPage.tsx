@@ -47,6 +47,55 @@ type PaymentData = {
   expiration_estimate_date: string | null
 }
 
+const getPaymentStatusLabel = (t: (key: string) => string, status: string): string => {
+  const normalized = String(status || '').toLowerCase()
+  switch (normalized) {
+    case 'verified':
+    case 'finished':
+      return t('payment_status.verified')
+    case 'confirming':
+    case 'confirmed':
+    case 'sending':
+    case 'submitted':
+      return t('payment_status.confirming')
+    case 'waiting':
+    case 'pending':
+      return t('payment_status.waiting')
+    case 'failed':
+      return t('payment_status.failed')
+    case 'expired':
+      return t('payment_status.expired')
+    case 'refunded':
+      return t('payment_status.refunded')
+    default:
+      return t('payment_status.unknown')
+  }
+}
+
+const getPaymentStatusColor = (status: string): string => {
+  const normalized = String(status || '').toLowerCase()
+  switch (normalized) {
+    case 'verified':
+    case 'finished':
+      return 'bg-green-500/20 text-green-300 border-green-500/30'
+    case 'confirming':
+    case 'confirmed':
+    case 'sending':
+    case 'submitted':
+      return 'bg-yellow-500/20 text-yellow-300 border-yellow-500/30'
+    case 'waiting':
+    case 'pending':
+      return 'bg-blue-500/20 text-blue-300 border-blue-500/30'
+    case 'failed':
+    case 'expired':
+      return 'bg-red-500/20 text-red-300 border-red-500/30'
+    case 'refunded':
+      return 'bg-gray-500/20 text-gray-300 border-gray-500/30'
+    default:
+      return 'bg-white/10 text-white/50 border-white/20'
+  }
+}
+
 const PaymentPage: React.FC = () => {
   const { t } = useTranslation()
   const location = useLocation()
@@ -588,8 +637,8 @@ const PaymentPage: React.FC = () => {
                       </span>
                     </div>
 
-                    <span className="px-3 py-1 rounded-full bg-gold/10 text-gold text-xs font-medium">
-                      {payment.payment_status}
+                    <span className={`px-3 py-1 rounded-full border text-xs font-medium ${getPaymentStatusColor(payment.payment_status)}`}>
+                      {getPaymentStatusLabel(t, payment.payment_status)}
                     </span>
                   </div>
 

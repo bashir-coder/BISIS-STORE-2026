@@ -18,7 +18,7 @@ const LiveStatusRibbon: React.FC = () => {
     {
       icon: ShieldCheck,
       label: 'Escrow Security',
-      status: 'Polygon USDC',
+      status: 'USDC BSC',
     },
     {
       icon: Globe2,

@@ -16,6 +16,8 @@ interface Order {
   price?: number | string | null
   total?: number | string | null
   status?: string
+  payment_status?: string
+  nowpayments_status?: string
   created_at?: string
   updated_at?: string
   project_id?: number | null
@@ -58,10 +60,44 @@ const ClientPortal: React.FC = () => {
     return Number.isFinite(numericValue) ? numericValue : 0
   }
 
-  const formatDate = (value?: string) => {
+const formatDate = (value?: string) => {
     if (!value) return '—'
     const date = new Date(value)
     return Number.isNaN(date.getTime()) ? '—' : date.toLocaleDateString()
+  }
+
+  const getPaymentStatusBadge = (status: string) => {
+    const normalized = String(status || '').toLowerCase()
+    const labels: Record<string, string> = {
+      verified: t('payment_status.verified'),
+      finished: t('payment_status.verified'),
+      confirming: t('payment_status.confirming'),
+      confirmed: t('payment_status.confirming'),
+      sending: t('payment_status.confirming'),
+      submitted: t('payment_status.confirming'),
+      waiting: t('payment_status.waiting'),
+      pending: t('payment_status.waiting'),
+      failed: t('payment_status.failed'),
+      expired: t('payment_status.expired'),
+      refunded: t('payment_status.refunded'),
+    }
+    const colors: Record<string, string> = {
+      verified: 'text-green-300 border-green-500/30 bg-green-500/20',
+      finished: 'text-green-300 border-green-500/30 bg-green-500/20',
+      confirming: 'text-yellow-300 border-yellow-500/30 bg-yellow-500/20',
+      confirmed: 'text-yellow-300 border-yellow-500/30 bg-yellow-500/20',
+      sending: 'text-yellow-300 border-yellow-500/30 bg-yellow-500/20',
+      submitted: 'text-yellow-300 border-yellow-500/30 bg-yellow-500/20',
+      waiting: 'text-blue-300 border-blue-500/30 bg-blue-500/20',
+      pending: 'text-blue-300 border-blue-500/30 bg-blue-500/20',
+      failed: 'text-red-300 border-red-500/30 bg-red-500/20',
+      expired: 'text-red-300 border-red-500/30 bg-red-500/20',
+      refunded: 'text-gray-300 border-gray-500/30 bg-gray-500/20',
+    }
+    return {
+      label: labels[normalized] || t('payment_status.unknown'),
+      className: `px-2 py-0.5 text-xs rounded-full border ${colors[normalized] || 'text-white/50 border-white/20 bg-white/10'}`,
+    }
   }
 
   return (
@@ -146,23 +182,31 @@ const ClientPortal: React.FC = () => {
                 <div className="rounded-2xl border border-dashed border-white/10 bg-white/5 p-8 text-center"><p className="text-sm text-white/70">{t('client_portal.no_requests_yet')}</p><p className="mx-auto mt-2 max-w-sm text-sm text-white/40">{t('client_portal.no_requests_context', 'Your workspace is ready. Your first request will appear here after you choose a package.')}</p></div>
               ) : (
                 <div className="space-y-3">
-                  {orders.map((order) => (
-                    <div key={order.id} className="rounded-2xl border border-white/10 bg-black/20 p-4">
-                      <div className="flex items-center justify-between gap-3">
-                        <div>
-                          <p className="text-sm font-semibold text-white">#{String(order.submission_id || order.id || 'order').slice(0, 8)}</p>
-                          <p className="mt-1 text-sm text-white/50">{order.package || order.package_name || t('dashboard.package')}</p>
-                          {order.project_id && <Link to={`/projects/${order.project_id}`} className="mt-2 inline-flex items-center text-xs text-gold hover:underline">{t('workbench.open_project')}</Link>}
+{orders.map((order) => {
+                    const paymentStatus = getPaymentStatusBadge(order.nowpayments_status || order.payment_status || '')
+                    return (
+                      <div key={order.id} className="rounded-2xl border border-white/10 bg-black/20 p-4">
+                        <div className="flex items-center justify-between gap-3">
+                          <div>
+                            <p className="text-sm font-semibold text-white">#{String(order.submission_id || order.id || 'order').slice(0, 8)}</p>
+                            <p className="mt-1 text-sm text-white/50">{order.package || order.package_name || t('dashboard.package')}</p>
+                            {order.project_id && <Link to={`/projects/${order.project_id}`} className="mt-2 inline-flex items-center text-xs text-gold hover:underline">{t('workbench.open_project')}</Link>}
+                          </div>
+                          <div className="text-end">
+                            <p className="text-sm font-semibold text-gold">${getOrderPrice(order).toFixed(2)}</p>
+                            <p className="mt-1 text-xs uppercase tracking-wide text-white/40">{order.status || 'new'}</p>
+                            {paymentStatus.label !== t('payment_status.unknown') && (
+                              <p className={`mt-1 ${paymentStatus.className}`}>
+                                {paymentStatus.label}
+                              </p>
+                            )}
+                          </div>
                         </div>
-                        <div className="text-end">
-                          <p className="text-sm font-semibold text-gold">${getOrderPrice(order).toFixed(2)}</p>
-                          <p className="mt-1 text-xs uppercase tracking-wide text-white/40">{order.status || 'new'}</p>
-                        </div>
+                        <div className="mt-3 text-sm text-white/50">{t('dashboard.updated')} {formatDate(order.updated_at || order.created_at)}</div>
+                        <div className="mt-3 rounded-xl border border-white/10 bg-black/20 p-3"><OrderLifecycle status={order.status} /></div>
                       </div>
-                      <div className="mt-3 text-sm text-white/50">{t('dashboard.updated')} {formatDate(order.updated_at || order.created_at)}</div>
-                      <div className="mt-3 rounded-xl border border-white/10 bg-black/20 p-3"><OrderLifecycle status={order.status} /></div>
-                    </div>
-                  ))}
+                    )
+                  })}
                 </div>
               )}
             </div>

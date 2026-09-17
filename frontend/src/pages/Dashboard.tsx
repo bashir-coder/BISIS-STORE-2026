@@ -20,6 +20,8 @@ interface Order {
   submission_id: string
   package_name: string
   status: 'new' | 'processing' | 'completed'
+  payment_status?: string
+  nowpayments_status?: string
   price: number
   created_at: string
   updated_at: string
@@ -278,7 +280,7 @@ const Dashboard: React.FC = () => {
     }
   }
 
-  const getTicketStatusBadge = (status: string) => {
+const getTicketStatusBadge = (status: string) => {
     const styles = {
       open: 'bg-red-500/20 text-red-300 border-red-500/30',
       in_progress: 'bg-yellow-500/20 text-yellow-300 border-yellow-500/30',
@@ -289,6 +291,40 @@ const Dashboard: React.FC = () => {
     return {
       className: styles[status as keyof typeof styles] || styles.open,
       label: String(t(`tickets.${status}`))
+    }
+  }
+
+  const getPaymentStatusBadge = (status: string) => {
+    const normalized = String(status || '').toLowerCase()
+    const styles: Record<string, string> = {
+      verified: 'bg-green-500/20 text-green-300 border-green-500/30',
+      finished: 'bg-green-500/20 text-green-300 border-green-500/30',
+      confirming: 'bg-yellow-500/20 text-yellow-300 border-yellow-500/30',
+      confirmed: 'bg-yellow-500/20 text-yellow-300 border-yellow-500/30',
+      sending: 'bg-yellow-500/20 text-yellow-300 border-yellow-500/30',
+      submitted: 'bg-yellow-500/20 text-yellow-300 border-yellow-500/30',
+      waiting: 'bg-blue-500/20 text-blue-300 border-blue-500/30',
+      pending: 'bg-blue-500/20 text-blue-300 border-blue-500/30',
+      failed: 'bg-red-500/20 text-red-300 border-red-500/30',
+      expired: 'bg-red-500/20 text-red-300 border-red-500/30',
+      refunded: 'bg-gray-500/20 text-gray-300 border-gray-500/30',
+    }
+    const labels: Record<string, string> = {
+      verified: t('payment_status.verified'),
+      finished: t('payment_status.verified'),
+      confirming: t('payment_status.confirming'),
+      confirmed: t('payment_status.confirming'),
+      sending: t('payment_status.confirming'),
+      submitted: t('payment_status.confirming'),
+      waiting: t('payment_status.waiting'),
+      pending: t('payment_status.waiting'),
+      failed: t('payment_status.failed'),
+      expired: t('payment_status.expired'),
+      refunded: t('payment_status.refunded'),
+    }
+    return {
+      className: styles[normalized] || 'bg-white/10 text-white/50 border-white/20',
+      label: labels[normalized] || t('payment_status.unknown'),
     }
   }
 
@@ -741,8 +777,9 @@ const Dashboard: React.FC = () => {
               </div>
             ) : (
               <div className="space-y-3">
-                {orders.map(order => {
+{orders.map(order => {
                   const status = getStatusBadge(order.status)
+                  const paymentStatus = getPaymentStatusBadge(order.nowpayments_status || order.payment_status || '')
 
                   return (
                     <div
@@ -761,6 +798,14 @@ const Dashboard: React.FC = () => {
                           >
                             {status.label}
                           </span>
+
+                          {paymentStatus.label !== t('payment_status.unknown') && (
+                            <span
+                              className={`px-2 py-0.5 text-xs rounded-full border ${paymentStatus.className}`}
+                            >
+                              {paymentStatus.label}
+                            </span>
+                          )}
                         </div>
 
                         <div className="flex items-center gap-4 text-sm text-white/50">
@@ -998,7 +1043,7 @@ const Dashboard: React.FC = () => {
                     <OrderLifecycle status={selectedOrder.status} />
                   </div>
 
-                  <div className="grid grid-cols-2 gap-4">
+<div className="grid grid-cols-2 gap-4">
                     <div className="bg-white/5 rounded-xl p-4">
                       <p className="text-white/50 text-sm">
                         {String(t('dashboard.status'))}
@@ -1031,11 +1076,11 @@ const Dashboard: React.FC = () => {
 
                     <div className="bg-white/5 rounded-xl p-4">
                       <p className="text-white/50 text-sm">
-                        {String(t('dashboard.txid'))}
+                        {String(t('dashboard.payment_status'))}
                       </p>
 
-                      <p className="text-white font-semibold text-sm truncate">
-                        {selectedOrder.txid || '—'}
+                      <p className="text-white font-semibold text-sm">
+                        {getPaymentStatusBadge(selectedOrder.nowpayments_status || selectedOrder.payment_status || '').label}
                       </p>
                     </div>
                   </div>

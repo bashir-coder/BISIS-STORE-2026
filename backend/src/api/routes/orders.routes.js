@@ -533,6 +533,7 @@ router.post(
   '/:id/create-payment',
   authenticate,
   async (req, res) => {
+    let lockAcquired = false
     try {
       const orderId =
         req.params.id
@@ -700,6 +701,163 @@ router.post(
             order.nowpayments_last_ipn_at,
         })
       }
+
+      // --------------------------------------------------------
+      // Acquire payment-creation lock
+      // Prevents concurrent requests from creating
+      // duplicate NOWPayments invoices for the same order.
+      // Falls back gracefully if the column does not exist yet
+      // (migration 014 not yet applied).
+      // --------------------------------------------------------
+
+      const { data: lockClaim, error: lockError } =
+        await supabase
+          .from('orders')
+          .update({
+            nowpayments_creating_lock: true,
+          })
+          .eq('id', order.id)
+          .is('nowpayments_creating_lock', false)
+          .select([
+            'nowpayments_creating_lock',
+            'payment_url',
+            'nowpayments_invoice_id',
+            'nowpayments_payment_id',
+            'nowpayments_purchase_id',
+            'nowpayments_pay_address',
+            'nowpayments_pay_currency',
+            'nowpayments_pay_amount',
+            'nowpayments_price_amount',
+            'nowpayments_price_currency',
+            'nowpayments_status',
+            'nowpayments_last_ipn_at',
+          ].join(', '))
+          .single()
+
+      if (lockError) {
+        console.warn(
+          'nowpayments_creating_lock column not available, ' +
+            'proceeding without lock',
+        )
+      } else if (lockClaim?.nowpayments_creating_lock === true) {
+        lockAcquired = true
+      } else if (lockClaim?.payment_url) {
+        // Another request acquired the lock and created
+        // an invoice while we were waiting
+        return res.status(200).json({
+          order_id: lockClaim.id || order.id,
+
+          invoice_id:
+            lockClaim.nowpayments_invoice_id,
+
+          invoice_url:
+            lockClaim.payment_url,
+
+          payment_id:
+            lockClaim.nowpayments_payment_id,
+
+          payment_status:
+            lockClaim.nowpayments_status ||
+            'waiting',
+
+          pay_address:
+            lockClaim.nowpayments_pay_address,
+
+          pay_amount:
+            lockClaim.nowpayments_pay_amount,
+
+          pay_currency:
+            lockClaim.nowpayments_pay_currency,
+
+          price_amount:
+            lockClaim.nowpayments_price_amount ||
+            Number(
+              order.amount ??
+                order.price,
+            ),
+
+          price_currency:
+            lockClaim.nowpayments_price_currency ||
+            'usd',
+
+          network:
+            'bsc',
+
+          purchase_id:
+            lockClaim.nowpayments_purchase_id,
+
+           last_ipn_at:
+             lockClaim.nowpayments_last_ipn_at,
+         })
+       } else {
+         // Lock is held by another request; the UPDATE matched
+         // zero rows (lockClaim is null). Re-check for an invoice
+         // that may have been saved while we waited.
+         const {
+           data: relock,
+         } = await supabase
+           .from('orders')
+           .select([
+             'payment_url',
+             'nowpayments_invoice_id',
+             'nowpayments_payment_id',
+             'nowpayments_purchase_id',
+             'nowpayments_pay_address',
+             'nowpayments_pay_currency',
+             'nowpayments_pay_amount',
+             'nowpayments_price_amount',
+             'nowpayments_price_currency',
+             'nowpayments_status',
+             'nowpayments_last_ipn_at',
+           ].join(', '))
+           .eq('id', order.id)
+           .single()
+
+         if (relock?.payment_url) {
+           return res.status(200).json({
+             order_id: relock.id || order.id,
+             invoice_id:
+               relock.nowpayments_invoice_id,
+             invoice_url:
+               relock.payment_url,
+             payment_id:
+               relock.nowpayments_payment_id,
+             payment_status:
+               relock.nowpayments_status ||
+               'waiting',
+             pay_address:
+               relock.nowpayments_pay_address,
+             pay_amount:
+               relock.nowpayments_pay_amount,
+             pay_currency:
+               relock.nowpayments_pay_currency,
+             price_amount:
+               relock.nowpayments_price_amount ||
+               Number(
+                 order.amount ??
+                   order.price,
+               ),
+             price_currency:
+               relock.nowpayments_price_currency ||
+               'usd',
+             network: 'bsc',
+             purchase_id:
+               relock.nowpayments_purchase_id,
+             last_ipn_at:
+               relock.nowpayments_last_ipn_at,
+           })
+         }
+
+         // Invoice still being created by another
+         // request — return 423 Locked
+         return res.status(423).json({
+           message:
+             'Payment creation is in progress. ' +
+             'Please try again in a moment.',
+           code:
+             'PAYMENT_CREATION_IN_PROGRESS',
+         })
+       }
 
       // --------------------------------------------------------
       // Amount
@@ -920,6 +1078,25 @@ router.post(
         throw updateError
       }
 
+      if (lockAcquired) {
+        const {
+          error: releaseError,
+        } = await supabase
+          .from('orders')
+          .update({
+            nowpayments_creating_lock:
+              false,
+          })
+          .eq('id', order.id)
+
+        if (releaseError) {
+          console.warn(
+            'Failed to release nowpayments_creating_lock:',
+            releaseError,
+          )
+        }
+      }
+
       // --------------------------------------------------------
       // Event
       // --------------------------------------------------------
@@ -1054,6 +1231,26 @@ router.post(
         'NOWPayments invoice creation failed:',
         err,
       )
+
+      if (lockAcquired) {
+        const {
+          error: releaseError,
+        } = await supabase
+          .from('orders')
+          .update({
+            nowpayments_creating_lock:
+              false,
+          })
+          .eq('id', req.params.id)
+
+        if (releaseError) {
+          console.warn(
+            'Failed to release nowpayments_creating_lock ' +
+              'in catch:',
+            releaseError,
+          )
+        }
+      }
 
       return res
         .status(

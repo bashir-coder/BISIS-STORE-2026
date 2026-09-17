@@ -301,6 +301,18 @@ router.post(
         // Unknown status:
         // acknowledge it so NOWPayments does not keep
         // retrying forever, but do not alter the order.
+        // Still record the IPN receipt timestamp for audit.
+        const nowIso =
+          new Date().toISOString()
+
+        await supabase
+          .from('orders')
+          .update({
+            nowpayments_last_ipn_at:
+              nowIso,
+          })
+          .eq('id', orderId)
+
         return res.status(200).json({
           success: true,
           ignored: true,
@@ -354,6 +366,17 @@ router.post(
           'verified' &&
         paymentStatus !== 'refunded'
       ) {
+        const nowIso =
+          new Date().toISOString()
+
+        await supabase
+          .from('orders')
+          .update({
+            nowpayments_last_ipn_at:
+              nowIso,
+          })
+          .eq('id', orderId)
+
         return res.status(200).json({
           success: true,
           ignored: true,
@@ -363,8 +386,11 @@ router.post(
       }
 
       // ========================================================
-      // Build update
+      // Update order
       // ========================================================
+
+      const nowIso =
+        new Date().toISOString()
 
       const updatePayload = {
         payment_status:
@@ -375,17 +401,16 @@ router.post(
         currency: 'USDC',
 
         updated_at:
-          new Date().toISOString(),
+          nowIso,
+
+        nowpayments_last_ipn_at:
+          nowIso,
       }
 
       if (payinHash) {
         updatePayload.txid =
           payinHash
       }
-
-      // ========================================================
-      // Update order
-      // ========================================================
 
       const {
         data: updatedOrder,
@@ -403,6 +428,7 @@ router.post(
 
       // ========================================================
       // Record payment event
+      // Guard against duplicate events from NOWPayments retries
       // ========================================================
 
       const eventPayload = {
@@ -452,41 +478,80 @@ router.post(
           payload,
       }
 
-      const {
-        error: eventError,
-      } = await supabase
-        .from('order_events')
-        .insert([
-          {
-            order_id:
-              orderId,
+      const normalizedRawStatus = String(
+        payload.payment_status || '',
+      )
+        .trim()
+        .toLowerCase()
 
-            actor_id:
-              null,
+      const eventAlreadyExists =
+        paymentId || purchaseId
+          ? Boolean(
+              (
+                await supabase
+                  .from('order_events')
+                  .select('id')
+                  .eq('order_id', orderId)
+                  .eq(
+                    'event_type',
+                    `payment.nowpayments.${normalizedRawStatus}`,
+                  )
+                  .or(
+                    [
+                      paymentId
+                        ? `payload->payment_id.eq.${paymentId}`
+                        : null,
+                      purchaseId
+                        ? `payload->purchase_id.eq.${purchaseId}`
+                        : null,
+                    ]
+                      .filter(Boolean)
+                      .join(','),
+                  )
+                  .gte(
+                    'created_at',
+                    new Date(
+                      Date.now() -
+                        5 * 60 * 1000,
+                    ).toISOString(),
+                  )
+                  .maybeSingle()
+              ).data
+            )
+          : false
 
-            event_type:
-              `payment.nowpayments.${String(
-                payload.payment_status ||
-                  'unknown',
-              )
-                .trim()
-                .toLowerCase()}`,
+      if (!eventAlreadyExists) {
+        const {
+          error: eventError,
+        } = await supabase
+          .from('order_events')
+          .insert([
+            {
+              order_id:
+                orderId,
 
-            payload:
-              eventPayload,
+              actor_id:
+                null,
 
-            created_at:
-              new Date().toISOString(),
-          },
-        ])
+              event_type:
+                `payment.nowpayments.${normalizedRawStatus}`,
 
-      if (eventError) {
-        // Do not fail the IPN after the actual order
-        // update succeeded.
-        console.error(
-          'NOWPayments order event error:',
-          eventError,
-        )
+              payload:
+                eventPayload,
+
+              created_at:
+                nowIso,
+            },
+          ])
+
+        if (eventError) {
+          // Do not fail the IPN after the actual order
+          // update succeeded.
+          console.error(
+            'NOWPayments order event error:',
+            eventError,
+          )
+        }
       }
 
       // ========================================================
@@ -507,9 +572,6 @@ router.post(
 
                 type:
                   'payment',
-
-                title:
-                  'Payment confirmed',
 
                 message:
                   `Payment for order #${orderId} has been confirmed.`,
@@ -543,9 +605,6 @@ router.post(
                 type:
                   'payment',
 
-                title:
-                  'Payment failed',
-
                 message:
                   `Payment for order #${orderId} failed or expired.`,
 
@@ -578,9 +637,6 @@ router.post(
 
                 type:
                   'payment',
-
-                title:
-                  'Payment refunded',
 
                 message:
                   `Payment for order #${orderId} has been refunded.`,

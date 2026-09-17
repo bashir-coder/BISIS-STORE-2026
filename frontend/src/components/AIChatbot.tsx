@@ -83,31 +83,31 @@ const faqsByLang: Record<string, FAQItem[]> = {
     {
       id: 'prices',
       question: '💰 ما هي أسعار باقاتكم؟',
-      answer: '<strong>أسعار باقات BİŞIŞ:</strong><br><br>• <strong>باقة Starter:</strong> $249 – مناسبة للشركات الناشئة والأفراد.<br>• <strong>باقة Growth:</strong> $649 – للشركات المتوسطة التي تبحث عن نمو سريع.<br>• <strong>باقة Investor-Ready:</strong> $1499 – للشركات الجاهزة لجذب الاستثمارات.<br><br>راجع صفحة الباقات لمعرفة النطاق والمخرجات الحالية لكل باقة.',
+      answer: '<strong>أسعار باقات BİŞIŞ:</strong><br><br>• <strong>باقة Foundation:</strong> $699 – مناسبة للشركات الناشئة والأفراد.<br>• <strong>باقة Growth:</strong> $1,499 – للشركات المتوسطة التي تبحث عن نمو سريع.<br>• <strong>باقة Scale:</strong> $2,499 – للشركات الجاهزة لجذب الاستثمارات.<br><br>راجع صفحة الباقات لمعرفة النطاق والمخرجات الحالية لكل باقة.',
       category: 'pricing',
     },
     {
       id: 'packages',
       question: '📦 ما هي الباقات التي تقدمونها؟',
-      answer: 'نقدم <strong>3 باقات رئيسية:</strong><br><br>• <strong>Starter:</strong> مثالية لبدء مشروعك بسرعة مع الخدمات الأساسية.<br>• <strong>Growth:</strong> تشمل أدوات تسويقية وتحليلية متقدمة.<br>• <strong>Investor-Ready:</strong> باقة متكاملة تشمل كل ما تحتاجه لعرض مشروعك على المستثمرين.<br><br>يمكنك استكشاف الخدمات الأساسية المتاحة ضمن نطاق BİŞIŞ V1.',
+      answer: 'نقدم <strong>3 باقات رئيسية:</strong><br><br>• <strong>Foundation:</strong> مثالية لبدء مشروعك بسرعة مع الخدمات الأساسية.<br>• <strong>Growth:</strong> تشمل أدوات تسويقية وتحليلية متقدمة.<br>• <strong>Scale:</strong> باقة متكاملة تشمل كل ما تحتاجه لعرض مشروعك على المستثمرين.<br><br>يمكنك استكشاف الخدمات الأساسية المتاحة ضمن نطاق BİŞIŞ V1.',
       category: 'pricing',
     },
     {
       id: 'payment',
       question: '💳 كيف يمكنني الدفع؟',
-      answer: 'الدفع المخطط له هو <strong>USDC</strong> على شبكة <strong>Polygon</strong> بعد تهيئة verifier. حالياً سيعرض مسار الدفع حالة عدم التوفر بوضوح، ولا يبدأ تنفيذ الخدمة دون تحقق النظام من الدفع.',
+      answer: 'الدفع يتم عبر <strong>NOWPayments</strong> باستخدام <strong>USDC على BNB Smart Chain</strong>. تؤكد BİŞİŞ الدفع عبر NOWPayments قبل بدء التسليم.',
       category: 'payment',
     },
     {
       id: 'crypto',
       question: '🪙 لماذا تستخدمون العملات الرقمية؟',
-      answer: 'اخترنا <strong>Polygon USDC</strong> كطريقة دفع مخطط لها لأنها قابلة للتحقق على الشبكة. الدفع غير متاح حالياً حتى تكتمل تهيئة verifier، ولن يبدأ أي تنفيذ قبل تحقق النظام.',
+      answer: 'تستخدم BİŞİŞ <strong>NOWPayments</strong> و<strong>USDC على BNB Smart Chain</strong> للدفع. يؤكد NOWPayments الدفع، ثم تبدأ BİŞİŞ مراجعة الطلب والتسليم.',
       category: 'payment',
     },
     {
       id: 'services',
       question: '🧠 ما هي الخدمات التي تقدمونها؟',
-      answer: 'نقدم <strong>18 خدمة أساسية</strong> مصنفة في 6 فئات رئيسية ضمن نطاق BİŞIŞ V1:<br><br>• <strong>AI Automation:</strong> أتمتة الذكاء الاصطناعي.<br>• <strong>Business Strategy:</strong> استراتيجية الأعمال.<br>• <strong>Legal & Compliance:</strong> الامتثال القانوني.<br>• <strong>Financial Modeling:</strong> النمذجة المالية.<br>• <strong>Growth Marketing:</strong> التسويق الرقمي.<br>• <strong>Product Development:</strong> تطوير المنتجات.<br><br>تظهر تفاصيل كل خدمة ونطاقها في كتالوج الخدمات.',
+      answer: 'يضم كتالوج BİŞIŞ V1 الحالي <strong>18 خدمة أساسية</strong> ضمن فئة كتالوج واحدة هي <strong>Official Services</strong>.<br><br>راجع صفحة الباقات والخدمات للحصول على الأسماء والأسعار ومدة التسليم الحالية لكل خدمة.',
       category: 'services',
     },
     {
@@ -145,31 +145,31 @@ const faqsByLang: Record<string, FAQItem[]> = {
     {
       id: 'prices',
       question: '💰 What are your package prices?',
-      answer: '<strong>BİŞIŞ Package Prices:</strong><br><br>• <strong>Starter Package:</strong> $249 – Suitable for startups and individuals.<br>• <strong>Growth Package:</strong> $649 – For medium businesses seeking rapid growth.<br>• <strong>Investor-Ready Package:</strong> $1499 – For businesses ready to attract investments.<br><br>See the packages page for the current scope and deliverables of each package.',
+      answer: '<strong>BİŞIŞ Package Prices:</strong><br><br>• <strong>Foundation Package:</strong> $699 – Suitable for startups and individuals.<br>• <strong>Growth Package:</strong> $1,499 – For medium businesses seeking rapid growth.<br>• <strong>Scale Package:</strong> $2,499 – For businesses ready to attract investments.<br><br>See the packages page for the current scope and deliverables of each package.',
       category: 'pricing',
     },
     {
       id: 'packages',
       question: '📦 What packages do you offer?',
-      answer: 'We offer <strong>3 main packages:</strong><br><br>• <strong>Starter:</strong> Perfect for quickly launching your project with basic services.<br>• <strong>Growth:</strong> Includes advanced marketing and analytical tools.<br>• <strong>Investor-Ready:</strong> A comprehensive package covering everything you need to present your project to investors.<br><br>You can explore the core services available in the BİŞIŞ V1 scope.',
+      answer: 'We offer <strong>3 main packages:</strong><br><br>• <strong>Foundation:</strong> Perfect for quickly launching your project with basic services.<br>• <strong>Growth:</strong> Includes advanced marketing and analytical tools.<br>• <strong>Scale:</strong> A comprehensive package covering everything you need to present your project to investors.<br><br>You can explore the core services available in the BİŞIŞ V1 scope.',
       category: 'pricing',
     },
     {
       id: 'payment',
       question: '💳 How can I pay?',
-      answer: 'The planned payment method is <strong>USDC</strong> on <strong>Polygon</strong> once the verifier is configured. For now, the payment flow clearly shows an unavailable state, and delivery never starts without system verification.',
+      answer: 'Payment is completed through <strong>NOWPayments</strong> using <strong>USDC on BNB Smart Chain</strong>. BİŞİŞ confirms payment through NOWPayments before fulfillment begins.',
       category: 'payment',
     },
     {
       id: 'crypto',
       question: '🪙 Why do you use cryptocurrencies?',
-      answer: 'We selected <strong>Polygon USDC</strong> as the planned payment method because the transaction can be verified on-chain. Payment is currently unavailable until the verifier is configured, and delivery never starts without system verification.',
+      answer: 'BİŞİŞ uses <strong>NOWPayments</strong> and <strong>USDC on BNB Smart Chain</strong> for payment. NOWPayments confirms the payment, then BİŞİŞ reviews the request and starts fulfillment.',
       category: 'payment',
     },
     {
       id: 'services',
       question: '🧠 What services do you offer?',
-      answer: 'We offer <strong>18 core services</strong> across 6 categories in the BİŞIŞ V1 scope:<br><br>• <strong>AI Automation:</strong> Artificial intelligence automation.<br>• <strong>Business Strategy:</strong> Business strategy development.<br>• <strong>Legal & Compliance:</strong> Legal compliance solutions.<br>• <strong>Financial Modeling:</strong> Financial modeling and analysis.<br>• <strong>Growth Marketing:</strong> Digital marketing solutions.<br>• <strong>Product Development:</strong> Product development services.<br><br>The service catalog shows the current details and scope of each service.',
+      answer: 'The current BİŞIŞ V1 catalog contains <strong>18 core services</strong> in one catalog category: <strong>Official Services</strong>.<br><br>Use the packages and services page to see the current names, prices, and delivery timing for each service.',
       category: 'services',
     },
     {
@@ -207,7 +207,7 @@ const faqsByLang: Record<string, FAQItem[]> = {
     {
       id: 'prices',
       question: '💰 Paket fiyatlarınız nedir?',
-      answer: '<strong>BİŞIŞ Paket Fiyatları:</strong><br><br>• <strong>Starter Paketi:</strong> $249 – Yeni başlayanlar ve bireyler için uygundur.<br>• <strong>Growth Paketi:</strong> $649 – Hızlı büyüme arayan orta ölçekli işletmeler için.<br>• <strong>Investor-Ready Paketi:</strong> $1499 – Yatırım çekmeye hazır işletmeler için.<br><br>Her paketin güncel kapsamı ve teslimatları için paketler sayfasına bakın.',
+      answer: '<strong>BİŞIŞ Paket Fiyatları:</strong><br><br>• <strong>Foundation Paketi:</strong> $699 – Yeni başlayanlar ve bireyler için uygundur.<br>• <strong>Growth Paketi:</strong> $1,499 – Hızlı büyüme arayan orta ölçekli işletmeler için.<br>• <strong>Scale Paketi:</strong> $2,499 – Yatırım çekmeye hazır işletmeler için.<br><br>Her paketin güncel kapsamı ve teslimatları için paketler sayfasına bakın.',
       category: 'pricing',
     },
     {
@@ -225,7 +225,7 @@ const faqsByLang: Record<string, FAQItem[]> = {
     {
       id: 'crypto',
       question: '🪙 Neden kripto para kullanıyorsunuz?',
-      answer: 'Doğrulanabilir bir ağ işlemi sağladığı için planlanan ödeme yöntemi <strong>Polygon USDC</strong> olacaktır. Doğrulayıcı yapılandırılana kadar ödeme kullanılamaz ve sistem doğrulaması olmadan teslimat başlamaz.',
+      answer: 'BİŞİŞ ödeme için <strong>NOWPayments</strong> ve <strong>BNB Smart Chain’de USDC</strong> kullanır. NOWPayments ödemeyi onaylar, ardından BİŞİŞ talebi inceler ve teslimatı başlatır.',
       category: 'payment',
     },
     {

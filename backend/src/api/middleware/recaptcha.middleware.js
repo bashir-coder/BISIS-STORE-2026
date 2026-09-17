@@ -1,3 +1,5 @@
+const { logger } = require('../../config/logger.config')
+
 const RECAPTCHA_VERIFY_URL =
   'https://www.google.com/recaptcha/api/siteverify'
 

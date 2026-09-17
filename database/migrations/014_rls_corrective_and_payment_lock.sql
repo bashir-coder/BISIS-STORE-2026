@@ -9,7 +9,7 @@
 -- 2. Re-enable RLS on users with a safe replacement policy.
 -- 3. Enable RLS on tables that previously had none
 --    (subscriptions, digital_products, blog_posts, services, donations).
--- 4. Add a nowpayments_status column used as an atomic
+-- 4. Add a nowpayments_creating_lock column used as an atomic
 --    payment-creation lock on orders.
 --
 -- This migration is corrective only. It does not rewrite
@@ -50,14 +50,11 @@ CREATE POLICY "Staff can view workspace users"
   FOR SELECT
   TO authenticated
   USING (
-    role IN ('admin', 'super_admin')
-    OR (
-      workspace_id IS NOT NULL
-      AND EXISTS (
-        SELECT 1 FROM public.workspace_members wm
-        WHERE wm.workspace_id = users.workspace_id
-          AND wm.user_id = auth.uid()
-      )
+    (SELECT u.role FROM public.users u WHERE u.id = auth.uid()) IN ('admin', 'super_admin')
+    OR EXISTS (
+      SELECT 1 FROM public.workspace_members wm
+      WHERE wm.workspace_id = users.workspace_id
+        AND wm.user_id = auth.uid()
     )
   );
 
@@ -66,6 +63,8 @@ CREATE POLICY "Staff can view workspace users"
 -- ============================================================
 
 ALTER TABLE public.subscriptions ENABLE ROW LEVEL SECURITY;
+
+DROP POLICY IF EXISTS "Users can view own subscriptions" ON public.subscriptions;
 
 CREATE POLICY "Users can view own subscriptions"
   ON public.subscriptions
@@ -79,6 +78,8 @@ CREATE POLICY "Users can view own subscriptions"
 
 ALTER TABLE public.digital_products ENABLE ROW LEVEL SECURITY;
 
+DROP POLICY IF EXISTS "Anyone can view active digital products" ON public.digital_products;
+
 CREATE POLICY "Anyone can view active digital products"
   ON public.digital_products
   FOR SELECT
@@ -90,6 +91,8 @@ CREATE POLICY "Anyone can view active digital products"
 -- ============================================================
 
 ALTER TABLE public.blog_posts ENABLE ROW LEVEL SECURITY;
+
+DROP POLICY IF EXISTS "Anyone can view published blog posts" ON public.blog_posts;
 
 CREATE POLICY "Anyone can view published blog posts"
   ON public.blog_posts
@@ -103,6 +106,8 @@ CREATE POLICY "Anyone can view published blog posts"
 
 ALTER TABLE public.services ENABLE ROW LEVEL SECURITY;
 
+DROP POLICY IF EXISTS "Anyone can view active services" ON public.services;
+
 CREATE POLICY "Anyone can view active services"
   ON public.services
   FOR SELECT
@@ -115,11 +120,16 @@ CREATE POLICY "Anyone can view active services"
 
 ALTER TABLE public.donations ENABLE ROW LEVEL SECURITY;
 
+DROP POLICY IF EXISTS "Users can view own donations" ON public.donations;
+
 CREATE POLICY "Users can view own donations"
   ON public.donations
   FOR SELECT
   TO authenticated
-  USING (auth.uid() = user_id);
+  USING (
+    (SELECT role FROM public.users WHERE id = auth.uid()) IN ('admin', 'super_admin')
+    OR donor_email = auth.jwt()->>'email'
+  );
 
 -- ============================================================
 -- 9. orders — add atomic payment-creation lock column

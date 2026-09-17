@@ -8,7 +8,7 @@
   },
   {
     "question": { "ar": "كيف يتم الدفع؟", "en": "How does payment work?", "tr": "Ödeme nasıl çalışır?" },
-    "answer": { "ar": "يتم إرسال الدفع عبر Polygon USDC، ثم نتحقق من المعاملة قبل بدء التسليم.", "en": "Payment is submitted through Polygon USDC, and the transaction is verified before fulfilment begins.", "tr": "Ödeme Polygon USDC üzerinden gönderilir ve teslimat başlamadan önce işlem doğrulanır." },
+    "answer": { "ar": "يتم إرسال الدفع عبر NOWPayments باستخدام USDC على BNB Smart Chain، ثم تؤكد BİŞİŞ الدفع عبر NOWPayments قبل بدء التسليم.", "en": "Payment is submitted through NOWPayments using USDC on BNB Smart Chain, and BİŞİŞ confirms payment through NOWPayments before fulfilment begins.", "tr": "Ödeme BNB Smart Chain üzerinde NOWPayments ve USDC ile gönderilir ve BİŞİŞ, teslimat başlamadan önce ödemeyi NOWPayments üzerinden onaylar." },
     "category": "payments",
     "order_index": 2,
     "is_active": true
