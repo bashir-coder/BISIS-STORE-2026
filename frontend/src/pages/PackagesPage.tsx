@@ -454,7 +454,7 @@ const PackagesPage: React.FC = () => {
 
                     {isSelected
                       ? String(t('packages.selected'))
-                      : 'View Package'}
+                      : String(t('packages.view', 'View Package'))}
                   </button>
                 </motion.article>
               )

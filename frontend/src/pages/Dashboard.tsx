@@ -960,7 +960,7 @@ const getTicketStatusBadge = (status: string) => {
                       </span>
 
                       <span className="text-white/30">
-                        {selectedFaq?.id === faq.id ? 'â–²' : 'â–¼'}
+                        {selectedFaq?.id === faq.id ? '▲' : '▼'}
                       </span>
                     </button>
 

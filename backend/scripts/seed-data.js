@@ -145,7 +145,7 @@ const main = async () => {
   const counts = {}
   for (const table of ['services', 'packages', 'personas', 'faqs', 'translations']) counts[table] = await countRows(table)
   console.log(JSON.stringify({ services, packages, personas, faqs, translations, counts }, null, 2))
-  console.log('Biإںiإں seed completed')
+  console.log('BİŞİŞ seed completed')
 }
 
 main().catch((error) => {

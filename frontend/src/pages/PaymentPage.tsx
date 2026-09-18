@@ -689,13 +689,13 @@ const PaymentPage: React.FC = () => {
 
                 <ol className="space-y-2 text-sm text-white/50 list-decimal list-inside">
                   <li>
-                    افتح صفحة الدفع وأكمل الدفع عبر NOWPayments.
+                    {t('payment.nowpayments_step1', 'افتح صفحة الدفع وأكمل الدفع عبر NOWPayments.')}
                   </li>
                   <li>
-                    تأكد من اختيار USDC على شبكة BSC.
+                    {t('payment.nowpayments_step2', 'تأكد من اختيار USDC على شبكة BSC.')}
                   </li>
                   <li>
-                    بعد الدفع، ستصل حالة الدفع تلقائيًا إلى BİŞIŞ عبر NOWPayments.
+                    {t('payment.nowpayments_step3', 'بعد الدفع، ستصل حالة الدفع تلقائيًا إلى BİŞIŞ عبر NOWPayments.')}
                   </li>
                 </ol>
               </div>

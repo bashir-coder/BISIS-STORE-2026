@@ -9,7 +9,7 @@ const BlogResourcesPage: React.FC = () => {
     <div className="min-h-screen pt-24 pb-20 section-padding">
       <div className="max-w-4xl mx-auto">
         <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} className="text-center mb-10">
-          <h1 className="text-4xl font-bold text-white mb-4">ًں“ڑ {t('blog.title')}</h1>
+          <h1 className="text-4xl font-bold text-white mb-4">📚 {t('blog.title')}</h1>
           <p className="text-white/50">{t('blog.subtitle')}</p>
         </motion.div>
 

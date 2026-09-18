@@ -672,9 +672,9 @@ setOrders(ordersData)
             <div className="glass rounded-2xl border-gold/5 p-5">
               <h3 className="text-sm font-semibold text-white/70 mb-3">{t('admin.quick_stats')}</h3>
               <div className="grid grid-cols-2 gap-3">
-                <div className="rounded-xl border border-white/10 bg-white/5 p-3"><div className="flex items-center gap-2 text-white/50 text-xs">ًں“¦ {t('admin.total_orders')}</div><div className="text-xl font-bold text-white">{analytics?.totalOrders ?? 0}</div></div>
-                <div className="rounded-xl border border-white/10 bg-white/5 p-3"><div className="flex items-center gap-2 text-white/50 text-xs">ًں’° {t('admin.revenue')}</div><div className="text-xl font-bold text-gold">${(analytics?.totalRevenue ?? 0).toFixed(2)}</div></div>
-                <div className="rounded-xl border border-white/10 bg-white/5 p-3"><div className="flex items-center gap-2 text-white/50 text-xs">ًںں، {t('admin.in_progress')}</div><div className="text-xl font-bold text-yellow-300">{statusCounts.find(s => s.status === 'processing')?.count || 0}</div></div>
+                <div className="rounded-xl border border-white/10 bg-white/5 p-3"><div className="flex items-center gap-2 text-white/50 text-xs"><AlertCircle className="h-3 w-3" /> {t('admin.total_orders')}</div><div className="text-xl font-bold text-white">{analytics?.totalOrders ?? 0}</div></div>
+                <div className="rounded-xl border border-white/10 bg-white/5 p-3"><div className="flex items-center gap-2 text-white/50 text-xs"><DollarSign className="h-3 w-3" /> {t('admin.revenue')}</div><div className="text-xl font-bold text-gold">${(analytics?.totalRevenue ?? 0).toFixed(2)}</div></div>
+                <div className="rounded-xl border border-white/10 bg-white/5 p-3"><div className="flex items-center gap-2 text-white/50 text-xs"><Clock className="h-3 w-3" /> {t('admin.in_progress')}</div><div className="text-xl font-bold text-yellow-300">{statusCounts.find(s => s.status === 'processing')?.count || 0}</div></div>
                 <div className="rounded-xl border border-white/10 bg-white/5 p-3"><div className="flex items-center gap-2 text-white/50 text-xs">✅ {t('admin.completed')}</div><div className="text-xl font-bold text-green-300">{statusCounts.find(s => s.status === 'completed')?.count || 0}</div></div>
               </div>
             </div>

@@ -90,7 +90,7 @@ async function getAppliedMigrations() {
 
 async function recordMigration(filename) {
   const { error } = await supabase
-    .from('_Biإںiإں_migrations')
+    .from('_BİŞİŞ_migrations')
     .insert([{ filename }])
 
   if (error) {
@@ -189,7 +189,7 @@ function splitSql(sql) {
 }
 
 async function main() {
-  console.log('Biإںiإں V1 Migration Runner')
+  console.log('BİŞİŞ V1 Migration Runner')
   console.log(`Migration directory: ${migrationDir}`)
 
   await ensureMigrationTracker()

@@ -28,6 +28,8 @@ const LoginPage = lazy(() => import('./pages/LoginPage'))
 const Dashboard = lazy(() => import('./pages/Dashboard'))
 const AdminPanel = lazy(() => import('./pages/AdminPanel'))
 const PaymentPage = lazy(() => import('./pages/PaymentPage'))
+const PaymentSuccess = lazy(() => import('./pages/PaymentSuccess'))
+const PaymentCancelled = lazy(() => import('./pages/PaymentCancelled'))
 const FAQPage = lazy(() => import('./pages/FAQPage'))
 const ContactPage = lazy(() => import('./pages/ContactPage'))
 const ClientPortal = lazy(() => import('./pages/ClientPortal'))
@@ -221,6 +223,16 @@ const App: React.FC = () => {
               <Route
                 path="/payment"
                 element={<PaymentPage />}
+              />
+
+              <Route
+                path="/payment/success"
+                element={<PaymentSuccess />}
+              />
+
+              <Route
+                path="/payment/cancelled"
+                element={<PaymentCancelled />}
               />
 
               <Route
