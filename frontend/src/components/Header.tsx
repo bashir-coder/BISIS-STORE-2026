@@ -7,7 +7,6 @@ import {
   X,
   Globe,
   ChevronDown,
-  LayoutDashboard,
   LogOut,
   ShieldCheck,
 } from 'lucide-react'
@@ -344,17 +343,7 @@ const Header: React.FC = () => {
                           </div>
                         </div>
 
-                        <div className="py-1.5 space-y-0.5">
-                          <Link
-                            to="/dashboard"
-                            onClick={() => setIsUserMenuOpen(false)}
-                            className="flex items-center gap-2.5 px-3 py-2 text-sm text-white/80 hover:text-gold hover:bg-gold/10 rounded-xl transition-colors"
-                          >
-                            <LayoutDashboard className="w-4 h-4 text-gold/80" />
-                            <span>{t('nav.dashboard')}</span>
-                          </Link>
-
-                          {userProfile.role === 'admin' && (
+                        {userProfile.role === 'admin' && (
                             <Link
                               to="/admin"
                               onClick={() => setIsUserMenuOpen(false)}
@@ -363,8 +352,7 @@ const Header: React.FC = () => {
                               <ShieldCheck className="w-4 h-4 text-emerald-light" />
                               <span>{t('admin.admin')}</span>
                             </Link>
-                          )}
-                        </div>
+                         )}
 
                         <div className="pt-1.5 border-t border-white/10">
                           <button
@@ -478,14 +466,6 @@ const Header: React.FC = () => {
               <div className="pt-4 flex flex-col gap-2">
                 {userProfile ? (
                   <>
-                    <Link
-                      to="/dashboard"
-                      onClick={() => setIsMobileMenuOpen(false)}
-                      className="btn-secondary text-center text-sm"
-                    >
-                      {t('nav.dashboard')}
-                    </Link>
-
                     {userProfile.role === 'admin' && (
                       <Link
                         to="/admin"

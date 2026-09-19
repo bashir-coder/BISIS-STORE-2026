@@ -1009,10 +1009,10 @@ const LabPage: React.FC = () => {
             </p>
 
             <Link
-              to="/dashboard"
-              className="mt-7 inline-flex items-center gap-2 rounded-xl border border-white/10 bg-white/[0.04] px-5 py-3 text-sm font-bold text-white hover:border-gold/25 hover:text-gold"
+              to="/portal"
+              className="mt-7 inline-flex items-center justify-center gap-2 rounded-xl bg-gold px-6 py-3.5 text-sm font-bold text-black shadow-lg shadow-gold/20 hover:scale-[1.02] transition-transform"
             >
-              {t('lab.workspace.cta', 'افتح لوحة التحكم')}
+              {t('lab.workspace.cta', 'افتح مساحة العميل')}
               <ArrowRight className="h-4 w-4 rtl:rotate-180" />
             </Link>
           </div>
