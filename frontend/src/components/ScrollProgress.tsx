@@ -1,8 +1,15 @@
 ﻿import { motion, useScroll, useSpring } from 'framer-motion'
+import { useReducedMotion } from '../hooks/useReducedMotion'
 
 const ScrollProgress: React.FC = () => {
   const { scrollYProgress } = useScroll()
-  const scaleX = useSpring(scrollYProgress, { stiffness: 100, damping: 30, restDelta: 0.001 })
+  const reducedMotion = useReducedMotion()
+
+  const scaleX = useSpring(scrollYProgress, {
+    stiffness: reducedMotion ? 2000 : 100,
+    damping: reducedMotion ? 40 : 30,
+    restDelta: 0.001,
+  })
 
   return (
     <motion.div
@@ -13,4 +20,3 @@ const ScrollProgress: React.FC = () => {
 }
 
 export default ScrollProgress
-

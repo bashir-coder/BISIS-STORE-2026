@@ -2457,8 +2457,52 @@ select:focus-visible {
 }
 
 /* ============================================================
-   REDUCED MOTION
-   ============================================================ */
+    CARD HOVER
+    ============================================================ */
+
+.card-hover {
+  transition:
+    transform 0.32s var(--ease-premium),
+    box-shadow 0.32s var(--ease-premium),
+    border-color 0.32s var(--ease-premium);
+}
+
+.card-hover:hover {
+  transform: translateY(-6px);
+
+  box-shadow:
+    0 24px 48px -12px rgba(0, 0, 0, 0.4),
+    0 0 26px rgba(212, 175, 55, 0.072),
+    0 0 18px rgba(0, 168, 120, 0.034);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .card-hover:hover {
+    transform: none;
+  }
+}
+
+/* ============================================================
+    MOTION-SAFE UTILITIES
+    ============================================================ */
+
+@media (prefers-reduced-motion: reduce) {
+  .motion-safe\:animate-none {
+    animation: none !important;
+  }
+
+  .motion-safe\:transition-none {
+    transition: 0.01ms !important;
+  }
+
+  .motion-safe\:duration-0 {
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* ============================================================
+    REDUCED MOTION
+    ============================================================ */
 
 @media (prefers-reduced-motion: reduce) {
   html {
@@ -2475,8 +2519,14 @@ select:focus-visible {
 }
 
 /* ============================================================
-   BİŞIŞ · GLOBAL NEON SKIN OVERRIDE
-   ============================================================ */
+    BİŞIŞ · NEON BLACK EDITION
+    Re-declares core theme vars for the black skin. The primary
+    :root (with full tokens) is already defined at the top of the file.
+    ============================================================ */
+
+/* ============================================================
+    BİŞIŞ · GLOBAL NEON SKIN OVERRIDE
+    ============================================================ */
 
 html,
 body,

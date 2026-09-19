@@ -1,61 +1,75 @@
-﻿import React, { useEffect, useRef } from 'react'
+﻿import React from 'react'
 import { useTranslation } from 'react-i18next'
 import { motion } from 'framer-motion'
 import { useInView } from '../hooks/useInView'
 import { useReducedMotion } from '../hooks/useReducedMotion'
 import { STEPS } from '../utils/constants'
-import { createStaggerReveal } from '../utils/gsapHelpers'
+import { STAGGER, DURATION, EASING } from '../lib/motion'
 
 const Steps: React.FC = () => {
   const { t } = useTranslation()
   const { ref, isInView } = useInView()
   const reducedMotion = useReducedMotion()
-  const containerRef = useRef<HTMLDivElement>(null)
-  const stepRefs = useRef<(HTMLDivElement | null)[]>([])
 
-  useEffect(() => {
-    if (!isInView || reducedMotion) return
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: STAGGER.tight,
+        delayChildren: 0.15,
+      },
+    },
+  }
 
-    const elements = stepRefs.current.filter(Boolean) as HTMLElement[]
-
-    const anim = createStaggerReveal(elements, {
-      stagger: 0.12,
-      yOffset: 30,
-      reducedMotion,
-    })
-
-    return () => {
-      anim?.kill()
-    }
-  }, [isInView, reducedMotion])
+  const itemVariants = {
+    hidden: { opacity: 0, y: 24 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: { duration: DURATION.slow, ease: EASING.premium },
+    },
+  }
 
   return (
     <section ref={ref} className="py-24 section-padding bg-transparent relative">
       <div className="max-w-7xl mx-auto">
         <motion.div
-          ref={containerRef}
-          initial={{ opacity: 0, y: 30 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.8 }}
+          variants={containerVariants}
+          initial="hidden"
+          animate={reducedMotion || isInView ? 'visible' : 'hidden'}
           className="text-center mb-16"
         >
-          <span className="text-gold text-sm font-semibold tracking-wider uppercase mb-4 block">
+          <motion.span
+            variants={itemVariants}
+            className="text-gold text-sm font-semibold tracking-wider uppercase mb-4 block"
+          >
             {t('steps.eyebrow')}
-          </span>
-          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold font-outfit text-white mb-4">
+          </motion.span>
+          <motion.h2
+            variants={itemVariants}
+            className="text-3xl sm:text-4xl lg:text-5xl font-bold font-outfit text-white mb-4"
+          >
             {t('steps.title')}
-          </h2>
-          <p className="text-white/50 max-w-xl mx-auto">{t('steps.sub')}</p>
+          </motion.h2>
+          <motion.p
+            variants={itemVariants}
+            className="text-white/50 max-w-xl mx-auto"
+          >
+            {t('steps.sub')}
+          </motion.p>
         </motion.div>
 
         <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
           {STEPS.map((step, index) => (
             <motion.div
               key={index}
-              ref={(el) => (stepRefs.current[index] = el)}
-              initial={{ opacity: 0, y: 30 }}
-              animate={isInView ? { opacity: 1, y: 0 } : {}}
-              transition={{ delay: index * 0.15 }}
+              variants={itemVariants}
+              custom={index}
+              whileHover={{
+                y: reducedMotion ? 0 : -6,
+                scale: reducedMotion ? 1 : 1.03,
+              }}
               className="relative"
             >
               <div className="glass rounded-2xl p-6 h-full card-hover border-gold/5 hover:border-gold/20">

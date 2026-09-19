@@ -1,5 +1,6 @@
 ﻿import React, { useEffect, useState } from 'react'
 import { motion, useInView } from 'framer-motion'
+import { useReducedMotion } from '../hooks/useReducedMotion'
 
 type AnimatedCounterProps = {
   value: string
@@ -9,11 +10,22 @@ type AnimatedCounterProps = {
 const AnimatedCounter: React.FC<AnimatedCounterProps> = ({ value, isVisible }) => {
   const ref = React.useRef<HTMLSpanElement>(null)
   const inView = useInView(ref, { once: true, amount: 0.6 })
+  const reducedMotion = useReducedMotion()
   const [display, setDisplay] = useState(value)
 
   useEffect(() => {
-    if (!isVisible || !inView || value === 'V1') {
+    if (!isVisible || !inView) {
       if (value === 'V1') setDisplay(value)
+      return
+    }
+
+    if (reducedMotion) {
+      setDisplay(value)
+      return
+    }
+
+    if (value === 'V1') {
+      setDisplay(value)
       return
     }
 
@@ -28,10 +40,18 @@ const AnimatedCounter: React.FC<AnimatedCounterProps> = ({ value, isVisible }) =
     }
     frame = requestAnimationFrame(tick)
     return () => cancelAnimationFrame(frame)
-  }, [inView, isVisible, value])
+  }, [inView, isVisible, value, reducedMotion])
 
-  return <motion.span ref={ref} initial={{ opacity: 0 }} animate={isVisible ? { opacity: 1 } : {}}>{display}</motion.span>
+  return (
+    <motion.span
+      ref={ref}
+      initial={{ opacity: 0, y: 8 }}
+      animate={isVisible ? { opacity: 1, y: 0 } : {}}
+      transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
+    >
+      {display}
+    </motion.span>
+  )
 }
 
 export default AnimatedCounter
-

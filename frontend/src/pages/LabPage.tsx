@@ -22,6 +22,7 @@ import {
 import { Link } from 'react-router-dom'
 import { api } from '../utils/api-client'
 import { useTranslation } from 'react-i18next'
+import { useReducedMotion } from '../hooks/useReducedMotion'
 
 interface Service {
   id: number
@@ -94,14 +95,13 @@ const packageDescriptions: Record<string, string> = {
     'حزمة أوسع للمشاريع التي تحتاج إلى طبقات أكبر من التحليل والاستراتيجية والتنفيذ.',
 }
 
-const fadeUp = {
-  initial: { opacity: 0, y: 24 },
-  whileInView: { opacity: 1, y: 0 },
-  viewport: { once: true, amount: 0.15 },
-}
-
 const LabPage: React.FC = () => {
   const { t } = useTranslation()
+  const reducedMotion = useReducedMotion()
+
+  const fadeUp = reducedMotion
+    ? { initial: { opacity: 1, y: 0 }, whileInView: { opacity: 1, y: 0 }, viewport: { once: true, amount: 0.15 } }
+    : { initial: { opacity: 0, y: 24 }, whileInView: { opacity: 1, y: 0 }, viewport: { once: true, amount: 0.15 } }
 
   const [services, setServices] = useState<Service[]>([])
   const [packages, setPackages] = useState<Package[]>([])
@@ -322,16 +322,18 @@ const LabPage: React.FC = () => {
                 label: t('lab.stats.system', 'حالة النظام'),
               },
             ].map((stat) => (
-              <div
+              <motion.div
                 key={stat.label}
-                className="rounded-2xl border border-white/10 bg-white/[0.025] p-4"
+                {...fadeUp}
+                transition={{ duration: 0.45 }}
+                className="group cursor-default rounded-2xl border border-white/10 bg-gradient-to-b from-white/[0.045] to-white/[0.018] p-5 shadow-xl shadow-black/40 hover:border-gold/30"
               >
-                <stat.icon className="mx-auto mb-2 h-4 w-4 text-gold" />
-                <div className="text-xl font-bold text-white">{stat.value}</div>
-                <div className="mt-1 text-[11px] text-white/40">
+                <stat.icon className="mx-auto mb-3 h-5 w-5 text-gold" />
+                <div className="text-center text-2xl font-bold gold-gradient-text font-outfit">{stat.value}</div>
+                <div className="mt-1.5 text-center text-[11px] font-medium text-white/50">
                   {stat.label}
                 </div>
-              </div>
+               </motion.div>
             ))}
           </motion.div>
         </div>

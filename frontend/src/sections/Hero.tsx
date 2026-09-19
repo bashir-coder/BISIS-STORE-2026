@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from 'react'
+import React from 'react'
 import { Link } from 'react-router-dom'
 import { motion } from 'framer-motion'
 import { ArrowRight, Sparkles, TrendingUp, Layers } from 'lucide-react'
@@ -8,111 +8,62 @@ import { useReducedMotion } from '../hooks/useReducedMotion'
 import MagneticButton from '../components/MagneticButton'
 import AnimatedCounter from '../components/AnimatedCounter'
 import BisisWebGL from '../visual/BisisWebGL'
-import { gsap } from 'gsap'
+import { STAGGER } from '../lib/motion'
+
+const containerVariants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: {
+      staggerChildren: STAGGER.loose,
+      delayChildren: 0.15,
+    },
+  },
+}
+
+const itemVariants = {
+  hidden: { opacity: 0, y: 16 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.5, ease: [0.22, 1, 0.36, 1] as const },
+  },
+}
 
 const Hero: React.FC = () => {
   const { t } = useTranslate()
   const { ref, isInView } = useInView()
-  const heroRef = useRef<HTMLElement>(null)
-  const badgeRef = useRef<HTMLDivElement>(null)
-  const titleRef = useRef<HTMLHeadingElement>(null)
-  const subtitleRef = useRef<HTMLParagraphElement>(null)
-  const descriptionRef = useRef<HTMLParagraphElement>(null)
-  const ctaRef = useRef<HTMLDivElement>(null)
-  const statsRef = useRef<HTMLDivElement>(null)
   const reducedMotion = useReducedMotion()
 
-  useEffect(() => {
-    if (!isInView) return
-
-    if (reducedMotion) {
-      const elements = [badgeRef.current, titleRef.current, subtitleRef.current, descriptionRef.current]
-      elements.forEach((el) => {
-        if (el) gsap.set(el, { opacity: 1, y: 0 })
-      })
-      if (ctaRef.current) gsap.set(ctaRef.current, { opacity: 1, y: 0 })
-      if (statsRef.current) gsap.set(statsRef.current, { opacity: 1, y: 0 })
-      return
-    }
-
-    const elements = [badgeRef.current, titleRef.current, subtitleRef.current, descriptionRef.current]
-    const validElements = elements.filter(Boolean) as HTMLElement[]
-
-    const tl = gsap.timeline({
-      delay: 0.3,
-    })
-
-    if (validElements.length > 0) {
-      tl.to(
-        validElements,
-        {
-          opacity: 1,
-          y: 0,
-          duration: 0.7,
-          stagger: 0.1,
-          ease: 'power3.out',
-        },
-        0,
-      )
-    }
-
-    if (ctaRef.current) {
-      tl.to(
-        ctaRef.current,
-        {
-          opacity: 1,
-          y: 0,
-          duration: 0.7,
-          ease: 'power3.out',
-        },
-        0.5,
-      )
-    }
-
-    if (statsRef.current) {
-      tl.to(
-        statsRef.current,
-        {
-          opacity: 1,
-          y: 0,
-          duration: 0.8,
-          ease: 'power3.out',
-        },
-        0.8,
-      )
-    }
-
-    return () => {
-      tl.kill()
-    }
-  }, [isInView])
-
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: { staggerChildren: 0.08, delayChildren: 0.2 },
+  const stats = [
+    {
+      icon: Layers,
+      value: '18',
+      label: t('stats.services'),
     },
-  }
-
-  const itemVariants = {
-    hidden: { opacity: 0, y: 20 },
-    visible: {
-      opacity: 1,
-      y: 0,
-      transition: { duration: 0.5, ease: 'easeOut' },
+    {
+      icon: TrendingUp,
+      value: '3',
+      label: t('stats.packages'),
     },
-  }
+    {
+      icon: Sparkles,
+      value: '1',
+      label: t('stats.categories'),
+    },
+    {
+      icon: TrendingUp,
+      value: 'V1',
+      label: t('stats.scope'),
+    },
+  ]
 
   return (
     <section
-      ref={heroRef}
+      ref={ref}
       className="relative flex min-h-screen items-center justify-center overflow-hidden pt-20"
     >
-      <div
-        ref={ref}
-        className="absolute inset-0 z-0 bg-transparent"
-      />
+      <div className="absolute inset-0 z-0 bg-transparent" />
 
       <BisisWebGL
         className="z-0"
@@ -127,45 +78,49 @@ const Hero: React.FC = () => {
         aria-hidden="true"
         className="pointer-events-none absolute inset-0 z-10 overflow-hidden bg-transparent"
       >
-        <motion.div
-          className="absolute bottom-[12%] right-[8%] h-[30rem] w-[30rem] rounded-full"
-          style={{
-            background:
-              'radial-gradient(circle, rgba(0,168,120,0.06) 0%, rgba(0,168,120,0.012) 38%, transparent 72%)',
-            filter: 'blur(52px)',
-          }}
-          animate={{
-            x: [0, -48, 22, 0],
-            y: [0, 34, -26, 0],
-            scale: [1, 0.92, 1.1, 1],
-          }}
-          transition={{
-            duration: 24,
-            repeat: Infinity,
-            ease: 'easeInOut',
-            delay: 2,
-          }}
-        />
+        {!reducedMotion && (
+          <>
+            <motion.div
+              className="absolute bottom-[12%] right-[8%] h-[30rem] w-[30rem] rounded-full"
+              style={{
+                background:
+                  'radial-gradient(circle, rgba(0,168,120,0.06) 0%, rgba(0,168,120,0.012) 38%, transparent 72%)',
+                filter: 'blur(52px)',
+              }}
+              animate={{
+                x: [0, -48, 22, 0],
+                y: [0, 34, -26, 0],
+                scale: [1, 0.92, 1.1, 1],
+              }}
+              transition={{
+                duration: 24,
+                repeat: Infinity,
+                ease: 'easeInOut',
+                delay: 2,
+              }}
+            />
 
-        <motion.div
-          className="absolute top-[20%] left-[10%] h-[20rem] w-[20rem] rounded-full"
-          style={{
-            background:
-              'radial-gradient(circle, rgba(212,175,55,0.05) 0%, rgba(212,175,55,0.01) 42%, transparent 74%)',
-            filter: 'blur(48px)',
-          }}
-          animate={{
-            x: [0, 30, -20, 0],
-            y: [0, -24, 18, 0],
-            scale: [1, 1.05, 0.95, 1],
-          }}
-          transition={{
-            duration: 26,
-            repeat: Infinity,
-            ease: 'easeInOut',
-            delay: 1,
-          }}
-        />
+            <motion.div
+              className="absolute top-[20%] left-[10%] h-[20rem] w-[20rem] rounded-full"
+              style={{
+                background:
+                  'radial-gradient(circle, rgba(212,175,55,0.05) 0%, rgba(212,175,55,0.01) 42%, transparent 74%)',
+                filter: 'blur(48px)',
+              }}
+              animate={{
+                x: [0, 30, -20, 0],
+                y: [0, -24, 18, 0],
+                scale: [1, 1.05, 0.95, 1],
+              }}
+              transition={{
+                duration: 26,
+                repeat: Infinity,
+                ease: 'easeInOut',
+                delay: 1,
+              }}
+            />
+          </>
+        )}
 
         <div
           className="absolute inset-0 opacity-50"
@@ -195,13 +150,12 @@ const Hero: React.FC = () => {
         <motion.div
           variants={containerVariants}
           initial="hidden"
-          animate={isInView ? 'visible' : 'hidden'}
+          animate={reducedMotion || isInView ? 'visible' : 'hidden'}
           className="text-center"
         >
           <motion.div
-            ref={badgeRef}
             variants={itemVariants}
-            className="glass mb-8 inline-flex items-center gap-2.5 rounded-full border border-gold/30 bg-gold/[0.06] px-4 py-2 shadow-lg shadow-gold/10 opacity-0"
+            className="glass mb-8 inline-flex items-center gap-2.5 rounded-full border border-gold/30 bg-gold/[0.06] px-4 py-2 shadow-lg shadow-gold/10"
           >
             <span className="relative flex h-2 w-2">
               <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-light opacity-75" />
@@ -214,24 +168,20 @@ const Hero: React.FC = () => {
           </motion.div>
 
           <motion.h1
-            ref={titleRef}
             variants={itemVariants}
-            className="mb-6 text-4xl font-bold leading-tight sm:text-5xl md:text-6xl lg:text-7xl opacity-0"
+            className="mb-6 text-4xl font-bold leading-tight sm:text-5xl md:text-6xl lg:text-7xl text-white"
           >
-            <span className="text-white">
+            <span className="block">
               {String(t('hero.title'))}
             </span>
-            <span className="relative ml-2 text-transparent bg-clip-text bg-gradient-to-r from-gold via-emerald-light to-gold-light">
-              <span className="bg-gradient-to-r from-gold via-emerald-light to-gold-light bg-clip-text text-transparent animate-pulse">
-                <Sparkles className="inline-block h-8 w-8 text-gold-light" />
-              </span>
+            <span className="bg-gradient-to-r from-gold via-emerald-light to-gold-light bg-clip-text text-transparent block mt-2">
+              <Sparkles className="inline-block h-8 w-8 text-gold-light" />
             </span>
           </motion.h1>
 
           <motion.p
-            ref={subtitleRef}
             variants={itemVariants}
-            className="mb-4 text-xl font-medium text-gold-light/80 sm:text-2xl opacity-0"
+            className="mb-4 text-xl font-medium text-gold-light/80 sm:text-2xl"
             style={{
               textShadow:
                 '0 0 14px rgba(212,175,55,0.14), 0 0 24px rgba(0,168,120,0.08)',
@@ -241,17 +191,15 @@ const Hero: React.FC = () => {
           </motion.p>
 
           <motion.p
-            ref={descriptionRef}
             variants={itemVariants}
-            className="mx-auto mb-10 max-w-2xl text-base leading-relaxed text-white/50 sm:text-lg opacity-0"
+            className="mx-auto mb-10 max-w-2xl text-base leading-relaxed text-white/50 sm:text-lg"
           >
             {String(t('hero.description'))}
           </motion.p>
 
           <motion.div
-            ref={ctaRef}
             variants={itemVariants}
-            className="mb-16 flex flex-col items-center justify-center gap-4 sm:flex-row opacity-0"
+            className="mb-16 flex flex-col items-center justify-center gap-4 sm:flex-row"
           >
             <MagneticButton>
               <Link
@@ -274,44 +222,16 @@ const Hero: React.FC = () => {
           </motion.div>
 
           <motion.div
-            ref={statsRef}
             variants={itemVariants}
-            className="mx-auto grid max-w-3xl grid-cols-2 gap-6 md:grid-cols-4 opacity-0"
+            className="mx-auto grid max-w-3xl grid-cols-2 gap-6 md:grid-cols-4"
           >
-            {[
-              {
-                icon: Layers,
-                value: '18',
-                label: t('stats.services'),
-              },
-              {
-                icon: TrendingUp,
-                value: '3',
-                label: t('stats.packages'),
-              },
-              {
-                icon: Sparkles,
-                value: '1',
-                label: t('stats.categories'),
-              },
-              {
-                icon: TrendingUp,
-                value: 'V1',
-                label: t('stats.scope'),
-              },
-            ].map((stat, index) => (
+            {stats.map((stat, index) => (
               <motion.div
                 key={index}
                 whileHover={{
-                  scale: 1.06,
-                  rotateX: 4,
-                  rotateY: index % 2 === 0 ? -3 : 3,
-                  y: -5,
-                }}
-                transition={{
-                  type: 'spring',
-                  stiffness: 280,
-                  damping: 18,
+                  scale: reducedMotion ? 1 : 1.06,
+                  y: reducedMotion ? 0 : -5,
+                  transition: { type: 'spring', stiffness: 280, damping: 18 },
                 }}
                 className="glass relative rounded-xl border border-gold/10 p-4 transition-all hover:border-gold/30"
                 style={{

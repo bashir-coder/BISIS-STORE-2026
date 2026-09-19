@@ -1,21 +1,8 @@
 ﻿import React from 'react'
-import Hero from '../sections/Hero'
-import About from '../sections/About'
-import Steps from '../sections/Steps'
-import TrustBadges from '@/sections/TrustBadges'
-import StatsStrip from '../sections/StatsStrip'
+import LabPage from '../pages/LabPage'
 
 const HomePage: React.FC = () => {
-  return (
-    <main>
-      <Hero />
-      <StatsStrip />
-      <About />
-      <Steps />
-      <TrustBadges />
-    </main>
-  )
+  return <LabPage />
 }
 
 export default HomePage
-
