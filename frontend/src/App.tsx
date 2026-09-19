@@ -15,7 +15,6 @@ import FloatingButtons from './components/FloatingButtons'
 import LiveStatusRibbon from './components/LiveStatusRibbon'
 
 const HUMAN_VERIFIED_KEY = 'BİŞİŞ_human_verified'
-const LabPage = lazy(() => import('./pages/LabPage'))
 const HomePage = lazy(() => import('./pages/HomePage'))
 const ChatPage = lazy(() => import('./pages/ChatPage'))
 const VerifyPage = lazy(() => import('./pages/VerifyPage'))
@@ -25,7 +24,6 @@ const PackagesPage = lazy(() => import('./pages/PackagesPage'))
 const LifePlanPage = lazy(() => import('./pages/LifePlanPage'))
 const AboutPage = lazy(() => import('./pages/AboutPage'))
 const LoginPage = lazy(() => import('./pages/LoginPage'))
-const Dashboard = lazy(() => import('./pages/Dashboard'))
 const AdminPanel = lazy(() => import('./pages/AdminPanel'))
 const PaymentPage = lazy(() => import('./pages/PaymentPage'))
 const PaymentSuccess = lazy(() => import('./pages/PaymentSuccess'))
@@ -193,11 +191,6 @@ const App: React.FC = () => {
               <Route
                 path="/verify-email"
                 element={<VerifyEmailPage />}
-              />
-<Route path="/lab" element={<LabPage />} />
-              <Route
-                path="/dashboard"
-                element={<Dashboard />}
               />
 
               <Route

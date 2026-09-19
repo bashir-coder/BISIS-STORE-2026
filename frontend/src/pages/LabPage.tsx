@@ -261,19 +261,19 @@ const LabPage: React.FC = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.55 }}
           >
-            <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-gold/20 bg-gold/[0.06] px-4 py-2 text-xs font-semibold text-gold">
+            <div className="mb-8 inline-flex items-center gap-2.5 rounded-full border border-gold/30 bg-gold/[0.08] px-5 py-3 text-xs font-semibold text-gold shadow-lg shadow-gold/20">
               <Sparkles className="h-4 w-4" />
-              BİŠIŠ LAB
+              <span className="font-outfit text-base font-bold tracking-wider">BİÞIÞ LAB</span>
             </div>
 
             <h1 className="mx-auto max-w-4xl text-4xl font-black tracking-tight text-white sm:text-5xl lg:text-7xl">
-              {t('lab.hero.title', 'افهم BİŠIŠ قبل أن تبدأ')}
+              {t('lab.hero.title', 'افهم BİŞIŞ قبل أن تبدأ')}
             </h1>
 
             <p className="mx-auto mt-6 max-w-2xl text-base leading-8 text-white/55 sm:text-lg">
               {t(
                 'lab.hero.description',
-                'مساحة واحدة تشرح كيف تعمل BİŠIŠ، ماذا نقدم، كيف يتم الطلب والدفع والتسليم، وكيف تتابع مشروعك من البداية حتى النهاية.',
+                'مساحة واحدة تشرح كيف تعمل BİŞIŞ، ماذا نقدم، كيف يتم الطلب والدفع والتسليم، وكيف تتابع مشروعك من البداية حتى النهاية.',
               )}
             </p>
 
@@ -290,7 +290,7 @@ const LabPage: React.FC = () => {
                 href="#how-it-works"
                 className="inline-flex items-center justify-center gap-2 rounded-2xl border border-white/10 bg-white/[0.03] px-6 py-3.5 text-sm font-semibold text-white transition-colors hover:border-gold/30 hover:bg-white/[0.05]"
               >
-                {t('lab.hero.cta2', 'كيف تعمل BİŠIŠ؟')}
+                {t('lab.hero.cta2', 'كيف تعمل BİŞIŞ؟')}
               </a>
             </div>
           </motion.div>
@@ -349,7 +349,7 @@ const LabPage: React.FC = () => {
         >
           <div>
             <div className="mb-4 text-xs font-bold uppercase tracking-[0.22em] text-gold">
-              {t('lab.about.eyebrow', 'ما هو BİŠIŠ؟')}
+              {t('lab.about.eyebrow', 'ما هو BİŞIŞ؟')}
             </div>
 
             <h2 className="text-3xl font-bold text-white sm:text-4xl">
@@ -362,7 +362,7 @@ const LabPage: React.FC = () => {
             <p className="mt-5 max-w-2xl text-sm leading-8 text-white/55">
               {t(
                 'lab.about.description',
-                'BİŠIŠ ليست مجرد قائمة خدمات. الفكرة هي أن تبدأ من مشكلة أو هدف واضح، تختار نطاقًا مناسبًا، ترسل طلبك، ثم تتابع مراحل العمل والتسليم من مساحة رقمية واحدة.',
+                'BİŞIŞ ليست مجرد قائمة خدمات. الفكرة هي أن تبدأ من مشكلة أو هدف واضح، تختار نطاقًا مناسبًا، ترسل طلبك، ثم تتابع مراحل العمل والتسليم من مساحة رقمية واحدة.',
               )}
             </p>
 
@@ -690,7 +690,7 @@ const LabPage: React.FC = () => {
                 )}
 
                 <div className="text-xs font-semibold uppercase tracking-wider text-white/35">
-                  {pkg.category || 'BİŠIŠ'}
+                  {pkg.category || 'BİŞIŞ'}
                 </div>
 
                 <h3 className="mt-3 text-2xl font-bold text-white">
@@ -1290,8 +1290,8 @@ const LabPage: React.FC = () => {
             <Rocket className="h-6 w-6" />
           </div>
 
-          <div className="mt-5 text-xs font-bold uppercase tracking-[0.22em] text-gold">
-            BİŠIŠ
+          <div className="mt-6 text-center text-2xl font-black font-outfit uppercase tracking-widest text-gold gold-gradient-text drop-shadow-[0_0_10px_rgba(212,175,55,0.3)]">
+            BİŞIŞ
           </div>
 
           <h2 className="mx-auto mt-3 max-w-3xl text-3xl font-black text-white sm:text-5xl">
@@ -1318,7 +1318,7 @@ const LabPage: React.FC = () => {
               to="/about"
               className="inline-flex items-center justify-center gap-2 rounded-xl border border-white/10 bg-white/[0.03] px-6 py-3.5 text-sm font-semibold text-white hover:border-gold/25 hover:text-gold"
             >
-              {t('lab.final.about', 'تعرف على BİŠIŠ')}
+              {t('lab.final.about', 'تعرف على BİŞIŞ')}
               <ArrowRight className="h-4 w-4 rtl:rotate-180" />
             </Link>
 
