@@ -127,10 +127,6 @@ const Header: React.FC = () => {
       label: t('nav.packages'),
     },
     {
-      to: '/lab',
-      label: t('nav.lab', 'BİŠIŠ LAB'),
-    },
-    {
       to: '/chat',
       label: t('nav.chat'),
     },
