@@ -263,17 +263,17 @@ const LabPage: React.FC = () => {
           >
             <div className="mb-8 inline-flex items-center gap-2.5 rounded-full border border-gold/30 bg-gold/[0.08] px-5 py-3 text-xs font-semibold text-gold shadow-lg shadow-gold/20">
               <Sparkles className="h-4 w-4" />
-              <span className="font-outfit text-base font-bold tracking-wider">BİÞIÞ LAB</span>
+              <span className="font-outfit text-base font-bold tracking-wider">BİŞİŞ LAB</span>
             </div>
 
             <h1 className="mx-auto max-w-4xl text-4xl font-black tracking-tight text-white sm:text-5xl lg:text-7xl">
-              {t('lab.hero.title', 'افهم BİŞIŞ قبل أن تبدأ')}
+              {t('lab.hero.title')}
             </h1>
 
             <p className="mx-auto mt-6 max-w-2xl text-base leading-8 text-white/55 sm:text-lg">
               {t(
                 'lab.hero.description',
-                'مساحة واحدة تشرح كيف تعمل BİŞIŞ، ماذا نقدم، كيف يتم الطلب والدفع والتسليم، وكيف تتابع مشروعك من البداية حتى النهاية.',
+                'مساحة واحدة تشرح كيف تعمل BİŞİŞ، ماذا نقدم، كيف يتم الطلب والدفع والتسليم، وكيف تتابع مشروعك من البداية حتى النهاية.',
               )}
             </p>
 
@@ -282,7 +282,7 @@ const LabPage: React.FC = () => {
                 to="/packages"
                 className="inline-flex items-center justify-center gap-2 rounded-2xl bg-gold px-6 py-3.5 text-sm font-bold text-black transition-transform hover:scale-[1.02]"
               >
-                {t('lab.hero.cta', 'استكشف الخدمات والباقات')}
+                {t('lab.hero.cta')}
                 <ArrowRight className="h-4 w-4 rtl:rotate-180" />
               </Link>
 
@@ -290,7 +290,7 @@ const LabPage: React.FC = () => {
                 href="#how-it-works"
                 className="inline-flex items-center justify-center gap-2 rounded-2xl border border-white/10 bg-white/[0.03] px-6 py-3.5 text-sm font-semibold text-white transition-colors hover:border-gold/30 hover:bg-white/[0.05]"
               >
-                {t('lab.hero.cta2', 'كيف تعمل BİŞIŞ؟')}
+                {t('lab.hero.cta2')}
               </a>
             </div>
           </motion.div>
@@ -304,22 +304,22 @@ const LabPage: React.FC = () => {
               {
                 icon: Layers3,
                 value: services.length || '18',
-                label: t('lab.stats.services', 'خدمات'),
+                label: t('lab.stats.services'),
               },
               {
                 icon: Package,
                 value: activePackages.length || '3',
-                label: t('lab.stats.packages', 'باقات'),
+                label: t('lab.stats.packages'),
               },
               {
                 icon: Globe2,
                 value: '3',
-                label: t('lab.stats.languages', 'لغات'),
+                label: t('lab.stats.languages'),
               },
               {
                 icon: ShieldCheck,
                 value: systemReady ? 'READY' : '—',
-                label: t('lab.stats.system', 'حالة النظام'),
+                label: t('lab.stats.system'),
               },
             ].map((stat) => (
               <motion.div
@@ -349,7 +349,7 @@ const LabPage: React.FC = () => {
         >
           <div>
             <div className="mb-4 text-xs font-bold uppercase tracking-[0.22em] text-gold">
-              {t('lab.about.eyebrow', 'ما هو BİŞIŞ؟')}
+              {t('lab.about.eyebrow')}
             </div>
 
             <h2 className="text-3xl font-bold text-white sm:text-4xl">
@@ -362,7 +362,7 @@ const LabPage: React.FC = () => {
             <p className="mt-5 max-w-2xl text-sm leading-8 text-white/55">
               {t(
                 'lab.about.description',
-                'BİŞIŞ ليست مجرد قائمة خدمات. الفكرة هي أن تبدأ من مشكلة أو هدف واضح، تختار نطاقًا مناسبًا، ترسل طلبك، ثم تتابع مراحل العمل والتسليم من مساحة رقمية واحدة.',
+                'BİŞİŞ ليست مجرد قائمة خدمات. الفكرة هي أن تبدأ من مشكلة أو هدف واضح، تختار نطاقًا مناسبًا، ترسل طلبك، ثم تتابع مراحل العمل والتسليم من مساحة رقمية واحدة.',
               )}
             </p>
 
@@ -387,7 +387,7 @@ const LabPage: React.FC = () => {
             {[
               {
                 icon: Gauge,
-                title: t('lab.about.card1.title', 'وضوح'),
+                title: t('lab.about.card1.title'),
                 text: t(
                   'lab.about.card1.text',
                   'نطاق واضح قبل بدء التنفيذ.',
@@ -395,7 +395,7 @@ const LabPage: React.FC = () => {
               },
               {
                 icon: Workflow,
-                title: t('lab.about.card2.title', 'مسار'),
+                title: t('lab.about.card2.title'),
                 text: t(
                   'lab.about.card2.text',
                   'خطوات منظمة من الطلب حتى التسليم.',
@@ -403,7 +403,7 @@ const LabPage: React.FC = () => {
               },
               {
                 icon: ShieldCheck,
-                title: t('lab.about.card3.title', 'ثقة'),
+                title: t('lab.about.card3.title'),
                 text: t(
                   'lab.about.card3.text',
                   'حالة الطلب والدفع والتسليم يمكن متابعتها.',
@@ -411,7 +411,7 @@ const LabPage: React.FC = () => {
               },
               {
                 icon: Zap,
-                title: t('lab.about.card4.title', 'تنفيذ'),
+                title: t('lab.about.card4.title'),
                 text: t(
                   'lab.about.card4.text',
                   'الخدمة لا تنتهي عند النصيحة؛ هناك مخرج عملي.',
@@ -445,11 +445,11 @@ const LabPage: React.FC = () => {
         <div className="mx-auto max-w-6xl">
           <motion.div {...fadeUp} className="text-center">
             <div className="text-xs font-bold uppercase tracking-[0.22em] text-gold">
-              {t('lab.process.eyebrow', 'كيف نعمل')}
+              {t('lab.process.eyebrow')}
             </div>
 
             <h2 className="mt-3 text-3xl font-bold text-white sm:text-4xl">
-              {t('lab.process.title', 'من الفكرة إلى التسليم')}
+              {t('lab.process.title')}
             </h2>
           </motion.div>
 
@@ -458,7 +458,7 @@ const LabPage: React.FC = () => {
               {
                 number: '01',
                 icon: Gauge,
-                title: t('lab.process.1.title', 'حدد احتياجك'),
+                title: t('lab.process.1.title'),
                 text: t(
                   'lab.process.1.text',
                   'ابدأ من المشكلة أو الهدف الذي تريد الوصول إليه.',
@@ -467,7 +467,7 @@ const LabPage: React.FC = () => {
               {
                 number: '02',
                 icon: Package,
-                title: t('lab.process.2.title', 'اختر النطاق'),
+                title: t('lab.process.2.title'),
                 text: t(
                   'lab.process.2.text',
                   'اختر خدمة منفردة أو باقة تناسب حجم العمل.',
@@ -476,7 +476,7 @@ const LabPage: React.FC = () => {
               {
                 number: '03',
                 icon: WalletCards,
-                title: t('lab.process.3.title', 'اطلب وادفع'),
+                title: t('lab.process.3.title'),
                 text: t(
                   'lab.process.3.text',
                   'أنشئ الطلب وانتقل إلى مسار الدفع الآمن.',
@@ -485,7 +485,7 @@ const LabPage: React.FC = () => {
               {
                 number: '04',
                 icon: FileCheck2,
-                title: t('lab.process.4.title', 'تابع التسليم'),
+                title: t('lab.process.4.title'),
                 text: t(
                   'lab.process.4.text',
                   'تابع مراحل التنفيذ والمخرجات من مساحة العمل.',
@@ -528,11 +528,11 @@ const LabPage: React.FC = () => {
           >
             <div>
               <div className="text-xs font-bold uppercase tracking-[0.22em] text-gold">
-                {t('lab.services.eyebrow', 'الخدمات')}
+                {t('lab.services.eyebrow')}
               </div>
 
               <h2 className="mt-3 text-3xl font-bold text-white sm:text-4xl">
-                {t('lab.services.title', 'خدمات مركزة لمشاكل حقيقية')}
+                {t('lab.services.title')}
               </h2>
 
               <p className="mt-3 max-w-2xl text-sm leading-7 text-white/45">
@@ -547,7 +547,7 @@ const LabPage: React.FC = () => {
               to="/packages"
               className="inline-flex shrink-0 items-center gap-2 text-sm font-semibold text-gold hover:text-white"
             >
-              {t('lab.services.cta', 'عرض جميع الخدمات')}
+              {t('lab.services.cta')}
               <ArrowRight className="h-4 w-4 rtl:rotate-180" />
             </Link>
           </motion.div>
@@ -614,7 +614,7 @@ const LabPage: React.FC = () => {
                       to="/packages"
                       className="mt-4 inline-flex items-center gap-2 text-xs font-semibold text-gold opacity-80 transition-opacity group-hover:opacity-100"
                     >
-                      {t('lab.services.view', 'عرض الخدمة')}
+                      {t('lab.services.view')}
                       <ArrowRight className="h-3.5 w-3.5 rtl:rotate-180" />
                     </Link>
                   </motion.article>
@@ -647,7 +647,7 @@ const LabPage: React.FC = () => {
                   to="/services/life-plan"
                   className="inline-flex shrink-0 items-center justify-center gap-2 rounded-xl border border-gold/30 bg-gold/10 px-5 py-3 text-sm font-bold text-gold hover:bg-gold/15"
                 >
-                  {t('lab.services.life_plan', 'استكشف Life Plan')}
+                  {t('lab.services.life_plan')}
                   <ArrowRight className="h-4 w-4 rtl:rotate-180" />
                 </Link>
               </div>
@@ -663,11 +663,11 @@ const LabPage: React.FC = () => {
         <div className="mx-auto max-w-6xl">
           <motion.div {...fadeUp} className="text-center">
             <div className="text-xs font-bold uppercase tracking-[0.22em] text-gold">
-              {t('lab.packages.eyebrow', 'الباقات')}
+              {t('lab.packages.eyebrow')}
             </div>
 
             <h2 className="mt-3 text-3xl font-bold text-white sm:text-4xl">
-              {t('lab.packages.title', 'إذا كان نطاقك أكبر، اجمعه في مسار واحد')}
+              {t('lab.packages.title')}
             </h2>
           </motion.div>
 
@@ -685,12 +685,12 @@ const LabPage: React.FC = () => {
               >
                 {pkg.is_popular && (
                   <div className="absolute right-5 top-5 rounded-full bg-gold px-2.5 py-1 text-[9px] font-black uppercase tracking-wider text-black">
-                    {t('lab.packages.popular', 'الأكثر اختيارًا')}
+                    {t('lab.packages.popular')}
                   </div>
                 )}
 
                 <div className="text-xs font-semibold uppercase tracking-wider text-white/35">
-                  {pkg.category || 'BİŞIŞ'}
+                  {pkg.category || 'BİŞİŞ'}
                 </div>
 
                 <h3 className="mt-3 text-2xl font-bold text-white">
@@ -725,7 +725,7 @@ const LabPage: React.FC = () => {
                       : 'border border-white/10 bg-white/[0.04] text-white hover:border-gold/25 hover:text-gold'
                   }`}
                 >
-                  {t('lab.packages.cta', 'استكشف الباقة')}
+                  {t('lab.packages.cta')}
                   <ArrowRight className="h-4 w-4 rtl:rotate-180" />
                 </Link>
               </motion.article>
@@ -741,11 +741,11 @@ const LabPage: React.FC = () => {
         <div className="mx-auto max-w-6xl">
           <motion.div {...fadeUp} className="max-w-2xl">
             <div className="text-xs font-bold uppercase tracking-[0.22em] text-gold">
-              {t('lab.anatomy.eyebrow', 'Service Anatomy')}
+              {t('lab.anatomy.eyebrow')}
             </div>
 
             <h2 className="mt-3 text-3xl font-bold text-white sm:text-4xl">
-              {t('lab.anatomy.title', 'كل خدمة لها نطاق ومخرج ومسار واضح')}
+              {t('lab.anatomy.title')}
             </h2>
 
             <p className="mt-4 text-sm leading-7 text-white/45">
@@ -760,7 +760,7 @@ const LabPage: React.FC = () => {
             {[
               {
                 icon: FileCheck2,
-                title: t('lab.anatomy.scope', 'Scope'),
+                title: t('lab.anatomy.scope'),
                 text: t(
                   'lab.anatomy.scope_text',
                   'ماذا سيتم العمل عليه بالضبط؟',
@@ -768,7 +768,7 @@ const LabPage: React.FC = () => {
               },
               {
                 icon: Gauge,
-                title: t('lab.anatomy.output', 'Output'),
+                title: t('lab.anatomy.output'),
                 text: t(
                   'lab.anatomy.output_text',
                   'ما المخرج الذي ستحصل عليه في النهاية؟',
@@ -776,7 +776,7 @@ const LabPage: React.FC = () => {
               },
               {
                 icon: Workflow,
-                title: t('lab.anatomy.delivery', 'Delivery'),
+                title: t('lab.anatomy.delivery'),
                 text: t(
                   'lab.anatomy.delivery_text',
                   'كيف ينتقل الطلب من الشراء إلى التسليم والمتابعة؟',
@@ -811,11 +811,11 @@ const LabPage: React.FC = () => {
           >
             <div>
               <div className="text-xs font-bold uppercase tracking-[0.22em] text-gold">
-                {t('lab.payment.eyebrow', 'الدفع')}
+                {t('lab.payment.eyebrow')}
               </div>
 
               <h2 className="mt-3 text-3xl font-bold text-white sm:text-4xl">
-                {t('lab.payment.title', 'دفع واضح، وحالة مرتبطة بالطلب')}
+                {t('lab.payment.title')}
               </h2>
 
               <p className="mt-4 max-w-2xl text-sm leading-8 text-white/45">
@@ -827,7 +827,7 @@ const LabPage: React.FC = () => {
 
               <div className="mt-7 space-y-3">
                 {[
-                  t('lab.payment.point1', 'الأسعار الأساسية معروضة بالدولار الأمريكي.'),
+                  t('lab.payment.point1'),
                   t(
                     'lab.payment.point2',
                     'مسار العملات المشفر الحالي يستخدم USDC على BSC.',
@@ -851,7 +851,7 @@ const LabPage: React.FC = () => {
                 to="/payment"
                 className="mt-8 inline-flex items-center gap-2 rounded-xl bg-gold px-5 py-3 text-sm font-bold text-black"
               >
-                {t('lab.payment.cta', 'انتقل إلى الدفع')}
+                {t('lab.payment.cta')}
                 <ArrowRight className="h-4 w-4 rtl:rotate-180" />
               </Link>
             </div>
@@ -867,7 +867,7 @@ const LabPage: React.FC = () => {
                     NOWPayments
                   </div>
                   <div className="text-xs text-white/35">
-                    {t('lab.payment.provider', 'Payment infrastructure')}
+                    {t('lab.payment.provider')}
                   </div>
                 </div>
               </div>
@@ -882,7 +882,7 @@ const LabPage: React.FC = () => {
                 </div>
 
                 <div className="mt-1 text-xs text-emerald-400">
-                  {t('lab.payment.available', 'المسار الأساسي الحالي')}
+                  {t('lab.payment.available')}
                 </div>
               </div>
 
@@ -905,56 +905,51 @@ const LabPage: React.FC = () => {
         <div className="mx-auto max-w-6xl">
           <motion.div {...fadeUp} className="text-center">
             <div className="text-xs font-bold uppercase tracking-[0.22em] text-gold">
-              {t('lab.journey.eyebrow', 'رحلة الطلب')}
+              {t('lab.journey.eyebrow')}
             </div>
 
             <h2 className="mt-3 text-3xl font-bold text-white sm:text-4xl">
-              {t('lab.journey.title', 'ماذا يحدث بعد الضغط على ابدأ؟')}
+              {t('lab.journey.title')}
             </h2>
           </motion.div>
 
           <div className="mx-auto mt-12 max-w-4xl">
             {[
-              {
-                n: '01',
-                title: t('lab.journey.1.title', 'اختيار'),
-                text: t(
-                  'lab.journey.1.text',
-                  'تختار خدمة أو باقة من الكتالوج الحالي.',
-                ),
-              },
-              {
-                n: '02',
-                title: t('lab.journey.2.title', 'Order'),
-                text: t(
-                  'lab.journey.2.text',
-                  'يتم إنشاء الطلب في النظام وربطه بالنطاق الذي اخترته.',
-                ),
-              },
-              {
-                n: '03',
-                title: t('lab.journey.3.title', 'Payment'),
-                text: t(
-                  'lab.journey.3.text',
-                  'ينتقل الطلب إلى مسار الدفع المناسب.',
-                ),
-              },
-              {
-                n: '04',
-                title: t('lab.journey.4.title', 'Execution'),
-                text: t(
-                  'lab.journey.4.text',
-                  'بعد تحقق الحالة، يدخل الطلب في مسار التنفيذ والتسليم.',
-                ),
-              },
-              {
-                n: '05',
-                title: t('lab.journey.5.title', 'Workspace'),
-                text: t(
-                  'lab.journey.5.text',
-                  'تتابع العمل والمخرجات من مساحة العميل.',
-                ),
-              },
+               {
+                 n: '01',
+                 title: t('lab.journey.1.title'),
+                 text: t(
+                   'lab.journey.1.text',
+                 ),
+               },
+               {
+                 n: '02',
+                 title: t('lab.journey.2.title'),
+                 text: t(
+                   'lab.journey.2.text',
+                 ),
+               },
+               {
+                 n: '03',
+                 title: t('lab.journey.3.title'),
+                 text: t(
+                   'lab.journey.3.text',
+                 ),
+               },
+               {
+                 n: '04',
+                 title: t('lab.journey.4.title'),
+                 text: t(
+                   'lab.journey.4.text',
+                 ),
+               },
+               {
+                 n: '05',
+                 title: t('lab.journey.5.title'),
+                 text: t(
+                   'lab.journey.5.text',
+                 ),
+               },
             ].map((item, index) => (
               <motion.div
                 key={item.n}
@@ -994,11 +989,11 @@ const LabPage: React.FC = () => {
             </div>
 
             <div className="mt-5 text-xs font-bold uppercase tracking-[0.22em] text-gold">
-              {t('lab.workspace.eyebrow', 'Client Workspace')}
+              {t('lab.workspace.eyebrow')}
             </div>
 
             <h2 className="mt-3 text-3xl font-bold text-white sm:text-4xl">
-              {t('lab.workspace.title', 'مساحة واحدة لمتابعة العمل')}
+              {t('lab.workspace.title')}
             </h2>
 
             <p className="mt-4 text-sm leading-8 text-white/45">
@@ -1012,7 +1007,7 @@ const LabPage: React.FC = () => {
               to="/portal"
               className="mt-7 inline-flex items-center justify-center gap-2 rounded-xl bg-gold px-6 py-3.5 text-sm font-bold text-black shadow-lg shadow-gold/20 hover:scale-[1.02] transition-transform"
             >
-              {t('lab.workspace.cta', 'افتح مساحة العميل')}
+              {t('lab.workspace.cta')}
               <ArrowRight className="h-4 w-4 rtl:rotate-180" />
             </Link>
           </div>
@@ -1021,7 +1016,7 @@ const LabPage: React.FC = () => {
             {[
               {
                 icon: Package,
-                title: t('lab.workspace.card1', 'Orders'),
+                title: t('lab.workspace.card1'),
                 text: t(
                   'lab.workspace.card1_text',
                   'متابعة الطلبات الحالية.',
@@ -1029,7 +1024,7 @@ const LabPage: React.FC = () => {
               },
               {
                 icon: Workflow,
-                title: t('lab.workspace.card2', 'Projects'),
+                title: t('lab.workspace.card2'),
                 text: t(
                   'lab.workspace.card2_text',
                   'الوصول إلى مساحات المشاريع.',
@@ -1037,7 +1032,7 @@ const LabPage: React.FC = () => {
               },
               {
                 icon: MessageCircle,
-                title: t('lab.workspace.card3', 'Chat'),
+                title: t('lab.workspace.card3'),
                 text: t(
                   'lab.workspace.card3_text',
                   'التواصل والمتابعة عند الحاجة.',
@@ -1045,7 +1040,7 @@ const LabPage: React.FC = () => {
               },
               {
                 icon: FileCheck2,
-                title: t('lab.workspace.card4', 'Delivery'),
+                title: t('lab.workspace.card4'),
                 text: t(
                   'lab.workspace.card4_text',
                   'متابعة المخرجات والتسليم.',
@@ -1076,11 +1071,11 @@ const LabPage: React.FC = () => {
         <div className="mx-auto max-w-6xl">
           <motion.div {...fadeUp} className="text-center">
             <div className="text-xs font-bold uppercase tracking-[0.22em] text-gold">
-              {t('lab.security.eyebrow', 'Security & Trust')}
+              {t('lab.security.eyebrow')}
             </div>
 
             <h2 className="mt-3 text-3xl font-bold text-white sm:text-4xl">
-              {t('lab.security.title', 'الثقة جزء من النظام، وليست شعارًا')}
+              {t('lab.security.title')}
             </h2>
           </motion.div>
 
@@ -1088,7 +1083,7 @@ const LabPage: React.FC = () => {
             {[
               {
                 icon: ShieldCheck,
-                title: t('lab.security.1.title', 'حماية الوصول'),
+                title: t('lab.security.1.title'),
                 text: t(
                   'lab.security.1.text',
                   'الوصول إلى المناطق الحساسة يعتمد على المصادقة والصلاحيات.',
@@ -1096,7 +1091,7 @@ const LabPage: React.FC = () => {
               },
               {
                 icon: Lock,
-                title: t('lab.security.2.title', 'الدفع'),
+                title: t('lab.security.2.title'),
                 text: t(
                   'lab.security.2.text',
                   'الدفع يمر عبر بنية دفع خارجية وحالة يتم التحقق منها.',
@@ -1104,7 +1099,7 @@ const LabPage: React.FC = () => {
               },
               {
                 icon: FileCheck2,
-                title: t('lab.security.3.title', 'التتبع'),
+                title: t('lab.security.3.title'),
                 text: t(
                   'lab.security.3.text',
                   'الطلبات والتسليمات جزء من دورة عمل قابلة للمتابعة.',
@@ -1195,7 +1190,7 @@ const LabPage: React.FC = () => {
               to="/faq"
               className="inline-flex items-center gap-2 text-xs font-semibold text-gold"
             >
-              {t('lab.faq.more', 'عرض صفحة الأسئلة كاملة')}
+              {t('lab.faq.more')}
               <ExternalLink className="h-3.5 w-3.5" />
             </Link>
           </div>
@@ -1214,11 +1209,11 @@ const LabPage: React.FC = () => {
             <div className="flex flex-col justify-between gap-5 sm:flex-row sm:items-center">
               <div>
                 <div className="text-xs font-bold uppercase tracking-[0.22em] text-gold">
-                  {t('lab.status.eyebrow', 'System Status')}
+                  {t('lab.status.eyebrow')}
                 </div>
 
                 <h2 className="mt-2 text-2xl font-bold text-white">
-                  {t('lab.status.title', 'حالة النظام الآن')}
+                  {t('lab.status.title')}
                 </h2>
               </div>
 
@@ -1235,7 +1230,7 @@ const LabPage: React.FC = () => {
                   }`}
                 />
                 {systemLoading
-                  ? t('lab.status.checking', 'جارٍ الفحص...')
+                  ? t('lab.status.checking')
                   : systemLive
                     ? 'LIVE'
                     : 'UNAVAILABLE'}
@@ -1246,7 +1241,7 @@ const LabPage: React.FC = () => {
           <div className="grid gap-px bg-white/[0.06] md:grid-cols-3">
             <div className="bg-[#0b0b0b] p-6">
               <div className="text-xs text-white/35">
-                {t('lab.status.service', 'Application')}
+                {t('lab.status.service')}
               </div>
               <div className="mt-2 text-lg font-bold text-white">
                 {liveStatus?.status || '—'}
@@ -1255,7 +1250,7 @@ const LabPage: React.FC = () => {
 
             <div className="bg-[#0b0b0b] p-6">
               <div className="text-xs text-white/35">
-                {t('lab.status.database', 'Database')}
+                {t('lab.status.database')}
               </div>
               <div className="mt-2 text-lg font-bold text-white">
                 {readyStatus?.database || '—'}
@@ -1264,7 +1259,7 @@ const LabPage: React.FC = () => {
 
             <div className="bg-[#0b0b0b] p-6">
               <div className="text-xs text-white/35">
-                {t('lab.status.readiness', 'Readiness')}
+                {t('lab.status.readiness')}
               </div>
               <div
                 className={`mt-2 text-lg font-bold ${
@@ -1291,11 +1286,11 @@ const LabPage: React.FC = () => {
           </div>
 
           <div className="mt-6 text-center text-2xl font-black font-outfit uppercase tracking-widest text-gold gold-gradient-text drop-shadow-[0_0_10px_rgba(212,175,55,0.3)]">
-            BİŞIŞ
+            BİŞİŞ
           </div>
 
           <h2 className="mx-auto mt-3 max-w-3xl text-3xl font-black text-white sm:text-5xl">
-            {t('lab.final.title', 'جاهز تبدأ؟')}
+            {t('lab.final.title')}
           </h2>
 
           <p className="mx-auto mt-4 max-w-2xl text-sm leading-7 text-white/45">
@@ -1310,7 +1305,7 @@ const LabPage: React.FC = () => {
               to="/packages"
               className="inline-flex items-center justify-center gap-2 rounded-xl bg-gold px-6 py-3.5 text-sm font-bold text-black"
             >
-              {t('lab.final.cta', 'ابدأ الآن')}
+              {t('lab.final.cta')}
               <ArrowRight className="h-4 w-4 rtl:rotate-180" />
             </Link>
 
@@ -1318,7 +1313,7 @@ const LabPage: React.FC = () => {
               to="/about"
               className="inline-flex items-center justify-center gap-2 rounded-xl border border-white/10 bg-white/[0.03] px-6 py-3.5 text-sm font-semibold text-white hover:border-gold/25 hover:text-gold"
             >
-              {t('lab.final.about', 'تعرف على BİŞIŞ')}
+              {t('lab.final.about')}
               <ArrowRight className="h-4 w-4 rtl:rotate-180" />
             </Link>
 
@@ -1327,7 +1322,7 @@ const LabPage: React.FC = () => {
               className="inline-flex items-center justify-center gap-2 rounded-xl border border-white/10 bg-white/[0.03] px-6 py-3.5 text-sm font-semibold text-white hover:border-gold/25 hover:text-gold"
             >
               <MessageCircle className="h-4 w-4" />
-              {t('lab.final.chat', 'تحدث معنا')}
+              {t('lab.final.chat')}
             </Link>
           </div>
         </motion.div>

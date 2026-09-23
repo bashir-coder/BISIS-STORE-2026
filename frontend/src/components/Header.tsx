@@ -182,18 +182,18 @@ const Header: React.FC = () => {
           <Link
             to="/"
             className="flex items-center gap-3 group"
-            aria-label="BİÞIÞ"
+            aria-label="BİŞİŞ"
           >
             <div className="relative w-12 h-12 rounded-xl overflow-hidden border-2 border-gold/50 shadow-lg shadow-gold/40 group-hover:border-gold group-hover:shadow-[0_0_20px_rgba(212,175,55,0.55)] group-hover:scale-105 transition-all duration-300">
               <img
-                src="/BİÞIÞ-logo.jpg"
-                alt="BİÞIÞ"
+                src="/BİŞİŞ-logo.jpg"
+                alt="BİŞİŞ"
                 className="w-full h-full object-cover"
               />
             </div>
 
             <span className="text-2xl font-bold font-outfit text-white tracking-wider group-hover:text-gold transition-colors drop-shadow-[0_0_8px_rgba(212,175,55,0.3)]">
-              BİÞIÞ
+              BİŞİŞ
             </span>
           </Link>
 
