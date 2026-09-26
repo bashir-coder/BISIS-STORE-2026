@@ -1,4 +1,4 @@
-# BİŞIŞ V1 — Windows Quick Start
+# BİŞİŞ V1 — Windows Quick Start
 
 افتح في VS Code المجلد الذي يحتوي مباشرة على `package.json` الرئيسي. لا تفتح `frontend` كمجلد المشروع الرئيسي عند استخدام أوامر root.
 

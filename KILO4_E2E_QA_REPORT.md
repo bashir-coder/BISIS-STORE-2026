@@ -60,7 +60,7 @@ Payment-status tampering and live IPN signature/replay behavior were not exercis
 * **EN:** Partial runtime coverage. Language switching changed the root direction from `rtl` to `ltr`; the tested pages rendered English content.
 * **TR:** Controls and Turkish fallback content are present, but the full TR journey was not runtime-verified.
 * **Missing keys:** `nav.lab` is absent from the fallback/seed translation resources. `Header.tsx` supplies an English fallback, so the header can show English in AR/TR.
-* **Mojibake:** No new mojibake was observed in the tested browser surfaces. A separate Unicode brand inconsistency remains: the official name is `BİŠIŠ`, while customer-facing UI and translations frequently use `BİŞIŞ`.
+* **Mojibake:** No new mojibake was observed in the tested browser surfaces. A separate Unicode brand inconsistency remains: the official name is `BİŞİŞ`, while customer-facing UI and translations frequently use `BİŞİŞ`.
 * **Payment copy:** The payment description says Polygon USDC while the live invoice path and invoice card say BSC USDC. This is a functional customer-instruction defect, not merely cosmetic.
 
 ---
@@ -94,8 +94,8 @@ Only material errors from the executed probes are recorded:
 | **P1** | Payment success and cancel pages cannot load order status. | `frontend/src/pages/PaymentSuccess.tsx:69` and `frontend/src/pages/PaymentCancelled.tsx:41` call `GET /api/orders/${orderId}`; the backend route table has no `GET /:id` handler (`backend/src/api/routes/orders.routes.js:283-285`, `:532-534`, `:1278-1280`). Runtime probe returned `404`. | Backend / Frontend contract |
 | **P1** | Public success/cancel return URLs are undefined in the current configuration. | `backend/src/api/routes/orders.routes.js:898-910` only constructs return URLs when a public web URL exists; the configured public frontend value is a placeholder. | Infrastructure / Backend |
 | **P1** | Human verification is blocked in the tested browser environment. | `/verify` loaded but displayed the verification-load error; no supported-browser verification completion was obtained. | Infrastructure / QA |
-| **P2** | Official brand spelling is inconsistent in customer-facing surfaces. | Official spelling is `BİŠIŠ`; `Header.tsx:131,190-201` and `LabPage.tsx:266` use it correctly, while `Footer.tsx:60-65`, translations, PaymentPage, and other UI strings use `BİŞIŞ`. | Frontend / i18n |
-| **P2** | `nav.lab` translation key is missing. | `Header.tsx:131` calls `t('nav.lab', 'BİŠIŠ LAB')`; no localized `nav.lab` key was found in the fallback/seed resources, causing an English fallback in AR/TR. | i18n |
+| **P2** | Official brand spelling is inconsistent in customer-facing surfaces. | Official spelling is `BİŞİŞ`; `Header.tsx:131,190-201` and `LabPage.tsx:266` use it correctly, while `Footer.tsx:60-65`, translations, PaymentPage, and other UI strings use `BİŞİŞ`. | Frontend / i18n |
+| **P2** | `nav.lab` translation key is missing. | `Header.tsx:131` calls `t('nav.lab', 'BİŞİŞ LAB')`; no localized `nav.lab` key was found in the fallback/seed resources, causing an English fallback in AR/TR. | i18n |
 | **P2** | Canonical package prices are formatted without thousands separators. | API values are correct, but `PackagesPage.tsx:422` renders `$1499.00`/`$2499.00` rather than the canonical `$1,499.00`/`$2,499.00` presentation. | Frontend |
 | **P1** | Migration gate fails. | `npm run migration:check` failed because `database/migrations/015_rls_recursion_fix.sql` is unexpected against the canonical migration list. | Release Control / Database |
 | **P2** | Lint gate fails. | `npm run lint` failed at `backend/tests/runtime-test.js:76` with an unnecessary semicolon; six additional warnings were reported. | Release Control |

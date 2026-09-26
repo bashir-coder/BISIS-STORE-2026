@@ -39,7 +39,7 @@ const askAssistant = async ({ question, context, language }) => {
     messages: [
       {
         role: 'system',
-        content: `You are the BİŞIŞ support assistant. Reply in ${language === 'ar' ? 'Arabic' : language === 'tr' ? 'Turkish' : 'English'}. Do not claim that payment is available unless the application explicitly confirms it.`,
+        content: `You are the BİŞİŞ support assistant. Reply in ${language === 'ar' ? 'Arabic' : language === 'tr' ? 'Turkish' : 'English'}. Do not claim that payment is available unless the application explicitly confirms it.`,
       },
       ...(context ? [{ role: 'assistant', content: String(context).slice(0, 4000) }] : []),
       { role: 'user', content: String(question).slice(0, 4000) },

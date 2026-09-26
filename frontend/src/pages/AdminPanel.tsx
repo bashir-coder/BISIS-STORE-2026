@@ -270,18 +270,18 @@ setOrders(ordersData)
       setProjectForm({ name: '', description: '', status: 'active' })
       await fetchProjects()
     } catch (err) {
-      alert('Failed to save project')
+      alert(t('admin.project_save_error'))
     }
   }
 
   const handleDeleteProject = async (id: number) => {
-    if (!confirm('Delete this project?')) return
+    if (!confirm(t('admin.project_delete_confirm'))) return
     try {
       await api.delete(`/api/projects/${id}`)
       await fetchProjects()
       if (selectedProject?.id === id) setSelectedProject(null)
     } catch (err) {
-      alert('Failed to delete project')
+      alert(t('admin.project_delete_error'))
     }
   }
 
@@ -290,7 +290,7 @@ setOrders(ordersData)
       await api.patch(`/api/projects/${projectId}/assign/${orderId}`)
       await fetchAllData()
     } catch (err) {
-      alert('Failed to assign order')
+      alert(t('admin.order_assign_error'))
     }
   }
 
@@ -325,7 +325,7 @@ setOrders(ordersData)
       setChatMessages(prev => [...prev, data])
       setNewMessage('')
     } catch (err) {
-      alert('Failed to send message')
+      alert(t('admin.message_send_error'))
     }
   }
 
@@ -401,7 +401,7 @@ setOrders(ordersData)
       .forEach((ticket) => priority.push({
         id: `ticket-${ticket.id}`,
         title: ticket.title,
-        description: ticket.status === 'open' ? t('admin.review_open_ticket', 'Review this unresolved support ticket.') : t('admin.continue_ticket', 'Continue the response on this ticket.'),
+        description: ticket.status === 'open' ? t('admin.review_open_ticket') : t('admin.continue_ticket'),
         meta: `#${ticket.id} آ· ${formatDate(ticket.updated_at || ticket.created_at)}`,
         level: hoursSince(ticket.updated_at || ticket.created_at) > 48 ? 'critical' : 'high',
         onClick: () => jumpTo('admin-tickets-section'),
@@ -414,7 +414,7 @@ setOrders(ordersData)
       .forEach((order) => priority.push({
         id: `order-${order.id}`,
         title: t('admin.review_order_named', { defaultValue: 'Review order {{order}}', order: orderLabel(order) }),
-        description: !order.project_id ? t('admin.order_needs_assignment', 'This order is not assigned to a project yet.') : t('admin.pending_order_action', 'This order is waiting for the next operational step.'),
+        description: !order.project_id ? t('admin.order_needs_assignment') : t('admin.pending_order_action'),
         meta: `${order.package || order.package_name || t('dashboard.package')} آ· ${formatDate(order.created_at)}`,
         level: !order.project_id || hoursSince(order.created_at) > 24 ? 'high' : 'medium',
         onClick: () => { setSelectedOrder(order); jumpTo('admin-orders-section') },
@@ -424,7 +424,7 @@ setOrders(ordersData)
       ...orders.filter((order) => (order.status || '').toLowerCase() === 'processing').slice(0, 3).map((order) => ({
         id: `processing-${order.id}`,
         title: orderLabel(order),
-        description: t('admin.order_in_progress', 'Order is currently being processed.'),
+        description: t('admin.order_in_progress'),
         meta: `${order.package || order.package_name || t('dashboard.package')} آ· ${formatDate(order.updated_at || order.created_at)}`,
         level: 'medium' as const,
         onClick: () => { setSelectedOrder(order); jumpTo('admin-orders-section') },
@@ -432,7 +432,7 @@ setOrders(ordersData)
       ...projects.filter((project) => ['active', 'in_progress', 'planning'].includes(project.status.toLowerCase())).slice(0, 2).map((project) => ({
         id: `project-${project.id}`,
         title: project.name,
-        description: t('admin.project_active_next', 'Project is active and ready for its next update.'),
+        description: t('admin.project_active_next'),
         meta: `${project.status} آ· ${formatDate(project.updated_at || project.created_at)}`,
         level: 'low' as const,
         onClick: () => { setSelectedProject(project); jumpTo('admin-projects-section') },
@@ -443,7 +443,7 @@ setOrders(ordersData)
       ...orders.filter((order) => (order.status || '').toLowerCase() === 'completed').slice(0, 3).map((order) => ({
         id: `completed-order-${order.id}`,
         title: orderLabel(order),
-        description: t('admin.order_completed_recently', 'Order completed successfully.'),
+        description: t('admin.order_completed_recently'),
         meta: formatDate(order.updated_at || order.created_at),
         level: 'low' as const,
         onClick: () => { setSelectedOrder(order); jumpTo('admin-orders-section') },
@@ -451,7 +451,7 @@ setOrders(ordersData)
       ...adminTickets.filter((ticket) => ticket.status === 'resolved' || ticket.status === 'closed').slice(0, 2).map((ticket) => ({
         id: `completed-ticket-${ticket.id}`,
         title: ticket.title,
-        description: t('admin.ticket_closed_recently', 'Support ticket is resolved.'),
+        description: t('admin.ticket_closed_recently'),
         meta: `#${ticket.id} آ· ${formatDate(ticket.updated_at || ticket.created_at)}`,
         level: 'low' as const,
         onClick: () => jumpTo('admin-tickets-section'),
@@ -460,17 +460,17 @@ setOrders(ordersData)
 
     const activity = (analytics?.recentActivity || []).slice(0, 6).map((item, index) => ({
       id: `${item.order_id}-${item.timestamp}-${index}`,
-      title: item.action || t('admin.activity_update', 'Order activity updated'),
+      title: item.action || t('admin.activity_update'),
       meta: `${item.order_id ? `#${String(item.order_id).slice(0, 8)} آ· ` : ''}${formatDate(item.timestamp)}`,
     }))
 
     const hour = new Date().getHours()
     const greetingKey = hour < 12 ? 'admin.good_morning' : hour < 18 ? 'admin.good_afternoon' : 'admin.good_evening'
     return {
-      greeting: t(greetingKey, 'Good day'),
+      greeting: t(greetingKey),
       subtitle: priority.length > 0
         ? t('admin.attention_summary', { defaultValue: '{{count}} items need your attention.', count: priority.length })
-        : t('admin.no_attention_summary', 'Everything is quiet right now. Keep an eye on recent activity below.'),
+        : t('admin.no_attention_summary'),
       priority,
       inProgress,
       completed,
@@ -483,7 +483,7 @@ setOrders(ordersData)
       await api.patch(`/api/tickets/${ticketId}`, payload)
       await fetchAdminTickets()
     } catch (err) {
-      alert('Failed to update ticket')
+      alert(t('admin.ticket_update_error'))
     }
   }
 
@@ -501,7 +501,7 @@ setOrders(ordersData)
       `
       container.innerHTML = `
         <div style="border-bottom: 3px solid #D4AF37; padding-bottom: 10px; margin-bottom: 20px; text-align: center;">
-          <h1 style="font-size: 28px; color: #D4AF37; margin: 0; letter-spacing: 2px;">BİŞIŞ</h1>
+          <h1 style="font-size: 28px; color: #D4AF37; margin: 0; letter-spacing: 2px;">BİŞİŞ</h1>
           <p style="margin: 0; color: #666; font-size: 14px;">AI Business Growth System</p>
         </div>
         <h2 style="text-align: center; color: #333; font-size: 22px; margin: 10px 0;">فاتورة</h2>
@@ -541,7 +541,7 @@ setOrders(ordersData)
           </tfoot>
         </table>
         <div style="margin-top: 30px; border-top: 1px solid #ddd; padding-top: 20px; text-align: center; color: #888; font-size: 12px;">
-          شكراً لثقتك بنا. هذه الفاتورة صادرة من BİŞIŞ.
+          شكراً لثقتك بنا. هذه الفاتورة صادرة من BİŞİŞ.
           <br>للتواصل: info@BİŞİŞ.com
         </div>
       `
@@ -563,7 +563,7 @@ setOrders(ordersData)
       pdf.save(`invoice-${escapeHtml(invoiceData.invoice_number)}.pdf`)
     } catch (error) {
       console.error('PDF generation error:', error)
-      alert('❌ فشل تحميل الفاتورة. يرجى المحاولة مرة أخرى.')
+      alert(t('admin.invoice_load_error'))
     }
   }
 
@@ -613,10 +613,10 @@ setOrders(ordersData)
             <div className="mb-4 flex flex-wrap items-end justify-between gap-3">
               <div>
                 <p className="text-sm uppercase tracking-[0.25em] text-gold/70">{t('admin.operations_center')}</p>
-                <h2 id="action-center-title" className="text-xl font-semibold text-white">{t('admin.action_center', 'Needs attention')}</h2>
+                <h2 id="action-center-title" className="text-xl font-semibold text-white">{t('admin.action_center')}</h2>
               </div>
               <span className={`rounded-full border px-3 py-1 text-xs ${operationalSignals.attentionTotal > 0 ? 'border-red-400/30 bg-red-500/10 text-red-200' : 'border-green-400/30 bg-green-500/10 text-green-200'}`}>
-                {operationalSignals.attentionTotal > 0 ? `${operationalSignals.attentionTotal} ${t('admin.items_need_attention', 'items')}` : t('admin.all_clear', 'All clear')}
+                {operationalSignals.attentionTotal > 0 ? `${operationalSignals.attentionTotal} ${t('admin.items_need_attention')}` : t('admin.all_clear')}
               </span>
             </div>
             <div className="grid gap-3 sm:grid-cols-2 xl:grid-cols-4">
@@ -625,7 +625,7 @@ setOrders(ordersData)
                 <p className="mt-2 text-2xl font-semibold text-white">{stats.newCount}</p>
               </div>
               <div className="rounded-2xl border border-orange-400/20 bg-orange-500/10 p-4">
-                <div className="flex items-center gap-2 text-orange-200"><FolderPlus className="h-4 w-4" /><span className="text-sm">{t('admin.unassigned_orders', 'Unassigned orders')}</span></div>
+                <div className="flex items-center gap-2 text-orange-200"><FolderPlus className="h-4 w-4" /><span className="text-sm">{t('admin.unassigned_orders')}</span></div>
                 <p className="mt-2 text-2xl font-semibold text-white">{operationalSignals.unassignedOrders}</p>
               </div>
               <div className="rounded-2xl border border-red-400/20 bg-red-500/10 p-4">
@@ -637,10 +637,10 @@ setOrders(ordersData)
                 <p className="mt-2 text-2xl font-semibold text-white">{operationalSignals.activeProjects}</p>
               </div>
             </div>
-            <p className="mt-4 text-xs text-white/40">{t('admin.action_center_source', 'Signals are calculated from the current orders, tickets, and projects loaded from the backend.')}</p>
+            <p className="mt-4 text-xs text-white/40">{t('admin.action_center_source')}</p>
           </section>
 
-          {deliveryQueue.length > 0 && <section aria-labelledby="delivery-queue-title" className="mb-8 glass rounded-3xl border border-gold/10 p-5"><div className="mb-4 flex flex-wrap items-end justify-between gap-3"><div><p className="text-xs uppercase tracking-[0.22em] text-gold/70">{t('workbench.delivery_queue')}</p><h2 id="delivery-queue-title" className="mt-1 text-xl font-semibold text-white">{t('admin.delivery_exceptions', 'Service delivery exceptions')}</h2></div><Link to="/workbench" className="text-sm text-gold hover:underline">{t('workbench.open_project')}</Link></div><div className="grid gap-3 md:grid-cols-2 xl:grid-cols-3">{deliveryQueue.filter((item) => item.next_action || item.pending_requirements > 0 || item.execution_state === 'blocked').slice(0, 6).map((item) => <Link key={item.id} to={`/projects/${item.id}`} className="rounded-2xl border border-white/10 bg-black/20 p-4 transition hover:border-gold/25 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold/70"><div className="flex items-start justify-between gap-3"><div className="min-w-0"><p className="truncate text-sm font-semibold text-white">{item.name}</p><p className="mt-1 text-xs text-gold/80">{t(`client.state.${item.execution_state}`, item.execution_state || 'not_started')}</p></div><FolderOpen className="h-4 w-4 shrink-0 text-gold" /></div><p className="mt-3 text-sm text-white/60">{item.next_action?.title || (item.pending_requirements > 0 ? `${item.pending_requirements} ${t('workbench.requirements_pending')}` : t('admin.project_needs_attention', 'Project needs attention.'))}</p><p className="mt-2 text-xs text-white/35">{item.task_count ? `${item.completed_task_count}/${item.task_count} ${t('client.home.steps_done', 'steps complete')}` : t('client.home.progress_not_available')}</p></Link>)}</div></section>}
+          {deliveryQueue.length > 0 && <section aria-labelledby="delivery-queue-title" className="mb-8 glass rounded-3xl border border-gold/10 p-5"><div className="mb-4 flex flex-wrap items-end justify-between gap-3"><div><p className="text-xs uppercase tracking-[0.22em] text-gold/70">{t('workbench.delivery_queue')}</p><h2 id="delivery-queue-title" className="mt-1 text-xl font-semibold text-white">{t('admin.delivery_exceptions')}</h2></div><Link to="/workbench" className="text-sm text-gold hover:underline">{t('workbench.open_project')}</Link></div><div className="grid gap-3 md:grid-cols-2 xl:grid-cols-3">{deliveryQueue.filter((item) => item.next_action || item.pending_requirements > 0 || item.execution_state === 'blocked').slice(0, 6).map((item) => <Link key={item.id} to={`/projects/${item.id}`} className="rounded-2xl border border-white/10 bg-black/20 p-4 transition hover:border-gold/25 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold/70"><div className="flex items-start justify-between gap-3"><div className="min-w-0"><p className="truncate text-sm font-semibold text-white">{item.name}</p><p className="mt-1 text-xs text-gold/80">{t(`client.state.${item.execution_state}`, item.execution_state || 'not_started')}</p></div><FolderOpen className="h-4 w-4 shrink-0 text-gold" /></div><p className="mt-3 text-sm text-white/60">{item.next_action?.title || (item.pending_requirements > 0 ? `${item.pending_requirements} ${t('workbench.requirements_pending')}` : t('admin.project_needs_attention'))}</p><p className="mt-2 text-xs text-white/35">{item.task_count ? `${item.completed_task_count}/${item.task_count} ${t('client.home.steps_done')}` : t('client.home.progress_not_available')}</p></Link>)}</div></section>}
 
           <OperationalPulse
             greeting={operationalPulse.greeting}
@@ -649,15 +649,15 @@ setOrders(ordersData)
             inProgress={operationalPulse.inProgress}
             completed={operationalPulse.completed}
             activity={operationalPulse.activity}
-            emptyPriority={t('admin.no_priority_items', 'No urgent items. That is a good sign.')}
-            emptyProgress={t('admin.no_in_progress', 'Nothing is moving right now.')}
-            emptyCompleted={t('admin.no_recently_completed', 'Completed work will appear here.')}
-            emptyActivity={t('admin.no_recent_activity', 'No activity has happened yet.')}
+            emptyPriority={t('admin.no_priority_items')}
+            emptyProgress={t('admin.no_in_progress')}
+            emptyCompleted={t('admin.no_recently_completed')}
+            emptyActivity={t('admin.no_recent_activity')}
           />
 
           <div className="mb-8 grid gap-3 md:grid-cols-2">
-            <Link to="/workbench" className="group rounded-2xl border border-gold/15 bg-gold/[0.06] p-4 transition hover:border-gold/35 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold/70"><div className="flex items-center justify-between"><div><p className="text-xs uppercase tracking-[0.2em] text-gold/70">{t('admin.quick_action', 'Quick action')}</p><p className="mt-1 text-sm font-semibold text-white">{t('admin.open_workbench', 'Open Workbench')}</p></div><FolderOpen className="h-5 w-5 text-gold transition-transform group-hover:scale-110" /></div><p className="mt-2 text-xs text-white/45">{t('admin.open_workbench_hint', 'Move from decisions to focused execution.')}</p></Link>
-            <Link to="/clients" className="group rounded-2xl border border-white/10 bg-white/[0.03] p-4 transition hover:border-gold/25 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold/70"><div className="flex items-center justify-between"><div><p className="text-xs uppercase tracking-[0.2em] text-white/40">{t('admin.quick_action', 'Quick action')}</p><p className="mt-1 text-sm font-semibold text-white">{t('admin.open_client_360', 'Open Client 360')}</p></div><User className="h-5 w-5 text-gold transition-transform group-hover:scale-110" /></div><p className="mt-2 text-xs text-white/45">{t('admin.open_client_360_hint', 'See relationship context across orders and support.')}</p></Link>
+            <Link to="/workbench" className="group rounded-2xl border border-gold/15 bg-gold/[0.06] p-4 transition hover:border-gold/35 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold/70"><div className="flex items-center justify-between"><div><p className="text-xs uppercase tracking-[0.2em] text-gold/70">{t('admin.quick_action')}</p><p className="mt-1 text-sm font-semibold text-white">{t('admin.open_workbench')}</p></div><FolderOpen className="h-5 w-5 text-gold transition-transform group-hover:scale-110" /></div><p className="mt-2 text-xs text-white/45">{t('admin.open_workbench_hint')}</p></Link>
+            <Link to="/clients" className="group rounded-2xl border border-white/10 bg-white/[0.03] p-4 transition hover:border-gold/25 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold/70"><div className="flex items-center justify-between"><div><p className="text-xs uppercase tracking-[0.2em] text-white/40">{t('admin.quick_action')}</p><p className="mt-1 text-sm font-semibold text-white">{t('admin.open_client_360')}</p></div><User className="h-5 w-5 text-gold transition-transform group-hover:scale-110" /></div><p className="mt-2 text-xs text-white/45">{t('admin.open_client_360_hint')}</p></Link>
           </div>
 
           <AdminCatalogManager />

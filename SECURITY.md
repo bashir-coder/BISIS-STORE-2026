@@ -2,7 +2,7 @@
 
 ## Supported scope
 
-BİŞIŞ V1 is currently a release candidate for staging and controlled canary validation. Public production launch remains conditional on external infrastructure, secret-management, backup, monitoring, domain/TLS, Auth, Storage, and payment gates documented in `docs/`.
+BİŞİŞ V1 is currently a release candidate for staging and controlled canary validation. Public production launch remains conditional on external infrastructure, secret-management, backup, monitoring, domain/TLS, Auth, Storage, and payment gates documented in `docs/`.
 
 ## Reporting a vulnerability
 

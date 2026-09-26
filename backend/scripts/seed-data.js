@@ -42,8 +42,8 @@ const flattenServices = () => {
     prompt: null,
     name_en: service.name,
     name_tr: service.name,
-    description_en: `${service.name} — a focused BİŞIŞ service for ${category.name}.`,
-    description_tr: `${service.name} — ${category.name} alanında odaklı bir BİŞIŞ hizmeti.`,
+    description_en: `${service.name} — a focused BİŞİŞ service for ${category.name}.`,
+    description_tr: `${service.name} — ${category.name} alanında odaklı bir BİŞİŞ hizmeti.`,
   })))
 }
 
@@ -100,13 +100,29 @@ const ensurePersonas = async () => {
 }
 
 const ensureTranslations = async () => {
-  const source = readJson('translations.json')
-  const rows = source.flatMap((item) => ['ar', 'en', 'tr'].map((lang) => ({
-    lang,
-    ns: 'common',
-    key: item.key,
-    value: item[lang],
-  })))
+  const fallbackPath = path.resolve(__dirname, '../../frontend/src/i18n-fallback.ts')
+  const fallbackContent = fs.readFileSync(fallbackPath, 'utf8')
+  const eqIdx = fallbackContent.indexOf('= {')
+  const objStart = eqIdx + 2
+  let depth = 0
+  let objEnd = objStart
+  for (let i = objStart; i < fallbackContent.length; i++) {
+    if (fallbackContent[i] === '{') depth++
+    if (fallbackContent[i] === '}') {
+      depth--
+      if (depth === 0) { objEnd = i + 1; break }
+    }
+  }
+  const resources = JSON.parse(fallbackContent.slice(objStart, objEnd))
+  const rows = []
+  for (const lang of ['ar', 'en', 'tr']) {
+    const common = resources[lang]?.common || {}
+    for (const [key, value] of Object.entries(common)) {
+      if (value) {
+        rows.push({ lang, ns: 'common', key, value })
+      }
+    }
+  }
   const { data: existing, error: readError } = await supabase.from('translations').select('lang, ns, key')
   if (readError) throw readError
   const existingKeys = new Set((existing || []).map((row) => `${row.lang}:${row.ns}:${row.key}`))

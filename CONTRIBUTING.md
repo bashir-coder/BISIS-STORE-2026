@@ -1,8 +1,8 @@
-# Contributing to BİŞIŞ V1
+# Contributing to BİŞİŞ V1
 
 ## Before opening a change
 
-Read `README.md`, `SECURITY.md`, and the relevant document under `docs/`. BİŞIŞ V1 is intentionally scope-limited; do not add AI, agents, real payment flows, provider credentials, legacy migration support, or production configuration as part of a routine change.
+Read `README.md`, `SECURITY.md`, and the relevant document under `docs/`. BİŞİŞ V1 is intentionally scope-limited; do not add AI, agents, real payment flows, provider credentials, legacy migration support, or production configuration as part of a routine change.
 
 ## Local setup
 

@@ -1,4 +1,4 @@
-# BİŞIŞ V1 — تقرير تثبيت البنية Build Baseline
+# BİŞİŞ V1 — تقرير تثبيت البنية Build Baseline
 
 **نطاق العمل:** المرحلة 1 فقط. لم تُضف أي Feature، ولم يُعاد تصميم authentication أو workspace access أو conversation access. تم التركيز على قابلية البناء والتشغيل وتنظيم المستودع وملفات التشغيل.
 

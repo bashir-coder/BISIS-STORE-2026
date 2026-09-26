@@ -1,4 +1,4 @@
-# BİŞIŞ V1 — Project-Aware Support Tickets Contract
+# BİŞİŞ V1 — Project-Aware Support Tickets Contract
 
 ## القرار
 

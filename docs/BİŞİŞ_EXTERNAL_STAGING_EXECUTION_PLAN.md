@@ -1,4 +1,4 @@
-# BİŞIŞ V1 — External Staging Execution Plan
+# BİŞİŞ V1 — External Staging Execution Plan
 
 ## القرار الأمني
 

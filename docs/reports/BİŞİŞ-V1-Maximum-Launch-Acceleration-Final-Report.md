@@ -1,9 +1,9 @@
-# BİŞIŞ — Maximum Launch Acceleration Mission
+# BİŞİŞ — Maximum Launch Acceleration Mission
 ## التقرير التنفيذي النهائي
 
 **تاريخ المراجعة:** 24 أغسطس 2026
 
-**النطاق:** BİŞIŞ V1 الضيق فقط، على مشروع Supabase الاختباري الذي أكّد المؤسس أنه غير Production. catalog بقي 18 خدمة و3 باقات و3 شخصيات و3 FAQs؛ وبعد UI polish والجولة الأقوى وحزمة UI/UX الشاملة أصبح مصدر الترجمات 277 مفتاحًا عبر 3 لغات = 831 صفًا حيًا. لم تُستخدم أموال حقيقية، ولم تُرسل transaction حقيقية، ولم يُستخدم `database/legacy/schema.sql`، ولم تُعدّل migrations التاريخية 001–004.
+**النطاق:** BİŞİŞ V1 الضيق فقط، على مشروع Supabase الاختباري الذي أكّد المؤسس أنه غير Production. catalog بقي 18 خدمة و3 باقات و3 شخصيات و3 FAQs؛ وبعد UI polish والجولة الأقوى وحزمة UI/UX الشاملة أصبح مصدر الترجمات 277 مفتاحًا عبر 3 لغات = 831 صفًا حيًا. لم تُستخدم أموال حقيقية، ولم تُرسل transaction حقيقية، ولم يُستخدم `database/legacy/schema.sql`، ولم تُعدّل migrations التاريخية 001–004.
 
 > **الخلاصة التنفيذية:** تم إغلاق الإصلاحات البرمجية الرئيسية التي كانت تمنع Release Candidate داخل Core V1، وأثبتت اختبارات runtime وAPI وbrowser الأساسية أن التسجيل/session، persona persistence، dashboard، catalog، العزل، storage، وorder lifecycle تعمل ضمن حدود العقد الحالي. بقي الدفع محجوبًا عمدًا لأن verifier الخارجي غير مهيأ، كما لم تُثبت production topology أو domain/secrets أو Docker runtime. لذلك لا يجوز إعلان Production.
 
@@ -139,9 +139,9 @@ Google OAuth اختياري ومغلق بأمان حاليًا. تفعيله ي�
 
 ## References
 
-[1]: `docs/FINAL_LAUNCH_CHECKLIST.md` — BİŞIŞ V1 Final Launch Checklist.
+[1]: `docs/FINAL_LAUNCH_CHECKLIST.md` — BİŞİŞ V1 Final Launch Checklist.
 
-[2]: `docs/LAUNCH_MAP.md` — BİŞIŞ V1 Launch Map.
+[2]: `docs/LAUNCH_MAP.md` — BİŞİŞ V1 Launch Map.
 
 [3]: `README.md` — operating guide, environment, seed, testing, and deployment instructions.
 

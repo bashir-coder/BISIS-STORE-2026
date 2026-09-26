@@ -1,4 +1,4 @@
-# BİŞIŞ V1 — Launch Checklist
+# BİŞİŞ V1 — Launch Checklist
 
 ## Evidence-backed
 

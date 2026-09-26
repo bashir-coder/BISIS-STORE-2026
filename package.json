@@ -2,7 +2,7 @@
   "name": "BİŞİŞ-platform",
   "private": true,
   "version": "1.0.0",
-  "description": "BİŞIŞ V1 full-stack services platform",
+  "description": "BİŞİŞ V1 full-stack services platform",
   "scripts": {
     "typecheck": "npm --prefix frontend run typecheck",
     "build": "npm --prefix frontend run build",

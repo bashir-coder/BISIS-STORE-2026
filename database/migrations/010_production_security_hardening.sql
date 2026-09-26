@@ -1,8 +1,8 @@
--- BİŞIŞ V1 — Production security hardening
+-- BİŞİŞ V1 — Production security hardening
 -- Additive/non-destructive hardening only. Do not modify historical migrations.
 -- Safe to run after migrations 001–009.
 
--- public.table_name is not part of the BİŞIŞ V1 runtime contract. If it exists
+-- public.table_name is not part of the BİŞİŞ V1 runtime contract. If it exists
 -- in an environment, fail closed without deleting any rows or the table itself.
 DO $$
 BEGIN

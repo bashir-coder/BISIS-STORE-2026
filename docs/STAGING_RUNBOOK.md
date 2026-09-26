@@ -1,4 +1,4 @@
-# BİŞIŞ V1 — Staging Runbook
+# BİŞİŞ V1 — Staging Runbook
 
 هذا الدليل مخصص لمشروع Supabase Staging مستقل disposable. لا يُستخدم على Production، ولا يتضمن reset أو حذفًا أو أسرارًا. لا تُعتبر أي نتيجة ناجحة بناءً على شاشة SQL Editor وحدها؛ يجب التحقق من metadata والسلوك الفعلي.
 

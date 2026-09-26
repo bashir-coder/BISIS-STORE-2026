@@ -534,7 +534,7 @@ router.get('/client/home', authenticate, async (req, res) => {
     res.json({ data: { projects: projectCards, orders: orders || [], actions, notifications: notifications.data || [] } })
   } catch (error) {
     console.error('Client home failed:', error)
-    errorResponse(res, 500, 'Unable to load your BİŞIŞ workspace')
+    errorResponse(res, 500, 'Unable to load your BİŞİŞ workspace')
   }
 })
 

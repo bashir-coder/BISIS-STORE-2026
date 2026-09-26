@@ -4,6 +4,7 @@ import { motion } from 'framer-motion'
 import { CheckCircle, XCircle, Loader2 } from 'lucide-react'
 import { supabase } from '../lib/supabase'
 import type { EmailOtpType } from '@supabase/supabase-js'
+import { useTranslation } from 'react-i18next'
 
 const VerifyEmailPage: React.FC = () => {
   const [searchParams] = useSearchParams()
@@ -12,12 +13,13 @@ const VerifyEmailPage: React.FC = () => {
   const tokenType = searchParams.get('type') as EmailOtpType | null
   const [status, setStatus] = useState<'loading' | 'success' | 'error'>('loading')
   const [message, setMessage] = useState('')
+  const { t } = useTranslation()
 
   useEffect(() => {
     const verifyEmail = async () => {
       if (!code && !(tokenHash && tokenType)) {
         setStatus('error')
-        setMessage('رابط التأكيد غير صالح أو منتهي الصلاحية.')
+        setMessage(t('verify_email.invalid_link'))
         return
       }
 
@@ -27,16 +29,16 @@ const VerifyEmailPage: React.FC = () => {
 
       if (result.error) {
         setStatus('error')
-        setMessage(result.error.message || 'حدث خطأ أثناء تأكيد البريد.')
+        setMessage(result.error.message || t('verify_email.error'))
         return
       }
 
       setStatus('success')
-      setMessage('تم تأكيد بريدك الإلكتروني بنجاح.')
+      setMessage(t('verify_email.success'))
     }
 
     void verifyEmail()
-  }, [code, tokenHash, tokenType])
+  }, [code, tokenHash, tokenType, t])
 
   return (
     <div className="min-h-screen flex items-center justify-center section-padding">
@@ -48,26 +50,26 @@ const VerifyEmailPage: React.FC = () => {
         {status === 'loading' && (
           <>
             <Loader2 className="w-16 h-16 text-gold animate-spin mx-auto mb-4" />
-            <h2 className="text-xl font-bold text-white">جاري تأكيد البريد...</h2>
-            <p className="text-white/50 mt-2">يرجى الانتظار</p>
+            <h2 className="text-xl font-bold text-white">{t('verify_email.loading')}</h2>
+            <p className="text-white/50 mt-2">{t('verify_email.wait')}</p>
           </>
         )}
 
         {status === 'success' && (
           <>
             <CheckCircle className="w-16 h-16 text-green-400 mx-auto mb-4" />
-            <h2 className="text-xl font-bold text-white">تم التأكيد</h2>
+            <h2 className="text-xl font-bold text-white">{t('verify_email.confirmed')}</h2>
             <p className="text-white/70 mt-2">{message}</p>
-            <Link to="/login" className="btn-primary mt-6 inline-block">تسجيل الدخول الآن</Link>
+            <Link to="/login" className="btn-primary mt-6 inline-block">{t('verify_email.login_now')}</Link>
           </>
         )}
 
         {status === 'error' && (
           <>
             <XCircle className="w-16 h-16 text-red-400 mx-auto mb-4" />
-            <h2 className="text-xl font-bold text-white">فشل التأكيد</h2>
+            <h2 className="text-xl font-bold text-white">{t('verify_email.failed')}</h2>
             <p className="text-white/70 mt-2">{message}</p>
-            <Link to="/login" className="btn-secondary mt-6 inline-block">العودة لتسجيل الدخول</Link>
+            <Link to="/login" className="btn-secondary mt-6 inline-block">{t('verify_email.back_to_login')}</Link>
           </>
         )}
       </motion.div>

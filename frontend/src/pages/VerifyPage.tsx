@@ -8,10 +8,12 @@ import {
   useGoogleReCaptcha,
 } from 'react-google-recaptcha-v3'
 import {
+  useTranslation,
+} from 'react-i18next'
+import {
   useLocation,
   useNavigate,
 } from 'react-router-dom'
-import { useLanguage } from '../contexts/LanguageContext'
 
 const API_URL =
   import.meta.env.VITE_API_URL || ''
@@ -29,14 +31,10 @@ const VerifyPage: React.FC<VerifyPageProps> = ({
   const navigate = useNavigate()
   const location = useLocation()
 
-  const { currentLang } =
-    useLanguage()
+  const { t } = useTranslation()
 
   const { executeRecaptcha } =
     useGoogleReCaptcha()
-
-  const isArabic =
-    currentLang === 'ar'
 
   const [error, setError] =
     useState('')
@@ -50,9 +48,7 @@ const VerifyPage: React.FC<VerifyPageProps> = ({
 
       if (!executeRecaptcha) {
         setError(
-          isArabic
-            ? 'تعذر تحميل نظام التحقق. أعد تحميل الصفحة وحاول مرة أخرى.'
-            : 'Security verification is still loading. Please refresh and try again.',
+          t('verify.loading_error'),
         )
         return
       }
@@ -153,9 +149,7 @@ const VerifyPage: React.FC<VerifyPageProps> = ({
         )
 
         setError(
-          isArabic
-            ? 'فشل التحقق الأمني. حاول مرة أخرى.'
-            : 'Security verification failed. Please try again.',
+          t('verify.verify_error'),
         )
       } finally {
         setSubmitting(false)
@@ -164,11 +158,6 @@ const VerifyPage: React.FC<VerifyPageProps> = ({
 
   return (
     <main
-      dir={
-        isArabic
-          ? 'rtl'
-          : 'ltr'
-      }
       className="relative min-h-screen overflow-hidden bg-[#050505] text-white"
     >
       <div className="pointer-events-none absolute inset-0">
@@ -186,19 +175,15 @@ const VerifyPage: React.FC<VerifyPageProps> = ({
           </div>
 
           <p className="mb-3 text-[11px] font-semibold uppercase tracking-[0.32em] text-yellow-300/75">
-            BİŞIŞ Security
+            {t('verify.eyebrow')}
           </p>
 
           <h1 className="text-2xl font-bold tracking-tight sm:text-3xl">
-            {isArabic
-              ? 'فحص أمني سريع'
-              : 'Quick security check'}
+            {t('verify.title')}
           </h1>
 
           <p className="mx-auto mt-4 max-w-sm text-sm leading-7 text-white/55">
-            {isArabic
-              ? 'نحن نتحقق من أن الزيارة حقيقية قبل الدخول إلى BİŞIŞ.'
-              : 'We are verifying that this is a legitimate visit before entering BİŞIŞ.'}
+            {t('verify.subtitle')}
           </p>
 
           <div className="mt-8 rounded-2xl border border-white/10 bg-black/20 px-5 py-6">
@@ -211,13 +196,9 @@ const VerifyPage: React.FC<VerifyPageProps> = ({
 
               <span className="text-sm text-white/70">
                 {submitting
-                  ? isArabic
-                    ? 'جاري التحقق...'
-                    : 'Verifying...'
-                  : isArabic
-                    ? 'اضغط للمتابعة وإجراء فحص الأمان'
-                    : 'Continue to run the security check'}
-              </span>
+                  ? t('verify.verifying')
+                  : t('verify.button')}
+            </span>
             </div>
           </div>
 
@@ -243,15 +224,11 @@ const VerifyPage: React.FC<VerifyPageProps> = ({
               <ArrowRight className="h-5 w-5" />
             )}
 
-            {isArabic
-              ? 'متابعة إلى BİŞIŞ'
-              : 'Continue to BİŞIŞ'}
+            {t('verify.button_next')}
           </button>
 
           <p className="mt-6 text-[11px] leading-5 text-white/30">
-            {isArabic
-              ? 'هذه الصفحة مخصصة لفحص الأمان الأولي فقط.'
-              : 'This page is used for the initial security verification only.'}
+            {t('verify.page_info')}
           </p>
         </section>
       </div>

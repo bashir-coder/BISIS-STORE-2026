@@ -1,4 +1,4 @@
-# BİŞIŞ V1 — First-Customer Path Audit
+# BİŞİŞ V1 — First-Customer Path Audit
 **Evidence Report: Package/Order Creation → Payment → Verification → Processing → Requirements → Execution → Delivery → Approval → Completion → Invoice/Testimonial/Referral**
 
 ---

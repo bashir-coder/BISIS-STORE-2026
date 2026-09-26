@@ -1,10 +1,10 @@
-# BİŞIŞ — FUTURE IMPLEMENTATION FINAL REPORT
+# BİŞİŞ — FUTURE IMPLEMENTATION FINAL REPORT
 
 **التاريخ:** 27 أغسطس 2026
 
 ## 1. Executive decision
 
-تم تنفيذ أكبر نواة مستقبلية آمنة يمكن دمجها دون كسر BİŞIŞ V1 أو تعديل قاعدة البيانات أو تفعيل مزودات خارجية. التنفيذ ليس مجرد placeholder: يحتوي على domain logic، validation، error handling، tenant scoping، approval boundaries، idempotency، repositories، local adapters، واختبارات حقيقية.
+تم تنفيذ أكبر نواة مستقبلية آمنة يمكن دمجها دون كسر BİŞİŞ V1 أو تعديل قاعدة البيانات أو تفعيل مزودات خارجية. التنفيذ ليس مجرد placeholder: يحتوي على domain logic، validation، error handling، tenant scoping، approval boundaries، idempotency، repositories، local adapters، واختبارات حقيقية.
 
 النواة معزولة في `backend/src/future/` وغير مستوردة في `server.js` أو أي route حالي. تفعيلها يحتاج قرارًا منفصلًا وربطًا مقصودًا، بينما `BİŞİŞ_FUTURE_ENABLED=false` هو الوضع الافتراضي. لذلك بقيت Authentication وAuthorization وRLS وIDOR وPayments وroutes وdatabase contract الخاصة بـV1 دون تغيير.
 
@@ -42,11 +42,11 @@
 | V7 Global Expansion | **ARCHITECTURE ONLY** | conceptual locale/currency/tax boundaries في archive | legal/tax engine، multi-currency settlement، regional operations |
 | V8 Enterprise Suite | **PARTIALLY IMPLEMENTED** | organization/team/membership repositories، identity-provider contract | SSO Google/Microsoft/Okta، full RBAC/ABAC UI and persistence |
 | V9 Automation Ecosystem | **FOUNDATION** | trigger/event/webhook/idempotency contracts | visual builder، external connectors، scheduler worker |
-| V10 BİŞIŞ Operating System | **ARCHITECTURE ONLY** | platform convergence architecture | plugin/BI/cloud/SaaS platform implementation |
+| V10 BİŞİŞ Operating System | **ARCHITECTURE ONLY** | platform convergence architecture | plugin/BI/cloud/SaaS platform implementation |
 | V11 AI Research Lab | **PARTIALLY IMPLEMENTED** | prompt/evaluation/model-selection/local regression primitives | datasets، RAG/knowledge store، evaluation UI، governance |
 | V12 Developer Platform | **ARCHITECTURE ONLY** | versioned API/key/webhook principles and adapter boundary | public API routes، SDK، developer accounts/docs portal |
 | V13 Marketplace | **FOUNDATION** | listing/publish-for-review/review/commission foundation | seller verification، moderation service/UI، payouts |
-| V14 BİŞIŞ Cloud | **FOUNDATION** | local resource planner and CloudProvider-safe boundary | real provisioning، isolation، backups، quotas، monitoring |
+| V14 BİŞİŞ Cloud | **FOUNDATION** | local resource planner and CloudProvider-safe boundary | real provisioning، isolation، backups، quotas، monitoring |
 | V15 Future Technologies | **ARCHITECTURE ONLY** | experimental/research boundaries in archive | voice/video/image/3D/AR/VR/robotics research |
 | V16 AI Workflow Engine | **PARTIALLY IMPLEMENTED** | workflow service، repository، states/history، approval، idempotency، tool execution | durable queue، retries/backoff/timeout/cancellation، Postgres persistence، API |
 | V17 Smart CRM | **PARTIALLY IMPLEMENTED** | client score، leads، notes، follow-up service/repositories | CRM API/UI، activity timeline، durable persistence |
@@ -173,5 +173,5 @@ Known non-blocking outputs: frontend audit لديه 2 moderate React Router advi
 ## References
 
 [1]: [Future Architecture Archive](../archive/future-platform/README.md) — متاح في الأرشيف الداخلي فقط، وليس داخل Public V1 package.
-[2]: [BİŞIŞ V1 Canonical Migration Order](BİŞİŞ_V1_CANONICAL_MIGRATION_ORDER.md)
-[3]: [BİŞIŞ V1 Final Autonomous Closure Report](BİŞİŞ_V1_FINAL_AUTONOMOUS_CLOSURE_REPORT.md)
+[2]: [BİŞİŞ V1 Canonical Migration Order](BİŞİŞ_V1_CANONICAL_MIGRATION_ORDER.md)
+[3]: [BİŞİŞ V1 Final Autonomous Closure Report](BİŞİŞ_V1_FINAL_AUTONOMOUS_CLOSURE_REPORT.md)

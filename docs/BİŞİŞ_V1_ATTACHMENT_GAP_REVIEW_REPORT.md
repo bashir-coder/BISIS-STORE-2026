@@ -1,4 +1,4 @@
-# BİŞIŞ V1 — Attachment Gap Review Report
+# BİŞİŞ V1 — Attachment Gap Review Report
 
 ## الملخص التنفيذي
 
@@ -79,7 +79,7 @@
 | Service → Template assignment | PARTIAL | القالب يحمل `service_id` والاختيار في Workbench موجود، لكن لا يوجد UI إداري لربط/تغيير القالب من كتالوج الخدمة |
 | Client 360 الكامل | PARTIAL | لا يزال لا يعرض requirements/delivery files/activity التفصيلية أو timeline الكامل لكل عميل |
 | Project-aware support tickets | NOT DONE | جدول tickets والمسار لا يحملان `project_id`; يلزم additive migration وعقد authorization واختبار قبل التنفيذ |
-| Contact BİŞIŞ داخل Project Workspace | PARTIAL | chat يدعم `project_id` في backend، لكن لا توجد تجربة كاملة داخل Workspace تفتح المحادثة السياقية مباشرة |
+| Contact BİŞİŞ داخل Project Workspace | PARTIAL | chat يدعم `project_id` في backend، لكن لا توجد تجربة كاملة داخل Workspace تفتح المحادثة السياقية مباشرة |
 | Client Dashboard إزالة legacy UX | PARTIAL | أضيف ClientDeliveryHome، لكن order stats وorder list وFAQ/ticket blocks القديمة ما زالت موجودة |
 | Permanent Jest regression للـRLS leak | PARTIAL | live smoke محفوظ وقابل لإعادة التشغيل، لكن لا يوجد test case مستقل في Jest يشغّل JWT regression تلقائيًا |
 | Authenticated browser E2E | NOT TESTED | تعذر إكمال جلسة browser مصادق عليها للواجهة؛ تم إثبات Vite عبر HTTP المحلي فقط |

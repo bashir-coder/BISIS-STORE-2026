@@ -1,10 +1,10 @@
-# BİŞIŞ V1 — Public GitHub Remediation Record
+# BİŞİŞ V1 — Public GitHub Remediation Record
 
 ## Current status
 
 The working tree has been hardened for a **fresh public GitHub baseline**, but it has not been published and no remote repository has been changed. The repository root originally had no `.git` metadata, so previous commit history, deleted files, branches, tags, and remote provenance could not be audited from this checkout.
 
-The GitHub account is authenticated and several older BİŞIŞ-named repositories exist, but no existing remote was assumed to be this project. No repository was created, selected, pushed to, or made public by this task.
+The GitHub account is authenticated and several older BİŞİŞ-named repositories exist, but no existing remote was assumed to be this project. No repository was created, selected, pushed to, or made public by this task.
 
 ## Completed local remediation
 

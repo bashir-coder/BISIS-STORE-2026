@@ -1,4 +1,4 @@
-# BİŞIŞ V1 — Database Contract & Runtime Baseline
+# BİŞİŞ V1 — Database Contract & Runtime Baseline
 
 **نطاق التقرير:** المرحلة 2 فقط، حتى نقطة التحقق الآمن قبل تطبيق migration.
 

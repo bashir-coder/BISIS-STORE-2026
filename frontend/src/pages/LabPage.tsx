@@ -819,23 +819,14 @@ const LabPage: React.FC = () => {
               </h2>
 
               <p className="mt-4 max-w-2xl text-sm leading-8 text-white/45">
-                {t(
-                  'lab.payment.description',
-                  'بعد إنشاء الطلب، ينتقل المستخدم إلى مسار الدفع عبر NOWPayments. حالة الدفع لا تعتمد على زر في الواجهة فقط، بل تتم متابعتها من النظام.',
-                )}
+                {t('lab.payment.description')}
               </p>
 
               <div className="mt-7 space-y-3">
                 {[
                   t('lab.payment.point1'),
-                  t(
-                    'lab.payment.point2',
-                    'مسار العملات المشفر الحالي يستخدم USDC على BSC.',
-                  ),
-                  t(
-                    'lab.payment.point3',
-                    'حالة الدفع تعود إلى النظام عبر مسار NOWPayments.',
-                  ),
+                  t('lab.payment.point2'),
+                  t('lab.payment.point3'),
                 ].map((point) => (
                   <div
                     key={point}
@@ -864,7 +855,7 @@ const LabPage: React.FC = () => {
 
                 <div>
                   <div className="text-sm font-bold text-white">
-                    NOWPayments
+                    {t('payment.crypto_provider')}
                   </div>
                   <div className="text-xs text-white/35">
                     {t('lab.payment.provider')}
@@ -874,11 +865,11 @@ const LabPage: React.FC = () => {
 
               <div className="mt-7 rounded-2xl border border-white/10 bg-white/[0.025] p-5">
                 <div className="text-[10px] uppercase tracking-wider text-white/30">
-                  Current crypto route
+                  {t('payment.crypto_route')}
                 </div>
 
                 <div className="mt-2 text-lg font-bold text-white">
-                  USDC · BSC
+                  {t('payment.crypto_value')}
                 </div>
 
                 <div className="mt-1 text-xs text-emerald-400">
@@ -888,10 +879,7 @@ const LabPage: React.FC = () => {
 
               <div className="mt-4 flex items-center gap-2 text-xs text-white/35">
                 <Lock className="h-3.5 w-3.5" />
-                {t(
-                  'lab.payment.security',
-                  'لا تعتمد حالة الدفع على إدخال العميل وحده.',
-                )}
+                {t('lab.payment.security')}
               </div>
             </div>
           </motion.div>

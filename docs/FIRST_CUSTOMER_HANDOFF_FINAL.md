@@ -1,4 +1,4 @@
-# BİŞIŞ V1 — First Customer Acquisition: Final Handoff Report
+# BİŞİŞ V1 — First Customer Acquisition: Final Handoff Report
 
 **Auditor**: Kilo #4 — First Customer Acquisition & Launch Growth Auditor  
 **Date**: September 13, 2026  
@@ -172,7 +172,7 @@ Regardless of what price the founder chooses for the launch offer ($497, $597, $
 - Can afford $199–$697 for a one-time deliverable
 - Is reachable via WhatsApp, LinkedIn, or personal introduction
 - Speaks Arabic (primary), English, or Turkish
-- Benefits from BİŞIŞ's Gaza-based identity and regional understanding
+- Benefits from BİŞİŞ's Gaza-based identity and regional understanding
 
 ### Why this profile is VERIFIED (not assumed):
 
@@ -316,7 +316,7 @@ A Gaza/Regional early-stage founder who needs strategic clarity for their busine
 3. **Warm introductions** — Anyone the founder knows who knows a founder
 
 ### WHY THEM
-This founder has a concrete, urgent need (strategic clarity), can afford the Foundation package, is reachable today via WhatsApp, and will understand BİŞIŞ's Gaza-based perspective because they share it.
+This founder has a concrete, urgent need (strategic clarity), can afford the Foundation package, is reachable today via WhatsApp, and will understand BİŞİŞ's Gaza-based perspective because they share it.
 
 ### PAIN (lead with this)
 "I help founders stop being scattered and start being clear — on their direction, their message, and their next step."
@@ -382,7 +382,7 @@ Customer 3 → testimonial → referral → pipeline
 
 ## 10. MANUAL-FIRST DECISION
 
-### Can BİŞIŞ acquire and deliver to first 1–10 customers entirely manually?
+### Can BİŞİŞ acquire and deliver to first 1–10 customers entirely manually?
 
 | Capability | Manual? | Founder time per customer |
 |------------|---------|--------------------------|
@@ -474,7 +474,7 @@ Testimonial → Referral
 
 **Justification:**
 
-BİŞIŞ V1 can absolutely acquire and deliver its first customer within 7–14 days through manual, founder-led outreach and fulfillment. The Foundation package is real, specific, and desirable. The target customer is clearly defined and reachable. The delivery system works.
+BİŞİŞ V1 can absolutely acquire and deliver its first customer within 7–14 days through manual, founder-led outreach and fulfillment. The Foundation package is real, specific, and desirable. The target customer is clearly defined and reachable. The delivery system works.
 
 **However**, two blockers require resolution before any customer interaction where pricing is discussed:
 
@@ -497,5 +497,5 @@ Both blockers are solvable without code changes by the founder, but both require
 ---
 
 *End of Final Handoff Report.*
-*All claims verified against current BİŞIŞ V1 project files as of September 13, 2026.*
+*All claims verified against current BİŞİŞ V1 project files as of September 13, 2026.*
 *No implementation changes made. No repository modifications. Read-only audit.*

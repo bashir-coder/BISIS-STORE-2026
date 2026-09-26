@@ -29,7 +29,7 @@ interface AIChatbotProps {
 // ============================================================
 const uiTranslations = {
   ar: {
-    greeting: 'مرحباً! أنا مساعد منصة BİŞIŞ. اختر سؤالاً من الأسفل للحصول على إجابة مفصلة.',
+    greeting: 'مرحباً! أنا مساعد منصة BİŞİŞ. اختر سؤالاً من الأسفل للحصول على إجابة مفصلة.',
     title: 'المساعد الذكي',
     online: 'متصل',
     footer: 'اختر سؤالاً للحصول على إجابة مفصلة',
@@ -44,7 +44,7 @@ const uiTranslations = {
     },
   },
   en: {
-    greeting: 'Hello! I am the BİŞIŞ chatbot assistant. Choose a question below to get a detailed answer.',
+    greeting: 'Hello! I am the BİŞİŞ chatbot assistant. Choose a question below to get a detailed answer.',
     title: 'Smart Assistant',
     online: 'Online',
     footer: 'Choose a question for detailed answer',
@@ -59,7 +59,7 @@ const uiTranslations = {
     },
   },
   tr: {
-    greeting: 'Merhaba! BİŞIŞ sohbet botu asistanıyım. Detaylı bir cevap almak için aşağıdan bir soru seçin.',
+    greeting: 'Merhaba! BİŞİŞ sohbet botu asistanıyım. Detaylı bir cevap almak için aşağıdan bir soru seçin.',
     title: 'Akıllı Asistan',
     online: 'Çevrimiçi',
     footer: 'Detaylı cevap için bir soru seçin',
@@ -83,13 +83,13 @@ const faqsByLang: Record<string, FAQItem[]> = {
     {
       id: 'prices',
       question: '💰 ما هي أسعار باقاتكم؟',
-      answer: '<strong>أسعار باقات BİŞIŞ:</strong><br><br>• <strong>باقة Foundation:</strong> $699 – مناسبة للشركات الناشئة والأفراد.<br>• <strong>باقة Growth:</strong> $1,499 – للشركات المتوسطة التي تبحث عن نمو سريع.<br>• <strong>باقة Scale:</strong> $2,499 – للشركات الجاهزة لجذب الاستثمارات.<br><br>راجع صفحة الباقات لمعرفة النطاق والمخرجات الحالية لكل باقة.',
+      answer: '<strong>أسعار باقات BİŞİŞ:</strong><br><br>• <strong>باقة Foundation:</strong> $699 – مناسبة للشركات الناشئة والأفراد.<br>• <strong>باقة Growth:</strong> $1,499 – للشركات المتوسطة التي تبحث عن نمو سريع.<br>• <strong>باقة Scale:</strong> $2,499 – للشركات الجاهزة لجذب الاستثمارات.<br><br>راجع صفحة الباقات لمعرفة النطاق والمخرجات الحالية لكل باقة.',
       category: 'pricing',
     },
     {
       id: 'packages',
       question: '📦 ما هي الباقات التي تقدمونها؟',
-      answer: 'نقدم <strong>3 باقات رئيسية:</strong><br><br>• <strong>Foundation:</strong> مثالية لبدء مشروعك بسرعة مع الخدمات الأساسية.<br>• <strong>Growth:</strong> تشمل أدوات تسويقية وتحليلية متقدمة.<br>• <strong>Scale:</strong> باقة متكاملة تشمل كل ما تحتاجه لعرض مشروعك على المستثمرين.<br><br>يمكنك استكشاف الخدمات الأساسية المتاحة ضمن نطاق BİŞIŞ V1.',
+      answer: 'نقدم <strong>3 باقات رئيسية:</strong><br><br>• <strong>Foundation:</strong> مثالية لبدء مشروعك بسرعة مع الخدمات الأساسية.<br>• <strong>Growth:</strong> تشمل أدوات تسويقية وتحليلية متقدمة.<br>• <strong>Scale:</strong> باقة متكاملة تشمل كل ما تحتاجه لعرض مشروعك على المستثمرين.<br><br>يمكنك استكشاف الخدمات الأساسية المتاحة ضمن نطاق BİŞİŞ V1.',
       category: 'pricing',
     },
     {
@@ -107,7 +107,7 @@ const faqsByLang: Record<string, FAQItem[]> = {
     {
       id: 'services',
       question: '🧠 ما هي الخدمات التي تقدمونها؟',
-      answer: 'يضم كتالوج BİŞIŞ V1 الحالي <strong>18 خدمة أساسية</strong> ضمن فئة كتالوج واحدة هي <strong>Official Services</strong>.<br><br>راجع صفحة الباقات والخدمات للحصول على الأسماء والأسعار ومدة التسليم الحالية لكل خدمة.',
+      answer: 'يضم كتالوج BİŞİŞ V1 الحالي <strong>18 خدمة أساسية</strong> ضمن فئة كتالوج واحدة هي <strong>Official Services</strong>.<br><br>راجع صفحة الباقات والخدمات للحصول على الأسماء والأسعار ومدة التسليم الحالية لكل خدمة.',
       category: 'services',
     },
     {
@@ -131,7 +131,7 @@ const faqsByLang: Record<string, FAQItem[]> = {
     {
       id: 'about',
       question: '🏢 من نحن؟',
-      answer: '<strong>BİŞIŞ</strong> هي منصة متكاملة تهدف إلى تحويل الأفكار إلى أنظمة أعمال قابلة للتوسع.<br><br>نحن نؤمن بأن كل رائد أعمال يستحق أدوات احترافية لبناء مشروعه بنجاح.<br><br>📌 <strong>رؤيتنا:</strong> تمكين رواد الأعمال والشركات الناشئة من النمو بسرعة وكفاءة.<br>📌 <strong>قيمنا:</strong> الجودة، الشفافية، والابتكار.',
+      answer: '<strong>BİŞİŞ</strong> هي منصة متكاملة تهدف إلى تحويل الأفكار إلى أنظمة أعمال قابلة للتوسع.<br><br>نحن نؤمن بأن كل رائد أعمال يستحق أدوات احترافية لبناء مشروعه بنجاح.<br><br>📌 <strong>رؤيتنا:</strong> تمكين رواد الأعمال والشركات الناشئة من النمو بسرعة وكفاءة.<br>📌 <strong>قيمنا:</strong> الجودة، الشفافية، والابتكار.',
       category: 'general',
     },
     {
@@ -145,13 +145,13 @@ const faqsByLang: Record<string, FAQItem[]> = {
     {
       id: 'prices',
       question: '💰 What are your package prices?',
-      answer: '<strong>BİŞIŞ Package Prices:</strong><br><br>• <strong>Foundation Package:</strong> $699 – Suitable for startups and individuals.<br>• <strong>Growth Package:</strong> $1,499 – For medium businesses seeking rapid growth.<br>• <strong>Scale Package:</strong> $2,499 – For businesses ready to attract investments.<br><br>See the packages page for the current scope and deliverables of each package.',
+      answer: '<strong>BİŞİŞ Package Prices:</strong><br><br>• <strong>Foundation Package:</strong> $699 – Suitable for startups and individuals.<br>• <strong>Growth Package:</strong> $1,499 – For medium businesses seeking rapid growth.<br>• <strong>Scale Package:</strong> $2,499 – For businesses ready to attract investments.<br><br>See the packages page for the current scope and deliverables of each package.',
       category: 'pricing',
     },
     {
       id: 'packages',
       question: '📦 What packages do you offer?',
-      answer: 'We offer <strong>3 main packages:</strong><br><br>• <strong>Foundation:</strong> Perfect for quickly launching your project with basic services.<br>• <strong>Growth:</strong> Includes advanced marketing and analytical tools.<br>• <strong>Scale:</strong> A comprehensive package covering everything you need to present your project to investors.<br><br>You can explore the core services available in the BİŞIŞ V1 scope.',
+      answer: 'We offer <strong>3 main packages:</strong><br><br>• <strong>Foundation:</strong> Perfect for quickly launching your project with basic services.<br>• <strong>Growth:</strong> Includes advanced marketing and analytical tools.<br>• <strong>Scale:</strong> A comprehensive package covering everything you need to present your project to investors.<br><br>You can explore the core services available in the BİŞİŞ V1 scope.',
       category: 'pricing',
     },
     {
@@ -169,7 +169,7 @@ const faqsByLang: Record<string, FAQItem[]> = {
     {
       id: 'services',
       question: '🧠 What services do you offer?',
-      answer: 'The current BİŞIŞ V1 catalog contains <strong>18 core services</strong> in one catalog category: <strong>Official Services</strong>.<br><br>Use the packages and services page to see the current names, prices, and delivery timing for each service.',
+      answer: 'The current BİŞİŞ V1 catalog contains <strong>18 core services</strong> in one catalog category: <strong>Official Services</strong>.<br><br>Use the packages and services page to see the current names, prices, and delivery timing for each service.',
       category: 'services',
     },
     {
@@ -193,7 +193,7 @@ const faqsByLang: Record<string, FAQItem[]> = {
     {
       id: 'about',
       question: '🏢 Who are we?',
-      answer: '<strong>BİŞIŞ</strong> is an integrated platform aimed at turning ideas into scalable business systems.<br><br>We believe that every entrepreneur deserves professional tools to successfully build their project.<br><br>📌 <strong>Our Vision:</strong> Empowering entrepreneurs and startups to grow quickly and efficiently.<br>📌 <strong>Our Values:</strong> Quality, transparency, and innovation.',
+      answer: '<strong>BİŞİŞ</strong> is an integrated platform aimed at turning ideas into scalable business systems.<br><br>We believe that every entrepreneur deserves professional tools to successfully build their project.<br><br>📌 <strong>Our Vision:</strong> Empowering entrepreneurs and startups to grow quickly and efficiently.<br>📌 <strong>Our Values:</strong> Quality, transparency, and innovation.',
       category: 'general',
     },
     {
@@ -207,13 +207,13 @@ const faqsByLang: Record<string, FAQItem[]> = {
     {
       id: 'prices',
       question: '💰 Paket fiyatlarınız nedir?',
-      answer: '<strong>BİŞIŞ Paket Fiyatları:</strong><br><br>• <strong>Foundation Paketi:</strong> $699 – Yeni başlayanlar ve bireyler için uygundur.<br>• <strong>Growth Paketi:</strong> $1,499 – Hızlı büyüme arayan orta ölçekli işletmeler için.<br>• <strong>Scale Paketi:</strong> $2,499 – Yatırım çekmeye hazır işletmeler için.<br><br>Her paketin güncel kapsamı ve teslimatları için paketler sayfasına bakın.',
+      answer: '<strong>BİŞİŞ Paket Fiyatları:</strong><br><br>• <strong>Foundation Paketi:</strong> $699 – Yeni başlayanlar ve bireyler için uygundur.<br>• <strong>Growth Paketi:</strong> $1,499 – Hızlı büyüme arayan orta ölçekli işletmeler için.<br>• <strong>Scale Paketi:</strong> $2,499 – Yatırım çekmeye hazır işletmeler için.<br><br>Her paketin güncel kapsamı ve teslimatları için paketler sayfasına bakın.',
       category: 'pricing',
     },
     {
       id: 'packages',
       question: '📦 Hangi paketleri sunuyorsunuz?',
-      answer: '<strong>3 ana paket</strong> sunuyoruz:<br><br>• <strong>Foundation:</strong> Temel hizmetlerle projenizi hızlıca başlatmak için ideal.<br>• <strong>Growth:</strong> Gelişmiş pazarlama ve analitik araçları içerir.<br>• <strong>Scale:</strong> Projenizi yatırımcılara sunmak için ihtiyacınız olan her şeyi kapsayan kapsamlı bir paket.<br><br>BİŞIŞ V1 kapsamındaki temel hizmetleri inceleyebilirsiniz.',
+      answer: '<strong>3 ana paket</strong> sunuyoruz:<br><br>• <strong>Foundation:</strong> Temel hizmetlerle projenizi hızlıca başlatmak için ideal.<br>• <strong>Growth:</strong> Gelişmiş pazarlama ve analitik araçları içerir.<br>• <strong>Scale:</strong> Projenizi yatırımcılara sunmak için ihtiyacınız olan her şeyi kapsayan kapsamlı bir paket.<br><br>BİŞİŞ V1 kapsamındaki temel hizmetleri inceleyebilirsiniz.',
       category: 'pricing',
     },
     {
@@ -231,7 +231,7 @@ const faqsByLang: Record<string, FAQItem[]> = {
     {
       id: 'services',
       question: '🧠 Hangi hizmetleri sunuyorsunuz?',
-      answer: 'Güncel BİŞIŞ V1 kataloğu <strong>18 temel hizmet</strong> içerir ve bu hizmetler tek katalog kategorisinde toplanır: <strong>Official Services</strong>.<br><br>Her hizmetin güncel adı, fiyatı ve teslim süresi için paketler ve hizmetler sayfasını kullanın.',
+      answer: 'Güncel BİŞİŞ V1 kataloğu <strong>18 temel hizmet</strong> içerir ve bu hizmetler tek katalog kategorisinde toplanır: <strong>Official Services</strong>.<br><br>Her hizmetin güncel adı, fiyatı ve teslim süresi için paketler ve hizmetler sayfasını kullanın.',
       category: 'services',
     },
     {
@@ -255,7 +255,7 @@ const faqsByLang: Record<string, FAQItem[]> = {
     {
       id: 'about',
       question: '🏢 Biz kimiz?',
-      answer: '<strong>BİŞIŞ</strong>, fikirleri ölçeklenebilir iş sistemlerine dönüştürmeyi amaçlayan entegre bir platformdur.<br><br>Her girişimcinin projesini başarıyla kurmak için profesyonel araçları hak ettiğine inanıyoruz.<br><br>📌 <strong>Vizyonumuz:</strong> Girişimcileri ve yeni kurulan şirketleri hızlı ve verimli bir şekilde büyümeleri için güçlendirmek.<br>📌 <strong>Değerlerimiz:</strong> Kalite, şeffaflık ve yenilik.',
+      answer: '<strong>BİŞİŞ</strong>, fikirleri ölçeklenebilir iş sistemlerine dönüştürmeyi amaçlayan entegre bir platformdur.<br><br>Her girişimcinin projesini başarıyla kurmak için profesyonel araçları hak ettiğine inanıyoruz.<br><br>📌 <strong>Vizyonumuz:</strong> Girişimcileri ve yeni kurulan şirketleri hızlı ve verimli bir şekilde büyümeleri için güçlendirmek.<br>📌 <strong>Değerlerimiz:</strong> Kalite, şeffaflık ve yenilik.',
       category: 'general',
     },
     {

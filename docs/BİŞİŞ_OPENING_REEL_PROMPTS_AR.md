@@ -1,8 +1,8 @@
-# BİŞIŞ — حزمة برومبت فيديو الافتتاح والريل
+# BİŞİŞ — حزمة برومبت فيديو الافتتاح والريل
 
 ## 1. مواصفات الحملة
 
-الفكرة الإبداعية هي **«من الفوضى إلى الوضوح»**. يبدأ الفيديو من ألم العمل المتشتت، ثم يظهر BİŞIŞ كطبقة تنظيم تربط الطلب بالمشروع والمتطلبات والتنفيذ والتسليم. الهدف هو تقديم BİŞIŞ كمنتج احترافي يساعد العميل والفريق على رؤية الخطوة التالية، وليس كمنصة غامضة أو كحل سحري.
+الفكرة الإبداعية هي **«من الفوضى إلى الوضوح»**. يبدأ الفيديو من ألم العمل المتشتت، ثم يظهر BİŞİŞ كطبقة تنظيم تربط الطلب بالمشروع والمتطلبات والتنفيذ والتسليم. الهدف هو تقديم BİŞİŞ كمنتج احترافي يساعد العميل والفريق على رؤية الخطوة التالية، وليس كمنصة غامضة أو كحل سحري.
 
 | العنصر | القرار الإبداعي |
 |---|---|
@@ -10,7 +10,7 @@
 | المقاس | 9:16 عمودي، 1080×1920 |
 | الجمهور | أصحاب المشاريع والعملاء والفرق الخدمية |
 | النبرة | سينمائية، واثقة، إنسانية، راقية |
-| لوحة الألوان | كحلي/أسود عميق، ذهبي BİŞIŞ، أبيض دافئ، لمسات سماوية خفيفة |
+| لوحة الألوان | كحلي/أسود عميق، ذهبي BİŞİŞ، أبيض دافئ، لمسات سماوية خفيفة |
 | الأسلوب | premium cinematic product film، مزيج من لقطات واقعية وواجهات تجريدية دقيقة |
 | الإيقاع | فوضى سريعة في البداية، ثم انتقال منظم إلى حركة هادئة وواثقة |
 | النص داخل الصور | لا تعتمد على مولّد الصور للنص العربي؛ أضف العناوين النهائية في المونتاج |
@@ -21,15 +21,15 @@
 استخدم النص التالي كـCreative Master Prompt مع مولّد الفيديو، أو اجعله مرجعًا لتقسيم الفيديو إلى مقاطع قصيرة:
 
 ```text
-Create a premium cinematic vertical launch film for BİŞIŞ, a modern service-delivery and project-execution platform. The central story is “from chaos to clarity”: show how scattered client messages, files, deadlines and tasks become one clear, calm and trustworthy project journey.
+Create a premium cinematic vertical launch film for BİŞİŞ, a modern service-delivery and project-execution platform. The central story is “from chaos to clarity”: show how scattered client messages, files, deadlines and tasks become one clear, calm and trustworthy project journey.
 
-Format: upright 9:16 vertical, 1080x1920, 50–60 seconds, high-end commercial quality, realistic cinematic lighting, elegant dark navy and near-black environments, warm BİŞIŞ gold accents, subtle cyan highlights, refined glassmorphism, premium product-film art direction, shallow depth of field, precise motion design, realistic hands and devices, clean composition with safe space for Arabic captions added later in editing.
+Format: upright 9:16 vertical, 1080x1920, 50–60 seconds, high-end commercial quality, realistic cinematic lighting, elegant dark navy and near-black environments, warm BİŞİŞ gold accents, subtle cyan highlights, refined glassmorphism, premium product-film art direction, shallow depth of field, precise motion design, realistic hands and devices, clean composition with safe space for Arabic captions added later in editing.
 
-Narrative arc: begin with controlled visual chaos—overlapping message windows, loose files, a ticking clock, a client waiting and a team switching between disconnected tasks. The camera moves quickly and slightly nervously, with cool shadows and fragmented reflections. Do not show readable fake app names, fake customer data, fake payment confirmations, or invented product claims; use abstract, non-readable interface shapes unless an authentic BİŞIŞ screenshot is supplied.
+Narrative arc: begin with controlled visual chaos—overlapping message windows, loose files, a ticking clock, a client waiting and a team switching between disconnected tasks. The camera moves quickly and slightly nervously, with cool shadows and fragmented reflections. Do not show readable fake app names, fake customer data, fake payment confirmations, or invented product claims; use abstract, non-readable interface shapes unless an authentic BİŞİŞ screenshot is supplied.
 
 At the turning point, all motion pauses. A single warm golden point of light appears at the center and expands into a clean path. The fragmented elements do not disappear magically; they physically align into one organized project flow. A request becomes a project, the project reveals milestones and tasks, requirements become clear, progress becomes visible, and a delivery enters a calm review state. Show the client and the delivery team looking at the same source of truth from different sides, with no conflict and no exaggerated futuristic holograms.
 
-The final moment is a confident delivery: a clean project workspace, a visible next action, a delivery review moment, and a warm gold light passing through the BİŞIŞ mark. End on a minimal dark background with the BİŞIŞ wordmark supplied by the brand owner, leaving generous negative space for the final Arabic tagline to be added in post-production.
+The final moment is a confident delivery: a clean project workspace, a visible next action, a delivery review moment, and a warm gold light passing through the BİŞİŞ mark. End on a minimal dark background with the BİŞİŞ wordmark supplied by the brand owner, leaving generous negative space for the final Arabic tagline to be added in post-production.
 
 Continuity rules: maintain the same dark navy and gold visual language, the same elegant glass-and-metal interface materials, the same warm directional light after the turning point, and consistent camera physics. Motion must be physically traversable and intentional. Use one clear action per shot. Keep all human anatomy, hands, device proportions, interface panels and light sources stable. No random text, no illegible logos, no extra brand marks, no fake success metrics, no payment claims, no AI-generated chatbot, no floating gibberish, no watermarks, no subtitles generated by the model.
 
@@ -53,7 +53,7 @@ Continue the premium vertical launch film in the same dark navy environment. A p
 ### Clip 03 — نقطة التحول | 12–18 ثانية
 
 ```text
-A dark navy frame holds the same desk, laptop, phone, folders and abstract interface cards from the previous shot. All movement gradually slows and stops; the camera becomes steady. A single warm BİŞIŞ-gold point of light appears at the center of the desk, remains visible, then expands in a controlled circular glow that reflects on the existing objects. The light does not erase the chaos; instead, each card gently rotates toward the center along a believable path. The contrast shifts from cold blue shadows to balanced navy and warm gold. Elegant premium product-film style, precise glow, no readable text, no fake logo generation, no watermarks, no background music.
+A dark navy frame holds the same desk, laptop, phone, folders and abstract interface cards from the previous shot. All movement gradually slows and stops; the camera becomes steady. A single warm BİŞİŞ-gold point of light appears at the center of the desk, remains visible, then expands in a controlled circular glow that reflects on the existing objects. The light does not erase the chaos; instead, each card gently rotates toward the center along a believable path. The contrast shifts from cold blue shadows to balanced navy and warm gold. Elegant premium product-film style, precise glow, no readable text, no fake logo generation, no watermarks, no background music.
 ```
 
 ### Clip 04 — الفكرة تصبح مشروعًا | 18–25 ثانية
@@ -83,21 +83,21 @@ The organized workspace transitions through a smooth match cut to a delivery rev
 ### Clip 08 — العلامة والنتيجة | 48–60 ثانية
 
 ```text
-Resolve the vertical launch film in a minimal dark navy space. The laptop, desk and warm gold path remain present but fall softly out of focus as the golden path travels toward the center and forms a clean circular halo behind the supplied BİŞIŞ wordmark; do not generate or alter the wordmark if a brand asset is provided. The camera performs a slow, stable pull-back, creating generous negative space for Arabic closing text added in post-production. The final light settles into a calm pulse, not a flash. The ending must feel trustworthy, precise and premium, with no extra logos, no random text, no watermarks, no fake metrics, and no background music if audio layers cannot be preserved.
+Resolve the vertical launch film in a minimal dark navy space. The laptop, desk and warm gold path remain present but fall softly out of focus as the golden path travels toward the center and forms a clean circular halo behind the supplied BİŞİŞ wordmark; do not generate or alter the wordmark if a brand asset is provided. The camera performs a slow, stable pull-back, creating generous negative space for Arabic closing text added in post-production. The final light settles into a calm pulse, not a flash. The ending must feel trustworthy, precise and premium, with no extra logos, no random text, no watermarks, no fake metrics, and no background music if audio layers cannot be preserved.
 ```
 
 ## 4. التعليق الصوتي العربي المقترح
 
 يفضل تسجيل التعليق الصوتي كمسار منفصل ثم مزجه مع الموسيقى والمؤثرات. النص مصمم ليبقى هادئًا ولا يزاحم الصورة:
 
-> «كل مشروع يبدأ بفكرة. لكن بين الفكرة والنتيجة، توجد تفاصيل كثيرة. رسائل، ملفات، مواعيد، وقرارات تحتاج إلى وضوح. مع BİŞIŞ، يتحول الطريق إلى رحلة منظمة: مشروع واضح، متطلبات مفهومة، خطوات يمكن متابعتها، وتسليم يراجعه العميل بثقة. BİŞIŞ — وضوح في كل خطوة، وثقة في كل تسليم.»
+> «كل مشروع يبدأ بفكرة. لكن بين الفكرة والنتيجة، توجد تفاصيل كثيرة. رسائل، ملفات، مواعيد، وقرارات تحتاج إلى وضوح. مع BİŞİŞ، يتحول الطريق إلى رحلة منظمة: مشروع واضح، متطلبات مفهومة، خطوات يمكن متابعتها، وتسليم يراجعه العميل بثقة. BİŞİŞ — وضوح في كل خطوة، وثقة في كل تسليم.»
 
 ## 5. برومبتات الصور العشرين للريل
 
 ### تعليمات ثابتة تُضاف إلى نهاية كل برومبت
 
 ```text
-Create a premium editorial frame for a vertical BİŞIŞ launch reel, upright 9:16, cinematic product-film photography, dark navy and near-black palette, warm BİŞIŞ gold accent light, subtle cyan reflections, refined glass and brushed-metal materials, realistic proportions, elegant composition, shallow depth of field, safe negative space for captions added later, no readable text, no fake logos, no watermarks, no random symbols, no extra brand marks, no distorted hands, no duplicate objects.
+Create a premium editorial frame for a vertical BİŞİŞ launch reel, upright 9:16, cinematic product-film photography, dark navy and near-black palette, warm BİŞİŞ gold accent light, subtle cyan reflections, refined glass and brushed-metal materials, realistic proportions, elegant composition, shallow depth of field, safe negative space for captions added later, no readable text, no fake logos, no watermarks, no random symbols, no extra brand marks, no distorted hands, no duplicate objects.
 ```
 
 ### الهوية البصرية الثابتة
@@ -143,7 +143,7 @@ Minimal vertical frame of the same workspace suddenly frozen: laptop, phone, fol
 ### Image 07 — نقطة الضوء الذهبية
 
 ```text
-Extreme close-up vertical frame of a single warm BİŞIŞ-gold point of light hovering just above the center of the same desk, reflected on the existing laptop, folders and phone. The surrounding navy space remains dark, the point is elegant and controlled rather than magical or explosive. No logo text. [أضف التعليمات الثابتة]
+Extreme close-up vertical frame of a single warm BİŞİŞ-gold point of light hovering just above the center of the same desk, reflected on the existing laptop, folders and phone. The surrounding navy space remains dark, the point is elegant and controlled rather than magical or explosive. No logo text. [أضف التعليمات الثابتة]
 ```
 
 ### Image 08 — بداية المسار
@@ -155,7 +155,7 @@ Vertical cinematic frame showing the golden point expanding into a thin, elegant
 ### Image 09 — من الطلب إلى المشروع
 
 ```text
-Premium vertical product frame of a laptop displaying a believable abstract project workspace: one central project card connected to three milestone cards, clean non-readable interface geometry, warm gold connection lines, dark navy background, realistic screen glass, centered composition with safe space at top. Use a supplied authentic BİŞIŞ screenshot instead if available. [أضف التعليمات الثابتة]
+Premium vertical product frame of a laptop displaying a believable abstract project workspace: one central project card connected to three milestone cards, clean non-readable interface geometry, warm gold connection lines, dark navy background, realistic screen glass, centered composition with safe space at top. Use a supplied authentic BİŞİŞ screenshot instead if available. [أضف التعليمات الثابتة]
 ```
 
 ### Image 10 — المشروع له شكل واضح
@@ -221,14 +221,14 @@ Vertical cinematic frame of the client and team member in the same premium studi
 ### Image 20 — ختام العلامة
 
 ```text
-Minimal vertical hero frame for the end of the BİŞIŞ launch reel: deep dark navy background, a refined warm-gold circular halo and a clean illuminated path converging at the center, generous negative space for the supplied BİŞIŞ wordmark and Arabic tagline to be placed later in editing. Premium, quiet, memorable, no generated text, no extra logos, no watermark. [أضف التعليمات الثابتة]
+Minimal vertical hero frame for the end of the BİŞİŞ launch reel: deep dark navy background, a refined warm-gold circular halo and a clean illuminated path converging at the center, generous negative space for the supplied BİŞİŞ wordmark and Arabic tagline to be placed later in editing. Premium, quiet, memorable, no generated text, no extra logos, no watermark. [أضف التعليمات الثابتة]
 ```
 
 ## 6. طريقة تركيب الصور كريل
 
 استخدم كل صورة لمدة 2.5–3 ثوانٍ، مع حركة Ken Burns بسيطة لا تتجاوز تقريبًا 3–5% من التكبير. الصور 01–05 تكون أسرع مع cuts قصيرة واهتزاز حركة محدود، والصور 06–09 تستخدم انتقالات dissolve وlight sweep، ثم تصبح الصور 10–19 أكثر ثباتًا مع push-in بطيء، وتنتهي الصورة 20 بتوقف بصري مدته 3–4 ثوانٍ.
 
-لا تضع انتقالًا مختلفًا في كل صورة. استخدم ثلاث عائلات فقط: **hard cut** في الفوضى، **golden light wipe** عند التحول، و**smooth dissolve/match cut** في قسم الوضوح. أضف العناوين العربية في المونتاج، مثل: «كل مشروع يبدأ بفكرة»، «لكن التفاصيل تصنع الفرق»، «مشروع واضح»، «متطلبات مفهومة»، «تسليم بثقة»، ثم العبارة الختامية: **«BİŞIŞ — وضوح في كل خطوة، وثقة في كل تسليم.»**
+لا تضع انتقالًا مختلفًا في كل صورة. استخدم ثلاث عائلات فقط: **hard cut** في الفوضى، **golden light wipe** عند التحول، و**smooth dissolve/match cut** في قسم الوضوح. أضف العناوين العربية في المونتاج، مثل: «كل مشروع يبدأ بفكرة»، «لكن التفاصيل تصنع الفرق»، «مشروع واضح»، «متطلبات مفهومة»، «تسليم بثقة»، ثم العبارة الختامية: **«BİŞİŞ — وضوح في كل خطوة، وثقة في كل تسليم.»**
 
 ## 7. Negative Prompt موحد
 
@@ -238,4 +238,4 @@ No fake readable text, no misspelled Arabic, no random Latin text, no invented c
 
 ## 8. ملاحظة تنفيذية مهمة
 
-إذا كان الهدف فيديو نهائيًا مولدًا بالذكاء الاصطناعي، فالأفضل توليد **المراجع البصرية أولًا**، ثم توليد المقاطع 01–08 بالتسلسل مع إعادة استخدام الإطار الأخير من كل مقطع عند الحاجة للاستمرارية. أما إذا كان الهدف ريل من الصور، فأنشئ الصور العشرين كلًّا كملف مستقل بنسبة 9:16، ثم نفّذ الحركة والنص العربي والصوت في برنامج المونتاج. لا تُستخدم هذه البرومبتات لإثبات ميزات غير موجودة في BİŞIŞ؛ أي شاشة منتج فعلية يجب أن تكون من واجهة BİŞIŞ الحقيقية أو تُعرض كتجريد بصري غير قابل للقراءة.
+إذا كان الهدف فيديو نهائيًا مولدًا بالذكاء الاصطناعي، فالأفضل توليد **المراجع البصرية أولًا**، ثم توليد المقاطع 01–08 بالتسلسل مع إعادة استخدام الإطار الأخير من كل مقطع عند الحاجة للاستمرارية. أما إذا كان الهدف ريل من الصور، فأنشئ الصور العشرين كلًّا كملف مستقل بنسبة 9:16، ثم نفّذ الحركة والنص العربي والصوت في برنامج المونتاج. لا تُستخدم هذه البرومبتات لإثبات ميزات غير موجودة في BİŞİŞ؛ أي شاشة منتج فعلية يجب أن تكون من واجهة BİŞİŞ الحقيقية أو تُعرض كتجريد بصري غير قابل للقراءة.

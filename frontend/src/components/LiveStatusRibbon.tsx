@@ -1,32 +1,35 @@
 import React from 'react'
 import { motion } from 'framer-motion'
 import { Activity, ShieldCheck, Zap, Globe2 } from 'lucide-react'
+import { useTranslation } from 'react-i18next'
 import { useInView } from '../hooks/useInView'
 import { useReducedMotion } from '../hooks/useReducedMotion'
 import { STAGGER, EASING } from '../lib/motion'
 
 const LiveStatusRibbon: React.FC = () => {
+  const { t } = useTranslation()
+
   const metrics = [
     {
       icon: Activity,
-      label: 'BİŞIŞ Core V1',
-      status: 'Operational',
+      label: 'BİŞİŞ Core V1',
+      status: t('livestatus.operational'),
       highlight: true,
     },
     {
       icon: Zap,
-      label: 'Dispatch Queue',
-      status: '< 15m Instant',
+      label: t('livestatus.dispatch'),
+      status: t('livestatus.dispatch_speed'),
     },
     {
       icon: ShieldCheck,
-      label: 'Escrow Security',
-      status: 'USDC BSC',
+      label: t('livestatus.escrow'),
+      status: t('livestatus.crypto'),
     },
     {
       icon: Globe2,
-      label: 'Global Delivery',
-      status: 'AR · TR · EN',
+      label: t('livestatus.delivery'),
+      status: t('livestatus.languages'),
     },
   ]
 
@@ -84,8 +87,8 @@ const LiveStatusRibbon: React.FC = () => {
               <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-light opacity-75" />
               <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald" />
             </span>
-            <span className="font-semibold uppercase tracking-wider text-white/90">
-              System Health
+              <span className="font-semibold uppercase tracking-wider text-white/90">
+              {t('livestatus.system_health')}
             </span>
           </motion.div>
 

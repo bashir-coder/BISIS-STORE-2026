@@ -212,7 +212,7 @@ const Footer: React.FC = () => {
         onClick={toggleFooter}
         onKeyDown={handleKeyDown}
         className="fixed bottom-6 right-6 z-50 flex h-12 w-12 items-center justify-center rounded-full border border-gold/30 bg-black/60 backdrop-blur-xl text-gold shadow-xl shadow-black/50 transition-all duration-300 hover:border-gold hover:shadow-[0_0_20px_rgba(212,175,55,0.4)] focus:outline-none focus:ring-2 focus:ring-gold/50 focus:ring-offset-2 focus:ring-offset-black"
-        aria-label={isOpen ? t('footer.collapse', 'Collapse footer') : t('footer.expand', 'Expand footer')}
+        aria-label={isOpen ? t('footer.collapse') : t('footer.expand')}
         aria-expanded={isOpen}
         aria-controls="footer-content"
       >

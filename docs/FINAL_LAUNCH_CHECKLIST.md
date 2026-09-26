@@ -1,4 +1,4 @@
-# BİŞIŞ V1 — Final Launch Checklist
+# BİŞİŞ V1 — Final Launch Checklist
 
 **تاريخ المراجعة:** 24 أغسطس 2026
 

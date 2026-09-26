@@ -1,5 +1,20 @@
 [
-  { "slug": "entrepreneur", "name_ar": "رائد أعمال" },
-  { "slug": "investor", "name_ar": "مستثمر" },
-  { "slug": "startup", "name_ar": "شركة ناشئة" }
+  {
+    "slug": "entrepreneur",
+    "name_ar": "رائد أعمال",
+    "name_en": "Entrepreneur",
+    "name_tr": "Girişimci"
+  },
+  {
+    "slug": "investor",
+    "name_ar": "مستثمر",
+    "name_en": "Investor",
+    "name_tr": "Yatırımcı"
+  },
+  {
+    "slug": "startup",
+    "name_ar": "شركة ناشئة",
+    "name_en": "Startup",
+    "name_tr": "Start-up"
+  }
 ]

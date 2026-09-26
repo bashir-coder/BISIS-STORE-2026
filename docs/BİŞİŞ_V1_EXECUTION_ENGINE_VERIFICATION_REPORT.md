@@ -1,4 +1,4 @@
-# BİŞIŞ V1 — Execution Engine Verification Report
+# BİŞİŞ V1 — Execution Engine Verification Report
 
 ## الخلاصة التنفيذية
 
@@ -96,4 +96,4 @@
 
 **🟡 READY AFTER EXTERNAL CONFIGURATION**
 
-عقد Execution Engine وقاعدة العزل المرتبطة به صالحان للانتقال إلى مرحلة دمج واجهة staff واختبارات التشغيل الأوسع. لا ينبغي إعلان BİŞIŞ V1 جاهزًا للإنتاج قبل إكمال configuration الخارجي والتحقق المنفصل من OAuth والدفع والنشر واختبارات core tables.
+عقد Execution Engine وقاعدة العزل المرتبطة به صالحان للانتقال إلى مرحلة دمج واجهة staff واختبارات التشغيل الأوسع. لا ينبغي إعلان BİŞİŞ V1 جاهزًا للإنتاج قبل إكمال configuration الخارجي والتحقق المنفصل من OAuth والدفع والنشر واختبارات core tables.

@@ -1,4 +1,4 @@
-# BİŞIŞ FINAL PRODUCT HARDENING REPORT
+# BİŞİŞ FINAL PRODUCT HARDENING REPORT
 
 ## 1. الحكم النهائي
 
@@ -123,7 +123,7 @@
 
 ## References
 
-[1]: ../README.md "BİŞIŞ V1 README and runtime contract"
+[1]: ../README.md "BİŞİŞ V1 README and runtime contract"
 [2]: ./PROJECT_STRUCTURE.md "Canonical project structure"
 [3]: ../database/migrations/001_launch_contract.sql "Immutable V1 database baseline"
 [4]: ../backend/server.js "Backend bootstrap, health, Socket.IO, and error handling"

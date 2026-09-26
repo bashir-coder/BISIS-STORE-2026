@@ -1,4 +1,4 @@
-# BİŞIŞ V1 — Production Environment Checklist
+# BİŞİŞ V1 — Production Environment Checklist
 
 هذه القائمة لا تحتوي أسرارًا. تُنفذ على secret manager/hosting الخاص بالمالك، ولا تُحفظ القيم الحقيقية في Git أو Docker image أو frontend bundle إلا القيم `VITE_*` العامة.
 

@@ -1,16 +1,16 @@
-# BİŞIŞ V1 — Launch Readiness & Release Candidate Report
+# BİŞİŞ V1 — Launch Readiness & Release Candidate Report
 
 > **Historical baseline — superseded.** الحالة الحالية موثقة في `BİŞİŞ-V1-Maximum-Launch-Acceleration-Final-Report.md` و`docs/FINAL_LAUNCH_CHECKLIST.md`. الأرقام القديمة في هذا الملف، ومنها 690 صف ترجمة، لا تمثل آخر seed حي.
 
 **التاريخ:** 24 أغسطس 2026  
-**النطاق:** BİŞIŞ V1 الحالي فقط، دون دمج `database/legacy/schema.sql` ودون إعادة تصميم Authentication أو Database Contract.  
+**النطاق:** BİŞİŞ V1 الحالي فقط، دون دمج `database/legacy/schema.sql` ودون إعادة تصميم Authentication أو Database Contract.  
 **الحكم النهائي:** **🟡 READY AFTER EXTERNAL CONFIGURATION**
 
 > الكود الأساسي، عقد Auth/Database/API، catalog، الحماية الأفقية، البناء، والاختبارات الآلية في حالة Release Candidate قابلة للتحقق. لا يجوز اعتبار المشروع جاهزًا لإطلاق Production أو قبول مدفوعات حقيقية قبل إكمال متطلبات البيئة والدفع والتكاملات الخارجية المحددة في هذا التقرير.
 
 ## 1. Executive Decision
 
-أصبح BİŞIŞ V1 أقرب إلى نسخة إطلاق حقيقية: النطاق العام واضح ومحصور في **18 خدمة، 3 باقات، 3 شخصيات، 3 FAQs، و230 مفتاح ترجمة عبر 3 لغات = 690 صف ترجمة**. تم إخفاء الأسطح الثانوية غير الجاهزة، وأصبح الدفع يعرض حالة محجوبة آمنة عند غياب verifier بدل إظهار wallet أو نجاح وهمي.
+أصبح BİŞİŞ V1 أقرب إلى نسخة إطلاق حقيقية: النطاق العام واضح ومحصور في **18 خدمة، 3 باقات، 3 شخصيات، 3 FAQs، و230 مفتاح ترجمة عبر 3 لغات = 690 صف ترجمة**. تم إخفاء الأسطح الثانوية غير الجاهزة، وأصبح الدفع يعرض حالة محجوبة آمنة عند غياب verifier بدل إظهار wallet أو نجاح وهمي.
 
 مع ذلك، الحكم ليس **READY TO LAUNCH**. السبب الحرج هو أن payment verifier غير مهيأ، وبالتالي فإن `/api/health` يعيد `HTTP 200` بحالة `DEGRADED` و`payment_verifier=missing`، بينما يعيد wallet endpoint `503 PAYMENT_VERIFIER_UNCONFIGURED`. كذلك لا يوجد دليل runtime لـDocker/Compose في هذه البيئة، ولم تُنفذ Google OAuth E2E أو authenticated admin browser workflow على بيئة خارجية.
 

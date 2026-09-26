@@ -49,6 +49,7 @@ const TrustBadges: React.FC = () => {
         <SectionHeader
           eyebrow={t('trust.eyebrow')}
           title={t('trust.title')}
+          subtitle={t('trust.body')}
           align="center"
           delay={0.05}
         />

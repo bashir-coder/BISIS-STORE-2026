@@ -1,4 +1,4 @@
-# BİŞIŞ V1 — Launch Map
+# BİŞİŞ V1 — Launch Map
 
 ## Runtime flow
 

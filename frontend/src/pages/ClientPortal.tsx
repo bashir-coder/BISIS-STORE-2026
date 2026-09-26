@@ -179,7 +179,7 @@ const formatDate = (value?: string) => {
               {loading ? (
                 <div className="rounded-2xl border border-white/10 bg-white/5 p-8 text-center text-white/40">{t('dashboard.loading')}</div>
               ) : orders.length === 0 ? (
-                <div className="rounded-2xl border border-dashed border-white/10 bg-white/5 p-8 text-center"><p className="text-sm text-white/70">{t('client_portal.no_requests_yet')}</p><p className="mx-auto mt-2 max-w-sm text-sm text-white/40">{t('client_portal.no_requests_context', 'Your workspace is ready. Your first request will appear here after you choose a package.')}</p></div>
+                <div className="rounded-2xl border border-dashed border-white/10 bg-white/5 p-8 text-center"><p className="text-sm text-white/70">{t('client_portal.no_requests_yet')}</p><p className="mx-auto mt-2 max-w-sm text-sm text-white/40">{t('client_portal.no_requests_context')}</p></div>
               ) : (
                 <div className="space-y-3">
 {orders.map((order) => {

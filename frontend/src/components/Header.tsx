@@ -339,7 +339,7 @@ const Header: React.FC = () => {
 
                             {userProfile.role === 'admin'
                               ? t('admin.admin')
-                              : t('nav.client', 'Client')}
+                              : t('nav.client')}
                           </div>
                         </div>
 

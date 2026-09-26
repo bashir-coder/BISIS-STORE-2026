@@ -74,7 +74,7 @@ async function waitFor(send, expression, timeoutMs = 15000) {
 
 async function main() {
   fs.mkdirSync(screenshotDir, { recursive: true })
-  const created = await admin.auth.admin.createUser({ email, password, email_confirm: true, user_metadata: { full_name: 'BİŞIŞ Browser QA' } })
+  const created = await admin.auth.admin.createUser({ email, password, email_confirm: true, user_metadata: { full_name: 'BİŞİŞ Browser QA' } })
   if (created.error || !created.data.user) throw created.error || new Error('Unable to create browser QA user')
   const userId = created.data.user.id
   const persona = await admin.from('personas').select('id').limit(1).single()
@@ -91,7 +91,7 @@ async function main() {
     await waitFor(send, `document.readyState === 'complete' && !!document.querySelector('input[type="email"]')`)
     await evaluate(send, `(() => { const emailInput = document.querySelector('input[type="email"]'); const passwordInput = document.querySelector('input[type="password"]'); const setValue = (element, value) => { const setter = Object.getOwnPropertyDescriptor(HTMLInputElement.prototype, 'value').set; setter.call(element, value); element.dispatchEvent(new Event('input', { bubbles: true })); element.dispatchEvent(new Event('change', { bubbles: true })); }; setValue(emailInput, ${JSON.stringify(email)}); setValue(passwordInput, ${JSON.stringify(password)}); document.querySelector('form button[type="submit"]').click(); return true })()`)
     await waitFor(send, `location.pathname === '/dashboard'`, 20000)
-    const dashboard = await waitFor(send, `(() => { const overlay = document.querySelector('.fixed.inset-0'); const heading = document.querySelector('h1'); return Boolean(!overlay && heading && heading.getBoundingClientRect().height > 0 && document.body.innerText.includes('BİŞIŞ') && !document.body.innerText.includes('Unable to load')); })()`, 20000)
+    const dashboard = await waitFor(send, `(() => { const overlay = document.querySelector('.fixed.inset-0'); const heading = document.querySelector('h1'); return Boolean(!overlay && heading && heading.getBoundingClientRect().height > 0 && document.body.innerText.includes('BİŞİŞ') && !document.body.innerText.includes('Unable to load')); })()`, 20000)
     const clientHomeProbe = await evaluate(send, `(async () => { const authEntry = Object.values(localStorage).find((value) => value && value.includes('access_token')); let token = null; try { token = authEntry ? JSON.parse(authEntry).access_token : null; } catch {} if (!token) return { status: 0, body: 'no-browser-token' }; const response = await fetch('http://localhost:5000/api/service-delivery/client/home', { headers: { Authorization: 'Bearer ' + token } }); return { status: response.status, body: (await response.text()).slice(0, 240) }; })()`)
     if (clientHomeProbe.status !== 200) throw new Error(`client/home probe failed: ${JSON.stringify({ status: clientHomeProbe.status, body: clientHomeProbe.body })}`)
     const clientHomeReady = await waitFor(send, `(() => { const loading = Array.from(document.querySelectorAll('section')).some((section) => section.getAttribute('aria-label') && section.getAttribute('aria-label').includes('تحميل')); const error = Array.from(document.querySelectorAll('section[role="alert"]')).some((section) => section.innerText.includes('مساحة العمل')); return !loading && !error; })()`, 15000)

@@ -1,4 +1,4 @@
-# Conversion Path Audit – BISIS-V1
+# Conversion Path Audit – BİŞİŞ-V1
 
 **Scope**: Frontend App.tsx routes + PackagesPage, LifePlanPage, DigitalProductsPage, LabPage, PaymentPage, Dashboard, ClientPortal, ClientDeliveryHome, Header/Footer/LiveStatusRibbon/FloatingButtons. Backend server.js, orders.routes.js, nowpayments.service.js, payment-verifier.js, auth & reCAPTCHA middleware.
 

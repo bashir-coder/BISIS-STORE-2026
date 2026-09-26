@@ -1,4 +1,4 @@
--- BİŞIŞ V1 additive performance hardening.
+-- BİŞİŞ V1 additive performance hardening.
 -- Adds covering indexes for foreign keys reported by Supabase Performance Advisor.
 -- Does not change data, RLS semantics, historical migrations, or payment behavior.
 

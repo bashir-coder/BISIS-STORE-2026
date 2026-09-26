@@ -6,7 +6,7 @@
 @tailwind utilities;
 
 /* ============================================================
-   BİŞIŞ · NEON BLACK EDITION
+   BİŞİŞ · NEON BLACK EDITION
    Black × Gold Neon × Emerald Neon
    Low-light / illuminated / premium / futuristic
    ============================================================ */
@@ -2519,13 +2519,13 @@ select:focus-visible {
 }
 
 /* ============================================================
-    BİŞIŞ · NEON BLACK EDITION
+    BİŞİŞ · NEON BLACK EDITION
     Re-declares core theme vars for the black skin. The primary
     :root (with full tokens) is already defined at the top of the file.
     ============================================================ */
 
 /* ============================================================
-    BİŞIŞ · GLOBAL NEON SKIN OVERRIDE
+    BİŞİŞ · GLOBAL NEON SKIN OVERRIDE
     ============================================================ */
 
 html,

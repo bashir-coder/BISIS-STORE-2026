@@ -518,14 +518,14 @@ const getTicketStatusBadge = (status: string) => {
                       onClick={() => void markAllNotificationsAsRead()}
                       className="rounded-lg border border-gold/20 px-2.5 py-1 text-xs text-gold hover:bg-gold/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold/70"
                     >
-                      {String(t('dashboard.mark_all_read', 'Mark all read'))}
+                      {String(t('dashboard.mark_all_read'))}
                     </button>
                   )}
 
                   <button
                     type="button"
                     onClick={() => setShowNotifications(false)}
-                    aria-label={String(t('common.close', 'Close'))}
+                    aria-label={String(t('common.close'))}
                     className="rounded text-white/40 hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold/70"
                   >
                     <X className="w-4 h-4" />
@@ -550,8 +550,8 @@ const getTicketStatusBadge = (status: string) => {
                           className="text-[10px] font-semibold uppercase tracking-[0.18em] text-white/35"
                         >
                           {group.key === 'general'
-                            ? String(t('dashboard.general_notifications', 'General'))
-                            : String(t('dashboard.project_notifications', 'Project updates'))}
+                            ? String(t('dashboard.general_notifications'))
+                            : String(t('dashboard.project_notifications'))}
                         </h4>
 
                         {group.unread > 0 && (
@@ -566,7 +566,7 @@ const getTicketStatusBadge = (status: string) => {
                           <button
                             type="button"
                             key={notif.id}
-                            aria-label={`${notif.read ? '' : `${String(t('dashboard.unread', 'Unread'))}: `}${notif.message}`}
+                            aria-label={`${notif.read ? '' : `${String(t('dashboard.unread'))}: `}${notif.message}`}
                             aria-pressed={notif.read}
                             className={`flex w-full items-center gap-3 rounded-lg p-3 text-start transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold/70 ${
                               notif.read
@@ -654,7 +654,7 @@ const getTicketStatusBadge = (status: string) => {
             <div className="rounded-3xl border border-gold/15 bg-gradient-to-br from-gold/[0.08] via-white/[0.03] to-transparent p-5">
               <div className="mb-3 flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.22em] text-gold/80">
                 <Sparkles aria-hidden="true" className="h-4 w-4" />
-                {String(t('dashboard.up_next', 'Up next'))}
+                {String(t('dashboard.up_next'))}
               </div>
 
               <h2
@@ -662,18 +662,18 @@ const getTicketStatusBadge = (status: string) => {
                 className="text-xl font-semibold text-white"
               >
                 {nextUp
-                  ? String(t('dashboard.next_step_title', 'Here is what happens next'))
-                  : String(t('dashboard.all_caught_up', 'You are all caught up'))}
+                  ? String(t('dashboard.next_step_title'))
+                  : String(t('dashboard.all_caught_up'))}
               </h2>
 
               <p className="mt-2 max-w-xl text-sm leading-6 text-white/55">
                 {nextUp?.kind === 'processing'
-                  ? String(t('dashboard.next_processing', 'Your order is currently being processed. We will keep the status updated here.'))
+                  ? String(t('dashboard.next_processing'))
                   : nextUp?.kind === 'new'
-                    ? String(t('dashboard.next_new', 'Your request is received and waiting for the next operational step.'))
+                    ? String(t('dashboard.next_new'))
                     : nextUp?.kind === 'ticket'
-                      ? String(t('dashboard.next_ticket', 'Your support request is open. Check the latest response when it arrives.'))
-                      : String(t('dashboard.next_empty', 'There are no pending requests or support actions right now.'))}
+                      ? String(t('dashboard.next_ticket'))
+                      : String(t('dashboard.next_empty'))}
               </p>
 
               {nextUp && (
@@ -689,8 +689,8 @@ const getTicketStatusBadge = (status: string) => {
                   className="mt-4 inline-flex items-center gap-2 rounded-lg border border-gold/25 bg-gold/10 px-3 py-2 text-sm text-gold transition hover:bg-gold/20 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold/70"
                 >
                   {nextUp.kind === 'ticket'
-                    ? String(t('dashboard.view_ticket', 'View support'))
-                    : String(t('dashboard.view_order', 'View order'))}
+                    ? String(t('dashboard.view_ticket'))
+                    : String(t('dashboard.view_order'))}
                 </button>
               )}
             </div>
@@ -698,7 +698,7 @@ const getTicketStatusBadge = (status: string) => {
             <div className="rounded-3xl border border-white/10 bg-white/[0.03] p-5">
               <div className="flex items-center justify-between">
                 <span className="text-sm text-white/50">
-                  {String(t('dashboard.unread_items', 'Unread items'))}
+                  {String(t('dashboard.unread_items'))}
                 </span>
                 <Bell aria-hidden="true" className="h-4 w-4 text-gold" />
               </div>
@@ -709,8 +709,8 @@ const getTicketStatusBadge = (status: string) => {
 
               <p className="mt-2 text-sm text-white/45">
                 {unreadCount > 0
-                  ? String(t('dashboard.unread_hint', 'Open notifications to see what changed.'))
-                  : String(t('dashboard.no_unread_hint', 'You are up to date.'))}
+                  ? String(t('dashboard.unread_hint'))
+                  : String(t('dashboard.no_unread_hint'))}
               </p>
             </div>
           </section>
@@ -900,7 +900,7 @@ const getTicketStatusBadge = (status: string) => {
                           className="mt-2 inline-flex items-center text-xs text-gold hover:underline"
                           onClick={event => event.stopPropagation()}
                         >
-                          {String(t('tickets.open_project', 'Open project'))}
+                          {String(t('tickets.open_project'))}
                         </Link>
                       )}
 
@@ -1030,7 +1030,7 @@ const getTicketStatusBadge = (status: string) => {
                     type="button"
                     onClick={() => setSelectedOrder(null)}
                     aria-label={String(
-                      t('common.close', 'Close')
+                      t('common.close')
                     )}
                     className="text-white/40 hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold/70 rounded"
                   >
@@ -1179,7 +1179,7 @@ const getTicketStatusBadge = (status: string) => {
                         type="button"
                         onClick={() => void sendMessage()}
                         aria-label={String(
-                          t('chat.send', 'Send message')
+                          t('chat.send')
                         )}
                         disabled={!newMessage.trim()}
                         className="px-4 py-2 bg-gold/20 border border-gold/30 rounded-lg text-sm text-gold hover:bg-gold/30 disabled:opacity-50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold/70"

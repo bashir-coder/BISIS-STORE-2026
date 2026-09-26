@@ -1,4 +1,4 @@
-# BİŞIŞ — FUTURE IMPLEMENTATION SPRINT REPORT
+# BİŞİŞ — FUTURE IMPLEMENTATION SPRINT REPORT
 
 **التاريخ:** 27 أغسطس 2026
 
@@ -22,7 +22,7 @@
 | **V8 Enterprise Suite** | **ARCHITECTURE ONLY** | conceptual model for teams/orgs; security policy foundation |
 | **V20 Enterprise Security** | **PARTIALLY IMPLEMENTED** | security-policy foundation؛ لا audit store/encryption/key management |
 | **V13/V22/V39 Marketplace** | **PARTIALLY IMPLEMENTED** | marketplace-catalog foundation؛ لا seller verification/payout/moderation UI |
-| **V14 BİŞIŞ Cloud** | **ARCHITECTURE ONLY** | cloud-resource-planner (conceptual planning only) |
+| **V14 BİŞİŞ Cloud** | **ARCHITECTURE ONLY** | cloud-resource-planner (conceptual planning only) |
 | **V31–V33 Autonomous Ent.** | **ARCHITECTURE ONLY** | agent-executor (planning and evaluation foundation) |
 | **V36 Global Integrations** | **PARTIALLY IMPLEMENTED** | integration-registry adapter boundary؛ لا external connectivity أو credentials |
 | **V15/V40 Future Lab** | **ARCHITECTURE ONLY** | marked as experimental research |
@@ -68,4 +68,4 @@
 - **No secrets/credentials:** نعم؛ لا توجد مفاتيح حقيقية أو وهمية.
 - **No deployment/GitHub:** نعم؛ لم يتم تنفيذ أي عملية خارجية.
 
-> **الخلاصة:** أصبح لدى BİŞIŞ الآن **نواة برمجية حقيقية ومحدودة** للمستقبل، وليس مجرد وثائق. الوحدات قابلة للاختبار والربط لاحقًا، لكنها لا تُعلن كميزات production ولا تُفعّل في V1.
+> **الخلاصة:** أصبح لدى BİŞİŞ الآن **نواة برمجية حقيقية ومحدودة** للمستقبل، وليس مجرد وثائق. الوحدات قابلة للاختبار والربط لاحقًا، لكنها لا تُعلن كميزات production ولا تُفعّل في V1.

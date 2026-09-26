@@ -1,4 +1,4 @@
-# BİŞIŞ V1 — Final Pricing + Offer Sync Check
+# BİŞİŞ V1 — Final Pricing + Offer Sync Check
 
 **Auditor**: Kilo #4  
 **Date**: September 13, 2026  
@@ -295,5 +295,5 @@ If the chatbot is not yet live, this becomes the FIRST task before launch, becau
 
 ---
 
-*All findings verified against current BİŞIŞ V1 project files as of September 13, 2026.*  
+*All findings verified against current BİŞİŞ V1 project files as of September 13, 2026.*  
 *No files modified. Read-only verification.*

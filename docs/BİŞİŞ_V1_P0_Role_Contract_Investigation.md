@@ -1,10 +1,10 @@
-# BİŞIŞ V1 — P0 Role Contract Investigation
+# BİŞİŞ V1 — P0 Role Contract Investigation
 
 **النطاق:** قراءة فقط. لم يتم تطبيق SQL، ولم تُعدّل قاعدة البيانات أو migration أو backend أو frontend.
 
 ## الحكم المختصر
 
-الـcontract المقصود في BİŞIŞ V1 هو **A) `client` للمستخدم العميل**، مع بقاء أدوار الطاقم المنفصلة `admin`, `super_admin`, `manager`, و`editor` حيث تظهر في الكود والمخطط. لا يوجد دليل حقيقي على أن `user` هو auth/business role في BİŞIŞ.
+الـcontract المقصود في BİŞİŞ V1 هو **A) `client` للمستخدم العميل**، مع بقاء أدوار الطاقم المنفصلة `admin`, `super_admin`, `manager`, و`editor` حيث تظهر في الكود والمخطط. لا يوجد دليل حقيقي على أن `user` هو auth/business role في BİŞİŞ.
 
 الاستعمالات التي تحتوي `role: 'user'` في `backend/src/api/routes/ai.routes.js` وفي `frontend/src/components/AIChatbot.tsx` تخص **دور رسالة داخل بروتوكول المحادثة** (`system`, `assistant`, `user`) وليست دور المستخدم في قاعدة البيانات أو الصلاحيات. لا ينبغي استخدامها لتحديد role contract.
 
@@ -81,4 +81,4 @@ CHECK (role IN ('visitor', 'user', 'admin', 'super_admin'))
 
 ## القرار النهائي
 
-**BİŞIŞ V1 يعتمد `client` لا `user` كدور العميل.** أدوار الطاقم تبقى منفصلة. لا يوجد دليل يبرر دعم الاثنين معًا. التحقيق مكتمل، وأتوقف هنا بانتظار موافقة المؤسس قبل أي إصلاح.
+**BİŞİŞ V1 يعتمد `client` لا `user` كدور العميل.** أدوار الطاقم تبقى منفصلة. لا يوجد دليل يبرر دعم الاثنين معًا. التحقيق مكتمل، وأتوقف هنا بانتظار موافقة المؤسس قبل أي إصلاح.

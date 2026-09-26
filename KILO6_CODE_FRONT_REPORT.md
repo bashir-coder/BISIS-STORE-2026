@@ -128,7 +128,7 @@ Added `packages.view` key to `i18n-fallback.ts` in all 3 languages.
 |----------|--------------------------|-----------------|
 | Line 692 | افتح صفحة الدفع وأكمل الدفع عبر NOWPayments. | `t('payment.nowpayments_step1', fallback)` |
 | Line 695 | تأكد من اختيار USDC على شبكة BSC. | `t('payment.nowpayments_step2', fallback)` |
-| Line 698 | بعد الدفع، ستصل حالة الدفع تلقائيًا إلى BİŞIŞ عبر NOWPayments. | `t('payment.nowpayments_step3', fallback)` |
+| Line 698 | بعد الدفع، ستصل حالة الدفع تلقائيًا إلى BİŞİŞ عبر NOWPayments. | `t('payment.nowpayments_step3', fallback)` |
 
 Added `payment.nowpayments_step1/2/3` keys to `i18n-fallback.ts` in all 3 languages.
 

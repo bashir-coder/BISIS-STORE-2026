@@ -1,4 +1,4 @@
-# BİŞIŞ V1 — Kilo #4 Final Report: Pricing + Offer Sync Check
+# BİŞİŞ V1 — Kilo #4 Final Report: Pricing + Offer Sync Check
 
 **Auditor**: Kilo #4 — First Customer Acquisition & Launch Growth Auditor  
 **Date**: September 13, 2026  

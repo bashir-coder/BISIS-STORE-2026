@@ -1,8 +1,8 @@
-# BİŞIŞ V1 — Database & Runtime Verification Report
+# BİŞİŞ V1 — Database & Runtime Verification Report
 
 **تاريخ الإصدار:** 24 أغسطس 2026  
 **البيئة:** مشروع Supabase اختباري مستقل وفق تأكيد المؤسس؛ معرّف المشروع غير مضمّن في النسخة العامة.  
-**النطاق:** توحيد BİŞIŞ V1 الضيق بين `frontend/`, `backend/`, `database/`, وSupabase، ثم إثبات البناء والاختبارات والمصادقة وAPI والعزل والتخزين والدفع الآمن.
+**النطاق:** توحيد BİŞİŞ V1 الضيق بين `frontend/`, `backend/`, `database/`, وSupabase، ثم إثبات البناء والاختبارات والمصادقة وAPI والعزل والتخزين والدفع الآمن.
 
 > **ملاحظة زمنية:** هذا تقرير تاريخي سابق لإضافة migrations 010 و011؛ يُستخدم كسجل أدلة فقط، وتحدد الوثائق الأحدث حالة الإصدار الحالية.
 
@@ -184,11 +184,11 @@ npm run seed
 curl -i http://127.0.0.1:5055/api/health
 ```
 
-**القرار:** BİŞIŞ V1 جاهز للانتقال إلى إعداد verifier وGoogle OAuth واختبارات القبول والنشر، وليس جاهزًا بعد لإعلان Production أو استقبال مدفوعات حقيقية.
+**القرار:** BİŞİŞ V1 جاهز للانتقال إلى إعداد verifier وGoogle OAuth واختبارات القبول والنشر، وليس جاهزًا بعد لإعلان Production أو استقبال مدفوعات حقيقية.
 
 ## مراجع الأدلة المحلية
 
-[1]: database/migrations/001_launch_contract.sql "BİŞIŞ V1 baseline launch contract"
+[1]: database/migrations/001_launch_contract.sql "BİŞİŞ V1 baseline launch contract"
 [2]: database/migrations/002_v1_runtime_reconciliation.sql "Auth trigger and FAQ reconciliation"
 [3]: database/migrations/003_services_metadata_reconciliation.sql "Services and packages schema reconciliation"
 [4]: database/migrations/004_public_catalog_rls_reconciliation.sql "Public catalog RLS reconciliation"

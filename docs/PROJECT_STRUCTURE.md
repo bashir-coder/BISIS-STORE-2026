@@ -1,4 +1,4 @@
-# BİŞIŞ V1 — Project Structure
+# BİŞİŞ V1 — Project Structure
 
 هذه هي بنية المشروع canonical. يجب فتح المجلد الذي يحتوي على `package.json` الرئيسي في VS Code، وليس `frontend` وحده عند تشغيل المشروع كاملًا.
 

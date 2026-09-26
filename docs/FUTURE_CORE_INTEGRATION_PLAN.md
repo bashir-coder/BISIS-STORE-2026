@@ -1,4 +1,4 @@
-# BİŞIŞ Future Core Integration Plan
+# BİŞİŞ Future Core Integration Plan
 
 هذه الخطة تحدد كيف ينتقل Future Core من local tested foundations إلى منتج مستقبلي، ولا تنفذ أي database/provider/deployment step بذاتها.
 

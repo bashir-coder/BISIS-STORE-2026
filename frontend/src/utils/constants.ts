@@ -9,23 +9,23 @@ export const SERVICES_CATEGORIES = [
 
 export const PACKAGES = [
   {
-    id: 'starter',
-    nameKey: 'packages.starter.name',
-    descKey: 'packages.starter.desc',
-    price: 249,
+    id: 'foundation',
+    nameKey: 'packages.foundation.name',
+    descKey: 'packages.foundation.description',
+    price: 699,
     features: [
-      'packages.starter.feature1',
-      'packages.starter.feature2',
-      'packages.starter.feature3',
-      'packages.starter.feature4',
+      'packages.foundation.feature1',
+      'packages.foundation.feature2',
+      'packages.foundation.feature3',
+      'packages.foundation.feature4',
     ],
     popular: false,
   },
   {
     id: 'growth',
     nameKey: 'packages.growth.name',
-    descKey: 'packages.growth.desc',
-    price: 649,
+    descKey: 'packages.growth.description',
+    price: 1499,
     features: [
       'packages.growth.feature1',
       'packages.growth.feature2',
@@ -35,24 +35,23 @@ export const PACKAGES = [
     popular: true,
   },
   {
-    id: 'investor',
-    nameKey: 'packages.investor.name',
-    descKey: 'packages.investor.desc',
-    price: 1499,
+    id: 'scale',
+    nameKey: 'packages.scale.name',
+    descKey: 'packages.scale.description',
+    price: 2499,
     features: [
-      'packages.investor.feature1',
-      'packages.investor.feature2',
-      'packages.investor.feature3',
-      'packages.investor.feature4',
+      'packages.scale.feature1',
+      'packages.scale.feature2',
+      'packages.scale.feature3',
+      'packages.scale.feature4',
     ],
     popular: false,
   },
 ] as const
 
-export const LIFE_PLAN_PRICE = 49
+export const LIFE_PLAN_PRICE = 150
 
 export const DONATION_PERCENTAGE = 0.10
-export const DONATION_CAUSE = 'Gaza Emergency Relief'
 
 export const STEPS = [
   { icon: '💡', titleKey: 'steps.step1.title', descKey: 'steps.step1.desc' },

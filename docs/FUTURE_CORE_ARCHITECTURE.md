@@ -1,4 +1,4 @@
-# BİŞIŞ Future Core Architecture
+# BİŞİŞ Future Core Architecture
 
 **Status:** Implemented local foundations; disabled by default; not mounted into V1 routes.
 

@@ -1,4 +1,4 @@
-# BİŞIŞ — Service → Template Automation Decision
+# BİŞİŞ — Service → Template Automation Decision
 
 **التاريخ:** 25 أغسطس 2026  
 **النطاق:** Maximum Internal Completion Pass من `pasted_content_17.txt`

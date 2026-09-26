@@ -1,6 +1,6 @@
-# BİŞIŞ V1
+# BİŞİŞ V1
 
-BİŞIŞ V1 منصة خدمات أعمال ضيقة النطاق تعتمد على React/Vite في الواجهة، Node.js/Express في الـbackend، وSupabase Auth/Postgres/Storage في طبقة البيانات. مصدر الحقيقة لقاعدة البيانات هو `database/migrations/001_launch_contract.sql` ثم migrations التوفيق اللاحقة؛ `database/legacy/schema.sql` غير مستخدم في التشغيل.
+BİŞİŞ V1 منصة خدمات أعمال ضيقة النطاق تعتمد على React/Vite في الواجهة، Node.js/Express في الـbackend، وSupabase Auth/Postgres/Storage في طبقة البيانات. مصدر الحقيقة لقاعدة البيانات هو `database/migrations/001_launch_contract.sql` ثم migrations التوفيق اللاحقة؛ `database/legacy/schema.sql` غير مستخدم في التشغيل.
 
 > **حالة الإصدار:** Release Candidate تقنيًا، و**READY AFTER EXTERNAL CONFIGURATION**. لا يُعلن Production ولا تُقبل مدفوعات حقيقية قبل إكمال خطوات الإعداد الخارجية والاختبارات المحددة أدناه.
 
@@ -74,7 +74,7 @@ npm run seed
 
 ## AI provider boundary
 
-الذكاء الاصطناعي ليس شرطًا لتشغيل BİŞIŞ V1. القيمة الافتراضية في البيئة هي `AI_PROVIDER=disabled`، ويعرض `/api/ai/status` حالة المزود للمستخدم المصرّح له. لا تُفعّل مزودًا خارجيًا إلا بعد إعداد مفتاحه واختباره؛ واجهة `/chat` الحالية هي FAQ/Support محلي ولا تقدّم ردودًا مولّدة على أنها AI حي.
+الذكاء الاصطناعي ليس شرطًا لتشغيل BİŞİŞ V1. القيمة الافتراضية في البيئة هي `AI_PROVIDER=disabled`، ويعرض `/api/ai/status` حالة المزود للمستخدم المصرّح له. لا تُفعّل مزودًا خارجيًا إلا بعد إعداد مفتاحه واختباره؛ واجهة `/chat` الحالية هي FAQ/Support محلي ولا تقدّم ردودًا مولّدة على أنها AI حي.
 
 ## Project structure
 

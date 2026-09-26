@@ -1,4 +1,4 @@
--- BİŞIŞ V1 — Execution Engine client isolation hotfix
+-- BİŞİŞ V1 — Execution Engine client isolation hotfix
 -- Additive corrective migration. Do not modify 001/005/006 and do not run legacy schema.
 -- Canonical client ownership: projects.id -> orders.project_id -> orders.user_id = auth.uid().
 

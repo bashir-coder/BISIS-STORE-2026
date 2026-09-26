@@ -1,4 +1,4 @@
-# BİŞIŞ V1 — First Customer Acquisition & Launch Growth Audit
+# BİŞİŞ V1 — First Customer Acquisition & Launch Growth Audit
 
 **Auditor**: Kilo #4 — First Customer Acquisition & Launch Growth Auditor  
 **Date**: September 12, 2026  
@@ -11,7 +11,7 @@
 
 ### Verdict: READY WITH GROWTH FIXES
 
-BİŞIŞ V1 can acquire its first paying customer through **manual, founder-led direct outreach** within 7–14 days, but only after 3 critical fixes:
+BİŞİŞ V1 can acquire its first paying customer through **manual, founder-led direct outreach** within 7–14 days, but only after 3 critical fixes:
 
 | # | Fix | Why | Effort |
 |---|-----|-----|--------|
@@ -48,7 +48,7 @@ BİŞIŞ V1 can acquire its first paying customer through **manual, founder-led 
 | **Urgent problem** | Needs to make a critical decision (pivot, launch, funding approach, positioning) within days or weeks, not months |
 | **Ability/willingness to pay** | Can afford $199–$699 for a one-time strategic deliverable. May not pay $1,499+ without proven ROI. Cash payment or USDC is realistic. |
 | **Where they can be found** | Gaza/Palestinian entrepreneur communities on WhatsApp, Facebook groups, LinkedIn, Instagram, local startup accelerators, university entrepreneurship clubs, coworking spaces, crypto/Web3 founder groups |
-| **Why BİŞIŞ can help them** | BİŞIŞ offers specific strategy deliverables (Mission Statement, Compass Session, Core Thesis Report, Pitch Deck Blueprint) that these founders need and cannot easily get from a generic consultant at this price point |
+| **Why BİŞİŞ can help them** | BİŞİŞ offers specific strategy deliverables (Mission Statement, Compass Session, Core Thesis Report, Pitch Deck Blueprint) that these founders need and cannot easily get from a generic consultant at this price point |
 | **Why they would trust a new company** | Gaza-based founder helping Gaza/regional founders — shared identity and proximity. Personal outreach from a real human. Free mini-audit as a trust builder. Transparent process and clear scope. |
 | **Objection they are likely to have** | "How do I know you'll deliver quality?" "Is this worth $699 when I can Google this?" "Can I pay in USD/cash instead of crypto?" "Will this actually be useful or just generic advice?" |
 
@@ -58,16 +58,16 @@ BİŞIŞ V1 can acquire its first paying customer through **manual, founder-led 
 |-----------|------------|
 | **Customer type** | Solo freelancer or small consultant (1–3 people) wanting to systematize and scale |
 | **Likely pain** | No processes, no positioning, can't raise prices, overwhelmed with delivery |
-| **Why BİŞIŞ fits** | Founder OS Blueprint, Unique Positioning Strategy, 7-Day Automation Roadmap are directly relevant |
+| **Why BİŞİŞ fits** | Founder OS Blueprint, Unique Positioning Strategy, 7-Day Automation Roadmap are directly relevant |
 
 ### Segments to Avoid Initially
 
 | Segment | Reason |
 |---------|--------|
 | **Established companies ($500K+ revenue)** | Too large for Starter, long sales cycles, procurement barriers |
-| **Investors/LPs** | Investor persona exists but BİŞIŞ has no credibility with this audience yet |
+| **Investors/LPs** | Investor persona exists but BİŞİŞ has no credibility with this audience yet |
 | **Non-profit / charity** | Complex payment, different sales cycle, low willingness to pay for business services |
-| **Technical product teams** | BİŞIŞ V1 sells strategy/consulting, not development — misalignment |
+| **Technical product teams** | BİŞİŞ V1 sells strategy/consulting, not development — misalignment |
 | **International customers unfamiliar with crypto** | Payment friction (Polygon USDC) is high barrier for non-crypto users |
 
 ---
@@ -106,7 +106,7 @@ A founder who is stuck — has scattered priorities, can't articulate their busi
 - Gaza/regional founders are in an urgent state (crisis, displacement, rebuilding) → clarity is highly valued
 
 **What result does the customer receive?**
-A complete strategic foundation document set for their business, delivered within 1–3 days, with direct access to the BİŞIŞ team via chat for follow-up questions.
+A complete strategic foundation document set for their business, delivered within 1–3 days, with direct access to the BİŞİŞ team via chat for follow-up questions.
 
 **Current price:**
 
@@ -233,7 +233,7 @@ A prospect is **qualified** if they meet 3 of 5 criteria:
 Each Tier A message must include:
 - Their name and business
 - One specific observation about their situation (from LinkedIn, business page, or group post)
-- One relevant BİŞIŞ service that addresses their pain
+- One relevant BİŞİŞ service that addresses their pain
 - A clear, low-pressure ask (not "buy now" — "can I share something specific that might help?")
 
 ### Tracking Responses
@@ -291,7 +291,7 @@ Each Tier A message must include:
 | **Customer action** | Share their situation, goals, and constraints |
 | **Expected friction** | Overwhelming information; may not know what they actually need |
 | **Conversion risk** | Misdiagnosing the need → wrong offer → rejection |
-| **Next step** | Map their pain to a specific BİŞIŞ service or Foundation package |
+| **Next step** | Map their pain to a specific BİŞİŞ service or Foundation package |
 
 ### Stage 5: Diagnosis → Offer
 
@@ -343,7 +343,7 @@ Each Tier A message must include:
 |---------|--------|
 | **Objective** | Get the customer to refer 1–2 other founders |
 | **Founder action** | Ask: "Who else do you know who might benefit from this?" Offer "Founding Customer" referral benefit |
-| **Customer action** | Make an introduction or share BİŞIŞ with a contact |
+| **Customer action** | Make an introduction or share BİŞİŞ with a contact |
 | **Expected friction** | Not wanting to impose; not knowing the right person |
 | **Conversion risk** | Referral is vague ("I'll tell someone") → no concrete lead |
 | **Next step** | Follow up on referral introduction; add referred prospect to system |
@@ -571,13 +571,13 @@ These are planning assumptions based on 100–200 prospects, not promises.
 
 2. **Create the prospect tracker spreadsheet.** Set up Google Sheets with all columns from Section 5. Start entering names from personal network immediately. ⏰ 2 hours.
 
-3. **Set up WhatsApp Business profile.** Professional photo of founder, "About" describing who BİŞIŞ helps and how, status showing availability. This is the storefront for WhatsApp outreach. ⏰ 1 hour.
+3. **Set up WhatsApp Business profile.** Professional photo of founder, "About" describing who BİŞİŞ helps and how, status showing availability. This is the storefront for WhatsApp outreach. ⏰ 1 hour.
 
 4. **Identify and contact 5 Tier A prospects on Day 1.** Use personal network, LinkedIn, and local entrepreneur contacts. Send personalized WhatsApp messages. No pitch — just a warm, specific, human introduction. ⏰ 3–4 hours.
 
 5. **Follow up with non-responders on Day 3.** One follow-up per person, value-first angle (share an insight, not a reminder). Add new prospects to fill to 25 total. ⏰ 2 hours.
 
-6. **Hold 2–3 discovery calls (Days 4–5).** Diagnose real needs. Listen for: what's their biggest challenge? What does success look like? When do they need it? Can they pay? Map each to a specific BİŞIŞ offer. ⏰ 3–4 hours.
+6. **Hold 2–3 discovery calls (Days 4–5).** Diagnose real needs. Listen for: what's their biggest challenge? What does success look like? When do they need it? Can they pay? Map each to a specific BİŞİŞ offer. ⏰ 3–4 hours.
 
 7. **Send 2–3 personalized offers with founding customer pricing.** Each offer references the specific conversation, names specific deliverables, and includes clear payment options (including bank transfer or cash for Gaza-based customers who can't use crypto). ⏰ 2 hours.
 
@@ -593,7 +593,7 @@ These are planning assumptions based on 100–200 prospects, not promises.
 
 | Question | Answer |
 |----------|--------|
-| Is BİŞIŞ commercially launchable? | **Yes, with 3 fixes** — clarify to one offer, resolve pricing, remove false claims |
+| Is BİŞİŞ commercially launchable? | **Yes, with 3 fixes** — clarify to one offer, resolve pricing, remove false claims |
 | Who is the first customer? | Gaza/Regional early-stage founder needing strategic clarity |
 | What are we selling? | Foundation Package — Launch Edition at $497 (first 3 only) |
 | Where do we find them? | WhatsApp groups, personal network, LinkedIn, Instagram, Facebook groups |

@@ -1,4 +1,4 @@
-# BİŞIŞ V1 — Staging Validation Checklist
+# BİŞİŞ V1 — Staging Validation Checklist
 
 هذا المستند يحدد التحقق المطلوب على **مشروع Staging مستقل disposable** قبل أي Production rollout. لا تُنفّذ أي خطوة SQL أو Auth أو Storage على Production. لا تستخدم `database/legacy/schema.sql`، ولا تعدّل migrations التاريخية `001–007`.
 

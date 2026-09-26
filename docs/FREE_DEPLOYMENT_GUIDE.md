@@ -1,8 +1,8 @@
-# BİŞIŞ V1 — Free Deployment Guide
+# BİŞİŞ V1 — Free Deployment Guide
 
 ## Purpose and boundary
 
-This guide prepares BİŞIŞ V1 for a zero-cost staging or canary deployment. It does not select a hosting provider, create an account, configure DNS/TLS, publish a repository, enable real payments, or claim production readiness. Those actions require owner-controlled infrastructure and credentials.
+This guide prepares BİŞİŞ V1 for a zero-cost staging or canary deployment. It does not select a hosting provider, create an account, configure DNS/TLS, publish a repository, enable real payments, or claim production readiness. Those actions require owner-controlled infrastructure and credentials.
 
 The current architecture has two runtime parts. The Vite frontend is a static bundle and can run on a static-hosting service. The Express backend is a long-running Node.js service and must run on a service that supports a persistent HTTP process, or inside the provided Docker Compose topology. Supabase remains the database/Auth system and is not replaced by the deployment provider.
 

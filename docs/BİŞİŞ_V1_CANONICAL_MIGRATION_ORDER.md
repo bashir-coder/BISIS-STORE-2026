@@ -1,6 +1,6 @@
-# BİŞIŞ V1 — Canonical Migration Order
+# BİŞİŞ V1 — Canonical Migration Order
 
-**Scope:** BİŞIŞ V1 database release chain. This document does not alter migrations 001–007.
+**Scope:** BİŞİŞ V1 database release chain. This document does not alter migrations 001–007.
 
 ## Canonical order
 
@@ -22,7 +22,7 @@
 
 `database/migrations/005_execution_engine_policies.sql` is **auxiliary SQL Editor/documentation material**, not a second migration. It must not be applied independently after `005_execution_engine.sql`; doing so can create migration drift and duplicate policy/function operations.
 
-`database/legacy/schema.sql` is not part of the BİŞIŞ V1 chain and must not be merged into the release.
+`database/legacy/schema.sql` is not part of the BİŞİŞ V1 chain and must not be merged into the release.
 
 ## Required reproducibility gate
 

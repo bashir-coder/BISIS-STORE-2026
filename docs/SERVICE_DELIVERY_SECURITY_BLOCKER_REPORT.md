@@ -1,4 +1,4 @@
-# BİŞIŞ — Service Delivery Security Blocker Resolution
+# BİŞİŞ — Service Delivery Security Blocker Resolution
 
 ## الحالة الحالية
 

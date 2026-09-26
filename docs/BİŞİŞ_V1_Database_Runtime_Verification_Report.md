@@ -1,4 +1,4 @@
-# BİŞIŞ V1 — Database & Runtime Verification Report
+# BİŞİŞ V1 — Database & Runtime Verification Report
 
 > **Historical failure snapshot — superseded.** Project identifiers and provider error IDs are intentionally redacted; consult the current staging verification and release-readiness reports for present status.
 
@@ -69,6 +69,6 @@ No additional SQL or code repair was applied after the failure, in accordance wi
 
 **Database Contract status: BLOCKED.**
 
-The Launch Contract itself executed successfully, and the expected table surface exists with RLS enabled according to the read-only metadata result. However, the Auth trigger path is not operational because the live `users_role_check` conflicts with the trigger’s required `client` role. BİŞIŞ V1 is not ready to move to the next stage until this P0 database constraint conflict is explicitly approved and corrected, then Auth and RLS isolation are re-tested.
+The Launch Contract itself executed successfully, and the expected table surface exists with RLS enabled according to the read-only metadata result. However, the Auth trigger path is not operational because the live `users_role_check` conflicts with the trigger’s required `client` role. BİŞİŞ V1 is not ready to move to the next stage until this P0 database constraint conflict is explicitly approved and corrected, then Auth and RLS isolation are re-tested.
 
 No legacy schema was used, no legacy users were restored, and no new feature was added.

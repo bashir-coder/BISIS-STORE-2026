@@ -1,4 +1,4 @@
-# BİŞIŞ V1 — Operations Runbook
+# BİŞİŞ V1 — Operations Runbook
 
 هذا المستند يصف الإجراء التشغيلي دون تنفيذ أي إجراء على Production. لا يُستبدل به restore drill أو incident approval حقيقي.
 

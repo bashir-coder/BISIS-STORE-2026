@@ -1,4 +1,4 @@
--- BİŞIŞ V1 — Execution Engine policy runner (auxiliary only)
+-- BİŞİŞ V1 — Execution Engine policy runner (auxiliary only)
 -- Canonical source of truth: 005_execution_engine.sql. This file is for SQL Editor batching/documentation and must not be executed as a second migration.
 
 CREATE OR REPLACE FUNCTION public.execution_role() RETURNS TEXT LANGUAGE SQL STABLE SECURITY DEFINER SET search_path = public AS $$ SELECT role FROM public.users WHERE id = auth.uid() AND is_active = true LIMIT 1; $$;

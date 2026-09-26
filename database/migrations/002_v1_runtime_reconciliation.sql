@@ -1,4 +1,4 @@
--- BİŞIŞ V1 runtime reconciliation.
+-- BİŞİŞ V1 runtime reconciliation.
 -- This migration is additive/idempotent and does not use database/legacy/schema.sql.
 
 ALTER TABLE public.faqs

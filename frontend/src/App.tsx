@@ -16,6 +16,7 @@ import LiveStatusRibbon from './components/LiveStatusRibbon'
 
 const HUMAN_VERIFIED_KEY = 'BİŞİŞ_human_verified'
 const HomePage = lazy(() => import('./pages/HomePage'))
+const Dashboard = lazy(() => import('./pages/Dashboard'))
 const ChatPage = lazy(() => import('./pages/ChatPage'))
 const VerifyPage = lazy(() => import('./pages/VerifyPage'))
 const VerifyEmailPage = lazy(() => import('./pages/VerifyEmailPage'))
@@ -246,6 +247,11 @@ const App: React.FC = () => {
               <Route
                 path="/portal"
                 element={<ClientPortal />}
+              />
+
+              <Route
+                path="/dashboard"
+                element={<Dashboard />}
               />
 
               <Route

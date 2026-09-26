@@ -2,7 +2,7 @@
 
 > **STATUS: OPT-IN ONLY — DISABLED BY DEFAULT — NOT PART OF V1 ROUTES.**
 
-`backend/src/future/` contains provider-neutral foundations for future BİŞIŞ versions. `index.js` is the compatibility barrel; implementations live in `core.js`, `services.js`, and `adapters.js`, while domain barrels provide focused imports.
+`backend/src/future/` contains provider-neutral foundations for future BİŞİŞ versions. `index.js` is the compatibility barrel; implementations live in `core.js`, `services.js`, and `adapters.js`, while domain barrels provide focused imports.
 
 | Domain | Barrel | Main exports |
 |---|---|---|

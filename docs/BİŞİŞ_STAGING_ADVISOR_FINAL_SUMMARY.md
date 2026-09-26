@@ -1,4 +1,4 @@
-# BİŞIŞ V1 — Staging Advisor Final Summary
+# BİŞİŞ V1 — Staging Advisor Final Summary
 
 **Scope:** Read-only advisor verification on the disposable Staging project after the additive foreign-key index migration. Production was not queried or modified.
 

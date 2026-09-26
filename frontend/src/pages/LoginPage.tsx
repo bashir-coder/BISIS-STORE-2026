@@ -87,8 +87,8 @@ const LoginPage = () => {
               <input
                 value={fullName}
                 onChange={(event) => setFullName(event.target.value)}
-                aria-label={t('auth.full_name', 'Full name')}
-                placeholder={t('auth.email') === 'Email' ? 'Full name' : 'الاسم الكامل'}
+                aria-label={t('auth.full_name')}
+                placeholder={t('auth.full_name_placeholder')}
                 className="w-full bg-white/5 border border-white/10 rounded-lg px-4 py-3 text-white placeholder:text-white/30 focus:outline-none focus:border-gold/50"
               />
             )}
@@ -130,7 +130,7 @@ const LoginPage = () => {
             <>
               <div className="flex items-center gap-3 my-6 text-white/30 text-xs">
                 <span className="h-px bg-white/10 flex-1" />
-                <span>OR</span>
+                <span>{t('auth.or')}</span>
                 <span className="h-px bg-white/10 flex-1" />
               </div>
               <div className="flex justify-center">

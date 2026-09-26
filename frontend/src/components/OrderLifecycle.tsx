@@ -16,13 +16,13 @@ const OrderLifecycle: React.FC<OrderLifecycleProps> = ({ status, compact = false
   const normalized = steps.includes((status || 'new') as OrderStatus) ? (status || 'new') as OrderStatus : 'new'
   const activeIndex = steps.indexOf(normalized)
   const labels: Record<OrderStatus, string> = {
-    new: t('dashboard.order_received', 'Order received'),
-    processing: t('dashboard.order_processing', 'Processing'),
-    completed: t('dashboard.order_completed', 'Completed'),
+    new: t('dashboard.order_received'),
+    processing: t('dashboard.order_processing'),
+    completed: t('dashboard.order_completed'),
   }
 
   return (
-    <div aria-label={t('dashboard.order_progress', 'Order progress')} className={`flex ${compact ? 'items-center gap-1.5' : 'items-start gap-2'}`}>
+    <div aria-label={t('dashboard.order_progress')} className={`flex ${compact ? 'items-center gap-1.5' : 'items-start gap-2'}`}>
       {steps.map((step, index) => {
         const complete = index < activeIndex || normalized === 'completed'
         const current = index === activeIndex

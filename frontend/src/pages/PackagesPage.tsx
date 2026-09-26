@@ -6,7 +6,6 @@ import { Link } from 'react-router-dom'
 import MagneticButton from '../components/MagneticButton'
 import { api } from '../utils/api-client'
 import { useTranslate } from '../hooks/useTranslate'
-import { useLanguage } from '../contexts/LanguageContext'
 
 interface Package {
   id: number
@@ -32,43 +31,8 @@ interface Service {
   is_active: boolean
 }
 
-const serviceCopy: Record<string, Record<'ar' | 'en' | 'tr', string>> = {
-  'svc-001': { ar: 'يحوّل التشتت إلى اتجاه واضح وخريطة عمل من 3 نقاط.', en: 'Turns scattered thinking into clear direction and a three-point action map.', tr: 'Dağınık düşünceleri net bir yöne ve üç maddelik eylem haritasına dönüştürür.' },
-  'svc-002': { ar: 'تحليل معضلة استراتيجية مع الخيارات، التوصية، والخطة البديلة.', en: 'Analyzes a strategic dilemma with options, a recommendation, and a fallback plan.', tr: 'Stratejik bir ikilemi seçenekler, öneri ve alternatif planla analiz eder.' },
-  'svc-003': { ar: 'جلسة استراتيجية واحدة لتحديد البوصلة للمرحلة القادمة.', en: 'One focused strategy session to set the compass for the next phase.', tr: 'Bir sonraki aşamanın yönünü belirleyen tek bir strateji oturumu.' },
-  'svc-004': { ar: 'جلسة دعم نصي مركزة لقرار أو مشكلة محددة.', en: 'A focused text-based support session for one decision or problem.', tr: 'Tek bir karar veya sorun için odaklı yazılı destek oturumu.' },
-  'svc-005': { ar: 'تحويل الفكرة إلى 3 رسائل: للمستثمر، للعميل، وللجمهور.', en: 'Turns an idea into three messages for investors, customers, and the wider audience.', tr: 'Fikri yatırımcı, müşteri ve genel kitle için üç mesaja dönüştürür.' },
-  'svc-006': { ar: 'أقوى الاعتراضات المتوقعة مع ردود عملية جاهزة.', en: 'The strongest expected objections with practical ready-to-use responses.', tr: 'Beklenen en güçlü itirazlar ve kullanıma hazır pratik yanıtlar.' },
-  'svc-007': { ar: 'الاختيار الأساسي + المخاطر + أول خطوة تنفيذية.', en: 'The core choice, its risks, and the first execution step.', tr: 'Ana seçim, riskleri ve ilk uygulama adımı.' },
-  'svc-008': { ar: 'تحويل الفكرة التقنية إلى سردية إنسانية قابلة للاستخدام.', en: 'Turns a technical idea into a usable human-centered story.', tr: 'Teknik fikri kullanılabilir, insan odaklı bir hikayeye dönüştürür.' },
-  'svc-009': { ar: 'تحليل استخدام الوقت وتحديد أهم فرص التفويض والتحسين.', en: 'Audits time use and identifies the highest-value delegation and improvement opportunities.', tr: 'Zaman kullanımını inceler ve en önemli yetki devri ve iyileştirme fırsatlarını belirler.' },
-  'svc-010': { ar: 'تحديد الفجوة بين الوضع الحالي والرؤية مع حلول لسدها.', en: 'Maps the gap between the current state and the vision with ways to close it.', tr: 'Mevcut durum ile vizyon arasındaki boşluğu ve kapatma yollarını belirler.' },
-  'svc-011': { ar: 'تحليل المنافسين وتحديد فرص محتوى غير مستغلة.', en: 'Analyzes competitors and identifies untapped content opportunities.', tr: 'Rakipleri analiz eder ve kullanılmamış içerik fırsatlarını ortaya çıkarır.' },
-  'svc-012': { ar: 'اختبار الفكرة من وجهات نظر نقدية متعددة.', en: 'Tests the idea from multiple critical perspectives.', tr: 'Fikri birden fazla eleştirel bakış açısından test eder.' },
-  'svc-013': { ar: 'تصميم نظام أسبوعي عملي لإدارة وقت المؤسس.', en: 'Designs a practical weekly operating system for the founder.', tr: 'Kurucunun zamanını yönetmesi için pratik bir haftalık sistem tasarlar.' },
-  'svc-014': { ar: 'بناء positioning واضح ومميز وقابل للاستخدام تجاريًا.', en: 'Builds clear, distinctive positioning that can be used commercially.', tr: 'Net, ayırt edici ve ticari olarak kullanılabilir bir konumlandırma oluşturur.' },
-  'svc-015': { ar: 'خريطة أتمتة عملية لتقليل الأعمال المتكررة.', en: 'A practical automation roadmap to reduce repetitive work.', tr: 'Tekrarlayan işleri azaltmak için pratik bir otomasyon yol haritası.' },
-  'svc-016': { ar: 'خارطة استراتيجية 12–18 شهرًا مع milestones وKPIs.', en: 'A 12–18 month strategic roadmap with milestones and KPIs.', tr: 'Kilometre taşları ve KPI\'lar içeren 12–18 aylık stratejik yol haritası.' },
-  'svc-017': { ar: 'هيكلة ومحتوى وقصة عرض استثماري متكامل، وليس مجرد تصميم شرائح.', en: 'Structure, content, and story for a complete investor pitch, not just slide design.', tr: 'Sadece slayt tasarımı değil, eksiksiz bir yatırım sunumunun yapısı, içeriği ve hikayesi.' },
-  'svc-018': { ar: 'نظام تخطيط حياة مستمر مع تحليل AI ومراجعة بشرية وخطة وروتين ومتابعة.', en: 'An ongoing life-planning system with AI analysis, human review, planning, routines, and updates.', tr: 'Yapay zeka analizi, insan incelemesi, plan, rutin ve sürekli güncellemeler içeren yaşam planlama sistemi.' },
-}
-
-const uiCopy = {
-  ar: { calculator: 'حاسبة النطاق والتقدير الفوري', hideCalculator: 'إخفاء الحاسبة الذكية', compare: 'مقارنة الباقات', calculatorTitle: 'حاسبة النطاق المخصص الفوري', chooseScope: 'اختر نطاقًا رسميًا', estimate: 'التقدير الموصى به', outputs: 'مخرجات', selectPackage: 'تحديد الباقة المطابقة', serviceOrOutput: 'الخدمة أو المخرج', compareHint: 'اختر الباقة المثالية التي تلبي احتياجك', close: 'إغلاق المقارنة' },
-  en: { calculator: 'Live scope calculator', hideCalculator: 'Hide calculator', compare: 'Compare packages', calculatorTitle: 'Live scope calculator', chooseScope: 'Choose an official scope', estimate: 'Recommended estimate', outputs: 'outputs', selectPackage: 'Select matching package', serviceOrOutput: 'Service or deliverable', compareHint: 'Choose the package that fits your needs', close: 'Close comparison' },
-  tr: { calculator: 'Canlı kapsam hesaplayıcı', hideCalculator: 'Hesaplayıcıyı gizle', compare: 'Paketleri karşılaştır', calculatorTitle: 'Canlı kapsam hesaplayıcı', chooseScope: 'Resmi bir kapsam seçin', estimate: 'Önerilen tahmin', outputs: 'çıktı', selectPackage: 'Eşleşen paketi seç', serviceOrOutput: 'Hizmet veya çıktı', compareHint: 'İhtiyacınıza uygun paketi seçin', close: 'Karşılaştırmayı kapat' },
-} as const
-
-const packageDescriptionCopy: Record<string, Record<'ar' | 'en' | 'tr', string>> = {
-  foundation: { ar: 'وضوح واتجاه', en: 'Clarity & Direction', tr: 'Netlik ve Yön' },
-  growth: { ar: 'استراتيجية ونمو', en: 'Strategy & Growth', tr: 'Strateji ve Büyüme' },
-  scale: { ar: 'نمو وأتمتة وجاهزية استثمارية', en: 'Growth, Automation & Investment Readiness', tr: 'Büyüme, Otomasyon ve Yatırım Hazırlığı' },
-}
-
 const PackagesPage: React.FC = () => {
   const { t } = useTranslate()
-  const { currentLang } = useLanguage()
-  const copy = uiCopy[currentLang as 'ar' | 'en' | 'tr'] || uiCopy.en
 
   const [packages, setPackages] = useState<Package[]>([])
   const [services, setServices] = useState<Service[]>([])
@@ -177,7 +141,7 @@ const PackagesPage: React.FC = () => {
               className="inline-flex items-center gap-2 rounded-full border border-gold/30 bg-gold/10 px-4 py-2 text-xs sm:text-sm font-medium text-gold hover:bg-gold/20 transition-all shadow-sm shadow-gold/10"
             >
               <SlidersHorizontal className="h-4 w-4" />
-              <span>{showCalculator ? copy.hideCalculator : copy.calculator}</span>
+              <span>{showCalculator ? t('packages.calc.hide') : t('packages.calc.calculator')}</span>
             </button>
 
             <button
@@ -186,7 +150,7 @@ const PackagesPage: React.FC = () => {
               className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-4 py-2 text-xs sm:text-sm font-medium text-white/80 hover:border-gold/30 hover:bg-white/10 transition-all"
             >
               <Table2 className="h-4 w-4 text-emerald-light" />
-              <span>{copy.compare}</span>
+              <span>{t('packages.calc.compare')}</span>
             </button>
           </div>}
         </motion.div>
@@ -206,7 +170,7 @@ const PackagesPage: React.FC = () => {
                   <div className="flex items-center gap-2.5">
                     <Sparkles className="h-5 w-5 text-gold" />
                     <h3 className="text-lg font-bold font-outfit text-white">
-                      {copy.calculatorTitle}
+                      {t('packages.calc.title')}
                     </h3>
                   </div>
                   <button
@@ -220,7 +184,7 @@ const PackagesPage: React.FC = () => {
                 <div className="mt-6 grid gap-6 md:grid-cols-2">
                   <div>
                     <label className="block text-xs uppercase tracking-wider text-white/60 mb-2">
-                      {copy.chooseScope}
+                      {t('packages.calc.choose_scope')}
                     </label>
                     <div className="space-y-2">
                       {packages.map((pkg) => (
@@ -244,13 +208,13 @@ const PackagesPage: React.FC = () => {
                   <div className="rounded-2xl border border-gold/40 bg-gradient-to-br from-gold/[0.08] to-transparent p-5 flex flex-col justify-between">
                     <div>
                       <span className="text-xs uppercase tracking-widest text-gold font-semibold">
-                        {copy.estimate}
+                        {t('packages.calc.estimate')}
                       </span>
                       <div className="mt-2 text-3xl font-bold font-outfit text-white">
                         ~ ${calculatedEstimate.estimatedPrice}
                       </div>
                       <p className="mt-1 text-xs text-white/60">
-                        {calculatedEstimate.packageName} · {calculatedEstimate.serviceCount} {copy.outputs}
+                        {calculatedEstimate.packageName} · {calculatedEstimate.serviceCount} {t('packages.calc.outputs')}
                       </p>
                     </div>
 
@@ -264,7 +228,7 @@ const PackagesPage: React.FC = () => {
                         }}
                         className="w-full py-2.5 px-4 rounded-xl bg-gold text-dark text-xs font-bold uppercase tracking-wider hover:bg-gold-light transition-all shadow-lg shadow-gold/20"
                       >
-                        {copy.selectPackage}
+                        {t('packages.calc.select')}
                       </button>
                     </div>
                   </div>
@@ -279,10 +243,10 @@ const PackagesPage: React.FC = () => {
             <div>
               <p className="text-xs font-semibold uppercase tracking-[0.18em] text-gold">BİŞİŞ V1</p>
               <h2 id="official-services-title" className="mt-2 text-2xl font-bold font-outfit text-white sm:text-3xl">
-                {t('packages.official_services', 'Official services')}
+                {t('packages.official_services')}
               </h2>
             </div>
-            <span className="text-sm text-white/50">{uniqueServices.length} {t('packages.services_count', 'services')}</span>
+            <span className="text-sm text-white/50">{uniqueServices.length} {t('packages.services_count')}</span>
           </div>
           <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
             {uniqueServices.map((service) => {
@@ -293,7 +257,7 @@ const PackagesPage: React.FC = () => {
                     <h3 className="font-semibold text-white">{service.name}</h3>
                     {isSubscription && <span className="shrink-0 rounded-full border border-gold/30 bg-gold/10 px-2 py-1 text-[10px] font-semibold text-gold">Signature Subscription</span>}
                   </div>
-                  <p className="mt-2 min-h-12 text-sm leading-6 text-white/60">{serviceCopy[service.metadata?.source_id || '']?.[currentLang as 'ar' | 'en' | 'tr'] || service.description}</p>
+                  <p className="mt-2 min-h-12 text-sm leading-6 text-white/60">{service.description || t(`services.${service.metadata?.source_id || 'svc-000'}.description`)}</p>
                   <div className="mt-4 flex items-center justify-between border-t border-white/10 pt-4 text-sm">
                     <span className="font-semibold text-gold">${Number(service.price).toFixed(0)}{isSubscription ? '/month' : ''}</span>
                     <span className="text-white/45">{service.delivery}</span>
@@ -326,11 +290,11 @@ const PackagesPage: React.FC = () => {
                 <div>
                   <span className="inline-flex rounded-full border border-gold/30 bg-gold/10 px-3 py-1 text-xs font-semibold uppercase tracking-[0.14em] text-gold">Signature Subscription</span>
                   <h2 id="life-plan-feature-title" className="mt-4 text-3xl font-bold font-outfit text-white">{lifePlan.name}</h2>
-                  <p className="mt-2 max-w-2xl text-sm leading-6 text-white/65">{serviceCopy[lifePlan.metadata?.source_id || '']?.[currentLang as 'ar' | 'en' | 'tr'] || lifePlan.description}</p>
+                  <p className="mt-2 max-w-2xl text-sm leading-6 text-white/65">{lifePlan.description || t(`services.${lifePlan.metadata?.source_id || 'svc-018'}.description`)}</p>
                   <p className="mt-4 text-2xl font-bold font-outfit text-gold">${Number(lifePlan.price).toFixed(0)}/month</p>
                 </div>
                 <Link to="/services/life-plan" className="inline-flex shrink-0 items-center justify-center gap-2 rounded-xl bg-gold px-5 py-3 text-sm font-semibold text-dark transition hover:bg-gold-light">
-                  {currentLang === 'ar' ? 'استكشف The Life Plan™' : currentLang === 'tr' ? 'The Life Plan™\'ı keşfet' : 'Explore The Life Plan™'}
+                  {t('packages.life_plan.cta')}
                   <ArrowRight className="h-4 w-4" />
                 </Link>
               </div>
@@ -414,7 +378,7 @@ const PackagesPage: React.FC = () => {
                   </h2>
 
                   <p className="mt-2 min-h-12 text-sm leading-6 text-white/60">
-                    {packageDescriptionCopy[pkg.slug]?.[currentLang as 'ar' | 'en' | 'tr'] || pkg.description}
+                    {pkg.description || t(`packages.${pkg.slug || 'foundation'}.description`)}
                   </p>
 
                   <div className="my-5 flex items-end gap-2 border-b border-white/10 pb-5">
@@ -454,7 +418,7 @@ const PackagesPage: React.FC = () => {
 
                     {isSelected
                       ? String(t('packages.selected'))
-                      : String(t('packages.view', 'View Package'))}
+                      : String(t('packages.view'))}
                   </button>
                 </motion.article>
               )
@@ -481,10 +445,10 @@ const PackagesPage: React.FC = () => {
               <div className="flex items-center justify-between pb-4 border-b border-white/10">
                 <div>
                   <h3 className="text-xl font-bold font-outfit text-white">
-                    {copy.compare} BİŞIŞ V1
+                    {t('packages.calc.compare')} BİŞIŞ V1
                   </h3>
                   <p className="text-xs text-white/50 mt-1">
-                    {copy.compareHint}
+                    {t('packages.calc.compare_hint')}
                   </p>
                 </div>
                 <button
@@ -499,7 +463,7 @@ const PackagesPage: React.FC = () => {
                 <table className="w-full text-start text-sm">
                   <thead>
                     <tr className="border-b border-white/10 text-white/60">
-                      <th className="py-3 px-4 text-start font-semibold">{copy.serviceOrOutput}</th>
+                      <th className="py-3 px-4 text-start font-semibold">{t('packages.calc.service_or_output')}</th>
                       {packages.map((pkg) => (
                         <th key={pkg.id} className="py-3 px-4 text-center font-semibold text-gold">
                           {pkg.name}<br />${Number(pkg.price).toFixed(0)}
@@ -527,7 +491,7 @@ const PackagesPage: React.FC = () => {
                   onClick={() => setShowComparison(false)}
                   className="px-6 py-2.5 rounded-xl bg-gold/15 border border-gold/30 text-gold text-sm font-semibold hover:bg-gold/25 transition-all"
                 >
-                  {copy.close}
+                    {t('packages.calc.close')}
                 </button>
               </div>
             </motion.div>

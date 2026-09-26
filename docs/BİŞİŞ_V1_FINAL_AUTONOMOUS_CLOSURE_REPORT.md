@@ -1,10 +1,10 @@
-# BİŞIŞ V1 — FINAL AUTONOMOUS CLOSURE REPORT
+# BİŞİŞ V1 — FINAL AUTONOMOUS CLOSURE REPORT
 
 **التاريخ:** 27 أغسطس 2026
 
 ## 1. Executive summary
 
-أُنجزت جولة الإغلاق الذاتي النهائية داخل مستودع BİŞIŞ وبيئة Staging disposable فقط. لم تُضف أي Feature، ولم يتغير نطاق V1، ولم تُلمس Production Supabase، ولم يحدث GitHub push أو نشر أو payment أو OAuth وهمي. النتيجة الحالية هي **PUBLIC-GITHUB READY AS A FRESH BASELINE — NOT PUBLISHED** و**CONDITIONAL STAGING READY**. Production تبقى **NO-GO** لأن متطلبات Production الحقيقية، TLS/domain، managed secrets، clean fresh migration rehearsal، backup/restore، monitoring، provider configuration، وruntime Docker لم تُثبت داخل البيئة المتاحة.
+أُنجزت جولة الإغلاق الذاتي النهائية داخل مستودع BİŞİŞ وبيئة Staging disposable فقط. لم تُضف أي Feature، ولم يتغير نطاق V1، ولم تُلمس Production Supabase، ولم يحدث GitHub push أو نشر أو payment أو OAuth وهمي. النتيجة الحالية هي **PUBLIC-GITHUB READY AS A FRESH BASELINE — NOT PUBLISHED** و**CONDITIONAL STAGING READY**. Production تبقى **NO-GO** لأن متطلبات Production الحقيقية، TLS/domain، managed secrets، clean fresh migration rehearsal، backup/restore، monitoring، provider configuration، وruntime Docker لم تُثبت داخل البيئة المتاحة.
 
 تم إغلاق إصلاحات داخلية واضحة وقابلة للاختبار: منع ظهور Supabase URL في startup errors، تحويل رفض CORS إلى HTTP 403، دعم SIGTERM للإغلاق graceful، توحيد Docker images على Node 22، تشديد Docker/Git ignore، تحديث وثائق Staging وLaunch القديمة، lazy-loading لثلاث صفحات مع قياس قبل/بعد، وإضافة اختبار CORS. البوابات النهائية نجحت، مع بقاء التحذيرين المتوسطين المعروفين في React Router والتحذير المقصود من Vite لحجم entry bundle.
 

@@ -1,4 +1,4 @@
--- BİŞIŞ V1 public catalog and RLS reconciliation.
+-- BİŞİŞ V1 public catalog and RLS reconciliation.
 -- Admin writes remain protected by the backend service-role boundary.
 -- This migration avoids recursive public.users policy lookups.
 

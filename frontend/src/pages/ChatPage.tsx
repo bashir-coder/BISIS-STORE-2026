@@ -24,14 +24,14 @@ const ChatPage: React.FC = () => {
           <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-gold/10 border border-gold/20 mb-4">
             <Sparkles className="w-4 h-4 text-gold" />
             <span className="text-sm text-gold-light font-medium">
-              {t('chat.page.badge', 'المساعد الذكي BİŞIŞ')}
+              {t('chat.page.badge')}
             </span>
           </div>
           <h1 className="text-3xl md:text-4xl font-bold text-white mb-3">
-            {t('chat.page.title', 'كيف يمكنني مساعدتك اليوم؟')}
+            {t('chat.page.title')}
           </h1>
           <p className="text-white/50 max-w-xl mx-auto">
-            {t('chat.page.subtitle', 'اختر سؤالاً من الأسفل للحصول على إجابة مفصلة واحترافية.')}
+            {t('chat.page.subtitle')}
           </p>
         </motion.div>
 
@@ -41,7 +41,6 @@ const ChatPage: React.FC = () => {
           transition={{ delay: 0.2, duration: 0.6 }}
           className="flex justify-center"
         >
-          {}
           <AIChatbot key={i18n.language} variant="page" />
         </motion.div>
 
@@ -51,7 +50,7 @@ const ChatPage: React.FC = () => {
           transition={{ delay: 0.4 }}
           className="text-center mt-8 text-white/20 text-xs"
         >
-          <p>© 2026 BİŞIŞ – {t('chat.page.footer', 'جميع الحقوق محفوظة')}</p>
+          <p>© 2026 BİŞİŞ – {t('chat.page.footer')}</p>
         </motion.div>
       </div>
     </div>

@@ -1,4 +1,4 @@
-# BİŞIŞ V1 — $0 GitHub & Free Deployment Readiness Report
+# BİŞİŞ V1 — $0 GitHub & Free Deployment Readiness Report
 
 **تاريخ التقرير:** 27 أغسطس 2026
 
@@ -101,7 +101,7 @@
 
 ## GitHub status and owner action
 
-تم العثور على GitHub authentication صالح وحساب GitHub يحتوي مستودعات BİŞIŞ قديمة بأسماء مختلفة، لكن لم يتم افتراض أن أيًا منها هو هذا المشروع. لا يوجد remote مربوط بهذا checkout، ولم يتم إنشاء repo أو push. يلزم من المالك فقط عند الرغبة بالنشر: اختيار destination repo/visibility/license، تأكيد أن هذا baseline هو الإصدار المراد نشره، تأكيد عدم overwrite لمستودع قديم، ثم إعطاء موافقة صريحة على أول push.
+تم العثور على GitHub authentication صالح وحساب GitHub يحتوي مستودعات BİŞİŞ قديمة بأسماء مختلفة، لكن لم يتم افتراض أن أيًا منها هو هذا المشروع. لا يوجد remote مربوط بهذا checkout، ولم يتم إنشاء repo أو push. يلزم من المالك فقط عند الرغبة بالنشر: اختيار destination repo/visibility/license، تأكيد أن هذا baseline هو الإصدار المراد نشره، تأكيد عدم overwrite لمستودع قديم، ثم إعطاء موافقة صريحة على أول push.
 
 تم إنشاء Git محلي فقط دون commit أو remote. هذا يعني أن تاريخًا سابقًا لا يمكن تدقيقه هنا. أي remote يراد نشره يجب تدقيقه منفصلًا، وتدوير جميع الأسرار التي سبق كشفها قبل النشر؛ حذف secret من working tree لا يحذف ظهوره من Git history.
 

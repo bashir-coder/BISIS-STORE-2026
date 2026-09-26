@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { AnimatePresence, motion } from 'framer-motion'
 import { ArrowUp } from 'lucide-react'
 import { useTranslation } from 'react-i18next'
+import { useReducedMotion } from '../hooks/useReducedMotion'
 
 const WHATSAPP_NUMBER = '970597997040'
 const socialLabels = {
@@ -12,6 +13,7 @@ const socialLabels = {
 
 const FloatingButtons: React.FC = () => {
   const { t } = useTranslation()
+  const reducedMotion = useReducedMotion()
   const [isVisible, setIsVisible] = useState(false)
   const [footerSocialVisible, setFooterSocialVisible] = useState(false)
 
@@ -41,7 +43,7 @@ const FloatingButtons: React.FC = () => {
       {!footerSocialVisible && <motion.div
         initial={{ opacity: 0, x: 28, scale: 0.85 }}
         animate={{ opacity: 1, x: 0, scale: 1 }}
-        transition={{ type: 'spring', stiffness: 260, damping: 22 }}
+        transition={reducedMotion ? { duration: 0.01 } : { type: 'spring', stiffness: 260, damping: 22 }}
         className="fixed bottom-24 right-4 z-50 flex flex-col gap-3 sm:right-6"
       >
             <a
@@ -96,9 +98,9 @@ const FloatingButtons: React.FC = () => {
             initial={{ opacity: 0, y: 18, scale: 0.92 }}
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: 18, scale: 0.92 }}
-            transition={{ delay: 0.12, type: 'spring', stiffness: 240, damping: 20 }}
-            whileHover={{ scale: 1.08 }}
-            whileTap={{ scale: 0.92 }}
+            transition={reducedMotion ? { duration: 0.01 } : { delay: 0.12, type: 'spring', stiffness: 240, damping: 20 }}
+            whileHover={reducedMotion ? undefined : { scale: 1.08 }}
+            whileTap={reducedMotion ? undefined : { scale: 0.92 }}
             onClick={scrollToTop}
             className="fixed bottom-6 right-6 z-50 flex h-11 w-11 items-center justify-center rounded-full border border-white/10 bg-black/60 text-gold shadow-lg shadow-black/20 backdrop-blur-xl transition-colors hover:border-gold/30 hover:bg-gold/10"
             aria-label={t('floating.back_to_top')}

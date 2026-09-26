@@ -1,4 +1,4 @@
-# BİŞIŞ Service Delivery Engine + Client Experience 2.0 — Contract Design
+# BİŞİŞ Service Delivery Engine + Client Experience 2.0 — Contract Design
 
 ## القرار المعماري
 
@@ -24,7 +24,7 @@
 
 ### project_requirements
 
-يمثل ما يحتاجه BİŞIŞ من العميل. الحقول: `id`, `project_id`, `title`, `description`, `requirement_type` (`text` أو `file` أو `choice`), `is_required`, `status` (`requested`, `submitted`, `needs_revision`, `approved`, `not_applicable`), `response_value`, `file_id`, `client_visible`, `created_by`, `updated_by`, timestamps. لا يسمح العميل بتغيير عنوان المتطلب أو كونه مطلوبًا؛ mutations تمر من backend validation فقط.
+يمثل ما يحتاجه BİŞİŞ من العميل. الحقول: `id`, `project_id`, `title`, `description`, `requirement_type` (`text` أو `file` أو `choice`), `is_required`, `status` (`requested`, `submitted`, `needs_revision`, `approved`, `not_applicable`), `response_value`, `file_id`, `client_visible`, `created_by`, `updated_by`, timestamps. لا يسمح العميل بتغيير عنوان المتطلب أو كونه مطلوبًا؛ mutations تمر من backend validation فقط.
 
 ### project_deliveries
 

@@ -1,4 +1,4 @@
-# BİŞIŞ V1 — Staging External Verification Report
+# BİŞİŞ V1 — Staging External Verification Report
 
 **تاريخ التحقق:** 2026-08-27  
 **بيئة التحقق:** Supabase Staging (المعرّف غير منشور في التقرير)  
@@ -52,7 +52,7 @@ Customer A وCustomer B موجودان في Auth وفي `public.users`، مع ت
 
 ## ما يحتاجه المالك لاحقًا
 
-أولًا، يجب تحديد هل يريد BİŞIŞ استخدام Backend فقط لقراءة جداول المحتوى، أم يريد public read policies مباشرة. ثانيًا، يجب تحديد bucket names وأنواع الملفات وحدود الحجم وتدفق signed URLs. ثالثًا، يجب تفعيل leaked-password protection ومراجعة إعدادات SMTP وGoogle داخل Staging عند استقرار جلسة اللوحة، ثم اختبار callback وemail delivery فعليًا. رابعًا، قبل Production يجب توفير domain وTLS وbackup/restore وmonitoring وsecret manager وpayment provider حقيقي؛ لم يتم تفعيل أو محاكاة أي دفع حقيقي.
+أولًا، يجب تحديد هل يريد BİŞİŞ استخدام Backend فقط لقراءة جداول المحتوى، أم يريد public read policies مباشرة. ثانيًا، يجب تحديد bucket names وأنواع الملفات وحدود الحجم وتدفق signed URLs. ثالثًا، يجب تفعيل leaked-password protection ومراجعة إعدادات SMTP وGoogle داخل Staging عند استقرار جلسة اللوحة، ثم اختبار callback وemail delivery فعليًا. رابعًا، قبل Production يجب توفير domain وTLS وbackup/restore وmonitoring وsecret manager وpayment provider حقيقي؛ لم يتم تفعيل أو محاكاة أي دفع حقيقي.
 
 ## حدود التحقق
 

@@ -1,4 +1,4 @@
-# BİŞIŞ V1 — External Release Readiness Report
+# BİŞİŞ V1 — External Release Readiness Report
 
 > **Historical audit snapshot.** This report predates the current Staging advisor-index reconciliation and canonical migration 011. The current closure report and `docs/BİŞİŞ_V1_CANONICAL_MIGRATION_ORDER.md` are authoritative for the latest repository state.
 
@@ -10,7 +10,7 @@
 
 ## 1. Executive decision
 
-BİŞIŞ V1 يملك أساسًا داخليًا قابلًا للتشغيل: اختبارات التطبيق السابقة والـbrowser E2E وRLS/IDOR smoke أثبتت مسارات Service Delivery، وعزل العملاء، وواجهات staff/client في بيئة اختبار منفصلة. لكن هذه الأدلة لا تساوي جاهزية Production؛ فهي تثبت صحة أجزاء من التطبيق ضد مشروع disposable، ولا تثبت وجود Production منفصل، أو مسار migrations قابل لإعادة الإنتاج، أو إعدادات TLS/backup/monitoring/payment/OAuth حقيقية.
+BİŞİŞ V1 يملك أساسًا داخليًا قابلًا للتشغيل: اختبارات التطبيق السابقة والـbrowser E2E وRLS/IDOR smoke أثبتت مسارات Service Delivery، وعزل العملاء، وواجهات staff/client في بيئة اختبار منفصلة. لكن هذه الأدلة لا تساوي جاهزية Production؛ فهي تثبت صحة أجزاء من التطبيق ضد مشروع disposable، ولا تثبت وجود Production منفصل، أو مسار migrations قابل لإعادة الإنتاج، أو إعدادات TLS/backup/monitoring/payment/OAuth حقيقية.
 
 القرار هو **NO-GO** إلى أن تُغلق على الأقل العناصر P0 التالية: اعتماد Production Supabase منفصل والتحقق من هويته، توحيد migration ledger وإثبات clean reproducibility، إزالة أو حماية الجدول العام غير المحمي `public.table_name`، حسم صلاحيات SECURITY DEFINER، توفير إدارة أسرار وTLS، تفعيل مسار دفع حقيقي fail-closed، واعتماد خطة backup/restore تشمل Storage. لا توجد حاجة لإضافة Features؛ المطلوب هو hardening وتشغيل وإدارة إصدار فقط.
 
@@ -152,7 +152,7 @@ Compose يبني frontend وbackend ويضع nginx على port 80، بينما b
 
 ### Backup, restore, and rollback
 
-Supabase توضح أن daily backups متاحة حسب الخطة، وأن PITR add-on يعطي recovery points أدق، وأن database backup لا يشمل Storage objects [11]. لذلك عقد BİŞIŞ يجب أن يتكون من DB backup/PITR، logical dump/off-site copy عند الحاجة، backup مستقل لـStorage، retention/RPO/RTO مكتوبين، وrestore drill إلى مشروع جديد. لا يجوز اعتبار وجود bucket private أو وجود migrations بديلًا عن restore test.
+Supabase توضح أن daily backups متاحة حسب الخطة، وأن PITR add-on يعطي recovery points أدق، وأن database backup لا يشمل Storage objects [11]. لذلك عقد BİŞİŞ يجب أن يتكون من DB backup/PITR، logical dump/off-site copy عند الحاجة، backup مستقل لـStorage، retention/RPO/RTO مكتوبين، وrestore drill إلى مشروع جديد. لا يجوز اعتبار وجود bucket private أو وجود migrations بديلًا عن restore test.
 
 ### Google OAuth prerequisites
 
@@ -222,7 +222,7 @@ Supabase توضح أن daily backups متاحة حسب الخطة، وأن PITR 
 
 ## References
 
-[1]: [BİŞIŞ README — التشغيل والعقد الحالي](../README.md)  
+[1]: [BİŞİŞ README — التشغيل والعقد الحالي](../README.md)  
 [2]: [Docker Compose](../infrastructure/docker-compose.yml)  
 [3]: [Public nginx configuration](../infrastructure/nginx.conf)  
 [4]: [Backend bootstrap, CORS, rate limits, health, Socket.IO](../backend/server.js)  

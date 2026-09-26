@@ -6,7 +6,7 @@
 
 ## الحكم التنفيذي
 
-> **BİŞIŞ V1 أصبح جاهزًا للانتقال إلى مرحلة الإعداد الخارجي، لكنه ليس Production-ready بعد.**
+> **BİŞİŞ V1 أصبح جاهزًا للانتقال إلى مرحلة الإعداد الخارجي، لكنه ليس Production-ready بعد.**
 
 أُغلقت جميع بنود browser وresponsive وaccessibility التي أمكن إثباتها داخل البيئة الحالية ضمن النطاق المعلن. مسار Staff وClient A وClient B populated مرّ عبر Chromium الحقيقي بـ **28/28 check ناجحًا**، بما في ذلك login، Command Center، Template Manager، Client360 populated overview، Project Workspace، requirement submission، delivery review، revision، approval، completed state، وcross-client denial. كما نجحت مصفوفة الصفحة العامة بـ **9/9 حالات** عبر العربية وEnglish وTürkçe عند 390×844 و1024×900 و1280×941، ونجح light DOM accessibility audit بـ **6/6 حالات**.
 

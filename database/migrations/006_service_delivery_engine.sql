@@ -1,4 +1,4 @@
--- BİŞIŞ V1 — Service Delivery Engine additive contract
+-- BİŞİŞ V1 — Service Delivery Engine additive contract
 -- No destructive operations. Do not run database/legacy/schema.sql.
 
 ALTER TABLE public.projects ADD COLUMN IF NOT EXISTS execution_state TEXT NOT NULL DEFAULT 'not_started';

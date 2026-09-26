@@ -560,7 +560,7 @@ const PaymentPage: React.FC = () => {
                   <Wallet className="w-5 h-5 text-gold" />
 
                   <span className="text-sm text-white/70">
-                    USDC — BSC
+                    {t('payment.crypto_value')}
                   </span>
                 </div>
 
@@ -689,13 +689,13 @@ const PaymentPage: React.FC = () => {
 
                 <ol className="space-y-2 text-sm text-white/50 list-decimal list-inside">
                   <li>
-                    {t('payment.nowpayments_step1', 'افتح صفحة الدفع وأكمل الدفع عبر NOWPayments.')}
+                    {t('payment.nowpayments_step1')}
                   </li>
                   <li>
-                    {t('payment.nowpayments_step2', 'تأكد من اختيار USDC على شبكة BSC.')}
+                    {t('payment.nowpayments_step2')}
                   </li>
                   <li>
-                    {t('payment.nowpayments_step3', 'بعد الدفع، ستصل حالة الدفع تلقائيًا إلى BİŞIŞ عبر NOWPayments.')}
+                    {t('payment.nowpayments_step3')}
                   </li>
                 </ol>
               </div>

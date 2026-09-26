@@ -1,4 +1,4 @@
-# BİŞIŞ V1 — Foundation Package Pricing Decision Support
+# BİŞİŞ V1 — Foundation Package Pricing Decision Support
 
 **Auditor**: Kilo #4 — First Customer Acquisition & Launch Growth Auditor  
 **Date**: September 13, 2026  

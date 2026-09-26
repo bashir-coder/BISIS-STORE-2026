@@ -1,4 +1,4 @@
-# BİŞIŞ — FUTURE CORE HARDENING FINAL REPORT
+# BİŞİŞ — FUTURE CORE HARDENING FINAL REPORT
 
 **التاريخ:** 27 أغسطس 2026
 
@@ -150,4 +150,4 @@ npm run release:check: PASS at high/critical threshold
 [1]: [Future Core Architecture](FUTURE_CORE_ARCHITECTURE.md)
 [2]: [Future Core Integration Plan](FUTURE_CORE_INTEGRATION_PLAN.md)
 [3]: [Future Core README](../backend/src/future/README.md)
-[4]: [BİŞIŞ V1 Canonical Migration Order](BİŞİŞ_V1_CANONICAL_MIGRATION_ORDER.md)
+[4]: [BİŞİŞ V1 Canonical Migration Order](BİŞİŞ_V1_CANONICAL_MIGRATION_ORDER.md)

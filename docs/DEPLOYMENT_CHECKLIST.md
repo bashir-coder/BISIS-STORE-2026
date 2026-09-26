@@ -1,4 +1,4 @@
-# BİŞIŞ V1 — Deployment Checklist
+# BİŞİŞ V1 — Deployment Checklist
 
 **قاعدة:** هذه checklist لا تنفذ deployment. كل خطوة تتطلب Production/host/provider يجب أن يثبتها owner على staging أولًا.
 

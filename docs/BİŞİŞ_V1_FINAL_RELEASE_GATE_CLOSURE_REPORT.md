@@ -1,7 +1,7 @@
-# BİŞIŞ V1 — FINAL RELEASE GATE CLOSURE REPORT
+# BİŞİŞ V1 — FINAL RELEASE GATE CLOSURE REPORT
 
 **تاريخ الإغلاق:** 25 أغسطس 2026  
-**نطاق التنفيذ:** مستودع BİŞIŞ وSupabase disposable test environment فقط.  
+**نطاق التنفيذ:** مستودع BİŞİŞ وSupabase disposable test environment فقط.  
 **Production deployment:** لم يتم.  
 **القرار الخارجي النهائي:** **NO-GO لProduction العامة**.  
 **أقرب حالة يمكن اعتمادها:** **CONDITIONAL GO للـstaging/canary بعد تزويد مدخلات المالك وإغلاق gates المحددة أدناه**.
@@ -28,7 +28,7 @@
 
 ## 2. Database and migration closure
 
-سلسلة BİŞIŞ V1 canonical الآن هي `001 → 002 → 003 → 004 → 005_execution_engine.sql → 006 → 007 → 008 → 009 → 010 → 011`. الملف `005_execution_engine_policies.sql` ليس migration ثانية؛ تشغيله منفصلًا ممنوع لأنه auxiliary SQL Editor/documentation material. المرجع التفصيلي هو [`BİŞİŞ_V1_CANONICAL_MIGRATION_ORDER.md`](BİŞİŞ_V1_CANONICAL_MIGRATION_ORDER.md).
+سلسلة BİŞİŞ V1 canonical الآن هي `001 → 002 → 003 → 004 → 005_execution_engine.sql → 006 → 007 → 008 → 009 → 010 → 011`. الملف `005_execution_engine_policies.sql` ليس migration ثانية؛ تشغيله منفصلًا ممنوع لأنه auxiliary SQL Editor/documentation material. المرجع التفصيلي هو [`BİŞİŞ_V1_CANONICAL_MIGRATION_ORDER.md`](BİŞİŞ_V1_CANONICAL_MIGRATION_ORDER.md).
 
 تم تطبيق `010_production_security_hardening` على مشروع Staging الاختباري disposable، وأعاد apply operation `success=true`. التغيير لم يحذف الجدول stray أو بياناته؛ فقط جعله fail-closed وسحب صلاحيات client roles. هذه نتيجة test environment وليست تصريحًا بتطبيقه على Production قبل مراجعة release owner.
 
