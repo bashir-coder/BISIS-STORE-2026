@@ -56,7 +56,7 @@ const FloatingButtons: React.FC = () => {
             >
               <span className="absolute inset-0 -z-10 rounded-full border border-[#25D366]/30 opacity-0 transition-all duration-300 group-hover:scale-125 group-hover:opacity-100" />
               <i aria-hidden="true" className="fa-brands fa-whatsapp text-xl" />
-              <span className="pointer-events-none absolute right-14 whitespace-nowrap rounded-lg border border-white/10 bg-black/70 px-3 py-2 text-xs text-white/80 opacity-0 shadow-xl transition-opacity group-hover:opacity-100">
+              <span className="pointer-events-none absolute right-14 whitespace-nowrap rounded-lg border border-border-1 bg-surface-inset px-3 py-2 text-xs text-ink-0 opacity-0 shadow-xl transition-opacity group-hover:opacity-100 neon-glow-sm">
                 {t('floating.whatsapp')}
               </span>
             </a>
@@ -71,24 +71,24 @@ const FloatingButtons: React.FC = () => {
             >
               <span className="absolute inset-0 -z-10 rounded-full border border-[#229ED9]/30 opacity-0 transition-all duration-300 group-hover:scale-125 group-hover:opacity-100" />
               <i aria-hidden="true" className="fa-brands fa-telegram text-xl" />
-              <span className="pointer-events-none absolute right-14 whitespace-nowrap rounded-lg border border-white/10 bg-black/70 px-3 py-2 text-xs text-white/80 opacity-0 shadow-xl transition-opacity group-hover:opacity-100">
+              <span className="pointer-events-none absolute right-14 whitespace-nowrap rounded-lg border border-border-1 bg-surface-inset px-3 py-2 text-xs text-ink-0 opacity-0 shadow-xl transition-opacity group-hover:opacity-100 neon-glow-sm">
                 {t('floating.telegram')}
               </span>
             </a>
 
-            <a href="https://instagram.com/bishish_30" target="_blank" rel="noreferrer" aria-label="Instagram" title="Instagram" className="group relative flex h-12 w-12 items-center justify-center rounded-full border border-[#E4405F]/50 bg-[#321521]/90 text-[#E4405F] shadow-[0_0_24px_rgba(228,64,95,0.22)] backdrop-blur-xl transition-all hover:-translate-x-1 hover:bg-[#E4405F] hover:text-white">
+            <a href="https://instagram.com/bishish_30" target="_blank" rel="noreferrer" aria-label={t('floating.instagram')} title={t('floating.instagram')} className="group relative flex h-12 w-12 items-center justify-center rounded-full border border-[#E4405F]/50 bg-[#321521]/90 text-[#E4405F] shadow-[0_0_24px_rgba(228,64,95,0.22)] backdrop-blur-xl transition-all hover:-translate-x-1 hover:bg-[#E4405F] hover:text-white">
               <i aria-hidden="true" className="fa-brands fa-instagram text-xl" />
-              <span className="pointer-events-none absolute right-14 whitespace-nowrap rounded-lg border border-white/10 bg-black/70 px-3 py-2 text-xs text-white/80 opacity-0 shadow-xl transition-opacity group-hover:opacity-100">{labels.instagram}</span>
+              <span className="pointer-events-none absolute right-14 whitespace-nowrap rounded-lg border border-border-1 bg-surface-inset px-3 py-2 text-xs text-ink-0 opacity-0 shadow-xl transition-opacity group-hover:opacity-100 neon-glow-sm">{labels.instagram}</span>
             </a>
 
-            <a href="https://x.com/BİŞİŞHQ" target="_blank" rel="noreferrer" aria-label="X" title="X" className="group relative flex h-12 w-12 items-center justify-center rounded-full border border-white/25 bg-white/[0.06] text-white shadow-[0_0_24px_rgba(255,255,255,0.12)] backdrop-blur-xl transition-all hover:-translate-x-1 hover:bg-white hover:text-black">
+            <a href="https://x.com/BİŞİŞHQ" target="_blank" rel="noreferrer" aria-label={t('floating.x')} title={t('floating.x')} className="group relative flex h-12 w-12 items-center justify-center rounded-full border border-white/25 bg-white/[0.06] text-white shadow-[0_0_24px_rgba(255,255,255,0.12)] backdrop-blur-xl transition-all hover:-translate-x-1 hover:bg-white hover:text-black">
               <i aria-hidden="true" className="fa-brands fa-x-twitter text-xl" />
-              <span className="pointer-events-none absolute right-14 whitespace-nowrap rounded-lg border border-white/10 bg-black/70 px-3 py-2 text-xs text-white/80 opacity-0 shadow-xl transition-opacity group-hover:opacity-100">{labels.x}</span>
+              <span className="pointer-events-none absolute right-14 whitespace-nowrap rounded-lg border border-border-1 bg-surface-inset px-3 py-2 text-xs text-ink-0 opacity-0 shadow-xl transition-opacity group-hover:opacity-100 neon-glow-sm">{labels.x}</span>
             </a>
 
-            <a href="https://www.youtube.com/@BİŞİŞ-2030" target="_blank" rel="noreferrer" aria-label="YouTube" title="YouTube" className="group relative flex h-12 w-12 items-center justify-center rounded-full border border-[#FF0000]/50 bg-[#321010]/90 text-[#FF0000] shadow-[0_0_24px_rgba(255,0,0,0.22)] backdrop-blur-xl transition-all hover:-translate-x-1 hover:bg-[#FF0000] hover:text-white">
+            <a href="https://www.youtube.com/@BİŞİŞ-2030" target="_blank" rel="noreferrer" aria-label={t('floating.youtube')} title={t('floating.youtube')} className="group relative flex h-12 w-12 items-center justify-center rounded-full border border-[#FF0000]/50 bg-[#321010]/90 text-[#FF0000] shadow-[0_0_24px_rgba(255,0,0,0.22)] backdrop-blur-xl transition-all hover:-translate-x-1 hover:bg-[#FF0000] hover:text-white">
               <i aria-hidden="true" className="fa-brands fa-youtube text-xl" />
-              <span className="pointer-events-none absolute right-14 whitespace-nowrap rounded-lg border border-white/10 bg-black/70 px-3 py-2 text-xs text-white/80 opacity-0 shadow-xl transition-opacity group-hover:opacity-100">{labels.youtube}</span>
+              <span className="pointer-events-none absolute right-14 whitespace-nowrap rounded-lg border border-border-1 bg-surface-inset px-3 py-2 text-xs text-ink-0 opacity-0 shadow-xl transition-opacity group-hover:opacity-100 neon-glow-sm">{labels.youtube}</span>
             </a>
       </motion.div>}
 
@@ -102,7 +102,7 @@ const FloatingButtons: React.FC = () => {
             whileHover={reducedMotion ? undefined : { scale: 1.08 }}
             whileTap={reducedMotion ? undefined : { scale: 0.92 }}
             onClick={scrollToTop}
-            className="fixed bottom-6 right-6 z-50 flex h-11 w-11 items-center justify-center rounded-full border border-white/10 bg-black/60 text-gold shadow-lg shadow-black/20 backdrop-blur-xl transition-colors hover:border-gold/30 hover:bg-gold/10"
+            className="fixed bottom-6 right-6 z-50 flex h-11 w-11 items-center justify-center rounded-full border border-border-1 bg-surface-inset text-gold shadow-lg shadow-black/20 backdrop-blur-xl transition-colors hover:border-gold/30 hover:bg-gold/10"
             aria-label={t('floating.back_to_top')}
           >
             <ArrowUp className="h-4 w-4" />

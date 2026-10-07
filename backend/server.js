@@ -251,9 +251,24 @@ app.use(
 // Rate Limiting
 // ============================================================
 
+// Provider IPN endpoints are authenticated by HMAC
+// signature and must never share the client rate
+// budget: throttling them would block payment
+// confirmation for real customer orders.
+const isProviderIpnPath = (req) => {
+  const url = String(req.originalUrl || '')
+
+  return (
+    url === '/api/nowpayments/ipn' ||
+    url.endsWith('/nowpayments-ipn')
+  )
+}
+
 const limiter = rateLimit({
   windowMs: 15 * 60 * 1000,
   max: 100,
+
+  skip: isProviderIpnPath,
 
   message: {
     message:
@@ -863,9 +878,11 @@ if (require.main === module) {
       `🚀 BİŞİŞ Server running on port ${PORT}`,
     )
 
-    logger.info(
-      `📚 Swagger UI: http://localhost:${PORT}/api-docs`,
-    )
+    if (process.env.NODE_ENV !== 'production') {
+      logger.info(
+        `📚 Swagger UI: http://localhost:${PORT}/api-docs`,
+      )
+    }
 
     logger.info(
       `💚 Health Check: http://localhost:${PORT}/api/health`,

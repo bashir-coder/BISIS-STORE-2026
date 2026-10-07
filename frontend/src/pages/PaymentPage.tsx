@@ -28,6 +28,7 @@ type CatalogItem = {
   name: string
   price: number
   kind: 'package' | 'service'
+  isSubscription: boolean
 }
 
 type PaymentData = {
@@ -92,7 +93,7 @@ const getPaymentStatusColor = (status: string): string => {
     case 'refunded':
       return 'bg-gray-500/20 text-gray-300 border-gray-500/30'
     default:
-      return 'bg-white/10 text-white/50 border-white/20'
+      return 'bg-surface-2 text-ink-3 border-border-2'
   }
 }
 
@@ -174,12 +175,20 @@ const PaymentPage: React.FC = () => {
 
         const selected =
           Array.isArray(data)
-            ? data.find(
+            ? (data.find(
                 (item: { id?: number }) =>
                   item.id ===
-                  (pkgId || serviceId)
-              )
-            : null
+                  (pkgId || serviceId),
+              ) as
+                | {
+                    name: string
+                    price: number
+                    metadata?: {
+                      service_type?: string
+                    } | null
+                  }
+                | undefined)
+            : undefined
 
         if (selected) {
           setCatalogItem({
@@ -190,6 +199,9 @@ const PaymentPage: React.FC = () => {
             kind: pkgId
               ? 'package'
               : 'service',
+            isSubscription:
+              selected.metadata?.service_type ===
+              'signature_subscription',
           })
         }
       } catch (err) {
@@ -458,7 +470,7 @@ const PaymentPage: React.FC = () => {
   if (loadingCatalog) {
     return (
       <div className="min-h-screen flex items-center justify-center">
-        <div className="text-white/50">
+        <div className="text-ink-3">
           جاري تحميل معلومات الطلب...
         </div>
       </div>
@@ -470,11 +482,11 @@ const PaymentPage: React.FC = () => {
       <div className="min-h-screen pt-24 pb-20 section-padding">
         <div className="max-w-2xl mx-auto">
           <div className="glass rounded-2xl p-8 border border-gold/10 text-center">
-            <h1 className="text-2xl font-bold text-white mb-3">
+            <h1 className="text-2xl font-bold text-ink-0 mb-3">
               {t('packages.title')}
             </h1>
 
-            <p className="text-white/60 mb-6">
+            <p className="text-ink-0/60 mb-6">
               {t('packages.subtitle')}
             </p>
 
@@ -524,7 +536,7 @@ const PaymentPage: React.FC = () => {
             )}
           </span>
 
-          <h1 className="text-3xl font-bold text-white mb-2">
+          <h1 className="text-3xl font-bold text-ink-0 mb-2">
             {t(
               'payment.title'
             )}
@@ -537,17 +549,15 @@ const PaymentPage: React.FC = () => {
           )}
 
           {catalogItem && (
-            <p className="text-white/60 text-sm mb-2">
+            <p className="text-ink-0/60 text-sm mb-2">
               ${displayPrice.toFixed(2)}
-              {catalogItem.kind ===
-                'service' &&
-              serviceId === 42
+              {catalogItem.isSubscription
                 ? '/month'
                 : ''}
             </p>
           )}
 
-          <p className="text-white/50 mb-8">
+          <p className="text-ink-3 mb-8">
             {t(
               'payment.desc'
             )}
@@ -555,16 +565,16 @@ const PaymentPage: React.FC = () => {
 
           {!payment && (
             <>
-              <div className="bg-transparent rounded-xl p-6 mb-8 border border-white/5">
+              <div className="bg-transparent rounded-xl p-6 mb-8 border border-border-1">
                 <div className="flex items-center gap-2 mb-4">
                   <Wallet className="w-5 h-5 text-gold" />
 
-                  <span className="text-sm text-white/70">
+                  <span className="text-sm text-ink-0/70">
                     {t('payment.crypto_value')}
                   </span>
                 </div>
 
-                <p className="text-xs text-white/40">
+                <p className="text-xs text-ink-0/40">
                   سيتم إنشاء صفحة دفع آمنة عبر NOWPayments.
                 </p>
               </div>
@@ -628,11 +638,11 @@ const PaymentPage: React.FC = () => {
               )}
 
               {payment.pay_address && (
-                <div className="bg-transparent rounded-xl p-6 mb-6 border border-white/5">
+                <div className="bg-transparent rounded-xl p-6 mb-6 border border-border-1">
                   <div className="flex items-center justify-between mb-4">
                     <div className="flex items-center gap-2">
                       <Wallet className="w-5 h-5 text-gold" />
-                      <span className="text-sm text-white/70">
+                      <span className="text-sm text-ink-0/70">
                         USDC — BSC
                       </span>
                     </div>
@@ -642,18 +652,18 @@ const PaymentPage: React.FC = () => {
                     </span>
                   </div>
 
-                  <p className="text-xs text-white/40 mb-2">
+                  <p className="text-xs text-ink-0/40 mb-2">
                     المبلغ المطلوب:
                   </p>
 
-                  <p className="text-xl font-bold text-white mb-4">
+                  <p className="text-xl font-bold text-ink-0 mb-4">
                     {payment.pay_amount}
                     {' '}
                     USDC
                   </p>
 
-                  <div className="flex items-center gap-3 p-4 bg-black/40 rounded-lg border border-white/10">
-                    <code className="flex-1 text-sm text-white/70 font-mono break-all">
+                  <div className="flex items-center gap-3 p-4 bg-surface-inset rounded-lg border border-border-1">
+                    <code className="flex-1 text-sm text-ink-0/70 font-mono break-all">
                       {payment.pay_address}
                     </code>
 
@@ -661,7 +671,7 @@ const PaymentPage: React.FC = () => {
                       onClick={
                         handleCopyAddress
                       }
-                      className="p-2 rounded-lg bg-white/5 hover:bg-white/10 transition-colors text-gold"
+                      className="p-2 rounded-lg bg-surface-1 hover:bg-surface-2 transition-colors text-gold"
                       title="Copy"
                     >
                       {copied ? (
@@ -681,13 +691,13 @@ const PaymentPage: React.FC = () => {
               )}
 
               <div className="space-y-4 mb-8">
-                <h3 className="text-sm font-semibold text-white">
+                <h3 className="text-sm font-semibold text-ink-0">
                   {t(
                     'payment.steps_title'
                   )}
                 </h3>
 
-                <ol className="space-y-2 text-sm text-white/50 list-decimal list-inside">
+                <ol className="space-y-2 text-sm text-ink-3 list-decimal list-inside">
                   <li>
                     {t('payment.nowpayments_step1')}
                   </li>
@@ -702,14 +712,14 @@ const PaymentPage: React.FC = () => {
 
               {orderId && (
                 <div className="glass p-4 rounded-lg border border-gold/10">
-                  <h4 className="text-sm font-semibold text-white mb-3 flex items-center gap-2">
+                  <h4 className="text-sm font-semibold text-ink-0 mb-3 flex items-center gap-2">
                     <Upload className="w-4 h-4 text-gold" />
                     {t(
                       'payment.attach_file'
                     )}
                   </h4>
 
-                  <p className="text-xs text-white/40 mb-3">
+                  <p className="text-xs text-ink-0/40 mb-3">
                     {t(
                       'payment.file_support'
                     )}
@@ -729,10 +739,10 @@ const PaymentPage: React.FC = () => {
 
                       <label
                         htmlFor="file-upload"
-                        className="block cursor-pointer rounded-lg border-2 border-dashed border-white/10 bg-white/5 px-4 py-3 text-center text-sm text-white/50 hover:border-gold/30 hover:bg-white/10 transition-all"
+                        className="block cursor-pointer rounded-lg border-2 border-dashed border-border-1 bg-surface-1 px-4 py-3 text-center text-sm text-ink-3 hover:border-gold/30 hover:bg-surface-2 transition-all"
                       >
                         {file ? (
-                          <span className="flex items-center justify-center gap-2 text-white/80">
+                          <span className="flex items-center justify-center gap-2 text-ink-0/80">
                             <File className="w-4 h-4" />
                             {file.name}
                           </span>
@@ -796,7 +806,7 @@ const PaymentPage: React.FC = () => {
                             onClick={
                               handleRemoveFile
                             }
-                            className="px-4 py-2 border border-white/10 rounded-lg text-sm text-white/40 hover:text-white/70 hover:border-white/20 transition-all"
+                            className="px-4 py-2 border border-border-1 rounded-lg text-sm text-ink-0/40 hover:text-ink-0/70 hover:border-border-2 transition-all"
                           >
                             <X className="w-4 h-4" />
                           </button>

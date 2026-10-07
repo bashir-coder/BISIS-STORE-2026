@@ -322,6 +322,69 @@ router.post(
       }
 
       // ========================================================
+      // Verify the provider-reported invoice amount against
+      // the server-side order amount.
+      //
+      // Invoices are always created server-side with
+      // Number(order.amount ?? order.price) in USD, so a
+      // legitimate IPN must report the same price_amount.
+      // A validly-signed IPN with a different amount must
+      // never transition the order to a paid state.
+      //
+      // expected amount   = order.amount ?? order.price
+      // provider-reported = payload.price_amount
+      // actual paid       = payload.actually_paid
+      // ========================================================
+
+      const expectedAmount = Number(
+        order.amount ?? order.price,
+      )
+
+      const reportedPriceAmount = Number(
+        payload.price_amount,
+      )
+
+      if (
+        !Number.isFinite(expectedAmount) ||
+        expectedAmount <= 0 ||
+        !Number.isFinite(reportedPriceAmount) ||
+        reportedPriceAmount <= 0 ||
+        Math.round(reportedPriceAmount * 100) !==
+          Math.round(expectedAmount * 100)
+      ) {
+        return res.status(400).json({
+          success: false,
+          message:
+            'Payment amount does not match the order',
+          code: 'IPN_AMOUNT_MISMATCH',
+        })
+      }
+
+      // A payment in progress must report a positive paid
+      // amount. Waiting, failure and expiry states
+      // legitimately report zero or no paid amount.
+      if (
+        paymentStatus === 'verified' ||
+        paymentStatus === 'submitted'
+      ) {
+        const actualPaidAmount = Number(
+          payload.actually_paid,
+        )
+
+        if (
+          !Number.isFinite(actualPaidAmount) ||
+          actualPaidAmount <= 0
+        ) {
+          return res.status(400).json({
+            success: false,
+            message:
+              'Payment is missing a positive paid amount',
+            code: 'IPN_PAID_AMOUNT_MISSING',
+          })
+        }
+      }
+
+      // ========================================================
       // Extract useful payment data
       // ========================================================
 
@@ -412,18 +475,84 @@ router.post(
           payinHash
       }
 
-      const {
-        data: updatedOrder,
-        error: updateError,
-      } = await supabase
+      // ========================================================
+      // Atomic state transition
+      //
+      // The update is guarded so a concurrent or later IPN
+      // can never downgrade an order that another request
+      // already moved to "verified". Refunds are exempt
+      // because a refund must be able to supersede a
+      // verified state.
+      // ========================================================
+
+      const updateQuery = supabase
         .from('orders')
         .update(updatePayload)
         .eq('id', orderId)
+
+      if (
+        paymentStatus !== 'refunded'
+      ) {
+        updateQuery.neq('payment_status', 'verified')
+      }
+
+      const {
+        data: updatedOrder,
+        error: updateError,
+      } = await updateQuery
         .select()
-        .single()
+        .maybeSingle()
 
       if (updateError) {
         throw updateError
+      }
+
+      if (!updatedOrder) {
+        // Another IPN already transitioned this order to a
+        // protected state. Re-read the authoritative state
+        // and acknowledge the notification idempotently
+        // instead of overwriting it.
+        const {
+          data: currentOrder,
+        } = await supabase
+          .from('orders')
+          .select('payment_status')
+          .eq('id', orderId)
+          .maybeSingle()
+
+        const alreadyVerified = Boolean(
+          currentOrder?.payment_status === 'verified' &&
+            paymentStatus !== 'refunded',
+        )
+
+        return res.status(200).json({
+          success: true,
+
+          order_id:
+            orderId,
+
+          payment_id:
+            paymentId,
+
+          payment_status:
+            payload.payment_status ||
+            null,
+
+          internal_status:
+            paymentStatus,
+
+          updated:
+            false,
+
+          reason:
+            alreadyVerified
+              ? 'Order is already verified'
+              : 'Payment state changed concurrently',
+
+          current_payment_status:
+            currentOrder?.payment_status ||
+            null,
+        })
       }
 
       // ========================================================

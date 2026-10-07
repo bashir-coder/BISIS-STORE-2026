@@ -734,7 +734,22 @@ router.post(
           ].join(', '))
           .single()
 
-      if (lockError) {
+      // PGRST116 ("multiple (or no) rows") means the
+      // guarded UPDATE matched zero rows: the lock is
+      // held by another request (or is stuck after a
+      // crash). Treat it as "lock held" and fail
+      // closed. Only unrelated errors (for example a
+      // missing column before migration 014) fall
+      // back to the legacy no-lock path.
+      const lockHeldByAnotherRequest = Boolean(
+        lockError &&
+          (lockError.code === 'PGRST116' ||
+            /multiple \(or no\) rows/i.test(
+              String(lockError.message || ''),
+            )),
+      )
+
+      if (lockError && !lockHeldByAnotherRequest) {
         console.warn(
           'nowpayments_creating_lock column not available, ' +
             'proceeding without lock',
@@ -1884,6 +1899,40 @@ router.get(
       return res.status(500).json({
         message:
           'Unable to load orders',
+      })
+    }
+  },
+)
+
+// ============================================================
+// 8b. GET /:id
+// جلب تفاصيل طلب (المالك أو الموظف)
+// ============================================================
+router.get(
+  '/:id',
+  authenticate,
+  async (req, res) => {
+    try {
+      const order = await findAccessibleOrder(
+        req.params.id,
+        req.user,
+      )
+
+      if (!order) {
+        return res
+          .status(404)
+          .json({ message: 'Order not found' })
+      }
+
+      res.json(order)
+    } catch (error) {
+      console.error(
+        'Error fetching order',
+        error,
+      )
+
+      return res.status(500).json({
+        message: 'Unable to load order',
       })
     }
   },

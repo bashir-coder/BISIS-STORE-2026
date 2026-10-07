@@ -5,10 +5,21 @@ import { fallbackResources, type SupportedLanguage } from './i18n-fallback'
 
 const languages: SupportedLanguage[] = ['ar', 'en', 'tr']
 
+const getInitialLanguage = (): SupportedLanguage => {
+  if (typeof window !== 'undefined') {
+    const saved = localStorage.getItem('preferred_language')
+    if (saved && languages.includes(saved as SupportedLanguage)) {
+      return saved as SupportedLanguage
+    }
+  }
+  return 'en'
+}
+
 i18n
   .use(initReactI18next)
   .init({
-    fallbackLng: 'ar',
+    lng: getInitialLanguage(),
+    fallbackLng: 'en',
     supportedLngs: languages,
     ns: ['common'],
     defaultNS: 'common',
@@ -34,7 +45,7 @@ const loadTranslationsFromSupabase = async () => {
       if (data?.length) {
         const resource: Record<string, string> = {}
         data.forEach((row) => { resource[row.key] = row.value })
-        i18n.addResourceBundle(lang, 'common', resource, true, true)
+        i18n.addResourceBundle(lang, 'common', resource, false, true)
       }
     } catch (error) {
       console.warn(`⚠️ فشل تحميل ترجمة ${lang}:`, error)

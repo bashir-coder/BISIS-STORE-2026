@@ -568,11 +568,11 @@ setOrders(ordersData)
   }
 
   if (authLoading) {
-    return <div className="min-h-screen flex items-center justify-center text-white bg-transparent">{t('dashboard.loading')}</div>
+    return <div className="min-h-screen flex items-center justify-center text-ink-0 bg-transparent">{t('dashboard.loading')}</div>
   }
 
   if (!currentUserId) {
-    return <div className="min-h-screen flex items-center justify-center text-white bg-transparent">{t('dashboard.login_required')}</div>
+    return <div className="min-h-screen flex items-center justify-center text-ink-0 bg-transparent">{t('dashboard.login_required')}</div>
   }
 
   return (
@@ -583,10 +583,10 @@ setOrders(ordersData)
           <div className="mb-8 flex flex-col gap-3 md:flex-row md:items-end md:justify-between">
             <div>
               <p className="text-sm uppercase tracking-[0.3em] text-gold/70">{t('admin.operations_center')}</p>
-              <h1 className="text-3xl font-bold text-white">{t('admin.title')}</h1>
-              <p className="mt-2 text-white/50">{t('admin.monitor_requests')}</p>
+              <h1 className="text-3xl font-bold text-ink-0">{t('admin.title')}</h1>
+              <p className="mt-2 text-ink-3">{t('admin.monitor_requests')}</p>
             </div>
-            <button onClick={() => void fetchAllData()} className="flex items-center gap-2 rounded-lg border border-white/10 bg-white/5 px-3 py-2 text-sm text-white/70 hover:bg-white/10">
+            <button onClick={() => void fetchAllData()} className="flex items-center gap-2 rounded-lg border border-border-1 bg-surface-1 px-3 py-2 text-sm text-ink-2 hover:bg-surface-2">
               <RefreshCw className="h-4 w-4" /> {t('dashboard.refresh')}
             </button>
           </div>
@@ -601,10 +601,10 @@ setOrders(ordersData)
             ].map((item, index) => (
               <div key={index} className="glass rounded-2xl border-gold/5 p-5">
                 <div className="flex items-center justify-between">
-                  <span className="text-sm text-white/50">{item.label}</span>
+                  <span className="text-sm text-ink-3">{item.label}</span>
                   <item.icon className={`h-5 w-5 ${item.accent}`} />
                 </div>
-                <div className="mt-4 text-2xl font-semibold text-white">{item.value}</div>
+                <div className="mt-4 text-2xl font-semibold text-ink-0">{item.value}</div>
               </div>
             ))}
           </div>
@@ -613,7 +613,7 @@ setOrders(ordersData)
             <div className="mb-4 flex flex-wrap items-end justify-between gap-3">
               <div>
                 <p className="text-sm uppercase tracking-[0.25em] text-gold/70">{t('admin.operations_center')}</p>
-                <h2 id="action-center-title" className="text-xl font-semibold text-white">{t('admin.action_center')}</h2>
+                <h2 id="action-center-title" className="text-xl font-semibold text-ink-0">{t('admin.action_center')}</h2>
               </div>
               <span className={`rounded-full border px-3 py-1 text-xs ${operationalSignals.attentionTotal > 0 ? 'border-red-400/30 bg-red-500/10 text-red-200' : 'border-green-400/30 bg-green-500/10 text-green-200'}`}>
                 {operationalSignals.attentionTotal > 0 ? `${operationalSignals.attentionTotal} ${t('admin.items_need_attention')}` : t('admin.all_clear')}
@@ -622,25 +622,25 @@ setOrders(ordersData)
             <div className="grid gap-3 sm:grid-cols-2 xl:grid-cols-4">
               <div className="rounded-2xl border border-blue-400/20 bg-blue-500/10 p-4">
                 <div className="flex items-center gap-2 text-blue-200"><AlertCircle className="h-4 w-4" /><span className="text-sm">{t('admin.open_requests')}</span></div>
-                <p className="mt-2 text-2xl font-semibold text-white">{stats.newCount}</p>
+                <p className="mt-2 text-2xl font-semibold text-ink-0">{stats.newCount}</p>
               </div>
               <div className="rounded-2xl border border-orange-400/20 bg-orange-500/10 p-4">
                 <div className="flex items-center gap-2 text-orange-200"><FolderPlus className="h-4 w-4" /><span className="text-sm">{t('admin.unassigned_orders')}</span></div>
-                <p className="mt-2 text-2xl font-semibold text-white">{operationalSignals.unassignedOrders}</p>
+                <p className="mt-2 text-2xl font-semibold text-ink-0">{operationalSignals.unassignedOrders}</p>
               </div>
               <div className="rounded-2xl border border-red-400/20 bg-red-500/10 p-4">
                 <div className="flex items-center gap-2 text-red-200"><Ticket className="h-4 w-4" /><span className="text-sm">{t('tickets.open')}</span></div>
-                <p className="mt-2 text-2xl font-semibold text-white">{operationalSignals.openTickets}</p>
+                <p className="mt-2 text-2xl font-semibold text-ink-0">{operationalSignals.openTickets}</p>
               </div>
               <div className="rounded-2xl border border-green-400/20 bg-green-500/10 p-4">
                 <div className="flex items-center gap-2 text-green-200"><FolderOpen className="h-4 w-4" /><span className="text-sm">{t('projects.active')}</span></div>
-                <p className="mt-2 text-2xl font-semibold text-white">{operationalSignals.activeProjects}</p>
+                <p className="mt-2 text-2xl font-semibold text-ink-0">{operationalSignals.activeProjects}</p>
               </div>
             </div>
-            <p className="mt-4 text-xs text-white/40">{t('admin.action_center_source')}</p>
+            <p className="mt-4 text-xs text-ink-4">{t('admin.action_center_source')}</p>
           </section>
 
-          {deliveryQueue.length > 0 && <section aria-labelledby="delivery-queue-title" className="mb-8 glass rounded-3xl border border-gold/10 p-5"><div className="mb-4 flex flex-wrap items-end justify-between gap-3"><div><p className="text-xs uppercase tracking-[0.22em] text-gold/70">{t('workbench.delivery_queue')}</p><h2 id="delivery-queue-title" className="mt-1 text-xl font-semibold text-white">{t('admin.delivery_exceptions')}</h2></div><Link to="/workbench" className="text-sm text-gold hover:underline">{t('workbench.open_project')}</Link></div><div className="grid gap-3 md:grid-cols-2 xl:grid-cols-3">{deliveryQueue.filter((item) => item.next_action || item.pending_requirements > 0 || item.execution_state === 'blocked').slice(0, 6).map((item) => <Link key={item.id} to={`/projects/${item.id}`} className="rounded-2xl border border-white/10 bg-black/20 p-4 transition hover:border-gold/25 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold/70"><div className="flex items-start justify-between gap-3"><div className="min-w-0"><p className="truncate text-sm font-semibold text-white">{item.name}</p><p className="mt-1 text-xs text-gold/80">{t(`client.state.${item.execution_state}`, item.execution_state || 'not_started')}</p></div><FolderOpen className="h-4 w-4 shrink-0 text-gold" /></div><p className="mt-3 text-sm text-white/60">{item.next_action?.title || (item.pending_requirements > 0 ? `${item.pending_requirements} ${t('workbench.requirements_pending')}` : t('admin.project_needs_attention'))}</p><p className="mt-2 text-xs text-white/35">{item.task_count ? `${item.completed_task_count}/${item.task_count} ${t('client.home.steps_done')}` : t('client.home.progress_not_available')}</p></Link>)}</div></section>}
+          {deliveryQueue.length > 0 && <section aria-labelledby="delivery-queue-title" className="mb-8 glass rounded-3xl border border-gold/10 p-5"><div className="mb-4 flex flex-wrap items-end justify-between gap-3"><div><p className="text-xs uppercase tracking-[0.22em] text-gold/70">{t('workbench.delivery_queue')}</p><h2 id="delivery-queue-title" className="mt-1 text-xl font-semibold text-ink-0">{t('admin.delivery_exceptions')}</h2></div><Link to="/workbench" className="text-sm text-gold hover:underline">{t('workbench.open_project')}</Link></div><div className="grid gap-3 md:grid-cols-2 xl:grid-cols-3">{deliveryQueue.filter((item) => item.next_action || item.pending_requirements > 0 || item.execution_state === 'blocked').slice(0, 6).map((item) => <Link key={item.id} to={`/projects/${item.id}`} className="rounded-2xl border border-border-1 bg-surface-inset p-4 transition hover:border-gold/25 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold/70"><div className="flex items-start justify-between gap-3"><div className="min-w-0"><p className="truncate text-sm font-semibold text-ink-0">{item.name}</p><p className="mt-1 text-xs text-gold/80">{t(`client.state.${item.execution_state}`, item.execution_state || 'not_started')}</p></div><FolderOpen className="h-4 w-4 shrink-0 text-gold" /></div><p className="mt-3 text-sm text-ink-0/60">{item.next_action?.title || (item.pending_requirements > 0 ? `${item.pending_requirements} ${t('workbench.requirements_pending')}` : t('admin.project_needs_attention'))}</p><p className="mt-2 text-xs text-ink-4">{item.task_count ? `${item.completed_task_count}/${item.task_count} ${t('client.home.steps_done')}` : t('client.home.progress_not_available')}</p></Link>)}</div></section>}
 
           <OperationalPulse
             greeting={operationalPulse.greeting}
@@ -656,8 +656,8 @@ setOrders(ordersData)
           />
 
           <div className="mb-8 grid gap-3 md:grid-cols-2">
-            <Link to="/workbench" className="group rounded-2xl border border-gold/15 bg-gold/[0.06] p-4 transition hover:border-gold/35 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold/70"><div className="flex items-center justify-between"><div><p className="text-xs uppercase tracking-[0.2em] text-gold/70">{t('admin.quick_action')}</p><p className="mt-1 text-sm font-semibold text-white">{t('admin.open_workbench')}</p></div><FolderOpen className="h-5 w-5 text-gold transition-transform group-hover:scale-110" /></div><p className="mt-2 text-xs text-white/45">{t('admin.open_workbench_hint')}</p></Link>
-            <Link to="/clients" className="group rounded-2xl border border-white/10 bg-white/[0.03] p-4 transition hover:border-gold/25 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold/70"><div className="flex items-center justify-between"><div><p className="text-xs uppercase tracking-[0.2em] text-white/40">{t('admin.quick_action')}</p><p className="mt-1 text-sm font-semibold text-white">{t('admin.open_client_360')}</p></div><User className="h-5 w-5 text-gold transition-transform group-hover:scale-110" /></div><p className="mt-2 text-xs text-white/45">{t('admin.open_client_360_hint')}</p></Link>
+            <Link to="/workbench" className="group rounded-2xl border border-gold/15 bg-gold/[0.06] p-4 transition hover:border-gold/35 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold/70"><div className="flex items-center justify-between"><div><p className="text-xs uppercase tracking-[0.2em] text-gold/70">{t('admin.quick_action')}</p><p className="mt-1 text-sm font-semibold text-ink-0">{t('admin.open_workbench')}</p></div><FolderOpen className="h-5 w-5 text-gold transition-transform group-hover:scale-110" /></div><p className="mt-2 text-xs text-ink-0/45">{t('admin.open_workbench_hint')}</p></Link>
+            <Link to="/clients" className="group rounded-2xl border border-border-1 bg-surface-1 p-4 transition hover:border-gold/25 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold/70"><div className="flex items-center justify-between"><div><p className="text-xs uppercase tracking-[0.2em] text-ink-4">{t('admin.quick_action')}</p><p className="mt-1 text-sm font-semibold text-ink-0">{t('admin.open_client_360')}</p></div><User className="h-5 w-5 text-gold transition-transform group-hover:scale-110" /></div><p className="mt-2 text-xs text-ink-0/45">{t('admin.open_client_360_hint')}</p></Link>
           </div>
 
           <AdminCatalogManager />
@@ -666,16 +666,16 @@ setOrders(ordersData)
           {/* Analytics Row */}
           <div className="mb-8 grid gap-6 lg:grid-cols-[1fr_2fr]">
             <div className="glass rounded-2xl border-gold/5 p-5">
-              <h3 className="text-sm font-semibold text-white/70 mb-3">{t('admin.order_distribution')}</h3>
-              {loadingAnalytics ? <div className="py-8 text-center text-white/40">{t('dashboard.loading')}</div> : statusCounts.length === 0 ? <div className="py-8 text-center text-white/40">{t('dashboard.no_data')}</div> : <div className="max-w-xs mx-auto"><Doughnut data={chartData} options={chartOptions} /></div>}
+              <h3 className="text-sm font-semibold text-ink-2 mb-3">{t('admin.order_distribution')}</h3>
+              {loadingAnalytics ? <div className="py-8 text-center text-ink-4">{t('dashboard.loading')}</div> : statusCounts.length === 0 ? <div className="py-8 text-center text-ink-4">{t('dashboard.no_data')}</div> : <div className="max-w-xs mx-auto"><Doughnut data={chartData} options={chartOptions} /></div>}
             </div>
             <div className="glass rounded-2xl border-gold/5 p-5">
-              <h3 className="text-sm font-semibold text-white/70 mb-3">{t('admin.quick_stats')}</h3>
+              <h3 className="text-sm font-semibold text-ink-2 mb-3">{t('admin.quick_stats')}</h3>
               <div className="grid grid-cols-2 gap-3">
-                <div className="rounded-xl border border-white/10 bg-white/5 p-3"><div className="flex items-center gap-2 text-white/50 text-xs"><AlertCircle className="h-3 w-3" /> {t('admin.total_orders')}</div><div className="text-xl font-bold text-white">{analytics?.totalOrders ?? 0}</div></div>
-                <div className="rounded-xl border border-white/10 bg-white/5 p-3"><div className="flex items-center gap-2 text-white/50 text-xs"><DollarSign className="h-3 w-3" /> {t('admin.revenue')}</div><div className="text-xl font-bold text-gold">${(analytics?.totalRevenue ?? 0).toFixed(2)}</div></div>
-                <div className="rounded-xl border border-white/10 bg-white/5 p-3"><div className="flex items-center gap-2 text-white/50 text-xs"><Clock className="h-3 w-3" /> {t('admin.in_progress')}</div><div className="text-xl font-bold text-yellow-300">{statusCounts.find(s => s.status === 'processing')?.count || 0}</div></div>
-                <div className="rounded-xl border border-white/10 bg-white/5 p-3"><div className="flex items-center gap-2 text-white/50 text-xs">✅ {t('admin.completed')}</div><div className="text-xl font-bold text-green-300">{statusCounts.find(s => s.status === 'completed')?.count || 0}</div></div>
+                <div className="rounded-xl border border-border-1 bg-surface-1 p-3"><div className="flex items-center gap-2 text-ink-3 text-xs"><AlertCircle className="h-3 w-3" /> {t('admin.total_orders')}</div><div className="text-xl font-bold text-ink-0">{analytics?.totalOrders ?? 0}</div></div>
+                <div className="rounded-xl border border-border-1 bg-surface-1 p-3"><div className="flex items-center gap-2 text-ink-3 text-xs"><DollarSign className="h-3 w-3" /> {t('admin.revenue')}</div><div className="text-xl font-bold text-gold">${(analytics?.totalRevenue ?? 0).toFixed(2)}</div></div>
+                <div className="rounded-xl border border-border-1 bg-surface-1 p-3"><div className="flex items-center gap-2 text-ink-3 text-xs"><Clock className="h-3 w-3" /> {t('admin.in_progress')}</div><div className="text-xl font-bold text-yellow-300">{statusCounts.find(s => s.status === 'processing')?.count || 0}</div></div>
+                <div className="rounded-xl border border-border-1 bg-surface-1 p-3"><div className="flex items-center gap-2 text-ink-3 text-xs">✅ {t('admin.completed')}</div><div className="text-xl font-bold text-green-300">{statusCounts.find(s => s.status === 'completed')?.count || 0}</div></div>
               </div>
             </div>
           </div>
@@ -685,17 +685,17 @@ setOrders(ordersData)
             <div className="flex items-center justify-between mb-4">
               <div className="flex items-center gap-3">
                 <FileText className="w-5 h-5 text-gold" />
-                <h2 className="text-lg font-semibold text-white">{t('invoices.title')}</h2>
-                <span className="text-sm text-white/40">({invoices.length})</span>
+                <h2 className="text-lg font-semibold text-ink-0">{t('invoices.title')}</h2>
+                <span className="text-sm text-ink-4">({invoices.length})</span>
               </div>
             </div>
             <div className="space-y-2">
-              {invoices.length === 0 && <p className="text-white/40 text-sm">{t('invoices.no_invoices')}</p>}
+              {invoices.length === 0 && <p className="text-ink-4 text-sm">{t('invoices.no_invoices')}</p>}
               {invoices.map(inv => (
-                <div key={inv.id} className="glass rounded-xl border border-white/10 p-3 flex items-center justify-between">
+                <div key={inv.id} className="glass rounded-xl border border-border-1 p-3 flex items-center justify-between">
                   <div>
-                    <p className="text-sm text-white font-semibold">{inv.invoice_number}</p>
-                    <p className="text-xs text-white/40">
+                    <p className="text-sm text-ink-0 font-semibold">{inv.invoice_number}</p>
+                    <p className="text-xs text-ink-4">
                       {inv.orders?.full_name || t('dashboard.client')} • {new Date(inv.created_at).toLocaleDateString('ar-EG')}
                     </p>
                   </div>
@@ -719,8 +719,8 @@ setOrders(ordersData)
             <div className="flex items-center justify-between mb-4">
               <div className="flex items-center gap-3">
                 <Ticket className="w-5 h-5 text-gold" />
-                <h2 className="text-lg font-semibold text-white">{t('tickets.title')}</h2>
-                <span className="text-sm text-white/40">({adminTickets.length})</span>
+                <h2 className="text-lg font-semibold text-ink-0">{t('tickets.title')}</h2>
+                <span className="text-sm text-ink-4">({adminTickets.length})</span>
               </div>
               <div className="flex items-center gap-2">
                 <span className={`px-2 py-0.5 text-xs rounded-full ${
@@ -734,14 +734,14 @@ setOrders(ordersData)
             </div>
 
             {adminTickets.length === 0 ? (
-              <p className="text-white/40 text-sm text-center py-4">{t('tickets.no_tickets')}</p>
+              <p className="text-ink-4 text-sm text-center py-4">{t('tickets.no_tickets')}</p>
             ) : (
               <div className="space-y-3 max-h-[400px] overflow-y-auto pr-1">
                 {adminTickets.map((ticket) => (
-                  <div key={ticket.id} className="bg-white/5 border border-white/10 rounded-xl p-4">
+                  <div key={ticket.id} className="bg-surface-1 border border-border-1 rounded-xl p-4">
                     <div className="flex flex-wrap items-center justify-between gap-3">
                       <div className="flex items-center gap-3">
-                        <span className="text-sm font-semibold text-white">#{ticket.id}</span>
+                        <span className="text-sm font-semibold text-ink-0">#{ticket.id}</span>
                         <span className={`px-2 py-0.5 text-xs rounded-full border ${
                           ticket.status === 'open' ? 'bg-red-500/20 text-red-300 border-red-500/30' :
                           ticket.status === 'in_progress' ? 'bg-yellow-500/20 text-yellow-300 border-yellow-500/30' :
@@ -753,13 +753,13 @@ setOrders(ordersData)
                            ticket.status === 'resolved' ? t('tickets.resolved') : t('tickets.closed')}
                         </span>
                       </div>
-                      <div className="text-xs text-white/30">
+                      <div className="text-xs text-ink-5">
                         {formatDate(ticket.created_at)}
                       </div>
                     </div>
-                    <p className="text-white font-semibold mt-2">{ticket.title}</p>
-                    <p className="text-sm text-white/50 line-clamp-2">{ticket.description}</p>
-                    <div className="flex items-center gap-2 mt-2 text-xs text-white/40">
+                    <p className="text-ink-0 font-semibold mt-2">{ticket.title}</p>
+                    <p className="text-sm text-ink-3 line-clamp-2">{ticket.description}</p>
+                    <div className="flex items-center gap-2 mt-2 text-xs text-ink-4">
                       <User className="w-3 h-3" />
                       <span>{ticket.users?.full_name || t('dashboard.user')}</span>
                       <span className="mx-1">•</span>
@@ -769,7 +769,7 @@ setOrders(ordersData)
                     {ticket.admin_response && (
                       <div className="mt-2 p-2 bg-gold/10 rounded-lg border border-gold/20">
                         <p className="text-xs text-gold">{t('tickets.admin_response')}</p>
-                        <p className="text-sm text-white/80">{ticket.admin_response}</p>
+                        <p className="text-sm text-ink-1">{ticket.admin_response}</p>
                       </div>
                     )}
                     <div className="mt-3 flex gap-2">
@@ -791,7 +791,7 @@ setOrders(ordersData)
                             await updateTicket(ticket.id, { status: newStatus })
                           }
                         }}
-                        className="px-3 py-1 bg-white/5 border border-white/10 rounded-lg text-xs text-white/50 hover:border-white/20"
+                        className="px-3 py-1 bg-surface-1 border border-border-1 rounded-lg text-xs text-ink-3 hover:border-border-2"
                       >
                         {t('tickets.change_status')}
                       </button>
@@ -807,35 +807,35 @@ setOrders(ordersData)
             <div className="flex items-center justify-between mb-4">
               <div className="flex items-center gap-3">
                 <FolderOpen className="w-5 h-5 text-gold" />
-                <h2 className="text-lg font-semibold text-white">{t('projects.title')}</h2>
-                <span className="text-sm text-white/40">({projects.length})</span>
+                <h2 className="text-lg font-semibold text-ink-0">{t('projects.title')}</h2>
+                <span className="text-sm text-ink-4">({projects.length})</span>
               </div>
               <button onClick={() => { setEditingProject(null); setProjectForm({ name: '', description: '', status: 'active' }); setShowProjectModal(true) }} className="flex items-center gap-2 rounded-lg border border-gold/20 bg-gold/10 px-3 py-1.5 text-sm text-gold hover:bg-gold/20">
                 <FolderPlus className="w-4 h-4" /> {t('projects.new')}
               </button>
             </div>
             <div className="flex flex-wrap gap-2 mb-3">
-              <button onClick={() => setProjectFilter('all')} className={`px-3 py-1 rounded-full text-xs font-medium transition ${projectFilter === 'all' ? 'bg-gold/20 text-gold border border-gold/30' : 'bg-white/5 text-white/50 border border-white/10 hover:bg-white/10'}`}>{t('admin.all_status')}</button>
+              <button onClick={() => setProjectFilter('all')} className={`px-3 py-1 rounded-full text-xs font-medium transition ${projectFilter === 'all' ? 'bg-gold/20 text-gold border border-gold/30' : 'bg-surface-1 text-ink-3 border border-border-1 hover:bg-surface-2'}`}>{t('admin.all_status')}</button>
               {projects.map(p => (
-                <button key={p.id} onClick={() => setProjectFilter(String(p.id))} className={`px-3 py-1 rounded-full text-xs font-medium transition ${projectFilter === String(p.id) ? 'bg-gold/20 text-gold border border-gold/30' : 'bg-white/5 text-white/50 border border-white/10 hover:bg-white/10'}`}>{p.name}</button>
+                <button key={p.id} onClick={() => setProjectFilter(String(p.id))} className={`px-3 py-1 rounded-full text-xs font-medium transition ${projectFilter === String(p.id) ? 'bg-gold/20 text-gold border border-gold/30' : 'bg-surface-1 text-ink-3 border border-border-1 hover:bg-surface-2'}`}>{p.name}</button>
               ))}
             </div>
             <div className="flex flex-wrap gap-2">
-              {projects.length === 0 && <p className="text-white/40 text-sm">{t('projects.no_projects')}</p>}
+              {projects.length === 0 && <p className="text-ink-4 text-sm">{t('projects.no_projects')}</p>}
               {projects.map(p => (
-                <div key={p.id} className={`glass rounded-xl border p-3 transition ${selectedProject?.id === p.id ? 'border-gold/40 bg-gold/5' : 'border-white/10 hover:border-gold/20'}`}>
+                <div key={p.id} className={`glass rounded-xl border p-3 transition ${selectedProject?.id === p.id ? 'border-gold/40 bg-gold/5' : 'border-border-1 hover:border-gold/20'}`}>
                   <div className="flex items-center justify-between gap-4">
                     <div className="cursor-pointer" onClick={() => setSelectedProject(p)}>
-                      <Link to={`/projects/${p.id}`} onClick={(event) => event.stopPropagation()} className="text-sm font-medium text-white hover:text-gold">{p.name}</Link>
-                      <p className="text-xs text-white/40">{p.description || t('projects.no_description')}</p>
+                      <Link to={`/projects/${p.id}`} onClick={(event) => event.stopPropagation()} className="text-sm font-medium text-ink-0 hover:text-gold">{p.name}</Link>
+                      <p className="text-xs text-ink-4">{p.description || t('projects.no_description')}</p>
                       <div className="flex items-center gap-2 mt-1">
                         <span className={`text-xs px-2 py-0.5 rounded-full ${p.status === 'active' ? 'bg-green-500/20 text-green-300' : 'bg-gray-500/20 text-gray-300'}`}>{p.status === 'active' ? t('projects.active') : t('projects.archived')}</span>
-                        <span className="text-xs text-white/30">{formatDate(p.created_at)}</span>
+                        <span className="text-xs text-ink-5">{formatDate(p.created_at)}</span>
                       </div>
                     </div>
                     <div className="flex items-center gap-1">
-                      <button onClick={() => { setEditingProject(p); setProjectForm({ name: p.name, description: p.description || '', status: p.status }); setShowProjectModal(true) }} className="p-1 rounded hover:bg-white/10 text-white/40 hover:text-white"><Pencil className="w-3.5 h-3.5" /></button>
-                      <button onClick={() => handleDeleteProject(p.id)} className="p-1 rounded hover:bg-red-500/10 text-white/40 hover:text-red-400"><Trash2 className="w-3.5 h-3.5" /></button>
+                      <button onClick={() => { setEditingProject(p); setProjectForm({ name: p.name, description: p.description || '', status: p.status }); setShowProjectModal(true) }} className="p-1 rounded hover:bg-surface-2 text-ink-4 hover:text-ink-0"><Pencil className="w-3.5 h-3.5" /></button>
+                      <button onClick={() => handleDeleteProject(p.id)} className="p-1 rounded hover:bg-red-500/10 text-ink-4 hover:text-red-400"><Trash2 className="w-3.5 h-3.5" /></button>
                     </div>
                   </div>
                 </div>
@@ -850,34 +850,34 @@ setOrders(ordersData)
             <div className="glass rounded-3xl border-gold/5 p-5">
               <div className="mb-4 flex items-center justify-between">
                 <div>
-                  <h2 className="text-lg font-semibold text-white">{t('admin.recent_requests')}</h2>
-                  <p className="text-sm text-white/50">{t('admin.filtered_by_project')}</p>
+                  <h2 className="text-lg font-semibold text-ink-0">{t('admin.recent_requests')}</h2>
+                  <p className="text-sm text-ink-3">{t('admin.filtered_by_project')}</p>
                 </div>
                 <div className="flex items-center gap-2 rounded-full border border-gold/20 bg-gold/10 px-3 py-1 text-sm text-gold"><ShieldCheck className="h-4 w-4" /> {t('admin.live')}</div>
               </div>
 
               {/* Filters */}
               <div className="mb-4 grid grid-cols-1 md:grid-cols-4 gap-3">
-                <input type="text" placeholder={t('admin.search')} value={filters.search} onChange={(e) => handleFilterChange('search', e.target.value)} className="bg-white/5 border border-white/10 rounded-lg px-4 py-2 text-sm text-white placeholder:text-white/30 focus:outline-none focus:border-gold/50" />
-                <select value={filters.status} onChange={(e) => handleFilterChange('status', e.target.value)} className="bg-white/5 border border-white/10 rounded-lg px-4 py-2 text-sm text-white focus:outline-none focus:border-gold/50"><option value="all">{t('admin.all_status')}</option><option value="new">{t('dashboard.new')}</option><option value="processing">{t('dashboard.processing')}</option><option value="completed">{t('dashboard.completed')}</option></select>
-                <input type="date" value={filters.startDate} onChange={(e) => handleFilterChange('startDate', e.target.value)} className="bg-white/5 border border-white/10 rounded-lg px-4 py-2 text-sm text-white focus:outline-none focus:border-gold/50" />
-                <div className="flex gap-2"><input type="date" value={filters.endDate} onChange={(e) => handleFilterChange('endDate', e.target.value)} className="flex-1 bg-white/5 border border-white/10 rounded-lg px-4 py-2 text-sm text-white focus:outline-none focus:border-gold/50" />{(filters.search || filters.status !== 'all' || filters.startDate || filters.endDate) && <button onClick={resetFilters} className="px-3 py-2 rounded-lg border border-white/10 text-white/50 hover:text-white"><X className="w-4 h-4" /></button>}</div>
+                <input type="text" placeholder={t('admin.search')} value={filters.search} onChange={(e) => handleFilterChange('search', e.target.value)} className="bg-surface-1 border border-border-1 rounded-lg px-4 py-2 text-sm text-ink-0 placeholder:text-ink-5 focus:outline-none focus:border-gold/50" />
+                <select value={filters.status} onChange={(e) => handleFilterChange('status', e.target.value)} className="bg-surface-1 border border-border-1 rounded-lg px-4 py-2 text-sm text-ink-0 focus:outline-none focus:border-gold/50"><option value="all">{t('admin.all_status')}</option><option value="new">{t('dashboard.new')}</option><option value="processing">{t('dashboard.processing')}</option><option value="completed">{t('dashboard.completed')}</option></select>
+                <input type="date" value={filters.startDate} onChange={(e) => handleFilterChange('startDate', e.target.value)} className="bg-surface-1 border border-border-1 rounded-lg px-4 py-2 text-sm text-ink-0 focus:outline-none focus:border-gold/50" />
+                <div className="flex gap-2"><input type="date" value={filters.endDate} onChange={(e) => handleFilterChange('endDate', e.target.value)} className="flex-1 bg-surface-1 border border-border-1 rounded-lg px-4 py-2 text-sm text-ink-0 focus:outline-none focus:border-gold/50" />{(filters.search || filters.status !== 'all' || filters.startDate || filters.endDate) && <button onClick={resetFilters} className="px-3 py-2 rounded-lg border border-border-1 text-ink-3 hover:text-ink-0"><X className="w-4 h-4" /></button>}</div>
               </div>
 
-              {loading ? <div className="rounded-2xl border border-white/10 bg-white/5 p-8 text-center text-white/40">{t('dashboard.loading')}</div> : filteredOrders.length === 0 ? <div className="rounded-2xl border border-dashed border-white/10 bg-white/5 p-8 text-center text-white/40">{t('dashboard.no_orders')}</div> : <div className="space-y-3 max-h-[600px] overflow-y-auto pr-1">
+              {loading ? <div className="rounded-2xl border border-border-1 bg-surface-1 p-8 text-center text-ink-4">{t('dashboard.loading')}</div> : filteredOrders.length === 0 ? <div className="rounded-2xl border border-dashed border-border-1 bg-surface-1 p-8 text-center text-ink-4">{t('dashboard.no_orders')}</div> : <div className="space-y-3 max-h-[600px] overflow-y-auto pr-1">
                 {filteredOrders.map((order) => {
                   const statusMeta = getStatusMeta(order.status)
                   return (
-                    <button key={order.id} type="button" onClick={() => setSelectedOrder(order)} className={`w-full rounded-2xl border p-4 text-left transition ${selectedOrder?.id === order.id ? 'border-gold/40 bg-gold/5' : 'border-white/10 bg-black/20 hover:border-gold/20'}`}>
+                    <button key={order.id} type="button" onClick={() => setSelectedOrder(order)} className={`w-full rounded-2xl border p-4 text-left transition ${selectedOrder?.id === order.id ? 'border-gold/40 bg-gold/5' : 'border-border-1 bg-surface-inset hover:border-gold/20'}`}>
                       <div className="flex flex-wrap items-center justify-between gap-3">
-                        <div><div className="text-sm font-semibold text-white">#{String(order.submission_id || order.id || 'order').slice(0, 8)}</div><div className="mt-1 text-sm text-white/50">{order.full_name || order.email || t('dashboard.client')}</div></div>
+                        <div><div className="text-sm font-semibold text-ink-0">#{String(order.submission_id || order.id || 'order').slice(0, 8)}</div><div className="mt-1 text-sm text-ink-3">{order.full_name || order.email || t('dashboard.client')}</div></div>
                         <span className={`rounded-full border px-2.5 py-1 text-[11px] font-semibold uppercase tracking-wide ${statusMeta.badgeClass}`}>{statusMeta.label}</span>
                       </div>
-                      <div className="mt-3 flex flex-wrap items-center gap-3 text-sm text-white/60">
-                        <span className="rounded-full bg-white/5 px-2.5 py-1">{order.package || order.package_name || t('dashboard.package')}</span>
+                      <div className="mt-3 flex flex-wrap items-center gap-3 text-sm text-ink-0/60">
+                        <span className="rounded-full bg-surface-1 px-2.5 py-1">{order.package || order.package_name || t('dashboard.package')}</span>
                         <span>${Number(getOrderPrice(order) || 0).toFixed(2)}</span>
                         <span>{formatDate(order.created_at)}</span>
-                        <span className="text-xs text-white/30">{t('projects.title')}: {projects.find(p => p.id === order.project_id)?.name || t('admin.none')}</span>
+                        <span className="text-xs text-ink-5">{t('projects.title')}: {projects.find(p => p.id === order.project_id)?.name || t('admin.none')}</span>
                       </div>
                     </button>
                   )
@@ -887,36 +887,36 @@ setOrders(ordersData)
 
             <div className="glass rounded-3xl border-gold/5 p-5">
               <div className="mb-4 flex items-center justify-between">
-                <div><h2 className="text-lg font-semibold text-white">{t('admin.request_details')}</h2><p className="text-sm text-white/50">{t('admin.review_chat_assign')}</p></div>
+                <div><h2 className="text-lg font-semibold text-ink-0">{t('admin.request_details')}</h2><p className="text-sm text-ink-3">{t('admin.review_chat_assign')}</p></div>
                 <div className="rounded-full border border-gold/20 bg-gold/10 px-3 py-1 text-sm text-gold">{t('admin.action')}</div>
               </div>
               {selectedOrder ? (
                 <div className="space-y-4">
-                  <div className="rounded-2xl border border-white/10 bg-black/20 p-4">
+                  <div className="rounded-2xl border border-border-1 bg-surface-inset p-4">
                     <div className="flex items-center justify-between">
-                      <div><p className="text-sm text-white/50">{t('admin.request_id')}</p><p className="text-base font-semibold text-white">#{String(selectedOrder.submission_id || selectedOrder.id || 'order').slice(0, 8)}</p></div>
+                      <div><p className="text-sm text-ink-3">{t('admin.request_id')}</p><p className="text-base font-semibold text-ink-0">#{String(selectedOrder.submission_id || selectedOrder.id || 'order').slice(0, 8)}</p></div>
                       <div className={`rounded-full px-3 py-1 text-sm ${(selectedOrder.status || 'new').toLowerCase() === 'new' ? 'bg-blue-500/20 text-blue-300' : (selectedOrder.status || '').toLowerCase() === 'processing' ? 'bg-yellow-500/20 text-yellow-300' : 'bg-green-500/20 text-green-300'}`}>{selectedOrder.status || 'new'}</div>
                     </div>
                   </div>
                   <div className="grid gap-3 sm:grid-cols-2">
-                    <div className="rounded-2xl border border-white/10 bg-white/5 p-4"><p className="text-sm text-white/50">{t('dashboard.client')}</p><p className="mt-2 text-sm font-medium text-white">{selectedOrder.full_name || t('dashboard.anonymous')}</p></div>
-                    <div className="rounded-2xl border border-white/10 bg-white/5 p-4"><p className="text-sm text-white/50">{t('dashboard.email')}</p><p className="mt-2 text-sm font-medium text-white">{selectedOrder.email || '—'}</p></div>
-                    <div className="rounded-2xl border border-white/10 bg-white/5 p-4"><p className="text-sm text-white/50">{t('dashboard.package')}</p><p className="mt-2 text-sm font-medium text-white">{selectedOrder.package || selectedOrder.package_name || '—'}</p></div>
-                    <div className="rounded-2xl border border-white/10 bg-white/5 p-4"><p className="text-sm text-white/50">{t('dashboard.amount')}</p><p className="mt-2 text-sm font-medium text-gold">${getOrderPrice(selectedOrder).toFixed(2)}</p></div>
+                    <div className="rounded-2xl border border-border-1 bg-surface-1 p-4"><p className="text-sm text-ink-3">{t('dashboard.client')}</p><p className="mt-2 text-sm font-medium text-ink-0">{selectedOrder.full_name || t('dashboard.anonymous')}</p></div>
+                    <div className="rounded-2xl border border-border-1 bg-surface-1 p-4"><p className="text-sm text-ink-3">{t('dashboard.email')}</p><p className="mt-2 text-sm font-medium text-ink-0">{selectedOrder.email || '—'}</p></div>
+                    <div className="rounded-2xl border border-border-1 bg-surface-1 p-4"><p className="text-sm text-ink-3">{t('dashboard.package')}</p><p className="mt-2 text-sm font-medium text-ink-0">{selectedOrder.package || selectedOrder.package_name || '—'}</p></div>
+                    <div className="rounded-2xl border border-border-1 bg-surface-1 p-4"><p className="text-sm text-ink-3">{t('dashboard.amount')}</p><p className="mt-2 text-sm font-medium text-gold">${getOrderPrice(selectedOrder).toFixed(2)}</p></div>
                   </div>
-                  <div className="rounded-2xl border border-white/10 bg-white/5 p-4"><p className="text-sm text-white/50">{t('projects.title')}</p>
-                    <select value={selectedOrder.project_id || ''} onChange={(e) => { if (e.target.value) assignOrderToProject(selectedOrder.id || '', Number(e.target.value)) }} className="mt-1 w-full bg-white/5 border border-white/10 rounded-lg px-3 py-2 text-sm text-white focus:outline-none focus:border-gold/50">
+                  <div className="rounded-2xl border border-border-1 bg-surface-1 p-4"><p className="text-sm text-ink-3">{t('projects.title')}</p>
+                    <select value={selectedOrder.project_id || ''} onChange={(e) => { if (e.target.value) assignOrderToProject(selectedOrder.id || '', Number(e.target.value)) }} className="mt-1 w-full bg-surface-1 border border-border-1 rounded-lg px-3 py-2 text-sm text-ink-0 focus:outline-none focus:border-gold/50">
                       <option value="">{t('admin.none')}</option>
                       {projects.map(p => <option key={p.id} value={p.id}>{p.name}</option>)}
                     </select>
                   </div>
-                  <div className="rounded-2xl border border-white/10 bg-white/5 p-4"><p className="text-sm text-white/50">{t('dashboard.transaction')}</p><p className="mt-2 text-sm font-mono text-white/80 break-all">{selectedOrder.txid || '—'}</p></div>
+                  <div className="rounded-2xl border border-border-1 bg-surface-1 p-4"><p className="text-sm text-ink-3">{t('dashboard.transaction')}</p><p className="mt-2 text-sm font-mono text-ink-1 break-all">{selectedOrder.txid || '—'}</p></div>
                   
                   {/* Chat Section */}
-                  <div className="rounded-2xl border border-white/10 bg-white/5 p-4">
+                  <div className="rounded-2xl border border-border-1 bg-surface-1 p-4">
                     <div className="flex items-center gap-2 mb-3">
                       <MessageSquare className="w-4 h-4 text-gold" />
-                      <h4 className="text-sm font-semibold text-white">{t('chat.title')}</h4>
+                      <h4 className="text-sm font-semibold text-ink-0">{t('chat.title')}</h4>
                       {chatMessages.filter(m => !m.read && m.sender_id !== currentUserId).length > 0 && (
                         <span className="bg-gold/20 text-gold text-xs px-2 py-0.5 rounded-full">
                           {chatMessages.filter(m => !m.read && m.sender_id !== currentUserId).length} {t('chat.new_messages')}
@@ -926,20 +926,20 @@ setOrders(ordersData)
                     
                     <div className="max-h-40 overflow-y-auto space-y-2 mb-3">
                       {loadingChat ? (
-                        <p className="text-white/40 text-sm">{t('dashboard.loading')}</p>
+                        <p className="text-ink-4 text-sm">{t('dashboard.loading')}</p>
                       ) : chatMessages.length === 0 ? (
-                        <p className="text-white/40 text-sm">{t('chat.no_messages')}</p>
+                        <p className="text-ink-4 text-sm">{t('chat.no_messages')}</p>
                       ) : (
                         chatMessages.map((msg, idx) => (
                           <div key={idx} className={`flex ${msg.sender_id === currentUserId ? 'justify-end' : 'justify-start'}`}>
                             <div className={`max-w-[80%] rounded-lg px-3 py-2 text-sm ${
                               msg.sender_id === currentUserId 
-                                ? 'bg-gold/20 text-white' 
-                                : 'bg-white/10 text-white/80'
+                                ? 'bg-gold/20 text-ink-0' 
+                                : 'bg-surface-2 text-ink-1'
                             }`}>
-                              <p className="text-xs text-white/50">{msg.sender?.name || t('dashboard.user')}</p>
+                              <p className="text-xs text-ink-3">{msg.sender?.name || t('dashboard.user')}</p>
                               <p>{msg.content}</p>
-                              <p className="text-xs text-white/30 mt-1">{formatDate(msg.created_at)}</p>
+                              <p className="text-xs text-ink-5 mt-1">{formatDate(msg.created_at)}</p>
                             </div>
                           </div>
                         ))
@@ -952,7 +952,7 @@ setOrders(ordersData)
                         value={newMessage}
                         onChange={(e) => setNewMessage(e.target.value)}
                         placeholder={t('chat.placeholder')}
-                        className="flex-1 bg-white/5 border border-white/10 rounded-lg px-3 py-2 text-sm text-white placeholder:text-white/30 focus:outline-none focus:border-gold/50"
+                        className="flex-1 bg-surface-1 border border-border-1 rounded-lg px-3 py-2 text-sm text-ink-0 placeholder:text-ink-5 focus:outline-none focus:border-gold/50"
                         onKeyDown={(e) => e.key === 'Enter' && sendMessage()}
                       />
                       <button
@@ -971,7 +971,7 @@ setOrders(ordersData)
                   </div>
                 </div>
               ) : (
-                <div className="rounded-2xl border border-dashed border-white/10 bg-white/5 p-8 text-center text-white/40">{t('admin.select_request')}</div>
+                <div className="rounded-2xl border border-dashed border-border-1 bg-surface-1 p-8 text-center text-ink-4">{t('admin.select_request')}</div>
               )}
             </div>
           </div>
@@ -979,19 +979,19 @@ setOrders(ordersData)
       </div>
 
       {/* Project Modal */}
-      <div className={`fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-sm transition ${showProjectModal ? 'opacity-100' : 'opacity-0 pointer-events-none'}`} onClick={() => setShowProjectModal(false)}>
+      <div className={`fixed inset-0 z-50 flex items-center justify-center p-4 bg-surface-inset backdrop-blur-sm transition ${showProjectModal ? 'opacity-100' : 'opacity-0 pointer-events-none'}`} onClick={() => setShowProjectModal(false)}>
         <div className="glass rounded-3xl border-gold/10 p-6 max-w-md w-full" onClick={(e) => e.stopPropagation()}>
-          <h3 className="text-xl font-bold text-white mb-4">{editingProject ? t('projects.edit') : t('projects.new')}</h3>
+          <h3 className="text-xl font-bold text-ink-0 mb-4">{editingProject ? t('projects.edit') : t('projects.new')}</h3>
           <div className="space-y-3">
-            <input type="text" placeholder={t('projects.name')} value={projectForm.name} onChange={(e) => setProjectForm(prev => ({ ...prev, name: e.target.value }))} className="w-full bg-white/5 border border-white/10 rounded-lg px-4 py-2 text-white placeholder:text-white/30 focus:outline-none focus:border-gold/50" />
-            <textarea placeholder={t('projects.description')} value={projectForm.description} onChange={(e) => setProjectForm(prev => ({ ...prev, description: e.target.value }))} className="w-full bg-white/5 border border-white/10 rounded-lg px-4 py-2 text-white placeholder:text-white/30 focus:outline-none focus:border-gold/50" rows={2} />
-            <select value={projectForm.status} onChange={(e) => setProjectForm(prev => ({ ...prev, status: e.target.value }))} className="w-full bg-white/5 border border-white/10 rounded-lg px-4 py-2 text-white focus:outline-none focus:border-gold/50">
+            <input type="text" placeholder={t('projects.name')} value={projectForm.name} onChange={(e) => setProjectForm(prev => ({ ...prev, name: e.target.value }))} className="w-full bg-surface-1 border border-border-1 rounded-lg px-4 py-2 text-ink-0 placeholder:text-ink-5 focus:outline-none focus:border-gold/50" />
+            <textarea placeholder={t('projects.description')} value={projectForm.description} onChange={(e) => setProjectForm(prev => ({ ...prev, description: e.target.value }))} className="w-full bg-surface-1 border border-border-1 rounded-lg px-4 py-2 text-ink-0 placeholder:text-ink-5 focus:outline-none focus:border-gold/50" rows={2} />
+            <select value={projectForm.status} onChange={(e) => setProjectForm(prev => ({ ...prev, status: e.target.value }))} className="w-full bg-surface-1 border border-border-1 rounded-lg px-4 py-2 text-ink-0 focus:outline-none focus:border-gold/50">
               <option value="active">{t('projects.active')}</option>
               <option value="archived">{t('projects.archived')}</option>
             </select>
           </div>
           <div className="flex gap-3 mt-4">
-            <button onClick={() => setShowProjectModal(false)} className="flex-1 py-2 border border-white/10 rounded-lg text-sm text-white/50 hover:text-white">{t('admin.cancel')}</button>
+            <button onClick={() => setShowProjectModal(false)} className="flex-1 py-2 border border-border-1 rounded-lg text-sm text-ink-3 hover:text-ink-0">{t('admin.cancel')}</button>
             <button onClick={handleProjectSubmit} className="flex-1 py-2 bg-gold/20 border border-gold/30 rounded-lg text-sm text-gold hover:bg-gold/30">{editingProject ? t('projects.edit') : t('projects.create')}</button>
           </div>
         </div>

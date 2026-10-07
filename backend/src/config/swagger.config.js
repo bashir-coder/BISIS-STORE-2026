@@ -1,6 +1,9 @@
 const swaggerJsdoc = require('swagger-jsdoc')
 const swaggerUi = require('swagger-ui-express')
 
+const isProduction = process.env.NODE_ENV === 'production'
+const swaggerEnabled = process.env.SWAGGER_ENABLED === 'true'
+
 const options = {
   definition: {
     openapi: '3.0.0',
@@ -24,15 +27,16 @@ const options = {
     },
     security: [{ bearerAuth: [] }]
   },
-  // ✅ تأكد من هذا المسار الصحيح
   apis: ['./src/api/routes/*.js']
 }
 
 const swaggerSpec = swaggerJsdoc(options)
 
 const setupSwagger = (app) => {
-  app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec))
-  app.get('/api-docs.json', (req, res) => res.json(swaggerSpec))
+  if (!isProduction || swaggerEnabled) {
+    app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec))
+    app.get('/api-docs.json', (req, res) => res.json(swaggerSpec))
+  }
 }
 
 module.exports = setupSwagger

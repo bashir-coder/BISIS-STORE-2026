@@ -37,7 +37,7 @@ const CursorAura: React.FC = () => {
       aria-hidden="true"
       className="pointer-events-none fixed left-0 top-0 z-[1] hidden h-96 w-96 rounded-full blur-3xl transition-opacity duration-500 lg:block"
       style={{
-        background: 'radial-gradient(circle, rgba(212,175,55,0.16) 0%, rgba(0,168,120,0.10) 42%, transparent 72%)',
+        background: 'radial-gradient(circle, rgba(212,175,55,0.16) 0%, rgba(47,123,255,0.10) 42%, transparent 72%)',
       }}
     />
   )

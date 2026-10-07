@@ -96,7 +96,7 @@ const formatDate = (value?: string) => {
     }
     return {
       label: labels[normalized] || t('payment_status.unknown'),
-      className: `px-2 py-0.5 text-xs rounded-full border ${colors[normalized] || 'text-white/50 border-white/20 bg-white/10'}`,
+      className: `px-2 py-0.5 text-xs rounded-full border ${colors[normalized] || 'text-ink-2 border-border-2 bg-surface-2'}`,
     }
   }
 
@@ -107,8 +107,8 @@ const formatDate = (value?: string) => {
           <div className="mb-8 flex flex-col gap-4 lg:flex-row lg:items-end lg:justify-between">
             <div>
               <p className="text-sm uppercase tracking-[0.3em] text-gold/70">{t('client_portal.title')}</p>
-              <h1 className="text-3xl font-bold text-white">{t('client_portal.your_service_workspace')}</h1>
-              <p className="mt-2 text-white/50">{t('client_portal.track_requests')}</p>
+               <h1 className="text-3xl font-bold text-ink-0">{t('client_portal.your_service_workspace')}</h1>
+               <p className="mt-2 text-ink-3">{t('client_portal.track_requests')}</p>
             </div>
             <Link to="/packages" className="inline-flex items-center gap-2 rounded-lg border border-gold/20 bg-gold/10 px-4 py-2 text-sm font-medium text-gold transition hover:bg-gold/20">
               {t('client_portal.create_another_request')}
@@ -128,10 +128,10 @@ const formatDate = (value?: string) => {
             ].map((item, index) => (
               <div key={index} className="glass rounded-2xl border-gold/5 p-5">
                 <div className="flex items-center justify-between">
-                  <span className="text-sm text-white/50">{item.label}</span>
-                  <item.icon className={`h-5 w-5 ${item.accent}`} />
-                </div>
-                <div className="mt-4 text-2xl font-semibold text-white">{item.value}</div>
+                   <span className="text-sm text-ink-3">{item.label}</span>
+                   <item.icon className={`h-5 w-5 ${item.accent}`} />
+                 </div>
+                 <div className="mt-4 text-2xl font-semibold text-ink-0">{item.value}</div>
               </div>
             ))}
           </div>
@@ -143,8 +143,8 @@ const formatDate = (value?: string) => {
                   <Sparkles className="h-5 w-5 text-gold" />
                 </div>
                 <div>
-                  <h2 className="text-lg font-semibold text-white">{t('client_portal.what_happens_next')}</h2>
-                  <p className="text-sm text-white/50">{t('client_portal.journey_description')}</p>
+                   <h2 className="text-lg font-semibold text-ink-0">{t('client_portal.what_happens_next')}</h2>
+                   <p className="text-sm text-ink-3">{t('client_portal.journey_description')}</p>
                 </div>
               </div>
 
@@ -154,13 +154,13 @@ const formatDate = (value?: string) => {
                   { title: t('client_portal.step2_title'), description: t('client_portal.step2_desc') },
                   { title: t('client_portal.step3_title'), description: t('client_portal.step3_desc') },
                 ].map((step, index) => (
-                  <div key={index} className="flex gap-3 rounded-2xl border border-white/10 bg-black/20 p-4">
+                  <div key={index} className="flex gap-3 rounded-2xl border border-border-1 bg-surface-inset p-4">
                     <div className="mt-1 rounded-full border border-gold/20 bg-gold/10 p-2 text-gold">
                       <CheckCircle className="h-4 w-4" />
                     </div>
                     <div>
-                      <p className="text-sm font-semibold text-white">{step.title}</p>
-                      <p className="mt-1 text-sm text-white/50">{step.description}</p>
+                       <p className="text-sm font-semibold text-ink-0">{step.title}</p>
+                       <p className="mt-1 text-sm text-ink-3">{step.description}</p>
                     </div>
                   </div>
                 ))}
@@ -170,31 +170,31 @@ const formatDate = (value?: string) => {
             <div className="glass rounded-3xl border-gold/5 p-6">
               <div className="mb-4 flex items-center justify-between">
                 <div>
-                  <h2 className="text-lg font-semibold text-white">{t('client_portal.your_requests')}</h2>
-                  <p className="text-sm text-white/50">{t('client_portal.latest_orders')}</p>
+                   <h2 className="text-lg font-semibold text-ink-0">{t('client_portal.your_requests')}</h2>
+                   <p className="text-sm text-ink-3">{t('client_portal.latest_orders')}</p>
                 </div>
                 <Link to="/dashboard" className="text-sm text-gold hover:underline">{t('client_portal.open_dashboard')}</Link>
               </div>
 
               {loading ? (
-                <div className="rounded-2xl border border-white/10 bg-white/5 p-8 text-center text-white/40">{t('dashboard.loading')}</div>
+                <div className="rounded-2xl border border-border-1 bg-surface-1 p-8 text-center text-ink-3">{t('dashboard.loading')}</div>
               ) : orders.length === 0 ? (
-                <div className="rounded-2xl border border-dashed border-white/10 bg-white/5 p-8 text-center"><p className="text-sm text-white/70">{t('client_portal.no_requests_yet')}</p><p className="mx-auto mt-2 max-w-sm text-sm text-white/40">{t('client_portal.no_requests_context')}</p></div>
+                <div className="rounded-2xl border border-dashed border-border-1 bg-surface-1 p-8 text-center"><p className="text-sm text-ink-2">{t('client_portal.no_requests_yet')}</p><p className="mx-auto mt-2 max-w-sm text-sm text-ink-3">{t('client_portal.no_requests_context')}</p></div>
               ) : (
                 <div className="space-y-3">
 {orders.map((order) => {
                     const paymentStatus = getPaymentStatusBadge(order.nowpayments_status || order.payment_status || '')
                     return (
-                      <div key={order.id} className="rounded-2xl border border-white/10 bg-black/20 p-4">
+                      <div key={order.id} className="rounded-2xl border border-border-1 bg-surface-inset p-4">
                         <div className="flex items-center justify-between gap-3">
                           <div>
-                            <p className="text-sm font-semibold text-white">#{String(order.submission_id || order.id || 'order').slice(0, 8)}</p>
-                            <p className="mt-1 text-sm text-white/50">{order.package || order.package_name || t('dashboard.package')}</p>
+                             <p className="text-sm font-semibold text-ink-0">#{String(order.submission_id || order.id || 'order').slice(0, 8)}</p>
+                             <p className="mt-1 text-sm text-ink-3">{order.package || order.package_name || t('dashboard.package')}</p>
                             {order.project_id && <Link to={`/projects/${order.project_id}`} className="mt-2 inline-flex items-center text-xs text-gold hover:underline">{t('workbench.open_project')}</Link>}
                           </div>
                           <div className="text-end">
                             <p className="text-sm font-semibold text-gold">${getOrderPrice(order).toFixed(2)}</p>
-                            <p className="mt-1 text-xs uppercase tracking-wide text-white/40">{order.status || 'new'}</p>
+                             <p className="mt-1 text-xs uppercase tracking-wide text-ink-3">{order.status || 'new'}</p>
                             {paymentStatus.label !== t('payment_status.unknown') && (
                               <p className={`mt-1 ${paymentStatus.className}`}>
                                 {paymentStatus.label}
@@ -202,8 +202,8 @@ const formatDate = (value?: string) => {
                             )}
                           </div>
                         </div>
-                        <div className="mt-3 text-sm text-white/50">{t('dashboard.updated')} {formatDate(order.updated_at || order.created_at)}</div>
-                        <div className="mt-3 rounded-xl border border-white/10 bg-black/20 p-3"><OrderLifecycle status={order.status} /></div>
+                         <div className="mt-3 text-sm text-ink-3">{t('dashboard.updated')} {formatDate(order.updated_at || order.created_at)}</div>
+                        <div className="mt-3 rounded-xl border border-border-1 bg-surface-inset p-3"><OrderLifecycle status={order.status} /></div>
                       </div>
                     )
                   })}

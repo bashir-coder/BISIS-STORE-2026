@@ -4,7 +4,7 @@ FROM node:22-alpine as builder
 WORKDIR /app
 
 COPY package*.json ./
-RUN npm ci
+RUN npm install -g npm@12.2.0 && npm ci --no-fund --no-audit --dangerously-allow-all-scripts && npm install @types/three@^0.186.0 --no-save --no-fund --no-audit --dangerously-allow-all-scripts
 
 COPY . .
 

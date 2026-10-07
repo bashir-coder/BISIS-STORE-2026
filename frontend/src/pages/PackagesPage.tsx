@@ -118,18 +118,18 @@ const PackagesPage: React.FC = () => {
         >
           <div className="mb-4 inline-flex items-center gap-2 rounded-full border border-gold/30 bg-gold/10 px-3.5 py-1.5 text-xs font-semibold uppercase tracking-[0.18em] text-gold shadow-lg shadow-gold/10">
             <span className="relative flex h-2 w-2">
-              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-light opacity-75"></span>
-              <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald"></span>
+              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-gold-light opacity-75"></span>
+              <span className="relative inline-flex rounded-full h-2 w-2 bg-gold"></span>
             </span>
             <Sparkles className="h-3.5 w-3.5" />
             {String(t('hero.badge'))}
           </div>
 
-          <h1 className="mb-4 text-4xl font-bold font-outfit text-white sm:text-5xl lg:text-6xl">
+          <h1 className="mb-4 text-4xl font-bold font-outfit text-ink-0 sm:text-5xl lg:text-6xl">
             {String(t('packages.title'))}
           </h1>
 
-          <p className="mx-auto max-w-2xl text-base sm:text-lg text-white/60">
+          <p className="mx-auto max-w-2xl text-base sm:text-lg text-ink-3">
             {String(t('packages.subtitle'))}
           </p>
 
@@ -147,9 +147,9 @@ const PackagesPage: React.FC = () => {
             <button
               type="button"
               onClick={() => setShowComparison(true)}
-              className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-4 py-2 text-xs sm:text-sm font-medium text-white/80 hover:border-gold/30 hover:bg-white/10 transition-all"
+              className="inline-flex items-center gap-2 rounded-full border border-border-1 bg-surface-1 px-4 py-2 text-xs sm:text-sm font-medium text-ink-1 hover:border-gold/30 hover:bg-surface-2 transition-all"
             >
-              <Table2 className="h-4 w-4 text-emerald-light" />
+              <Table2 className="h-4 w-4 text-blue-light" />
               <span>{t('packages.calc.compare')}</span>
             </button>
           </div>}
@@ -165,17 +165,17 @@ const PackagesPage: React.FC = () => {
               transition={{ duration: 0.3 }}
               className="mb-12 overflow-hidden"
             >
-              <div className="glass-card rounded-3xl border border-gold/30 p-6 sm:p-8 shadow-2xl shadow-gold/5">
-                <div className="flex items-center justify-between pb-4 border-b border-white/10">
+              <div className="card card-featured p-6 sm:p-8">
+                <div className="flex items-center justify-between pb-4 border-b border-border-1">
                   <div className="flex items-center gap-2.5">
                     <Sparkles className="h-5 w-5 text-gold" />
-                    <h3 className="text-lg font-bold font-outfit text-white">
-                      {t('packages.calc.title')}
-                    </h3>
+                     <h3 className="text-lg font-bold font-outfit text-ink-0">
+                       {t('packages.calc.title')}
+                     </h3>
                   </div>
                   <button
                     onClick={() => setShowCalculator(false)}
-                    className="p-1.5 text-white/50 hover:text-white rounded-lg hover:bg-white/10 transition-colors"
+                     className="p-1.5 text-ink-2 hover:text-ink-0 rounded-lg hover:bg-surface-2 transition-colors"
                   >
                     <X className="h-4 w-4" />
                   </button>
@@ -183,9 +183,9 @@ const PackagesPage: React.FC = () => {
 
                 <div className="mt-6 grid gap-6 md:grid-cols-2">
                   <div>
-                    <label className="block text-xs uppercase tracking-wider text-white/60 mb-2">
-                      {t('packages.calc.choose_scope')}
-                    </label>
+                     <label className="block text-xs uppercase tracking-wider text-ink-3 mb-2">
+                       {t('packages.calc.choose_scope')}
+                     </label>
                     <div className="space-y-2">
                       {packages.map((pkg) => (
                         <button
@@ -194,8 +194,8 @@ const PackagesPage: React.FC = () => {
                           onClick={() => setCalcSlug(pkg.slug)}
                           className={`w-full p-3 rounded-xl border text-sm text-start font-medium transition-all ${
                             calcSlug === pkg.slug
-                              ? 'border-gold bg-gold/15 text-gold shadow-md shadow-gold/10'
-                              : 'border-white/10 bg-white/[0.02] text-white/70 hover:border-gold/30 hover:bg-white/5'
+                               ? 'border-gold bg-gold/15 text-gold shadow-md shadow-gold/10'
+                               : 'border-border-1 bg-surface-1 text-ink-2 hover:border-gold/30 hover:bg-surface-1'
                           }`}
                         >
                           {pkg.name} · ${Number(pkg.price).toFixed(0)}
@@ -210,15 +210,15 @@ const PackagesPage: React.FC = () => {
                       <span className="text-xs uppercase tracking-widest text-gold font-semibold">
                         {t('packages.calc.estimate')}
                       </span>
-                      <div className="mt-2 text-3xl font-bold font-outfit text-white">
-                        ~ ${calculatedEstimate.estimatedPrice}
-                      </div>
-                      <p className="mt-1 text-xs text-white/60">
-                        {calculatedEstimate.packageName} · {calculatedEstimate.serviceCount} {t('packages.calc.outputs')}
-                      </p>
+                       <div className="mt-2 text-3xl font-bold font-outfit text-ink-0">
+                         ~ ${calculatedEstimate.estimatedPrice}
+                       </div>
+                       <p className="mt-1 text-xs text-ink-3">
+                         {calculatedEstimate.packageName} · {calculatedEstimate.serviceCount} {t('packages.calc.outputs')}
+                       </p>
                     </div>
 
-                    <div className="mt-4 pt-4 border-t border-white/10">
+                    <div className="mt-4 pt-4 border-t border-border-1">
                       <button
                         type="button"
                         onClick={() => {
@@ -242,26 +242,26 @@ const PackagesPage: React.FC = () => {
           <div className="mb-6 flex items-end justify-between gap-4">
             <div>
               <p className="text-xs font-semibold uppercase tracking-[0.18em] text-gold">BİŞİŞ V1</p>
-              <h2 id="official-services-title" className="mt-2 text-2xl font-bold font-outfit text-white sm:text-3xl">
-                {t('packages.official_services')}
-              </h2>
-            </div>
-            <span className="text-sm text-white/50">{uniqueServices.length} {t('packages.services_count')}</span>
+               <h2 id="official-services-title" className="mt-2 text-2xl font-bold font-outfit text-ink-0 sm:text-3xl">
+                 {t('packages.official_services')}
+               </h2>
+             </div>
+             <span className="text-sm text-ink-3">{uniqueServices.length} {t('packages.services_count')}</span>
           </div>
           <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
             {uniqueServices.map((service) => {
               const isSubscription = service.metadata?.service_type === 'signature_subscription'
               return (
-                <article key={service.id} className={`rounded-2xl border p-5 transition-all ${selectedServiceId === service.id ? 'border-gold bg-gold/[0.12] shadow-xl shadow-gold/10' : 'border-white/10 bg-white/[0.03]'}`}>
-                  <div className="flex items-start justify-between gap-3">
-                    <h3 className="font-semibold text-white">{service.name}</h3>
-                    {isSubscription && <span className="shrink-0 rounded-full border border-gold/30 bg-gold/10 px-2 py-1 text-[10px] font-semibold text-gold">Signature Subscription</span>}
-                  </div>
-                  <p className="mt-2 min-h-12 text-sm leading-6 text-white/60">{service.description || t(`services.${service.metadata?.source_id || 'svc-000'}.description`)}</p>
-                  <div className="mt-4 flex items-center justify-between border-t border-white/10 pt-4 text-sm">
-                    <span className="font-semibold text-gold">${Number(service.price).toFixed(0)}{isSubscription ? '/month' : ''}</span>
-                    <span className="text-white/45">{service.delivery}</span>
-                  </div>
+                <article key={service.id} className={`card card-interactive p-5 ${selectedServiceId === service.id ? 'card-is-active' : ''}`}>
+                   <div className="flex items-start justify-between gap-3">
+                     <h3 className="font-semibold text-ink-0">{service.name}</h3>
+                     {isSubscription && <span className="shrink-0 rounded-full border border-gold/30 bg-gold/10 px-2 py-1 text-[10px] font-semibold text-gold">Signature Subscription</span>}
+                   </div>
+                   <p className="mt-2 min-h-12 text-sm leading-6 text-ink-3">{service.description || t(`services.${service.metadata?.source_id || 'svc-000'}.description`)}</p>
+                   <div className="mt-4 flex items-center justify-between border-t border-border-1 pt-4 text-sm">
+                     <span className="font-semibold text-gold">${Number(service.price).toFixed(0)}{isSubscription ? '/month' : ''}</span>
+                     <span className="text-ink-3">{service.delivery}</span>
+                   </div>
                   <button
                     type="button"
                     onClick={() => {
@@ -289,8 +289,8 @@ const PackagesPage: React.FC = () => {
               <div className="flex flex-col gap-6 md:flex-row md:items-center md:justify-between">
                 <div>
                   <span className="inline-flex rounded-full border border-gold/30 bg-gold/10 px-3 py-1 text-xs font-semibold uppercase tracking-[0.14em] text-gold">Signature Subscription</span>
-                  <h2 id="life-plan-feature-title" className="mt-4 text-3xl font-bold font-outfit text-white">{lifePlan.name}</h2>
-                  <p className="mt-2 max-w-2xl text-sm leading-6 text-white/65">{lifePlan.description || t(`services.${lifePlan.metadata?.source_id || 'svc-018'}.description`)}</p>
+                   <h2 id="life-plan-feature-title" className="mt-4 text-3xl font-bold font-outfit text-ink-0">{lifePlan.name}</h2>
+                   <p className="mt-2 max-w-2xl text-sm leading-6 text-ink-3">{lifePlan.description || t(`services.${lifePlan.metadata?.source_id || 'svc-018'}.description`)}</p>
                   <p className="mt-4 text-2xl font-bold font-outfit text-gold">${Number(lifePlan.price).toFixed(0)}/month</p>
                 </div>
                 <Link to="/services/life-plan" className="inline-flex shrink-0 items-center justify-center gap-2 rounded-xl bg-gold px-5 py-3 text-sm font-semibold text-dark transition hover:bg-gold-light">
@@ -305,7 +305,7 @@ const PackagesPage: React.FC = () => {
         {/* Packages Grid */}
         {loading ? (
           <div
-            className="mx-auto max-w-2xl rounded-2xl border border-white/10 bg-white/[0.03] py-16 text-center text-white/40"
+            className="mx-auto max-w-2xl rounded-2xl border border-border-1 bg-surface-1 py-16 text-center text-ink-3"
             role="status"
           >
             {String(t('dashboard.loading'))}
@@ -315,7 +315,7 @@ const PackagesPage: React.FC = () => {
             className="mx-auto max-w-2xl rounded-2xl border border-red-300/20 bg-red-300/5 p-8 text-center"
             role="alert"
           >
-            <p className="text-white/70">
+            <p className="text-ink-2">
               {String(t('dashboard.error'))}
             </p>
 
@@ -328,7 +328,7 @@ const PackagesPage: React.FC = () => {
             </button>
           </div>
         ) : packages.length === 0 ? (
-          <div className="py-16 text-center text-white/40">
+          <div className="py-16 text-center text-ink-3">
             {String(t('packages.noPackages'))}
           </div>
         ) : (
@@ -347,12 +347,10 @@ const PackagesPage: React.FC = () => {
                     duration: 0.45,
                   }}
                   whileHover={{ y: -4, rotateX: 1 }}
-                  className={`group spotlight-card relative flex flex-col overflow-hidden rounded-2xl border p-6 transition-all duration-300 ${
-                    pkg.is_popular ? 'neon-shimmer-border border-gold/40 shadow-xl shadow-gold/10' : ''
+                  className={`group card relative flex flex-col overflow-hidden p-6 transition-all duration-300 ${
+                    pkg.is_popular ? 'card-pricing-focal neon-shimmer-border' : 'card-pricing'
                   } ${
-                    isSelected
-                      ? 'border-gold bg-gold/[0.12] shadow-2xl shadow-gold/20'
-                      : 'border-white/10 bg-white/[0.03] hover:border-gold/30 hover:bg-white/[0.055]'
+                    isSelected ? 'card-is-active' : ''
                   }`}
                 >
                   <div className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-gold/60 to-transparent opacity-0 transition-opacity group-hover:opacity-100" />
@@ -373,30 +371,30 @@ const PackagesPage: React.FC = () => {
                     )}
                   </div>
 
-                  <h2 className="mt-5 text-2xl font-bold font-outfit text-white">
+                  <h2 className="mt-5 text-2xl font-bold font-outfit text-ink-0">
                     {pkg.name}
                   </h2>
 
-                  <p className="mt-2 min-h-12 text-sm leading-6 text-white/60">
+                  <p className="mt-2 min-h-12 text-sm leading-6 text-ink-3">
                     {pkg.description || t(`packages.${pkg.slug || 'foundation'}.description`)}
                   </p>
 
-                  <div className="my-5 flex items-end gap-2 border-b border-white/10 pb-5">
+                  <div className="my-5 flex items-end gap-2 border-b border-border-1 pb-5">
                     <span className="font-outfit text-3xl font-bold text-gold">
                       ${Number(pkg.price || 0).toFixed(2)}
                     </span>
                   </div>
 
                   <div className="flex-1 space-y-3">
-                    {(pkg.features || []).map((feature, featureIndex) => (
-                      <div
-                        key={`${pkg.id}-${featureIndex}`}
-                        className="flex items-start gap-2 text-sm text-white/70"
-                      >
-                        <Check className="mt-0.5 h-4 w-4 shrink-0 text-gold" />
-                        <span>{feature}</span>
-                      </div>
-                    ))}
+                     {(pkg.features || []).map((feature, featureIndex) => (
+                       <div
+                         key={`${pkg.id}-${featureIndex}`}
+                         className="flex items-start gap-2 text-sm text-ink-2"
+                       >
+                         <Check className="mt-0.5 h-4 w-4 shrink-0 text-gold" />
+                         <span>{feature}</span>
+                       </div>
+                     ))}
                   </div>
 
                   <button
@@ -434,36 +432,36 @@ const PackagesPage: React.FC = () => {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-md"
+            className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-surface-inset backdrop-blur-md"
           >
             <motion.div
               initial={{ scale: 0.94, opacity: 0 }}
               animate={{ scale: 1, opacity: 1 }}
               exit={{ scale: 0.94, opacity: 0 }}
-              className="relative w-full max-w-4xl max-h-[85vh] overflow-y-auto glass-card rounded-3xl border border-gold/30 p-6 sm:p-8 shadow-2xl"
+              className="relative w-full max-w-4xl max-h-[85vh] overflow-y-auto card card-default p-6 sm:p-8 shadow-2xl"
             >
-              <div className="flex items-center justify-between pb-4 border-b border-white/10">
+              <div className="flex items-center justify-between pb-4 border-b border-border-1">
                 <div>
-                  <h3 className="text-xl font-bold font-outfit text-white">
-                    {t('packages.calc.compare')} BİŞIŞ V1
-                  </h3>
-                  <p className="text-xs text-white/50 mt-1">
-                    {t('packages.calc.compare_hint')}
-                  </p>
+                   <h3 className="text-xl font-bold font-outfit text-ink-0">
+                     {t('packages.calc.compare')} BİŞIŞ V1
+                   </h3>
+                   <p className="text-xs text-ink-3 mt-1">
+                     {t('packages.calc.compare_hint')}
+                   </p>
                 </div>
-                <button
-                  onClick={() => setShowComparison(false)}
-                  className="p-2 text-white/60 hover:text-white rounded-xl hover:bg-white/10 transition-colors"
-                >
-                  <X className="h-5 w-5" />
-                </button>
+                   <button
+                     onClick={() => setShowComparison(false)}
+                     className="p-2 text-ink-2 hover:text-ink-0 rounded-xl hover:bg-surface-2 transition-colors"
+                   >
+                     <X className="h-5 w-5" />
+                   </button>
               </div>
 
               <div className="mt-6 overflow-x-auto">
                 <table className="w-full text-start text-sm">
                   <thead>
-                    <tr className="border-b border-white/10 text-white/60">
-                      <th className="py-3 px-4 text-start font-semibold">{t('packages.calc.service_or_output')}</th>
+                     <tr className="border-b border-border-1 text-ink-2">
+                      <th className="py-3 px-4 text-start font-semibold text-ink-0">{t('packages.calc.service_or_output')}</th>
                       {packages.map((pkg) => (
                         <th key={pkg.id} className="py-3 px-4 text-center font-semibold text-gold">
                           {pkg.name}<br />${Number(pkg.price).toFixed(0)}
@@ -471,13 +469,13 @@ const PackagesPage: React.FC = () => {
                       ))}
                     </tr>
                   </thead>
-                  <tbody className="divide-y divide-white/5 text-white/80">
+                   <tbody className="divide-y divide-white/5 text-ink-2">
                     {[...new Set(packages.flatMap((pkg) => pkg.features || []))].map((feature) => (
                       <tr key={feature}>
                         <td className="py-3.5 px-4 font-medium">{feature}</td>
                         {packages.map((pkg) => (
                           <td key={pkg.id} className="py-3.5 px-4 text-center">
-                            {(pkg.features || []).includes(feature) ? <Check className="mx-auto h-4 w-4 text-gold" /> : <span className="text-white/25">—</span>}
+                             {(pkg.features || []).includes(feature) ? <Check className="mx-auto h-4 w-4 text-gold" /> : <span className="text-ink-3">—</span>}
                           </td>
                         ))}
                       </tr>
@@ -506,7 +504,7 @@ const PackagesPage: React.FC = () => {
             initial={{ opacity: 0, y: 28, scale: 0.96 }}
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: 28, scale: 0.96 }}
-            className="fixed bottom-5 left-1/2 z-40 w-[calc(100%-2rem)] max-w-2xl -translate-x-1/2 rounded-2xl border border-gold/30 bg-black/70 p-4 shadow-2xl shadow-black/40 backdrop-blur-xl sm:p-5"
+            className="fixed bottom-5 left-1/2 z-40 w-[calc(100%-2rem)] max-w-2xl -translate-x-1/2 rounded-2xl border border-gold/30 bg-surface-inset p-4 shadow-2xl shadow-black/40 backdrop-blur-xl sm:p-5"
           >
             <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
               <div>
@@ -514,16 +512,16 @@ const PackagesPage: React.FC = () => {
                   {String(t('packages.selected'))}
                 </p>
 
-                <p className="mt-1 text-base font-semibold text-white">
-                  {(selectedPackage?.name || selectedService?.name)}{' '}
-                  <span className="font-outfit text-gold">
-                    · ${Number(selectedPackage?.price ?? selectedService?.price ?? 0).toFixed(2)}
-                  </span>
-                </p>
+                 <p className="mt-1 text-base font-semibold text-ink-0">
+                   {(selectedPackage?.name || selectedService?.name)}{' '}
+                   <span className="font-outfit text-gold">
+                     · ${Number(selectedPackage?.price ?? selectedService?.price ?? 0).toFixed(2)}
+                   </span>
+                 </p>
 
-                <p className="mt-1 text-xs text-white/45">
-                  {String(t('packages.selection_hint'))}
-                </p>
+                 <p className="mt-1 text-xs text-ink-3">
+                   {String(t('packages.selection_hint'))}
+                 </p>
               </div>
 
               <MagneticButton>

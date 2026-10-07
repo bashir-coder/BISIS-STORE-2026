@@ -156,6 +156,7 @@ async function createInvoice({
   const payload = {
     price_amount: amount,
     price_currency: 'usd',
+    pay_currency: 'usdcbsc',
     order_id: normalizedOrderId,
     order_description:
       orderDescription ||

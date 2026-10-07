@@ -4,13 +4,10 @@ import {
   ArrowRight,
   Check,
   ChevronDown,
-  ExternalLink,
   FileCheck2,
   Gauge,
-  Globe2,
-  Layers3,
   Lock,
-  MessageCircle,
+  MessageSquare,
   Package,
   Rocket,
   ShieldCheck,
@@ -23,6 +20,7 @@ import { Link } from 'react-router-dom'
 import { api } from '../utils/api-client'
 import { useTranslation } from 'react-i18next'
 import { useReducedMotion } from '../hooks/useReducedMotion'
+import Hero from '../sections/Hero'
 
 interface Service {
   id: number
@@ -140,7 +138,7 @@ const LabPage: React.FC = () => {
         setError(
           t(
             'lab.catalog_error',
-            'تعذر تحميل الكتالوج الآن. يمكنك الانتقال إلى صفحة الباقات والمحاولة مرة أخرى.',
+            'تعذر تحميل الكتالوج. انتقل إلى صفحة الباقات وأعد المحاولة.',
           ),
         )
       } finally {
@@ -246,98 +244,7 @@ const LabPage: React.FC = () => {
 
   return (
     <main className="min-h-screen overflow-hidden pb-24">
-      {/* =========================================================
-          HERO
-      ========================================================== */}
-      <section className="relative px-4 pb-20 pt-24 sm:px-6 lg:px-8 lg:pb-28 lg:pt-32">
-        <div className="pointer-events-none absolute inset-0 -z-10 overflow-hidden">
-          <div className="absolute left-1/2 top-0 h-[420px] w-[720px] -translate-x-1/2 rounded-full bg-gold/[0.07] blur-[120px]" />
-          <div className="absolute right-0 top-1/3 h-[300px] w-[300px] rounded-full bg-emerald-500/[0.05] blur-[100px]" />
-        </div>
-
-        <div className="mx-auto max-w-6xl text-center">
-          <motion.div
-            initial={{ opacity: 0, y: 22 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.55 }}
-          >
-            <div className="mb-8 inline-flex items-center gap-2.5 rounded-full border border-gold/30 bg-gold/[0.08] px-5 py-3 text-xs font-semibold text-gold shadow-lg shadow-gold/20">
-              <Sparkles className="h-4 w-4" />
-              <span className="font-outfit text-base font-bold tracking-wider">BİŞİŞ LAB</span>
-            </div>
-
-            <h1 className="mx-auto max-w-4xl text-4xl font-black tracking-tight text-white sm:text-5xl lg:text-7xl">
-              {t('lab.hero.title')}
-            </h1>
-
-            <p className="mx-auto mt-6 max-w-2xl text-base leading-8 text-white/55 sm:text-lg">
-              {t(
-                'lab.hero.description',
-                'مساحة واحدة تشرح كيف تعمل BİŞİŞ، ماذا نقدم، كيف يتم الطلب والدفع والتسليم، وكيف تتابع مشروعك من البداية حتى النهاية.',
-              )}
-            </p>
-
-            <div className="mt-9 flex flex-col justify-center gap-3 sm:flex-row">
-              <Link
-                to="/packages"
-                className="inline-flex items-center justify-center gap-2 rounded-2xl bg-gold px-6 py-3.5 text-sm font-bold text-black transition-transform hover:scale-[1.02]"
-              >
-                {t('lab.hero.cta')}
-                <ArrowRight className="h-4 w-4 rtl:rotate-180" />
-              </Link>
-
-              <a
-                href="#how-it-works"
-                className="inline-flex items-center justify-center gap-2 rounded-2xl border border-white/10 bg-white/[0.03] px-6 py-3.5 text-sm font-semibold text-white transition-colors hover:border-gold/30 hover:bg-white/[0.05]"
-              >
-                {t('lab.hero.cta2')}
-              </a>
-            </div>
-          </motion.div>
-
-          <motion.div
-            {...fadeUp}
-            transition={{ duration: 0.5, delay: 0.2 }}
-            className="mx-auto mt-12 grid max-w-4xl grid-cols-2 gap-3 sm:grid-cols-4"
-          >
-            {[
-              {
-                icon: Layers3,
-                value: services.length || '18',
-                label: t('lab.stats.services'),
-              },
-              {
-                icon: Package,
-                value: activePackages.length || '3',
-                label: t('lab.stats.packages'),
-              },
-              {
-                icon: Globe2,
-                value: '3',
-                label: t('lab.stats.languages'),
-              },
-              {
-                icon: ShieldCheck,
-                value: systemReady ? 'READY' : '—',
-                label: t('lab.stats.system'),
-              },
-            ].map((stat) => (
-              <motion.div
-                key={stat.label}
-                {...fadeUp}
-                transition={{ duration: 0.45 }}
-                className="group cursor-default rounded-2xl border border-white/10 bg-gradient-to-b from-white/[0.045] to-white/[0.018] p-5 shadow-xl shadow-black/40 hover:border-gold/30"
-              >
-                <stat.icon className="mx-auto mb-3 h-5 w-5 text-gold" />
-                <div className="text-center text-2xl font-bold gold-gradient-text font-outfit">{stat.value}</div>
-                <div className="mt-1.5 text-center text-[11px] font-medium text-white/50">
-                  {stat.label}
-                </div>
-               </motion.div>
-            ))}
-          </motion.div>
-        </div>
-      </section>
+      <Hero />
 
       {/* =========================================================
           WHAT IS BİŞİŞ
@@ -348,21 +255,21 @@ const LabPage: React.FC = () => {
           className="mx-auto grid max-w-6xl gap-8 lg:grid-cols-[1.1fr_.9fr]"
         >
           <div>
-            <div className="mb-4 text-xs font-bold uppercase tracking-[0.22em] text-gold">
+            <div className="mb-4 eyebrow text-xs font-bold uppercase tracking-[0.22em] text-gold">
               {t('lab.about.eyebrow')}
             </div>
 
-            <h2 className="text-3xl font-bold text-white sm:text-4xl">
+            <h2 className="text-3xl font-bold text-ink-0 sm:text-4xl">
               {t(
                 'lab.about.title',
-                'نظام يحول الاحتياج إلى نطاق واضح ثم إلى تنفيذ قابل للمتابعة.',
+                'نظام يحول الاحتياج إلى نطاق واضح وتنفيذ قابل للمتابعة.',
               )}
             </h2>
 
-            <p className="mt-5 max-w-2xl text-sm leading-8 text-white/55">
+            <p className="mt-5 max-w-2xl text-sm leading-8 text-ink-3">
               {t(
                 'lab.about.description',
-                'BİŞİŞ ليست مجرد قائمة خدمات. الفكرة هي أن تبدأ من مشكلة أو هدف واضح، تختار نطاقًا مناسبًا، ترسل طلبك، ثم تتابع مراحل العمل والتسليم من مساحة رقمية واحدة.',
+                'BİŞİŞ ليست مجرد قائمة خدمات. اختر نطاقًا مناسبًا، ثم تابع التنفيذ والتسليم.',
               )}
             </p>
 
@@ -375,7 +282,7 @@ const LabPage: React.FC = () => {
               ].map((item) => (
                 <span
                   key={item}
-                  className="rounded-full border border-white/10 bg-white/[0.03] px-3 py-1.5 text-xs text-white/60"
+                  className="rounded-full border border-border-1 bg-surface-1 px-3 py-1.5 text-xs text-ink-2"
                 >
                   {item}
                 </span>
@@ -420,13 +327,13 @@ const LabPage: React.FC = () => {
             ].map((card) => (
               <div
                 key={card.title}
-                className="rounded-2xl border border-white/10 bg-white/[0.025] p-5 transition-colors hover:border-gold/20"
+                className="card card-interactive p-5 transition-colors hover:border-gold/20"
               >
                 <card.icon className="h-5 w-5 text-gold" />
-                <h3 className="mt-4 text-sm font-bold text-white">
+                <h3 className="mt-4 text-sm font-bold text-ink-0">
                   {card.title}
                 </h3>
-                <p className="mt-2 text-xs leading-6 text-white/45">
+                <p className="mt-2 text-xs leading-6 text-ink-3">
                   {card.text}
                 </p>
               </div>
@@ -435,22 +342,31 @@ const LabPage: React.FC = () => {
         </motion.div>
       </section>
 
+      <div className="section-divider my-12 mx-auto" />
+
       {/* =========================================================
           HOW IT WORKS
       ========================================================== */}
       <section
         id="how-it-works"
-        className="border-y border-white/[0.06] bg-white/[0.015] px-4 py-20 sm:px-6 lg:px-8"
+        className="border-y border-border-1 bg-surface-1 px-4 py-20 sm:px-6 lg:px-8"
       >
         <div className="mx-auto max-w-6xl">
           <motion.div {...fadeUp} className="text-center">
-            <div className="text-xs font-bold uppercase tracking-[0.22em] text-gold">
+            <div className="eyebrow text-xs font-bold uppercase tracking-[0.22em] text-gold">
               {t('lab.process.eyebrow')}
             </div>
 
-            <h2 className="mt-3 text-3xl font-bold text-white sm:text-4xl">
-              {t('lab.process.title')}
+            <h2 className="text-3xl font-bold text-ink-0 sm:text-4xl">
+              {t('lab.anatomy.title')}
             </h2>
+
+            <p className="mt-4 text-sm leading-7 text-ink-3">
+              {t(
+                'lab.anatomy.description',
+                'كل نطاق له مخرج قابل للاستخدام وطريقة تسليم واضحة.',
+              )}
+            </p>
           </motion.div>
 
           <div className="mt-12 grid gap-4 md:grid-cols-4">
@@ -495,20 +411,20 @@ const LabPage: React.FC = () => {
               <motion.div
                 key={step.number}
                 {...fadeUp}
-                className="relative rounded-2xl border border-white/10 bg-[#0d0d0d] p-6"
+                className="relative rounded-2xl border border-border-1 bg-[#0d0d0d] p-6"
               >
                 <div className="flex items-center justify-between">
-                  <step.icon className="h-5 w-5 text-gold" />
-                  <span className="text-xs font-bold text-white/20">
+                  <step.icon className="h-5 w-5 text-gold icon-hover" />
+                  <span className="text-xs font-bold text-ink-3">
                     {step.number}
                   </span>
                 </div>
 
-                <h3 className="mt-6 text-base font-bold text-white">
+                <h3 className="mt-6 text-base font-bold text-ink-0">
                   {step.title}
                 </h3>
 
-                <p className="mt-2 text-xs leading-6 text-white/45">
+                <p className="mt-2 text-xs leading-6 text-ink-3">
                   {step.text}
                 </p>
               </motion.div>
@@ -527,25 +443,25 @@ const LabPage: React.FC = () => {
             className="flex flex-col justify-between gap-5 sm:flex-row sm:items-end"
           >
             <div>
-              <div className="text-xs font-bold uppercase tracking-[0.22em] text-gold">
+              <div className="eyebrow text-xs font-bold uppercase tracking-[0.22em] text-gold">
                 {t('lab.services.eyebrow')}
               </div>
 
-              <h2 className="mt-3 text-3xl font-bold text-white sm:text-4xl">
+              <h2 className="mt-3 text-3xl font-bold text-ink-0 sm:text-4xl">
                 {t('lab.services.title')}
               </h2>
 
-              <p className="mt-3 max-w-2xl text-sm leading-7 text-white/45">
+              <p className="mt-3 max-w-2xl text-sm leading-7 text-ink-3">
                 {t(
                   'lab.services.description',
-                  'هذه أمثلة من الكتالوج الحالي. الكتالوج الكامل متاح في صفحة الخدمات والباقات.',
+                  'أمثلة من الكتالوج الحالي. الكتالوج الكامل متاح في صفحة الخدمات والباقات.',
                 )}
               </p>
             </div>
 
             <Link
               to="/packages"
-              className="inline-flex shrink-0 items-center gap-2 text-sm font-semibold text-gold hover:text-white"
+              className="inline-flex shrink-0 items-center gap-2 text-sm font-semibold text-gold hover:text-ink-0"
             >
               {t('lab.services.cta')}
               <ArrowRight className="h-4 w-4 rtl:rotate-180" />
@@ -557,7 +473,7 @@ const LabPage: React.FC = () => {
               {Array.from({ length: 6 }).map((_, index) => (
                 <div
                   key={index}
-                  className="h-48 animate-pulse rounded-2xl border border-white/10 bg-white/[0.025]"
+                  className="h-48 animate-pulse rounded-2xl border border-border-1 bg-surface-1"
                 />
               ))}
             </div>
@@ -582,7 +498,7 @@ const LabPage: React.FC = () => {
                     key={service.id}
                     {...fadeUp}
                     transition={{ duration: 0.45, delay: index * 0.04 }}
-                    className="group rounded-2xl border border-white/10 bg-white/[0.025] p-5 transition-all hover:-translate-y-1 hover:border-gold/25 hover:bg-white/[0.04]"
+                    className="card card-interactive group p-5 transition-all hover:border-gold/25 hover:bg-surface-2"
                   >
                     <div className="flex items-start justify-between gap-4">
                       <div className="flex h-10 w-10 items-center justify-center rounded-xl border border-gold/15 bg-gold/[0.06] text-gold">
@@ -590,23 +506,23 @@ const LabPage: React.FC = () => {
                       </div>
 
                       <div className="text-end">
-                        <div className="text-lg font-bold text-white">
+                        <div className="text-lg font-bold text-ink-0">
                           ${Number(service.price).toLocaleString()}
                         </div>
 
                         {service.delivery && (
-                          <div className="mt-1 text-[10px] text-white/30">
+                          <div className="mt-1 text-[10px] text-ink-3">
                             {service.delivery}
                           </div>
                         )}
                       </div>
                     </div>
 
-                    <h3 className="mt-5 text-sm font-bold text-white">
+                    <h3 className="mt-5 text-sm font-bold text-ink-0">
                       {service.name}
                     </h3>
 
-                    <p className="mt-2 min-h-[72px] text-xs leading-6 text-white/45">
+                    <p className="mt-2 min-h-[72px] text-xs leading-6 text-ink-3">
                       {description}
                     </p>
 
@@ -626,7 +542,7 @@ const LabPage: React.FC = () => {
           {lifePlan && (
             <motion.div
               {...fadeUp}
-              className="mt-4 overflow-hidden rounded-2xl border border-gold/20 bg-gradient-to-r from-gold/[0.08] to-emerald-500/[0.04] p-6"
+              className="mt-4 overflow-hidden rounded-2xl border border-gold/20 bg-gradient-to-r from-gold/[0.08] to-blue/[0.04] p-6"
             >
               <div className="flex flex-col justify-between gap-5 md:flex-row md:items-center">
                 <div>
@@ -634,11 +550,11 @@ const LabPage: React.FC = () => {
                     Signature Subscription
                   </div>
 
-                  <h3 className="mt-2 text-xl font-bold text-white">
+                  <h3 className="mt-2 text-xl font-bold text-ink-0">
                     {lifePlan.name}
                   </h3>
 
-                  <p className="mt-2 text-sm text-white/45">
+                  <p className="mt-2 text-sm text-ink-3">
                     {serviceDescriptions['svc-018']}
                   </p>
                 </div>
@@ -656,17 +572,19 @@ const LabPage: React.FC = () => {
         </div>
       </section>
 
+      <div className="section-divider my-12 mx-auto" />
+
       {/* =========================================================
           PACKAGES
       ========================================================== */}
-      <section className="border-y border-white/[0.06] bg-white/[0.015] px-4 py-20 sm:px-6 lg:px-8">
+      <section className="border-y border-border-1 bg-surface-1 px-4 py-20 sm:px-6 lg:px-8">
         <div className="mx-auto max-w-6xl">
           <motion.div {...fadeUp} className="text-center">
-            <div className="text-xs font-bold uppercase tracking-[0.22em] text-gold">
+            <div className="eyebrow text-xs font-bold uppercase tracking-[0.22em] text-gold">
               {t('lab.packages.eyebrow')}
             </div>
 
-            <h2 className="mt-3 text-3xl font-bold text-white sm:text-4xl">
+            <h2 className="mt-3 text-3xl font-bold text-ink-0 sm:text-4xl">
               {t('lab.packages.title')}
             </h2>
           </motion.div>
@@ -680,20 +598,20 @@ const LabPage: React.FC = () => {
                 className={`relative rounded-2xl border p-6 ${
                   pkg.is_popular
                     ? 'border-gold/35 bg-gold/[0.045]'
-                    : 'border-white/10 bg-white/[0.025]'
+                    : 'border-border-1 bg-surface-1'
                 }`}
               >
                 {pkg.is_popular && (
-                  <div className="absolute right-5 top-5 rounded-full bg-gold px-2.5 py-1 text-[9px] font-black uppercase tracking-wider text-black">
+                  <div className="absolute right-5 top-5 rounded-full bg-gold px-2.5 py-1 text-[9px] font-black uppercase tracking-wider text-ink-0">
                     {t('lab.packages.popular')}
                   </div>
                 )}
 
-                <div className="text-xs font-semibold uppercase tracking-wider text-white/35">
+                <div className="text-xs font-semibold uppercase tracking-wider text-ink-3">
                   {pkg.category || 'BİŞİŞ'}
                 </div>
 
-                <h3 className="mt-3 text-2xl font-bold text-white">
+                <h3 className="mt-3 text-2xl font-bold text-ink-0">
                   {pkg.name}
                 </h3>
 
@@ -701,7 +619,7 @@ const LabPage: React.FC = () => {
                   ${Number(pkg.price).toLocaleString()}
                 </div>
 
-                <p className="mt-4 min-h-[72px] text-sm leading-7 text-white/45">
+                <p className="mt-4 min-h-[72px] text-sm leading-7 text-ink-3">
                   {packageDescriptions[pkg.slug] || pkg.description}
                 </p>
 
@@ -709,9 +627,9 @@ const LabPage: React.FC = () => {
                   {pkg.features.slice(0, 5).map((feature) => (
                     <div
                       key={feature}
-                      className="flex items-start gap-2 text-xs text-white/60"
+                      className="flex items-start gap-2 text-xs text-ink-2"
                     >
-                      <Check className="mt-0.5 h-3.5 w-3.5 shrink-0 text-emerald-400" />
+                      <Check className="mt-0.5 h-3.5 w-3.5 shrink-0 text-green-300" />
                       <span>{feature}</span>
                     </div>
                   ))}
@@ -721,8 +639,8 @@ const LabPage: React.FC = () => {
                   to="/packages"
                   className={`mt-7 flex items-center justify-center gap-2 rounded-xl px-4 py-3 text-sm font-bold transition-colors ${
                     pkg.is_popular
-                      ? 'bg-gold text-black hover:bg-gold/90'
-                      : 'border border-white/10 bg-white/[0.04] text-white hover:border-gold/25 hover:text-gold'
+                      ? 'bg-gold text-ink-0 hover:bg-gold/90'
+                      : 'border border-border-1 bg-surface-2 text-ink-0 hover:border-gold/25 hover:text-gold'
                   }`}
                 >
                   {t('lab.packages.cta')}
@@ -734,24 +652,26 @@ const LabPage: React.FC = () => {
         </div>
       </section>
 
+      <div className="section-divider my-12 mx-auto" />
+
       {/* =========================================================
           SERVICE ANATOMY
       ========================================================== */}
       <section className="px-4 py-20 sm:px-6 lg:px-8">
         <div className="mx-auto max-w-6xl">
           <motion.div {...fadeUp} className="max-w-2xl">
-            <div className="text-xs font-bold uppercase tracking-[0.22em] text-gold">
+            <div className="eyebrow text-xs font-bold uppercase tracking-[0.22em] text-gold">
               {t('lab.anatomy.eyebrow')}
             </div>
 
-            <h2 className="mt-3 text-3xl font-bold text-white sm:text-4xl">
+            <h2 className="mt-3 text-3xl font-bold text-ink-0 sm:text-4xl">
               {t('lab.anatomy.title')}
             </h2>
 
-            <p className="mt-4 text-sm leading-7 text-white/45">
+            <p className="mt-4 text-sm leading-7 text-ink-3">
               {t(
                 'lab.anatomy.description',
-                'الفكرة ليست بيع اسم خدمة فقط. كل نطاق يجب أن يكون مفهومًا قبل الشراء، وله مخرج يمكن استخدامه ومتابعته.',
+                'كل نطاق له مخرج قابل للاستخدام وطريقة تسليم واضحة.',
               )}
             </p>
           </motion.div>
@@ -782,16 +702,16 @@ const LabPage: React.FC = () => {
                   'كيف ينتقل الطلب من الشراء إلى التسليم والمتابعة؟',
                 ),
               },
-            ].map((item) => (
+             ].map((item) => (
               <div
                 key={item.title}
-                className="rounded-2xl border border-white/10 bg-white/[0.025] p-6"
+                className="rounded-2xl border border-border-1 bg-surface-1 p-6"
               >
-                <item.icon className="h-5 w-5 text-gold" />
-                <h3 className="mt-5 text-base font-bold text-white">
+                <item.icon className="h-5 w-5 text-gold icon-hover" />
+                <h3 className="mt-5 text-base font-bold text-ink-0">
                   {item.title}
                 </h3>
-                <p className="mt-2 text-xs leading-6 text-white/45">
+                <p className="mt-2 text-xs leading-6 text-ink-3">
                   {item.text}
                 </p>
               </div>
@@ -803,22 +723,22 @@ const LabPage: React.FC = () => {
       {/* =========================================================
           PAYMENTS
       ========================================================== */}
-      <section className="border-y border-white/[0.06] bg-white/[0.015] px-4 py-20 sm:px-6 lg:px-8">
+      <section className="border-y border-border-1 bg-surface-1 px-4 py-20 sm:px-6 lg:px-8">
         <div className="mx-auto max-w-6xl">
           <motion.div
             {...fadeUp}
             className="grid gap-8 lg:grid-cols-[1fr_.8fr]"
           >
             <div>
-              <div className="text-xs font-bold uppercase tracking-[0.22em] text-gold">
+              <div className="eyebrow text-xs font-bold uppercase tracking-[0.22em] text-gold">
                 {t('lab.payment.eyebrow')}
               </div>
 
-              <h2 className="mt-3 text-3xl font-bold text-white sm:text-4xl">
+              <h2 className="mt-3 text-3xl font-bold text-ink-0 sm:text-4xl">
                 {t('lab.payment.title')}
               </h2>
 
-              <p className="mt-4 max-w-2xl text-sm leading-8 text-white/45">
+              <p className="mt-4 max-w-2xl text-sm leading-8 text-ink-3">
                 {t('lab.payment.description')}
               </p>
 
@@ -830,9 +750,9 @@ const LabPage: React.FC = () => {
                 ].map((point) => (
                   <div
                     key={point}
-                    className="flex items-start gap-3 text-sm text-white/60"
+                    className="flex items-start gap-3 text-sm text-ink-2"
                   >
-                    <Check className="mt-0.5 h-4 w-4 shrink-0 text-emerald-400" />
+                    <Check className="mt-0.5 h-4 w-4 shrink-0 text-green-300" />
                     <span>{point}</span>
                   </div>
                 ))}
@@ -840,7 +760,7 @@ const LabPage: React.FC = () => {
 
               <Link
                 to="/payment"
-                className="mt-8 inline-flex items-center gap-2 rounded-xl bg-gold px-5 py-3 text-sm font-bold text-black"
+                className="mt-8 inline-flex items-center gap-2 rounded-xl bg-gold px-5 py-3 text-sm font-bold text-ink-0"
               >
                 {t('lab.payment.cta')}
                 <ArrowRight className="h-4 w-4 rtl:rotate-180" />
@@ -854,30 +774,30 @@ const LabPage: React.FC = () => {
                 </div>
 
                 <div>
-                  <div className="text-sm font-bold text-white">
+                  <div className="text-sm font-bold text-ink-0">
                     {t('payment.crypto_provider')}
                   </div>
-                  <div className="text-xs text-white/35">
+                  <div className="text-xs text-ink-3">
                     {t('lab.payment.provider')}
                   </div>
                 </div>
               </div>
 
-              <div className="mt-7 rounded-2xl border border-white/10 bg-white/[0.025] p-5">
-                <div className="text-[10px] uppercase tracking-wider text-white/30">
+              <div className="mt-7 rounded-2xl border border-border-1 bg-surface-1 p-5">
+                <div className="text-[10px] uppercase tracking-wider text-ink-3">
                   {t('payment.crypto_route')}
                 </div>
 
-                <div className="mt-2 text-lg font-bold text-white">
+                <div className="mt-2 text-lg font-bold text-ink-0">
                   {t('payment.crypto_value')}
                 </div>
 
-                <div className="mt-1 text-xs text-emerald-400">
-                  {t('lab.payment.available')}
+            <div className="mt-1 text-xs text-blue-light">
+                   {t('lab.payment.available')}
                 </div>
               </div>
 
-              <div className="mt-4 flex items-center gap-2 text-xs text-white/35">
+              <div className="mt-4 flex items-center gap-2 text-xs text-ink-3">
                 <Lock className="h-3.5 w-3.5" />
                 {t('lab.payment.security')}
               </div>
@@ -886,17 +806,19 @@ const LabPage: React.FC = () => {
         </div>
       </section>
 
+      <div className="section-divider my-12 mx-auto" />
+
       {/* =========================================================
           ORDER JOURNEY
       ========================================================== */}
       <section className="px-4 py-20 sm:px-6 lg:px-8">
         <div className="mx-auto max-w-6xl">
           <motion.div {...fadeUp} className="text-center">
-            <div className="text-xs font-bold uppercase tracking-[0.22em] text-gold">
+            <div className="eyebrow text-xs font-bold uppercase tracking-[0.22em] text-gold">
               {t('lab.journey.eyebrow')}
             </div>
 
-            <h2 className="mt-3 text-3xl font-bold text-white sm:text-4xl">
+            <h2 className="mt-3 text-3xl font-bold text-ink-0 sm:text-4xl">
               {t('lab.journey.title')}
             </h2>
           </motion.div>
@@ -943,17 +865,17 @@ const LabPage: React.FC = () => {
                 key={item.n}
                 {...fadeUp}
                 transition={{ duration: 0.4, delay: index * 0.05 }}
-                className="relative flex gap-5 border-b border-white/[0.07] py-6 last:border-b-0"
+                className="relative flex gap-5 border-b border-border-1 py-6 last:border-b-0"
               >
                 <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl border border-gold/20 bg-gold/[0.05] text-xs font-bold text-gold">
                   {item.n}
                 </div>
 
                 <div>
-                  <h3 className="text-sm font-bold text-white">
+                  <h3 className="text-sm font-bold text-ink-0">
                     {item.title}
                   </h3>
-                  <p className="mt-1 text-xs leading-6 text-white/45">
+                  <p className="mt-1 text-xs leading-6 text-ink-3">
                     {item.text}
                   </p>
                 </div>
@@ -966,7 +888,7 @@ const LabPage: React.FC = () => {
       {/* =========================================================
           CLIENT WORKSPACE
       ========================================================== */}
-      <section className="border-y border-white/[0.06] bg-white/[0.015] px-4 py-20 sm:px-6 lg:px-8">
+      <section className="border-y border-border-1 bg-surface-1 px-4 py-20 sm:px-6 lg:px-8">
         <motion.div
           {...fadeUp}
           className="mx-auto grid max-w-6xl items-center gap-10 lg:grid-cols-[.85fr_1.15fr]"
@@ -976,24 +898,24 @@ const LabPage: React.FC = () => {
               <Workflow className="h-5 w-5" />
             </div>
 
-            <div className="mt-5 text-xs font-bold uppercase tracking-[0.22em] text-gold">
+            <div className="mt-5 eyebrow text-xs font-bold uppercase tracking-[0.22em] text-gold">
               {t('lab.workspace.eyebrow')}
             </div>
 
-            <h2 className="mt-3 text-3xl font-bold text-white sm:text-4xl">
+            <h2 className="mt-3 text-3xl font-bold text-ink-0 sm:text-4xl">
               {t('lab.workspace.title')}
             </h2>
 
-            <p className="mt-4 text-sm leading-8 text-white/45">
+            <p className="mt-4 text-sm leading-8 text-ink-3">
               {t(
                 'lab.workspace.description',
-                'الهدف أن لا تضطر إلى البحث بين رسائل وأماكن مختلفة لمعرفة أين وصل طلبك.',
+                'لا تضطر للبحث بين رسائل وأماكن مختلفة لمعرفة أين وصل طلبك.',
               )}
             </p>
 
             <Link
-              to="/portal"
-              className="mt-7 inline-flex items-center justify-center gap-2 rounded-xl bg-gold px-6 py-3.5 text-sm font-bold text-black shadow-lg shadow-gold/20 hover:scale-[1.02] transition-transform"
+              to="/dashboard"
+              className="mt-7 inline-flex items-center justify-center gap-2 rounded-xl bg-gold px-6 py-3.5 text-sm font-bold text-ink-0 shadow-lg shadow-gold/20 hover:scale-[1.02] transition-transform"
             >
               {t('lab.workspace.cta')}
               <ArrowRight className="h-4 w-4 rtl:rotate-180" />
@@ -1019,7 +941,7 @@ const LabPage: React.FC = () => {
                 ),
               },
               {
-                icon: MessageCircle,
+                icon: MessageSquare,
                 title: t('lab.workspace.card3'),
                 text: t(
                   'lab.workspace.card3_text',
@@ -1037,13 +959,13 @@ const LabPage: React.FC = () => {
             ].map((item) => (
               <div
                 key={item.title}
-                className="rounded-2xl border border-white/10 bg-[#0d0d0d] p-5"
+                className="card card-interactive p-5"
               >
-                <item.icon className="h-5 w-5 text-gold" />
-                <div className="mt-4 text-sm font-bold text-white">
+                <item.icon className="h-5 w-5 text-gold icon-hover" />
+                <div className="mt-4 text-sm font-bold text-ink-0">
                   {item.title}
                 </div>
-                <div className="mt-1 text-xs leading-6 text-white/40">
+                <div className="mt-1 text-xs leading-6 text-ink-3">
                   {item.text}
                 </div>
               </div>
@@ -1052,17 +974,19 @@ const LabPage: React.FC = () => {
         </motion.div>
       </section>
 
+      <div className="section-divider my-12 mx-auto" />
+
       {/* =========================================================
           SECURITY
       ========================================================== */}
       <section className="px-4 py-20 sm:px-6 lg:px-8">
         <div className="mx-auto max-w-6xl">
           <motion.div {...fadeUp} className="text-center">
-            <div className="text-xs font-bold uppercase tracking-[0.22em] text-gold">
+            <div className="eyebrow text-xs font-bold uppercase tracking-[0.22em] text-gold">
               {t('lab.security.eyebrow')}
             </div>
 
-            <h2 className="mt-3 text-3xl font-bold text-white sm:text-4xl">
+            <h2 className="mt-3 text-3xl font-bold text-ink-0 sm:text-4xl">
               {t('lab.security.title')}
             </h2>
           </motion.div>
@@ -1082,7 +1006,7 @@ const LabPage: React.FC = () => {
                 title: t('lab.security.2.title'),
                 text: t(
                   'lab.security.2.text',
-                  'الدفع يمر عبر بنية دفع خارجية وحالة يتم التحقق منها.',
+                  'الدفع يمر عبر بنية دفع خارجية موثوقة.',
                 ),
               },
               {
@@ -1096,13 +1020,13 @@ const LabPage: React.FC = () => {
             ].map((item) => (
               <div
                 key={item.title}
-                className="rounded-2xl border border-white/10 bg-white/[0.025] p-6"
+                className="card card-interactive p-6"
               >
-                <item.icon className="h-5 w-5 text-emerald-400" />
-                <h3 className="mt-5 text-base font-bold text-white">
+                <item.icon className="h-5 w-5 text-blue-light icon-hover" />
+                <h3 className="mt-5 text-base font-bold text-ink-0">
                   {item.title}
                 </h3>
-                <p className="mt-2 text-xs leading-6 text-white/45">
+                <p className="mt-2 text-xs leading-6 text-ink-3">
                   {item.text}
                 </p>
               </div>
@@ -1114,18 +1038,18 @@ const LabPage: React.FC = () => {
       {/* =========================================================
           FAQ
       ========================================================== */}
-      <section className="border-y border-white/[0.06] bg-white/[0.015] px-4 py-20 sm:px-6 lg:px-8">
+      <section className="border-y border-border-1 bg-surface-1 px-4 py-20 sm:px-6 lg:px-8">
         <div className="mx-auto max-w-4xl">
           <motion.div {...fadeUp} className="text-center">
-            <div className="text-xs font-bold uppercase tracking-[0.22em] text-gold">
+            <div className="eyebrow text-xs font-bold uppercase tracking-[0.22em] text-gold">
               FAQ
             </div>
 
-            <h2 className="mt-3 text-3xl font-bold text-white sm:text-4xl">
+            <h2 className="mt-3 text-3xl font-bold text-ink-0 sm:text-4xl">
               {t('faq.title')}
             </h2>
 
-            <p className="mx-auto mt-4 max-w-2xl text-sm leading-7 text-white/45">
+            <p className="mx-auto mt-4 max-w-2xl text-sm leading-7 text-ink-3">
               {t('faq.subtitle')}
             </p>
           </motion.div>
@@ -1141,7 +1065,7 @@ const LabPage: React.FC = () => {
                   className={`overflow-hidden rounded-2xl border transition-colors ${
                     isOpen
                       ? 'border-gold/35 bg-gold/[0.045]'
-                      : 'border-white/10 bg-white/[0.025]'
+                      : 'border-border-1 bg-surface-1'
                   }`}
                 >
                   <button
@@ -1150,7 +1074,7 @@ const LabPage: React.FC = () => {
                     aria-expanded={isOpen}
                     className="flex w-full items-center justify-between gap-5 px-5 py-5 text-start"
                   >
-                    <span className="text-sm font-semibold leading-6 text-white">
+                    <span className="text-sm font-semibold leading-6 text-ink-0">
                       {faq.question}
                     </span>
 
@@ -1163,7 +1087,7 @@ const LabPage: React.FC = () => {
 
                   {isOpen && (
                     <div className="border-t border-gold/10 px-5 pb-6 pt-4">
-                      <p className="text-sm leading-7 text-white/55">
+                      <p className="text-sm leading-7 text-ink-3">
                         {faq.answer}
                       </p>
                     </div>
@@ -1172,18 +1096,10 @@ const LabPage: React.FC = () => {
               )
             })}
           </div>
-
-          <div className="mt-6 text-center">
-            <Link
-              to="/faq"
-              className="inline-flex items-center gap-2 text-xs font-semibold text-gold"
-            >
-              {t('lab.faq.more')}
-              <ExternalLink className="h-3.5 w-3.5" />
-            </Link>
-          </div>
         </div>
       </section>
+
+      <div className="section-divider my-12 mx-auto" />
 
       {/* =========================================================
           SYSTEM STATUS
@@ -1191,16 +1107,16 @@ const LabPage: React.FC = () => {
       <section className="px-4 py-20 sm:px-6 lg:px-8">
         <motion.div
           {...fadeUp}
-          className="mx-auto max-w-6xl overflow-hidden rounded-3xl border border-white/10 bg-[#0b0b0b]"
+          className="mx-auto max-w-6xl overflow-hidden rounded-3xl border border-border-1 bg-[#0b0b0b]"
         >
-          <div className="border-b border-white/[0.07] p-6 sm:p-8">
+          <div className="border-b border-border-1 p-6 sm:p-8">
             <div className="flex flex-col justify-between gap-5 sm:flex-row sm:items-center">
               <div>
-                <div className="text-xs font-bold uppercase tracking-[0.22em] text-gold">
+                <div className="eyebrow text-xs font-bold uppercase tracking-[0.22em] text-gold">
                   {t('lab.status.eyebrow')}
                 </div>
 
-                <h2 className="mt-2 text-2xl font-bold text-white">
+                <h2 className="mt-2 text-2xl font-bold text-ink-0">
                   {t('lab.status.title')}
                 </h2>
               </div>
@@ -1208,13 +1124,13 @@ const LabPage: React.FC = () => {
               <div
                 className={`inline-flex items-center gap-2 self-start rounded-full border px-3 py-1.5 text-xs font-semibold ${
                   systemLive
-                    ? 'border-emerald-400/20 bg-emerald-400/10 text-emerald-300'
+                    ? 'border-green-500/20 bg-green-500/10 text-green-300'
                     : 'border-red-400/20 bg-red-400/10 text-red-300'
                 }`}
               >
                 <span
                   className={`h-2 w-2 rounded-full ${
-                    systemLive ? 'bg-emerald-400' : 'bg-red-400'
+                    systemLive ? 'bg-green-500' : 'bg-red-400'
                   }`}
                 />
                 {systemLoading
@@ -1226,32 +1142,32 @@ const LabPage: React.FC = () => {
             </div>
           </div>
 
-          <div className="grid gap-px bg-white/[0.06] md:grid-cols-3">
+          <div className="grid gap-px bg-surface-1 md:grid-cols-3">
             <div className="bg-[#0b0b0b] p-6">
-              <div className="text-xs text-white/35">
+              <div className="text-xs text-ink-3">
                 {t('lab.status.service')}
               </div>
-              <div className="mt-2 text-lg font-bold text-white">
+              <div className="mt-2 text-lg font-bold text-ink-0">
                 {liveStatus?.status || '—'}
               </div>
             </div>
 
             <div className="bg-[#0b0b0b] p-6">
-              <div className="text-xs text-white/35">
+              <div className="text-xs text-ink-3">
                 {t('lab.status.database')}
               </div>
-              <div className="mt-2 text-lg font-bold text-white">
+              <div className="mt-2 text-lg font-bold text-ink-0">
                 {readyStatus?.database || '—'}
               </div>
             </div>
 
             <div className="bg-[#0b0b0b] p-6">
-              <div className="text-xs text-white/35">
+              <div className="text-xs text-ink-3">
                 {t('lab.status.readiness')}
               </div>
               <div
                 className={`mt-2 text-lg font-bold ${
-                  systemReady ? 'text-emerald-400' : 'text-white'
+                   systemReady ? 'text-green-300' : 'text-ink-0'
                 }`}
               >
                 {readyStatus?.status || '—'}
@@ -1267,21 +1183,21 @@ const LabPage: React.FC = () => {
       <section className="px-4 pb-10 sm:px-6 lg:px-8">
         <motion.div
           {...fadeUp}
-          className="mx-auto max-w-6xl rounded-3xl border border-gold/15 bg-gradient-to-br from-gold/[0.08] via-transparent to-emerald-500/[0.04] p-8 text-center sm:p-12"
+          className="mx-auto max-w-6xl rounded-3xl border border-gold/15 bg-gradient-to-br from-gold/[0.08] via-transparent to-blue/[0.04] p-8 text-center sm:p-12"
         >
           <div className="mx-auto flex h-14 w-14 items-center justify-center rounded-2xl border border-gold/20 bg-gold/10 text-gold">
             <Rocket className="h-6 w-6" />
           </div>
 
-          <div className="mt-6 text-center text-2xl font-black font-outfit uppercase tracking-widest text-gold gold-gradient-text drop-shadow-[0_0_10px_rgba(212,175,55,0.3)]">
+          <div className="mt-6 text-center text-2xl font-black font-outfit uppercase tracking-widest text-gold gold-gradient-text gold-glow-text neon-drop-gold-3">
             BİŞİŞ
           </div>
 
-          <h2 className="mx-auto mt-3 max-w-3xl text-3xl font-black text-white sm:text-5xl">
+          <h2 className="mx-auto mt-3 max-w-3xl text-3xl font-black text-ink-0 sm:text-5xl">
             {t('lab.final.title')}
           </h2>
 
-          <p className="mx-auto mt-4 max-w-2xl text-sm leading-7 text-white/45">
+          <p className="mx-auto mt-4 max-w-2xl text-sm leading-7 text-ink-3">
             {t(
               'lab.final.description',
               'استكشف الخدمات والباقات، اختر النطاق المناسب، ودع النظام يأخذك من الطلب إلى التنفيذ.',
@@ -1291,7 +1207,7 @@ const LabPage: React.FC = () => {
           <div className="mt-8 flex flex-col justify-center gap-3 sm:flex-row">
             <Link
               to="/packages"
-              className="inline-flex items-center justify-center gap-2 rounded-xl bg-gold px-6 py-3.5 text-sm font-bold text-black"
+              className="inline-flex items-center justify-center gap-2 rounded-xl bg-gold px-6 py-3.5 text-sm font-bold text-ink-0"
             >
               {t('lab.final.cta')}
               <ArrowRight className="h-4 w-4 rtl:rotate-180" />
@@ -1299,18 +1215,10 @@ const LabPage: React.FC = () => {
 
             <Link
               to="/about"
-              className="inline-flex items-center justify-center gap-2 rounded-xl border border-white/10 bg-white/[0.03] px-6 py-3.5 text-sm font-semibold text-white hover:border-gold/25 hover:text-gold"
+              className="btn-ghost-gold inline-flex items-center justify-center gap-2 rounded-xl border border-border-1 bg-surface-1 px-6 py-3.5 text-sm font-semibold text-ink-0 hover:border-gold/25 hover:text-gold"
             >
               {t('lab.final.about')}
               <ArrowRight className="h-4 w-4 rtl:rotate-180" />
-            </Link>
-
-            <Link
-              to="/chat"
-              className="inline-flex items-center justify-center gap-2 rounded-xl border border-white/10 bg-white/[0.03] px-6 py-3.5 text-sm font-semibold text-white hover:border-gold/25 hover:text-gold"
-            >
-              <MessageCircle className="h-4 w-4" />
-              {t('lab.final.chat')}
             </Link>
           </div>
         </motion.div>

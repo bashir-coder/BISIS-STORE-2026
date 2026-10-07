@@ -1,18 +1,21 @@
-import React, { useEffect, useRef, useState, useCallback } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import * as THREE from 'three'
 import {
-  createScene,
-  createCamera,
-  createRenderer,
-  createParticles,
-  createGridPlanes,
-  createGeometricNodes,
-  createRings,
+  applySceneTheme,
   createAmbientLights,
+  createCamera,
   createGlowSprite,
+  createGeometricNodes,
+  createGridPlanes,
+  createParticles,
+  createRenderer,
+  createRings,
+  createScene,
+  type BisisSceneTheme,
 } from './threejs-scene'
 import { useReducedMotion } from '../hooks/useReducedMotion'
 import { useDeviceDetection } from '../hooks/useDeviceDetection'
+import { useTheme } from '../contexts/ThemeContext'
 
 type BisisWebGLProps = {
   className?: string
@@ -24,6 +27,55 @@ type BisisWebGLProps = {
   reducedMotionFallback?: React.ReactNode
 }
 
+type Tier = 'low' | 'medium' | 'high'
+
+const CAMERA_BASE_Z = 30
+const CAMERA_TRAVEL = 12
+const CAMERA_SCROLL_RATE = 0.004
+
+const PARTICLE_COUNT: Record<Tier, number> = {
+  low: 260,
+  medium: 800,
+  high: 1200,
+}
+
+const NODE_COUNT: Record<Tier, number> = {
+  low: 24,
+  medium: 40,
+  high: 60,
+}
+
+const RING_COUNT: Record<Tier, number> = {
+  low: 4,
+  medium: 6,
+  high: 8,
+}
+
+const MAX_PIXEL_RATIO: Record<Tier, number> = {
+  low: 1.5,
+  medium: 2,
+  high: 2,
+}
+
+type SceneBundle = {
+  scene: THREE.Scene
+  camera: THREE.PerspectiveCamera
+  renderer: THREE.WebGLRenderer
+  particles: THREE.Points | null
+  geometry: THREE.Group | null
+  rings: THREE.Group | null
+  sprite: THREE.Sprite | null
+  frameId: number | null
+  running: boolean
+}
+
+/**
+ * Single persistent global visual layer.
+ *
+ * The scene is created once for the lifetime of the mount. Theme, reduced
+ * motion, device tier and loop state are all applied by mutating the existing
+ * bundle, never by rebuilding it. Resources are disposed only on real unmount.
+ */
 const BisisWebGL: React.FC<BisisWebGLProps> = ({
   className = '',
   intensity = 'medium',
@@ -34,227 +86,307 @@ const BisisWebGL: React.FC<BisisWebGLProps> = ({
   reducedMotionFallback = null,
 }) => {
   const canvasRef = useRef<HTMLCanvasElement>(null)
-  const containerRef = useRef<HTMLDivElement>(null)
-  const rendererRef = useRef<THREE.WebGLRenderer | null>(null)
-  const sceneRef = useRef<THREE.Scene | null>(null)
-  const cameraRef = useRef<THREE.PerspectiveCamera | null>(null)
-  const frameIdRef = useRef<number | null>(null)
-  const particlesRef = useRef<THREE.Points | null>(null)
-  const gridRef = useRef<THREE.Group | null>(null)
-  const geometryRef = useRef<THREE.Group | null>(null)
-  const ringsRef = useRef<THREE.Group | null>(null)
-  const lightsRef = useRef<THREE.Group | null>(null)
-  const spriteRef = useRef<THREE.Sprite | null>(null)
+  const bundleRef = useRef<SceneBundle | null>(null)
+  const [webglAvailable, setWebglAvailable] = useState(true)
 
   const reducedMotion = useReducedMotion()
   const device = useDeviceDetection()
-  const [webglAvailable, setWebglAvailable] = useState(true)
+  const { theme } = useTheme()
 
-  const isMobile = device.isMobile
-  const isLowEnd = isMobile || device.isTouch
-  const effectiveIntensity = isLowEnd && intensity === 'high' ? 'medium' : intensity
-  const particleCount = effectiveIntensity === 'high' ? 1200 : effectiveIntensity === 'medium' ? 800 : 400
+  /* Tier is resolved once. Changing it later must never rebuild the scene. */
+  const tierRef = useRef<Tier | null>(null)
+  if (tierRef.current === null) {
+    tierRef.current = device.isLowEnd
+      ? 'low'
+      : intensity === 'high'
+        ? 'high'
+        : intensity === 'medium'
+          ? 'medium'
+          : 'low'
+  }
+  const tier = tierRef.current
 
-  const animate = useCallback(() => {
-    if (!rendererRef.current || !sceneRef.current || !cameraRef.current) return
+  /* Live flags. Read by the loop; never keys for initialisation. */
+  const reducedMotionRef = useRef(reducedMotion)
+  const interactiveRef = useRef(interactive)
+  const pausedRef = useRef(false)
+  reducedMotionRef.current = reducedMotion
+  interactiveRef.current = interactive
 
-    const time = Date.now() * 0.001
-
-    if (particlesRef.current) {
-      particlesRef.current.rotation.y = time * 0.02
-      particlesRef.current.rotation.x = time * 0.01
-
-      const positions = particlesRef.current.geometry.attributes.position
-      for (let i = 0; i < positions.count; i++) {
-        const idx = i * 3
-        positions.setZ(
-          idx + 2,
-          positions.getZ(idx + 2) + 0.0005,
-        )
-
-        if (positions.getZ(idx + 2) > 20) {
-          positions.setZ(idx + 2, -30)
-        }
-      }
-      positions.needsUpdate = true
-    }
-
-    if (geometryRef.current && showGeometry) {
-      geometryRef.current.children.forEach((child: THREE.Object3D) => {
-        if (child.userData.rotationSpeed) {
-          child.rotation.x += child.userData.rotationSpeed.x
-          child.rotation.y += child.userData.rotationSpeed.y
-          child.rotation.z += child.userData.rotationSpeed.z
-          child.position.y =
-            child.userData.targetY +
-            Math.sin(time * child.userData.floatSpeed + child.userData.floatOffset) * 0.3
-        }
-      })
-    }
-
-    if (ringsRef.current && showRings) {
-      ringsRef.current.children.forEach((child: THREE.Object3D) => {
-        if (child.userData.rotationSpeed) {
-          child.rotation.z += child.userData.rotationSpeed
-          const pulse = 0.08 + Math.sin(time * child.userData.pulseSpeed) * 0.04
-          const lineChild = child as THREE.Line
-          if (Array.isArray(lineChild.material)) {
-            lineChild.material.forEach((m: THREE.Material) => (m.opacity = pulse))
-          } else if (lineChild.material) {
-            lineChild.material.opacity = pulse
-          }
-        }
-      })
-    }
-
-    if (spriteRef.current && interactive) {
-      spriteRef.current.material.opacity = 0.4 + Math.sin(time * 0.5) * 0.2
-    }
-
-    rendererRef.current.render(sceneRef.current, cameraRef.current)
-    frameIdRef.current = requestAnimationFrame(animate)
-  }, [showGeometry, showRings, interactive])
-
-  const handleMouseMove = useCallback(
-    (e: MouseEvent) => {
-      if (!containerRef.current || !cameraRef.current || !interactive || reducedMotion) return
-
-      const rect = containerRef.current.getBoundingClientRect()
-      const x = ((e.clientX - rect.left) / rect.width - 0.5) * 0.5
-      const y = ((e.clientY - rect.top) / rect.height - 0.5) * 0.5
-
-      cameraRef.current.position.x += (x * 3 - cameraRef.current.position.x) * 0.03
-      cameraRef.current.position.y += (y * -3 - cameraRef.current.position.y) * 0.03
-      cameraRef.current.lookAt(0, 0, 0)
-    },
-    [interactive, reducedMotion],
-  )
-
-  const handleScroll = useCallback(() => {
-    if (!cameraRef.current || reducedMotion) return
-    const scrollY = window.scrollY
-    cameraRef.current.position.z = 30 - scrollY * 0.005
-  }, [reducedMotion])
-
-  const initScene = useCallback(() => {
-    if (!canvasRef.current) return
-
+  useEffect(() => {
     const canvas = canvasRef.current
+    if (!canvas) return
+
+    const rect = canvas.getBoundingClientRect()
+    const width = Math.max(1, Math.round(rect.width || window.innerWidth))
+    const height = Math.max(1, Math.round(rect.height || window.innerHeight))
+
+    let bundle: SceneBundle
 
     try {
-      const width = canvas.offsetWidth
-      const height = canvas.offsetHeight
-      const pixelRatio = window.devicePixelRatio
+      const sceneTheme: BisisSceneTheme = theme === 'light' ? 'light' : 'dark'
 
-      const scene = createScene()
+      const scene = createScene(sceneTheme)
       const camera = createCamera(width / height)
-      const renderer = createRenderer(canvas, width, height, pixelRatio)
-
-      sceneRef.current = scene
-      cameraRef.current = camera
-      rendererRef.current = renderer
+      const renderer = createRenderer(
+        canvas,
+        width,
+        height,
+        window.devicePixelRatio,
+        MAX_PIXEL_RATIO[tier],
+      )
 
       const lights = createAmbientLights()
       scene.add(lights)
-      lightsRef.current = lights
 
-      const grid = createGridPlanes()
+      const grid = createGridPlanes(sceneTheme)
       scene.add(grid)
-      gridRef.current = grid
 
-      if (showParticles) {
-        const particles = createParticles(particleCount)
-        scene.add(particles)
-        particlesRef.current = particles
+      const particles = showParticles
+        ? createParticles(PARTICLE_COUNT[tier], sceneTheme)
+        : null
+      if (particles) scene.add(particles)
+
+      const geometry = showGeometry
+        ? createGeometricNodes(NODE_COUNT[tier])
+        : null
+      if (geometry) scene.add(geometry)
+
+      const rings = showRings ? createRings(RING_COUNT[tier], sceneTheme) : null
+      if (rings) scene.add(rings)
+
+      const sprite = createGlowSprite(sceneTheme)
+      if (sprite) scene.add(sprite)
+
+      bundle = {
+        scene,
+        camera,
+        renderer,
+        particles,
+        geometry,
+        rings,
+        sprite,
+        frameId: null,
+        running: false,
       }
-
-      if (showGeometry) {
-        const geometry = createGeometricNodes(
-          effectiveIntensity === 'high' ? 60 : 40,
-        )
-        scene.add(geometry)
-        geometryRef.current = geometry
-      }
-
-      if (showRings) {
-        const rings = createRings(effectiveIntensity === 'high' ? 8 : 6)
-        scene.add(rings)
-        ringsRef.current = rings
-      }
-
-      const sprite = createGlowSprite()
-      if (sprite) {
-        scene.add(sprite)
-        spriteRef.current = sprite
-      }
-
-      if (!reducedMotion && interactive) {
-        containerRef.current?.addEventListener('mousemove', handleMouseMove, { passive: true })
-        window.addEventListener('scroll', handleScroll, { passive: true })
-      }
-
-      animate()
+      bundleRef.current = bundle
     } catch (err) {
       console.warn('[BisisWebGL] Initialization failed, falling back to CSS:', err)
       setWebglAvailable(false)
+      return
     }
-  }, [particleCount, showParticles, showGeometry, showRings, effectiveIntensity, animate, handleMouseMove, handleScroll, reducedMotion, interactive])
 
-  useEffect(() => {
-    const timeoutId = setTimeout(() => {
-      if (canvasRef.current && containerRef.current) {
-        initScene()
-      }
-    }, 50)
+    const updateCameraFromScroll = () => {
+      if (reducedMotionRef.current) return
+
+      const travelled = Math.min(
+        CAMERA_TRAVEL,
+        Math.max(0, window.scrollY * CAMERA_SCROLL_RATE),
+      )
+      bundle.camera.position.z = CAMERA_BASE_Z + travelled
+    }
+
+    const handlePointerMove = (event: PointerEvent) => {
+      if (!interactiveRef.current || reducedMotionRef.current) return
+      if (event.pointerType === 'touch') return
+
+      const x = (event.clientX / window.innerWidth - 0.5) * 0.5
+      const y = (event.clientY / window.innerHeight - 0.5) * 0.5
+
+      bundle.camera.position.x += (x * 3 - bundle.camera.position.x) * 0.03
+      bundle.camera.position.y += (y * -3 - bundle.camera.position.y) * 0.03
+      bundle.camera.lookAt(0, 0, 0)
+    }
 
     const handleResize = () => {
-      if (!rendererRef.current || !cameraRef.current) return
+      const nextWidth = Math.max(1, window.innerWidth)
+      const nextHeight = Math.max(1, window.innerHeight)
 
-      const width = containerRef.current?.offsetWidth || 1
-      const height = containerRef.current?.offsetHeight || 1
-
-      rendererRef.current.setSize(width, height)
-      cameraRef.current.aspect = width / height
-      cameraRef.current.updateProjectionMatrix()
+      bundle.renderer.setSize(nextWidth, nextHeight)
+      bundle.camera.aspect = nextWidth / nextHeight
+      bundle.camera.updateProjectionMatrix()
     }
 
-    window.addEventListener('resize', handleResize)
+    const renderOnce = () => {
+      bundle.renderer.render(bundle.scene, bundle.camera)
+    }
 
-    return () => {
-      clearTimeout(timeoutId)
-      window.removeEventListener('resize', handleResize)
+    const animate = () => {
+      bundle.frameId = null
 
-      if (containerRef.current && interactive && !reducedMotion) {
-        containerRef.current.removeEventListener('mousemove', handleMouseMove)
-      }
-      window.removeEventListener('scroll', handleScroll)
+      const staticFrame = reducedMotionRef.current
+      const time = staticFrame ? 0 : Date.now() * 0.001
 
-      if (frameIdRef.current) {
-        cancelAnimationFrame(frameIdRef.current)
-      }
-
-      if (rendererRef.current) {
-        rendererRef.current.dispose()
+      if (!staticFrame) {
+        updateCameraFromScroll()
       }
 
-      if (sceneRef.current) {
-        sceneRef.current.traverse((child) => {
-          if (child instanceof THREE.Mesh || child instanceof THREE.Points || child instanceof THREE.LineLoop) {
-            child.geometry.dispose()
-            if (Array.isArray(child.material)) {
-              child.material.forEach((m) => m.dispose())
-            } else {
-              child.material.dispose()
+      if (bundle.particles) {
+        bundle.particles.rotation.y = time * 0.02
+        bundle.particles.rotation.x = time * 0.01
+
+        if (!staticFrame) {
+          const positions = bundle.particles.geometry.attributes.position
+          for (let i = 0; i < positions.count; i++) {
+            const idx = i * 3
+            positions.setZ(idx + 2, positions.getZ(idx + 2) + 0.0005)
+
+            if (positions.getZ(idx + 2) > 20) {
+              positions.setZ(idx + 2, -30)
+            }
+          }
+          positions.needsUpdate = true
+        }
+      }
+
+      if (bundle.geometry && !staticFrame) {
+        bundle.geometry.children.forEach((child: THREE.Object3D) => {
+          if (child.userData.rotationSpeed) {
+            child.rotation.x += child.userData.rotationSpeed.x
+            child.rotation.y += child.userData.rotationSpeed.y
+            child.rotation.z += child.userData.rotationSpeed.z
+            child.position.y =
+              child.userData.targetY +
+              Math.sin(
+                time * child.userData.floatSpeed + child.userData.floatOffset,
+              ) * 0.3
+          }
+        })
+      }
+
+      if (bundle.rings && !staticFrame) {
+        bundle.rings.children.forEach((child: THREE.Object3D) => {
+          if (child.userData.rotationSpeed) {
+            child.rotation.z += child.userData.rotationSpeed
+            const themeScale = child.userData.themeScale ?? 1
+            const pulse = 0.08 + Math.sin(time * child.userData.pulseSpeed) * 0.04
+            const lineChild = child as THREE.Line
+            if (Array.isArray(lineChild.material)) {
+              lineChild.material.forEach(
+                (m: THREE.Material) => (m.opacity = pulse * themeScale),
+              )
+            } else if (lineChild.material) {
+              lineChild.material.opacity = pulse * themeScale
             }
           }
         })
       }
-    }
-  }, [initScene, handleMouseMove, handleScroll, interactive, reducedMotion])
 
-  if (reducedMotion && reducedMotionFallback) {
-    return <>{reducedMotionFallback}</>
-  }
+      if (bundle.sprite) {
+        const themeScale = bundle.sprite.userData.themeScale ?? 1
+        const base = interactiveRef.current
+          ? 0.4 + Math.sin(time * 0.5) * 0.2
+          : 0.6
+        bundle.sprite.material.opacity = base * themeScale
+      }
+
+      renderOnce()
+
+      if (!staticFrame) {
+        bundle.frameId = requestAnimationFrame(animate)
+      } else {
+        bundle.running = false
+      }
+    }
+
+    const start = () => {
+      if (bundle.running) return
+      bundle.running = true
+      animate()
+    }
+
+    const stop = () => {
+      if (bundle.frameId !== null) {
+        cancelAnimationFrame(bundle.frameId)
+        bundle.frameId = null
+      }
+      bundle.running = false
+    }
+
+    const syncLoop = () => {
+      if (pausedRef.current || reducedMotionRef.current) {
+        stop()
+        return
+      }
+      start()
+    }
+
+    const handleVisibility = () => {
+      pausedRef.current = document.visibilityState === 'hidden'
+      syncLoop()
+    }
+
+    window.addEventListener('pointermove', handlePointerMove, { passive: true })
+    window.addEventListener('scroll', updateCameraFromScroll, { passive: true })
+    window.addEventListener('resize', handleResize)
+    window.addEventListener('orientationchange', handleResize)
+    document.addEventListener('visibilitychange', handleVisibility)
+
+    updateCameraFromScroll()
+    syncLoop()
+
+    const dispose = () => {
+      stop()
+
+      window.removeEventListener('pointermove', handlePointerMove)
+      window.removeEventListener('scroll', updateCameraFromScroll)
+      window.removeEventListener('resize', handleResize)
+      window.removeEventListener('orientationchange', handleResize)
+      document.removeEventListener('visibilitychange', handleVisibility)
+
+      bundle.scene.traverse((child) => {
+        if (
+          child instanceof THREE.Mesh ||
+          child instanceof THREE.Points ||
+          child instanceof THREE.LineLoop ||
+          child instanceof THREE.LineSegments ||
+          child instanceof THREE.Sprite
+        ) {
+          child.geometry?.dispose()
+
+          const material = (child as THREE.Mesh).material
+          if (Array.isArray(material)) {
+            material.forEach((m) => m.dispose())
+          } else {
+            material?.dispose()
+          }
+        }
+      })
+
+      bundle.renderer.dispose()
+      bundleRef.current = null
+    }
+
+    return dispose
+  }, [])
+
+  /* Theme switches mutate the live scene; geometry is never rebuilt. */
+  useEffect(() => {
+    const bundle = bundleRef.current
+    if (!bundle) return
+    applySceneTheme(bundle.scene, theme === 'light' ? 'light' : 'dark')
+  }, [theme])
+
+  /* Reduced motion and tab visibility only control the loop, not the scene. */
+  useEffect(() => {
+    const bundle = bundleRef.current
+    if (!bundle) return
+
+    if (pausedRef.current || reducedMotionRef.current) {
+      if (bundle.frameId !== null) {
+        cancelAnimationFrame(bundle.frameId)
+        bundle.frameId = null
+      }
+      bundle.running = false
+      bundle.renderer.render(bundle.scene, bundle.camera)
+      return
+    }
+
+    if (!bundle.running) {
+      bundle.running = true
+      bundle.renderer.render(bundle.scene, bundle.camera)
+    }
+  }, [reducedMotion])
 
   if (!webglAvailable && reducedMotionFallback) {
     return <>{reducedMotionFallback}</>
@@ -262,8 +394,7 @@ const BisisWebGL: React.FC<BisisWebGLProps> = ({
 
   return (
     <div
-      ref={containerRef}
-      className={`pointer-events-none absolute inset-0 overflow-hidden ${className}`}
+      className={`pointer-events-none fixed inset-0 z-0 overflow-hidden ${className}`}
       aria-hidden="true"
     >
       <canvas
@@ -272,7 +403,20 @@ const BisisWebGL: React.FC<BisisWebGLProps> = ({
         style={{ display: 'block' }}
       />
       {!webglAvailable && (
-        <div className="absolute inset-0 bg-gradient-to-b from-black/80 via-black/90 to-black" />
+        <div
+          className="absolute inset-0"
+          style={
+            theme === 'light'
+              ? {
+                  background:
+                    'linear-gradient(to bottom, rgba(140,106,30,0.16), rgba(29,95,216,0.14), transparent)',
+                }
+              : {
+                  background:
+                    'linear-gradient(to bottom, rgba(212,175,55,0.10), rgba(47,123,255,0.08), transparent)',
+                }
+          }
+        />
       )}
     </div>
   )

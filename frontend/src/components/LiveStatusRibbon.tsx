@@ -75,7 +75,7 @@ const LiveStatusRibbon: React.FC = () => {
       variants={containerVariants}
       initial="hidden"
       animate={reducedMotion || isInView ? 'visible' : 'hidden'}
-      className="w-full border-y border-white/5 bg-black/40 backdrop-blur-md py-2.5 overflow-hidden"
+      className="w-full border-y border-border-1 bg-surface-inset backdrop-blur-md py-2.5 overflow-hidden"
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex flex-wrap items-center justify-between gap-4 text-xs">
@@ -84,15 +84,15 @@ const LiveStatusRibbon: React.FC = () => {
             className="flex items-center gap-2"
           >
             <span className="relative flex h-2 w-2">
-              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-light opacity-75" />
-              <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald" />
+              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75" />
+              <span className="relative inline-flex rounded-full h-2 w-2 bg-green-500" />
             </span>
-              <span className="font-semibold uppercase tracking-wider text-white/90">
+              <span className="gold-glow-text font-semibold uppercase tracking-wider text-ink-0">
               {t('livestatus.system_health')}
             </span>
           </motion.div>
 
-          <div className="flex flex-wrap items-center gap-6 sm:gap-8 text-white/60">
+          <div className="flex flex-wrap items-center gap-6 sm:gap-8 text-ink-3">
             {metrics.map((m, idx) => (
               <motion.div
                 key={idx}
@@ -101,8 +101,8 @@ const LiveStatusRibbon: React.FC = () => {
                 className="flex items-center gap-2"
               >
                 <m.icon className="w-3.5 h-3.5 text-gold/80" />
-                <span className="text-white/40">{m.label}:</span>
-                <span className={m.highlight ? 'text-emerald-light font-medium' : 'text-white/80 font-medium'}>
+                <span className="text-ink-4">{m.label}:</span>
+                <span className={m.highlight ? 'text-green-300 font-medium success-glow-text' : 'text-ink-1 font-medium'}>
                   {m.status}
                 </span>
               </motion.div>

@@ -102,6 +102,23 @@ docker-compose.override.yml
 *.pfx
 
 # ---------------------------------------------------------
+# Secret material directories
+# ---------------------------------------------------------
+secrets
+secrets/
+*.secret
+*.secrets
+credentials
+credentials/
+
+# Windows device names that can be created accidentally
+nul
+nul.*
+prn
+aux
+con
+
+# ---------------------------------------------------------
 # Local uploads / generated files
 # ---------------------------------------------------------
 uploads/

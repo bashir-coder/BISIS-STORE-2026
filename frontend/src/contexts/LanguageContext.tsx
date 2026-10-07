@@ -10,7 +10,13 @@ interface LanguageContextType {
 const LanguageContext = createContext<LanguageContextType | undefined>(undefined);
 
 export const LanguageProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
-  const [currentLang, setCurrentLang] = useState(i18n.language || 'ar');
+  const [currentLang, setCurrentLang] = useState(() => {
+    if (typeof window !== 'undefined') {
+      const saved = localStorage.getItem('preferred_language')
+      if (saved) return saved
+    }
+    return i18n.language || 'en'
+  });
 
   useEffect(() => {
     const handleChange = (lng: string) => setCurrentLang(lng);

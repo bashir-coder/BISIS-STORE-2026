@@ -1,6 +1,6 @@
 const crypto = require('crypto')
 
-const IPN_SECRET = process.env.NOWPAYMENTS_IPN_SECRET_KEY || 'CXEQOClAwro2hRfEOo8TAqyEEYPUxhUM'
+const IPN_SECRET = process.env.NOWPAYMENTS_IPN_SECRET_KEY || 'test-only-ipn-secret-placeholder'
 
 function sortObject(value) {
   if (Array.isArray(value)) return value.map(sortObject)
