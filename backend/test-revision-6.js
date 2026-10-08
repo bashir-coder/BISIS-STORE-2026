@@ -7,6 +7,11 @@ const API = 'http://localhost:5000/api';
 const supabase = createClient(process.env.SUPABASE_URL, process.env.VITE_SUPABASE_ANON_KEY);
 const IPN_SECRET = process.env.NOWPAYMENTS_IPN_SECRET_KEY;
 
+const ADMIN_EMAIL = process.env.BISIS_TEST_ADMIN_EMAIL || '';
+const ADMIN_PASSWORD = process.env.BISIS_TEST_ADMIN_PASSWORD || '';
+const CLIENT_EMAIL = process.env.BISIS_TEST_CLIENT_EMAIL || '';
+const CLIENT_PASSWORD = process.env.BISIS_TEST_CLIENT_PASSWORD || '';
+
 function sortObject(value) {
   if (Array.isArray(value)) return value.map(sortObject);
   if (value !== null && typeof value === 'object') {
@@ -25,16 +30,20 @@ function createSignature(payload) {
 }
 
 async function run() {
+  if (!ADMIN_EMAIL || !ADMIN_PASSWORD || !CLIENT_EMAIL || !CLIENT_PASSWORD) {
+    throw new Error('Missing test credentials: set BISIS_TEST_ADMIN_EMAIL, BISIS_TEST_ADMIN_PASSWORD, BISIS_TEST_CLIENT_EMAIL and BISIS_TEST_CLIENT_PASSWORD in ../.env');
+  }
+
   const { data: adminAuth } = await supabase.auth.signInWithPassword({
-    email: 'admin@bisis.local',
-    password: 'AdminPass123!'
+    email: ADMIN_EMAIL,
+    password: ADMIN_PASSWORD
   });
   const adminToken = adminAuth.session.access_token;
   const adminHeaders = { Authorization: 'Bearer ' + adminToken };
   
   const { data: clientAuth } = await supabase.auth.signInWithPassword({
-    email: 'e2etest@bisis.com',
-    password: 'TestPass123!'
+    email: CLIENT_EMAIL,
+    password: CLIENT_PASSWORD
   });
   const clientToken = clientAuth.session.access_token;
   const clientHeaders = { Authorization: 'Bearer ' + clientToken };

@@ -17,6 +17,10 @@
 | 009 | `database/migrations/009_tickets_policy_isolation_hotfix.sql` | Removal of legacy broad ticket policies | Apply after 008 |
 | 010 | `database/migrations/010_production_security_hardening.sql` | Non-destructive hardening for stray public table, RPC ACLs, and function search paths | Apply after 009 in environments where this release is approved |
 | 011 | `database/migrations/011_performance_foreign_key_indexes.sql` | Additive covering indexes for foreign keys reported by Supabase Performance Advisor | Apply after 010; safe to rerun with `IF NOT EXISTS` |
+| 012 | `database/migrations/012_official_v1_catalog.sql` | Adds V1 catalog `delivery` metadata column to `services` (additive) | Apply after 011 |
+| 013 | `database/migrations/013_nowpayments_integration.sql` | Adds NOWPayments invoice/payment columns to `orders`; TXID auto-populated from IPN `payin_hash`, never customer-entered | Apply after 012 |
+| 014 | `database/migrations/014_rls_corrective_and_payment_lock.sql` | Enables RLS on catalog/donation tables and re-enables RLS on `users`; adds atomic `nowpayments_creating_lock` column on `orders` for payment-creation locking | Apply after 013 in environments where this release is approved |
+| 015 | `database/migrations/015_rls_recursion_fix.sql` | Fixes RLS infinite recursion on `public.users` by reading role from `auth.jwt()->>'role'` instead of a self-referencing subquery; RLS stays ON, additive-only, no tables public | Apply after 014 |
 
 ## Explicit exclusion
 

@@ -3,6 +3,7 @@ require('dotenv').config({path: '../.env'})
 const supabaseUrl = process.env.SUPABASE_URL
 const serviceRoleKey = process.env.SUPABASE_SERVICE_ROLE_KEY
 const anonKey = process.env.VITE_SUPABASE_ANON_KEY
+const TEST_USER_PASSWORD = process.env.TEST_USER_PASSWORD || ''
 
 const { createClient } = require('@supabase/supabase-js')
 const adminClient = createClient(supabaseUrl, serviceRoleKey, {
@@ -10,6 +11,11 @@ const adminClient = createClient(supabaseUrl, serviceRoleKey, {
 })
 
 ;(async () => {
+  if (!TEST_USER_PASSWORD) {
+    console.error('TEST_USER_PASSWORD is not configured. Set it in ../.env')
+    return
+  }
+
   console.log('===== POST-015 FIX VERIFICATION =====')
   console.log('Testing if RLS recursion is fixed...\n')
 
@@ -17,7 +23,7 @@ const adminClient = createClient(supabaseUrl, serviceRoleKey, {
   const testEmail = `postfix-verify-${Date.now()}@test.com`
   const { data: createData } = await adminClient.auth.admin.createUser({
     email: testEmail,
-    password: 'TestPass123!',
+    password: TEST_USER_PASSWORD,
     email_confirm: true,
     user_metadata: { full_name: 'Postfix Verify', role: 'super_admin' },
     app_metadata: { role: 'super_admin' }
@@ -30,7 +36,7 @@ const adminClient = createClient(supabaseUrl, serviceRoleKey, {
 
   const { data: signInData } = await adminClient.auth.signInWithPassword({
     email: testEmail,
-    password: 'TestPass123!'
+    password: TEST_USER_PASSWORD
   })
 
   const token = signInData.session.access_token

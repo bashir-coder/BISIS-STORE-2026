@@ -64,17 +64,17 @@ const Testimonials: React.FC = () => {
                   y: reducedMotion ? 0 : -6,
                   scale: reducedMotion ? 1 : 1.02,
                 }}
-                className="glass rounded-2xl p-8 border-gold/5 hover:border-gold/20 transition-all card-hover"
+                className="card card-interactive p-8 border-gold/5 hover:border-gold/20 transition-all"
               >
                 <Quote className="w-10 h-10 text-gold/20 mb-4" />
-                <p className="text-white/80 text-lg leading-relaxed mb-6">{quote.text}</p>
+                <p className="text-ink-1 text-lg leading-relaxed mb-6">{quote.text}</p>
                 <div className="flex items-center gap-2">
                   <div className="flex">
                     {[...Array(5)].map((_, i) => (
                       <Star key={i} className="w-4 h-4 text-gold fill-gold" />
                     ))}
                   </div>
-                  <span className="text-sm text-white/50">- {quote.author}</span>
+                  <span className="text-sm text-ink-3">- {quote.author}</span>
                 </div>
               </motion.div>
             ))}

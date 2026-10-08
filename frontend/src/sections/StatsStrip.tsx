@@ -39,7 +39,7 @@ const StatsStrip: React.FC = () => {
   }
 
   return (
-    <section ref={ref} className="py-12 section-padding border-y border-white/5 bg-transparent">
+    <section ref={ref} className="py-12 section-padding border-y border-border-1 bg-transparent">
       <div className="max-w-7xl mx-auto">
         <motion.div
           variants={containerVariants}
@@ -61,7 +61,7 @@ const StatsStrip: React.FC = () => {
               <div className="text-3xl sm:text-4xl font-bold gold-gradient-text font-outfit">
                 <AnimatedCounter value={stat.value} isVisible={isInView} />
               </div>
-              <div className="text-sm text-white/40 mt-1">{stat.label}</div>
+              <div className="text-sm text-ink-4 mt-1">{stat.label}</div>
             </motion.div>
           ))}
         </motion.div>

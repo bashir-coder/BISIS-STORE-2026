@@ -50,16 +50,16 @@ const VerifyEmailPage: React.FC = () => {
         {status === 'loading' && (
           <>
             <Loader2 className="w-16 h-16 text-gold animate-spin mx-auto mb-4" />
-            <h2 className="text-xl font-bold text-white">{t('verify_email.loading')}</h2>
-            <p className="text-white/50 mt-2">{t('verify_email.wait')}</p>
+            <h2 className="text-xl font-bold text-ink-0">{t('verify_email.loading')}</h2>
+            <p className="text-ink-0/50 mt-2">{t('verify_email.wait')}</p>
           </>
         )}
 
         {status === 'success' && (
           <>
             <CheckCircle className="w-16 h-16 text-green-400 mx-auto mb-4" />
-            <h2 className="text-xl font-bold text-white">{t('verify_email.confirmed')}</h2>
-            <p className="text-white/70 mt-2">{message}</p>
+            <h2 className="text-xl font-bold text-ink-0">{t('verify_email.confirmed')}</h2>
+            <p className="text-ink-0/70 mt-2">{message}</p>
             <Link to="/login" className="btn-primary mt-6 inline-block">{t('verify_email.login_now')}</Link>
           </>
         )}
@@ -67,8 +67,8 @@ const VerifyEmailPage: React.FC = () => {
         {status === 'error' && (
           <>
             <XCircle className="w-16 h-16 text-red-400 mx-auto mb-4" />
-            <h2 className="text-xl font-bold text-white">{t('verify_email.failed')}</h2>
-            <p className="text-white/70 mt-2">{message}</p>
+            <h2 className="text-xl font-bold text-ink-0">{t('verify_email.failed')}</h2>
+            <p className="text-ink-0/70 mt-2">{message}</p>
             <Link to="/login" className="btn-secondary mt-6 inline-block">{t('verify_email.back_to_login')}</Link>
           </>
         )}

@@ -6,7 +6,7 @@ import {
   Bell, DollarSign,
   Plus, RefreshCw, Calendar,
   Package, MessageSquare, X, Sparkles, Send,
-  Ticket
+  Ticket, ArrowLeft
 } from 'lucide-react'
 import { api } from '../utils/api-client'
 import OrderLifecycle from '../components/OrderLifecycle'
@@ -323,7 +323,7 @@ const getTicketStatusBadge = (status: string) => {
       refunded: t('payment_status.refunded'),
     }
     return {
-      className: styles[normalized] || 'bg-white/10 text-white/50 border-white/20',
+      className: styles[normalized] || 'bg-surface-2 text-ink-3 border-border-2',
       label: labels[normalized] || t('payment_status.unknown'),
     }
   }
@@ -346,7 +346,7 @@ const getTicketStatusBadge = (status: string) => {
       case 'status_update':
         return <Bell className="w-4 h-4 text-gold" />
       default:
-        return <MessageSquare className="w-4 h-4 text-white/50" />
+        return <MessageSquare className="w-4 h-4 text-ink-3" />
     }
   }
 
@@ -416,17 +416,17 @@ const getTicketStatusBadge = (status: string) => {
     return (
       <div className="min-h-screen bg-transparent px-4 pb-20 pt-24 sm:px-6">
         <div className="mx-auto max-w-6xl animate-pulse space-y-6">
-          <div className="h-8 w-56 rounded-lg bg-white/10" />
-          <div className="h-4 w-80 rounded bg-white/5" />
+          <div className="h-8 w-56 rounded-lg bg-surface-2" />
+          <div className="h-4 w-80 rounded bg-surface-1" />
           <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
             {Array.from({ length: 4 }).map((_, index) => (
               <div
                 key={index}
-                className="h-24 rounded-2xl bg-white/5"
+                className="h-24 rounded-2xl bg-surface-1"
               />
             ))}
           </div>
-          <div className="h-56 rounded-3xl bg-white/5" />
+          <div className="h-56 rounded-3xl bg-surface-1" />
         </div>
       </div>
     )
@@ -434,7 +434,7 @@ const getTicketStatusBadge = (status: string) => {
 
   if (!currentUserId) {
     return (
-      <div className="min-h-screen flex items-center justify-center text-white text-lg bg-transparent">
+      <div className="min-h-screen flex items-center justify-center text-ink-0 text-lg bg-transparent">
         {String(t('dashboard.login_required'))}
       </div>
     )
@@ -449,15 +449,25 @@ const getTicketStatusBadge = (status: string) => {
         >
           {/* Header */}
           <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4 mb-8">
-            <div>
-              <h1 className="text-3xl font-bold text-white">
-                <span className="text-gold">
-                  {String(t('dashboard.title'))}
-                </span>
-              </h1>
-              <p className="text-white/50">
-                {String(t('dashboard.welcome_message'))}
-              </p>
+            <div className="flex items-center gap-4">
+              <button
+                type="button"
+                onClick={() => navigate(-1)}
+                className="inline-flex items-center justify-center rounded-lg border border-border-1 bg-surface-1 p-2 text-sm text-ink-2 hover:bg-surface-2 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold/70"
+                aria-label={String(t('common.back'))}
+              >
+                <ArrowLeft className="h-4 w-4" />
+              </button>
+              <div>
+                <h1 className="text-3xl font-bold text-ink-0">
+                  <span className="text-gold">
+                    {String(t('dashboard.title'))}
+                  </span>
+                </h1>
+                <p className="text-ink-3">
+                  {String(t('dashboard.welcome_message'))}
+                </p>
+              </div>
             </div>
 
             <div className="flex items-center gap-3">
@@ -466,9 +476,9 @@ const getTicketStatusBadge = (status: string) => {
                 onClick={() => setShowNotifications(!showNotifications)}
                 aria-label={String(t('dashboard.notifications'))}
                 aria-expanded={showNotifications}
-                className="relative p-2 rounded-lg border border-white/10 bg-white/5 hover:bg-white/10 transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold/70"
+                className="relative p-2 rounded-lg border border-border-1 bg-surface-1 hover:bg-surface-2 transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold/70"
               >
-                <Bell className="w-5 h-5 text-white/70" />
+                <Bell className="w-5 h-5 text-ink-2" />
 
                 {unreadCount > 0 && (
                   <span className="absolute -top-1 -right-1 w-5 h-5 bg-gold text-black text-xs font-bold rounded-full flex items-center justify-center">
@@ -489,9 +499,9 @@ const getTicketStatusBadge = (status: string) => {
                 type="button"
                 onClick={() => void fetchAllDataSafe()}
                 aria-label={String(t('dashboard.retry'))}
-                className="p-2 rounded-lg border border-white/10 bg-white/5 hover:bg-white/10 transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold/70"
+                className="p-2 rounded-lg border border-border-1 bg-surface-1 hover:bg-surface-2 transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold/70"
               >
-                <RefreshCw className="w-5 h-5 text-white/70" />
+                <RefreshCw className="w-5 h-5 text-ink-2" />
               </button>
             </div>
           </div>
@@ -500,7 +510,7 @@ const getTicketStatusBadge = (status: string) => {
           {showNotifications && (
             <div className="mb-6 glass rounded-2xl border-gold/10 p-4">
               <div className="flex items-center justify-between mb-3">
-                <h3 className="font-semibold text-white flex items-center gap-2">
+                <h3 className="font-semibold text-ink-0 flex items-center gap-2">
                   <Bell className="w-4 h-4 text-gold" />
                   {String(t('dashboard.notifications'))}
 
@@ -526,7 +536,7 @@ const getTicketStatusBadge = (status: string) => {
                     type="button"
                     onClick={() => setShowNotifications(false)}
                     aria-label={String(t('common.close'))}
-                    className="rounded text-white/40 hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold/70"
+                    className="rounded text-ink-4 hover:text-ink-0 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold/70"
                   >
                     <X className="w-4 h-4" />
                   </button>
@@ -534,7 +544,7 @@ const getTicketStatusBadge = (status: string) => {
               </div>
 
               {notifications.length === 0 ? (
-                <p className="text-white/40 text-sm">
+                <p className="text-ink-4 text-sm">
                   {String(t('dashboard.no_notifications'))}
                 </p>
               ) : (
@@ -547,7 +557,7 @@ const getTicketStatusBadge = (status: string) => {
                       <div className="mb-2 flex items-center justify-between px-1">
                         <h4
                           id={`notification-group-${group.key}`}
-                          className="text-[10px] font-semibold uppercase tracking-[0.18em] text-white/35"
+                          className="text-[10px] font-semibold uppercase tracking-[0.18em] text-ink-4"
                         >
                           {group.key === 'general'
                             ? String(t('dashboard.general_notifications'))
@@ -570,7 +580,7 @@ const getTicketStatusBadge = (status: string) => {
                             aria-pressed={notif.read}
                             className={`flex w-full items-center gap-3 rounded-lg p-3 text-start transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold/70 ${
                               notif.read
-                                ? 'bg-white/5'
+                                ? 'bg-surface-1'
                                 : 'border border-gold/20 bg-gold/10'
                             }`}
                             onClick={() => {
@@ -584,11 +594,11 @@ const getTicketStatusBadge = (status: string) => {
                             {getNotificationIcon(notif.type)}
 
                             <div className="flex-1">
-                              <p className="text-sm text-white/90">
+                              <p className="text-sm text-ink-0">
                                 {notif.message}
                               </p>
 
-                              <p className="text-xs text-white/30">
+                              <p className="text-xs text-ink-5">
                                 {formatDate(notif.created_at)}
                               </p>
                             </div>
@@ -611,16 +621,16 @@ const getTicketStatusBadge = (status: string) => {
           {/* Stats Cards */}
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8">
             <div className="glass rounded-2xl border-gold/5 p-4">
-              <p className="text-white/50 text-sm">
+              <p className="text-ink-3 text-sm">
                 {String(t('dashboard.orders'))}
               </p>
-              <p className="text-2xl font-bold text-white">
+              <p className="text-2xl font-bold text-ink-0">
                 {orders.length}
               </p>
             </div>
 
             <div className="glass rounded-2xl border-gold/5 p-4">
-              <p className="text-white/50 text-sm">
+              <p className="text-ink-3 text-sm">
                 {String(t('dashboard.new'))}
               </p>
               <p className="text-2xl font-bold text-blue-400">
@@ -629,7 +639,7 @@ const getTicketStatusBadge = (status: string) => {
             </div>
 
             <div className="glass rounded-2xl border-gold/5 p-4">
-              <p className="text-white/50 text-sm">
+              <p className="text-ink-3 text-sm">
                 {String(t('dashboard.processing'))}
               </p>
               <p className="text-2xl font-bold text-yellow-400">
@@ -638,7 +648,7 @@ const getTicketStatusBadge = (status: string) => {
             </div>
 
             <div className="glass rounded-2xl border-gold/5 p-4">
-              <p className="text-white/50 text-sm">
+              <p className="text-ink-3 text-sm">
                 {String(t('dashboard.completed'))}
               </p>
               <p className="text-2xl font-bold text-green-400">
@@ -659,14 +669,14 @@ const getTicketStatusBadge = (status: string) => {
 
               <h2
                 id="dashboard-next-title"
-                className="text-xl font-semibold text-white"
+                className="text-xl font-semibold text-ink-0"
               >
                 {nextUp
                   ? String(t('dashboard.next_step_title'))
                   : String(t('dashboard.all_caught_up'))}
               </h2>
 
-              <p className="mt-2 max-w-xl text-sm leading-6 text-white/55">
+              <p className="mt-2 max-w-xl text-sm leading-6 text-ink-3">
                 {nextUp?.kind === 'processing'
                   ? String(t('dashboard.next_processing'))
                   : nextUp?.kind === 'new'
@@ -695,19 +705,19 @@ const getTicketStatusBadge = (status: string) => {
               )}
             </div>
 
-            <div className="rounded-3xl border border-white/10 bg-white/[0.03] p-5">
+            <div className="rounded-3xl border border-border-1 bg-surface-1 p-5">
               <div className="flex items-center justify-between">
-                <span className="text-sm text-white/50">
+                <span className="text-sm text-ink-3">
                   {String(t('dashboard.unread_items'))}
                 </span>
                 <Bell aria-hidden="true" className="h-4 w-4 text-gold" />
               </div>
 
-              <p className="mt-3 text-3xl font-bold text-white">
+              <p className="mt-3 text-3xl font-bold text-ink-0">
                 {unreadCount}
               </p>
 
-              <p className="mt-2 text-sm text-white/45">
+              <p className="mt-2 text-sm text-ink-4">
                 {unreadCount > 0
                   ? String(t('dashboard.unread_hint'))
                   : String(t('dashboard.no_unread_hint'))}
@@ -731,7 +741,7 @@ const getTicketStatusBadge = (status: string) => {
 
           {/* Orders List */}
           <div className="glass rounded-3xl border-gold/5 p-6">
-            <h2 className="text-lg font-semibold text-white mb-4">
+            <h2 className="text-lg font-semibold text-ink-0 mb-4">
               {String(t('dashboard.orders'))}
             </h2>
 
@@ -743,23 +753,23 @@ const getTicketStatusBadge = (status: string) => {
                 {Array.from({ length: 3 }).map((_, index) => (
                   <div
                     key={index}
-                    className="animate-pulse rounded-2xl border border-white/10 bg-white/5 p-4"
+                    className="animate-pulse rounded-2xl border border-border-1 bg-surface-1 p-4"
                   >
-                    <div className="h-4 w-1/3 rounded bg-white/10" />
-                    <div className="mt-3 h-3 w-2/3 rounded bg-white/5" />
-                    <div className="mt-3 h-2 w-full rounded bg-white/5" />
+                    <div className="h-4 w-1/3 rounded bg-surface-2" />
+                    <div className="mt-3 h-3 w-2/3 rounded bg-surface-1" />
+                    <div className="mt-3 h-2 w-full rounded bg-surface-1" />
                   </div>
                 ))}
               </div>
             ) : orders.length === 0 ? (
-              <div className="rounded-2xl border border-dashed border-white/10 bg-white/[0.03] p-8 text-center text-white/40">
+              <div className="rounded-2xl border border-dashed border-border-1 bg-surface-1 p-8 text-center text-ink-4">
                 <Package className="mx-auto mb-3 h-12 w-12 opacity-30" />
 
-                <p className="text-white/70">
+                <p className="text-ink-2">
                   {String(t('dashboard.no_orders'))}
                 </p>
 
-                <p className="mx-auto mt-2 max-w-sm text-sm text-white/40">
+                <p className="mx-auto mt-2 max-w-sm text-sm text-ink-4">
                   {String(
                     t(
                       'dashboard.no_orders_context',
@@ -784,12 +794,12 @@ const getTicketStatusBadge = (status: string) => {
                   return (
                     <div
                       key={order.id}
-                      className="bg-white/5 border border-white/10 rounded-xl p-4 hover:border-gold/20 transition-all cursor-pointer"
+                      className="bg-surface-1 border border-border-1 rounded-xl p-4 hover:border-gold/20 transition-all cursor-pointer"
                       onClick={() => setSelectedOrder(order)}
                     >
                       <div className="flex flex-wrap items-center justify-between gap-3">
                         <div className="flex items-center gap-3">
-                          <span className="text-sm font-semibold text-white">
+                          <span className="text-sm font-semibold text-ink-0">
                             #{order.submission_id?.slice(0, 8) || order.id?.slice(0, 8)}
                           </span>
 
@@ -808,7 +818,7 @@ const getTicketStatusBadge = (status: string) => {
                           )}
                         </div>
 
-                        <div className="flex items-center gap-4 text-sm text-white/50">
+                        <div className="flex items-center gap-4 text-sm text-ink-3">
                           <span className="flex items-center gap-1">
                             <DollarSign className="w-3 h-3" />
                             {order.price}
@@ -821,7 +831,7 @@ const getTicketStatusBadge = (status: string) => {
                         </div>
                       </div>
 
-                      <div className="mt-4 rounded-xl border border-white/10 bg-black/20 p-3">
+                      <div className="mt-4 rounded-xl border border-border-1 bg-surface-inset p-3">
                         <OrderLifecycle status={order.status} />
                       </div>
                     </div>
@@ -840,11 +850,11 @@ const getTicketStatusBadge = (status: string) => {
               <div className="flex items-center gap-2">
                 <Ticket className="w-5 h-5 text-gold" />
 
-                <h2 className="text-lg font-semibold text-white">
+                <h2 className="text-lg font-semibold text-ink-0">
                   {String(t('tickets.title'))}
                 </h2>
 
-                <span className="text-sm text-white/40">
+                <span className="text-sm text-ink-4">
                   ({tickets.length})
                 </span>
               </div>
@@ -859,7 +869,7 @@ const getTicketStatusBadge = (status: string) => {
             </div>
 
             {tickets.length === 0 ? (
-              <p className="text-white/40 text-sm text-center py-4">
+              <p className="text-ink-4 text-sm text-center py-4">
                 {String(t('tickets.no_tickets'))}
               </p>
             ) : (
@@ -870,11 +880,11 @@ const getTicketStatusBadge = (status: string) => {
                   return (
                     <div
                       key={ticket.id}
-                      className="bg-white/5 border border-white/10 rounded-xl p-4 hover:border-gold/20 transition-all"
+                      className="bg-surface-1 border border-border-1 rounded-xl p-4 hover:border-gold/20 transition-all"
                     >
                       <div className="flex flex-wrap items-center justify-between gap-3">
                         <div className="flex items-center gap-3">
-                          <span className="text-sm font-semibold text-white">
+                          <span className="text-sm font-semibold text-ink-0">
                             #{ticket.id}
                           </span>
 
@@ -885,12 +895,12 @@ const getTicketStatusBadge = (status: string) => {
                           </span>
                         </div>
 
-                        <div className="text-xs text-white/30">
+                        <div className="text-xs text-ink-5">
                           {formatDate(ticket.created_at)}
                         </div>
                       </div>
 
-                      <p className="text-white font-semibold mt-2">
+                      <p className="text-ink-0 font-semibold mt-2">
                         {ticket.title}
                       </p>
 
@@ -904,17 +914,17 @@ const getTicketStatusBadge = (status: string) => {
                         </Link>
                       )}
 
-                      <p className="text-sm text-white/50 line-clamp-2">
+                      <p className="text-sm text-ink-3 line-clamp-2">
                         {ticket.description}
                       </p>
 
                       {ticket.admin_response && (
-                        <div className="mt-2 p-2 bg-white/5 rounded-lg border border-white/5">
+                        <div className="mt-2 p-2 bg-surface-1 rounded-lg border border-border-1">
                           <p className="text-xs text-gold">
                             {String(t('tickets.admin_response'))}
                           </p>
 
-                          <p className="text-sm text-white/80">
+                          <p className="text-sm text-ink-1">
                             {ticket.admin_response}
                           </p>
                         </div>
@@ -931,13 +941,13 @@ const getTicketStatusBadge = (status: string) => {
             <div className="flex items-center gap-2 mb-4">
               <Sparkles className="w-5 h-5 text-gold" />
 
-              <h2 className="text-lg font-semibold text-white">
+              <h2 className="text-lg font-semibold text-ink-0">
                 {String(t('faq.title'))}
               </h2>
             </div>
 
             {faqs.length === 0 ? (
-              <p className="text-white/40 text-sm text-center py-4">
+              <p className="text-ink-4 text-sm text-center py-4">
                 {String(t('faq.no_questions'))}
               </p>
             ) : (
@@ -945,7 +955,7 @@ const getTicketStatusBadge = (status: string) => {
                 {faqs.map(faq => (
                   <div
                     key={faq.id}
-                    className="border border-white/10 rounded-lg overflow-hidden"
+                    className="border border-border-1 rounded-lg overflow-hidden"
                   >
                     <button
                       onClick={() =>
@@ -953,19 +963,19 @@ const getTicketStatusBadge = (status: string) => {
                           selectedFaq?.id === faq.id ? null : faq
                         )
                       }
-                      className="w-full text-start px-4 py-3 bg-white/5 hover:bg-white/10 transition-all flex justify-between items-center"
+                      className="w-full text-start px-4 py-3 bg-surface-1 hover:bg-surface-2 transition-all flex justify-between items-center"
                     >
-                      <span className="text-sm text-white">
+                      <span className="text-sm text-ink-0">
                         {localizedText(faq.question, i18n.language)}
                       </span>
 
-                      <span className="text-white/30">
+                      <span className="text-ink-5">
                         {selectedFaq?.id === faq.id ? '▲' : '▼'}
                       </span>
                     </button>
 
                     {selectedFaq?.id === faq.id && (
-                      <div className="px-4 py-3 bg-black/20 text-sm text-white/70 border-t border-white/5">
+                      <div className="px-4 py-3 bg-surface-inset text-sm text-ink-2 border-t border-border-1">
                         {localizedText(faq.answer, i18n.language)}
                       </div>
                     )}
@@ -974,8 +984,8 @@ const getTicketStatusBadge = (status: string) => {
               </div>
             )}
 
-            <div className="mt-4 p-4 bg-white/5 rounded-xl border border-white/10">
-              <p className="text-sm text-white/50">
+            <div className="mt-4 p-4 bg-surface-1 rounded-xl border border-border-1">
+              <p className="text-sm text-ink-3">
                 {String(t('faq.not_found'))}
               </p>
 
@@ -1012,7 +1022,7 @@ const getTicketStatusBadge = (status: string) => {
           {/* Order Detail Modal */}
           {selectedOrder && (
             <div
-              className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-sm"
+              className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-surface-inset backdrop-blur-sm"
               onClick={() => setSelectedOrder(null)}
             >
               <div
@@ -1020,7 +1030,7 @@ const getTicketStatusBadge = (status: string) => {
                 onClick={e => e.stopPropagation()}
               >
                 <div className="flex items-center justify-between mb-4">
-                  <h3 className="text-xl font-bold text-white">
+                  <h3 className="text-xl font-bold text-ink-0">
                     {String(t('dashboard.order_details'))} #
                     {selectedOrder.submission_id?.slice(0, 8) ||
                       selectedOrder.id?.slice(0, 8)}
@@ -1032,7 +1042,7 @@ const getTicketStatusBadge = (status: string) => {
                     aria-label={String(
                       t('common.close')
                     )}
-                    className="text-white/40 hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold/70 rounded"
+                    className="text-ink-4 hover:text-ink-0 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold/70 rounded"
                   >
                     <X className="w-5 h-5" />
                   </button>
@@ -1044,18 +1054,18 @@ const getTicketStatusBadge = (status: string) => {
                   </div>
 
 <div className="grid grid-cols-2 gap-4">
-                    <div className="bg-white/5 rounded-xl p-4">
-                      <p className="text-white/50 text-sm">
+                    <div className="bg-surface-1 rounded-xl p-4">
+                      <p className="text-ink-3 text-sm">
                         {String(t('dashboard.status'))}
                       </p>
 
-                      <p className="text-white font-semibold">
+                      <p className="text-ink-0 font-semibold">
                         {getStatusBadge(selectedOrder.status).label}
                       </p>
                     </div>
 
-                    <div className="bg-white/5 rounded-xl p-4">
-                      <p className="text-white/50 text-sm">
+                    <div className="bg-surface-1 rounded-xl p-4">
+                      <p className="text-ink-3 text-sm">
                         {String(t('dashboard.price'))}
                       </p>
 
@@ -1064,32 +1074,32 @@ const getTicketStatusBadge = (status: string) => {
                       </p>
                     </div>
 
-                    <div className="bg-white/5 rounded-xl p-4">
-                      <p className="text-white/50 text-sm">
+                    <div className="bg-surface-1 rounded-xl p-4">
+                      <p className="text-ink-3 text-sm">
                         {String(t('dashboard.created_at'))}
                       </p>
 
-                      <p className="text-white font-semibold text-sm">
+                      <p className="text-ink-0 font-semibold text-sm">
                         {formatDate(selectedOrder.created_at)}
                       </p>
                     </div>
 
-                    <div className="bg-white/5 rounded-xl p-4">
-                      <p className="text-white/50 text-sm">
+                    <div className="bg-surface-1 rounded-xl p-4">
+                      <p className="text-ink-3 text-sm">
                         {String(t('dashboard.payment_status'))}
                       </p>
 
-                      <p className="text-white font-semibold text-sm">
+                      <p className="text-ink-0 font-semibold text-sm">
                         {getPaymentStatusBadge(selectedOrder.nowpayments_status || selectedOrder.payment_status || '').label}
                       </p>
                     </div>
                   </div>
 
-                  <div className="bg-white/5 rounded-xl p-4">
+                  <div className="bg-surface-1 rounded-xl p-4">
                     <div className="flex items-center gap-2 mb-3">
                       <MessageSquare className="w-4 h-4 text-gold" />
 
-                      <h4 className="text-sm font-semibold text-white">
+                      <h4 className="text-sm font-semibold text-ink-0">
                         {String(t('chat.title'))}
                       </h4>
 
@@ -1115,11 +1125,11 @@ const getTicketStatusBadge = (status: string) => {
 
                     <div className="max-h-40 overflow-y-auto space-y-2 mb-3">
                       {loadingChat ? (
-                        <p className="text-white/40 text-sm">
+                        <p className="text-ink-4 text-sm">
                           {String(t('dashboard.loading'))}
                         </p>
                       ) : chatMessages.length === 0 ? (
-                        <p className="text-white/40 text-sm">
+                        <p className="text-ink-4 text-sm">
                           {String(t('chat.no_messages'))}
                         </p>
                       ) : (
@@ -1135,11 +1145,11 @@ const getTicketStatusBadge = (status: string) => {
                             <div
                               className={`max-w-[80%] rounded-lg px-3 py-2 text-sm ${
                                 msg.sender_id === currentUserId
-                                  ? 'bg-gold/20 text-white'
-                                  : 'bg-white/10 text-white/80'
+                                  ? 'bg-gold/20 text-ink-0'
+                                  : 'bg-surface-2 text-ink-1'
                               }`}
                             >
-                              <p className="text-xs text-white/50">
+                              <p className="text-xs text-ink-3">
                                 {msg.sender?.name ||
                                   String(
                                     t('dashboard.user')
@@ -1148,7 +1158,7 @@ const getTicketStatusBadge = (status: string) => {
 
                               <p>{msg.content}</p>
 
-                              <p className="text-xs text-white/30 mt-1">
+                              <p className="text-xs text-ink-5 mt-1">
                                 {formatDate(msg.created_at)}
                               </p>
                             </div>
@@ -1167,7 +1177,7 @@ const getTicketStatusBadge = (status: string) => {
                         placeholder={String(
                           t('chat.placeholder')
                         )}
-                        className="flex-1 bg-white/5 border border-white/10 rounded-lg px-3 py-2 text-sm text-white placeholder:text-white/30 focus:outline-none focus:border-gold/50"
+                        className="flex-1 bg-surface-1 border border-border-1 rounded-lg px-3 py-2 text-sm text-ink-0 placeholder:text-ink-5 focus:outline-none focus:border-gold/50"
                         onKeyDown={e => {
                           if (e.key === 'Enter') {
                             void sendMessage()

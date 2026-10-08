@@ -158,23 +158,23 @@ const VerifyPage: React.FC<VerifyPageProps> = ({
 
   return (
     <main
-      className="relative min-h-screen overflow-hidden bg-[#050505] text-white"
+      className="relative min-h-screen overflow-hidden bg-[#050505] text-ink-0"
     >
       <div className="pointer-events-none absolute inset-0">
-        <div className="absolute left-1/2 top-1/2 h-[540px] w-[540px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-emerald-500/[0.06] blur-3xl" />
+        <div className="absolute left-1/2 top-1/2 h-[540px] w-[540px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-blue/[0.06] blur-3xl" />
 
-        <div className="absolute left-1/2 top-1/2 h-[360px] w-[360px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-yellow-400/[0.045] blur-3xl" />
+        <div className="absolute left-1/2 top-1/2 h-[360px] w-[360px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-gold/5 blur-3xl" />
       </div>
 
       <div className="relative flex min-h-screen items-center justify-center px-5 py-10">
-        <section className="w-full max-w-md rounded-[28px] border border-white/10 bg-white/[0.035] p-8 text-center shadow-2xl backdrop-blur-2xl sm:p-10">
+        <section className="w-full max-w-md rounded-[28px] border border-border-1 bg-surface-1 p-8 text-center shadow-2xl backdrop-blur-2xl sm:p-10">
           <div className="mb-7 flex justify-center">
-            <div className="flex h-16 w-16 items-center justify-center rounded-2xl border border-emerald-400/20 bg-emerald-400/[0.08] shadow-[0_0_36px_rgba(16,185,129,0.12)]">
-              <ShieldCheck className="h-8 w-8 text-emerald-300" />
+            <div className="flex h-16 w-16 items-center justify-center rounded-2xl border border-gold/20 bg-gold/10 neon-glow-gold-1">
+              <ShieldCheck className="h-8 w-8 text-gold-light" />
             </div>
           </div>
 
-          <p className="mb-3 text-[11px] font-semibold uppercase tracking-[0.32em] text-yellow-300/75">
+          <p className="mb-3 text-[11px] font-semibold uppercase tracking-[0.32em] text-gold/75">
             {t('verify.eyebrow')}
           </p>
 
@@ -182,19 +182,19 @@ const VerifyPage: React.FC<VerifyPageProps> = ({
             {t('verify.title')}
           </h1>
 
-          <p className="mx-auto mt-4 max-w-sm text-sm leading-7 text-white/55">
+          <p className="mx-auto mt-4 max-w-sm text-sm leading-7 text-ink-0/55">
             {t('verify.subtitle')}
           </p>
 
-          <div className="mt-8 rounded-2xl border border-white/10 bg-black/20 px-5 py-6">
+          <div className="mt-8 rounded-2xl border border-border-1 bg-surface-inset px-5 py-6">
             <div className="flex items-center justify-center gap-3">
               {submitting ? (
-                <Loader2 className="h-5 w-5 animate-spin text-yellow-300" />
+                <Loader2 className="h-5 w-5 animate-spin text-gold" />
               ) : (
-                <ShieldCheck className="h-5 w-5 text-emerald-300" />
+                <ShieldCheck className="h-5 w-5 text-gold-light" />
               )}
 
-              <span className="text-sm text-white/70">
+              <span className="text-sm text-ink-0/70">
                 {submitting
                   ? t('verify.verifying')
                   : t('verify.button')}
@@ -216,7 +216,7 @@ const VerifyPage: React.FC<VerifyPageProps> = ({
             disabled={
               submitting
             }
-            className="mt-7 flex w-full items-center justify-center gap-2 rounded-2xl border border-yellow-300/20 bg-yellow-300/[0.08] px-5 py-4 text-sm font-semibold text-yellow-100 transition hover:bg-yellow-300/[0.14] disabled:cursor-not-allowed disabled:opacity-40"
+            className="mt-7 flex w-full items-center justify-center gap-2 rounded-2xl border border-gold/20 bg-gold/[0.08] px-5 py-4 text-sm font-semibold text-gold-light transition hover:bg-gold/[0.14] disabled:cursor-not-allowed disabled:opacity-40"
           >
             {submitting ? (
               <Loader2 className="h-5 w-5 animate-spin" />
@@ -227,7 +227,7 @@ const VerifyPage: React.FC<VerifyPageProps> = ({
             {t('verify.button_next')}
           </button>
 
-          <p className="mt-6 text-[11px] leading-5 text-white/30">
+          <p className="mt-6 text-[11px] leading-5 text-ink-0/30">
             {t('verify.page_info')}
           </p>
         </section>

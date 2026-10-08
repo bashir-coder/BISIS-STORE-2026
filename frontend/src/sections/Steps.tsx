@@ -1,4 +1,4 @@
-﻿import React from 'react'
+import React from 'react'
 import { useTranslation } from 'react-i18next'
 import { motion } from 'framer-motion'
 import { useInView } from '../hooks/useInView'
@@ -42,19 +42,19 @@ const Steps: React.FC = () => {
         >
           <motion.span
             variants={itemVariants}
-            className="text-gold text-sm font-semibold tracking-wider uppercase mb-4 block"
+            className="eyebrow text-gold text-sm font-semibold tracking-wider uppercase mb-4 block"
           >
             {t('steps.eyebrow')}
           </motion.span>
           <motion.h2
             variants={itemVariants}
-            className="text-3xl sm:text-4xl lg:text-5xl font-bold font-outfit text-white mb-4"
+            className="text-3xl sm:text-4xl lg:text-5xl font-bold font-outfit text-ink-0 mb-4"
           >
             {t('steps.title')}
           </motion.h2>
           <motion.p
             variants={itemVariants}
-            className="text-white/50 max-w-xl mx-auto"
+            className="text-ink-0/50 max-w-xl mx-auto"
           >
             {t('steps.sub')}
           </motion.p>
@@ -72,11 +72,11 @@ const Steps: React.FC = () => {
               }}
               className="relative"
             >
-              <div className="glass rounded-2xl p-6 h-full card-hover border-gold/5 hover:border-gold/20">
+              <div className="card card-interactive p-6 h-full border-gold/5 hover:border-gold/20">
                 <div className="text-4xl mb-4">{step.icon}</div>
                 <div className="text-gold text-sm font-semibold mb-2">0{index + 1}</div>
-                <h3 className="text-lg font-semibold text-white mb-2">{t(step.titleKey)}</h3>
-                <p className="text-sm text-white/50">{t(step.descKey)}</p>
+                <h3 className="text-lg font-semibold text-ink-0 mb-2">{t(step.titleKey)}</h3>
+                <p className="text-sm text-ink-0/50">{t(step.descKey)}</p>
               </div>
               {index < STEPS.length - 1 && (
                 <div className="hidden lg:block absolute top-1/2 -right-3 w-6 h-px bg-gradient-to-r from-gold/30 to-transparent" />

@@ -211,14 +211,14 @@ export default function AdminTemplateManager() {
   }
 
   const renderTask = (milestone: TemplateMilestone, task: TemplateTask) => (
-    <div key={task.id} className="flex items-center justify-between gap-2 rounded-lg border border-white/10 px-2.5 py-2">
+    <div key={task.id} className="flex items-center justify-between gap-2 rounded-lg border border-border-1 px-2.5 py-2">
       <div className="min-w-0">
-        <p className="truncate text-sm text-white/80">{task.title}</p>
-        <p className="text-[11px] text-white/35">{task.priority} آ· {task.client_visible ? t('admin.client_visible') : t('admin.internal')}</p>
+        <p className="truncate text-sm text-ink-1">{task.title}</p>
+        <p className="text-[11px] text-ink-4">{task.priority} آ· {task.client_visible ? t('admin.client_visible') : t('admin.internal')}</p>
       </div>
       <div className="flex gap-1">
-        <button type="button" onClick={() => void editTask(milestone, task)} className="rounded-lg p-1.5 text-white/45 hover:bg-white/10 hover:text-white"><Edit3 className="h-3.5 w-3.5" /></button>
-        <button type="button" onClick={() => void deleteTask(milestone, task)} className="rounded-lg p-1.5 text-white/45 hover:bg-red-500/10 hover:text-red-300"><Trash2 className="h-3.5 w-3.5" /></button>
+        <button type="button" onClick={() => void editTask(milestone, task)} className="rounded-lg p-1.5 text-ink-4 hover:bg-surface-2 hover:text-ink-0"><Edit3 className="h-3.5 w-3.5" /></button>
+        <button type="button" onClick={() => void deleteTask(milestone, task)} className="rounded-lg p-1.5 text-ink-4 hover:bg-red-500/10 hover:text-red-300"><Trash2 className="h-3.5 w-3.5" /></button>
       </div>
     </div>
   )
@@ -227,25 +227,25 @@ export default function AdminTemplateManager() {
     const taskForm = taskForms[milestone.id] || emptyTask
     const tasks = [...(milestone.project_template_tasks || [])].sort((a, b) => a.position - b.position)
     return (
-      <div key={milestone.id} className="rounded-xl border border-white/10 bg-white/[0.03] p-3">
+      <div key={milestone.id} className="rounded-xl border border-border-1 bg-surface-1 p-3">
         <div className="flex items-start justify-between gap-3">
           <div>
-            <p className="font-medium text-white">{milestone.position + 1}. {milestone.title}</p>
-            {milestone.description && <p className="mt-1 text-xs text-white/40">{milestone.description}</p>}
+            <p className="font-medium text-ink-0">{milestone.position + 1}. {milestone.title}</p>
+            {milestone.description && <p className="mt-1 text-xs text-ink-4">{milestone.description}</p>}
           </div>
           <div className="flex gap-1">
-            <button type="button" onClick={() => void editMilestone(milestone)} className="rounded-lg p-1.5 text-white/50 hover:bg-white/10 hover:text-white"><Edit3 className="h-3.5 w-3.5" /></button>
-            <button type="button" onClick={() => void deleteMilestone(milestone)} className="rounded-lg p-1.5 text-white/50 hover:bg-red-500/10 hover:text-red-300"><Trash2 className="h-3.5 w-3.5" /></button>
+            <button type="button" onClick={() => void editMilestone(milestone)} className="rounded-lg p-1.5 text-ink-3 hover:bg-surface-2 hover:text-ink-0"><Edit3 className="h-3.5 w-3.5" /></button>
+            <button type="button" onClick={() => void deleteMilestone(milestone)} className="rounded-lg p-1.5 text-ink-3 hover:bg-red-500/10 hover:text-red-300"><Trash2 className="h-3.5 w-3.5" /></button>
           </div>
         </div>
         <div className="mt-3 space-y-2">
           {tasks.map((task) => renderTask(milestone, task))}
           <div className="grid gap-2 md:grid-cols-[1.4fr_1fr_auto]">
-            <input value={taskForm.title} onChange={(e) => setTaskForms({ ...taskForms, [milestone.id]: { ...taskForm, title: e.target.value } })} placeholder={String(t('admin.template_task_title'))} className="rounded-lg border border-white/10 bg-white/5 px-3 py-2 text-xs text-white placeholder:text-white/30 outline-none focus:border-gold/40" />
-            <select value={taskForm.priority} onChange={(e) => setTaskForms({ ...taskForms, [milestone.id]: { ...taskForm, priority: e.target.value } })} className="rounded-lg border border-white/10 bg-slate-950 px-3 py-2 text-xs text-white outline-none focus:border-gold/40">
+            <input value={taskForm.title} onChange={(e) => setTaskForms({ ...taskForms, [milestone.id]: { ...taskForm, title: e.target.value } })} placeholder={String(t('admin.template_task_title'))} className="rounded-lg border border-border-1 bg-surface-1 px-3 py-2 text-xs text-ink-0 placeholder:text-ink-5 outline-none focus:border-gold/40" />
+            <select value={taskForm.priority} onChange={(e) => setTaskForms({ ...taskForms, [milestone.id]: { ...taskForm, priority: e.target.value } })} className="rounded-lg border border-border-1 bg-dark px-3 py-2 text-xs text-ink-0 outline-none focus:border-gold/40">
               {priorities.map((priority) => <option key={priority} value={priority}>{priority}</option>)}
             </select>
-            <button type="button" disabled={saving || !taskForm.title.trim()} onClick={() => void addTask(milestone)} className="rounded-lg border border-white/10 px-3 py-2 text-xs text-white/70 disabled:opacity-40"><Plus className="mx-auto h-3.5 w-3.5" /></button>
+            <button type="button" disabled={saving || !taskForm.title.trim()} onClick={() => void addTask(milestone)} className="rounded-lg border border-border-1 px-3 py-2 text-xs text-ink-2 disabled:opacity-40"><Plus className="mx-auto h-3.5 w-3.5" /></button>
           </div>
         </div>
       </div>
@@ -259,40 +259,40 @@ export default function AdminTemplateManager() {
       <div className="mb-5 flex flex-wrap items-center justify-between gap-3">
         <div>
           <p className="text-xs uppercase tracking-[0.25em] text-gold/70">{t('admin.execution_templates')}</p>
-          <h2 className="text-xl font-semibold text-white">{t('admin.templates')}</h2>
-          <p className="mt-1 text-sm text-white/45">{t('admin.templates_hint')}</p>
+          <h2 className="text-xl font-semibold text-ink-0">{t('admin.templates')}</h2>
+          <p className="mt-1 text-sm text-ink-4">{t('admin.templates_hint')}</p>
         </div>
         <div className="flex gap-2">
           <button type="button" onClick={() => { resetForms(); setSelectedId(null) }} className="flex items-center gap-2 rounded-lg border border-gold/30 bg-gold/15 px-3 py-2 text-sm text-gold"><Plus className="h-4 w-4" />{t('admin.new_template')}</button>
-          <button type="button" onClick={() => void load()} className="flex items-center gap-2 rounded-lg border border-white/10 bg-white/5 px-3 py-2 text-sm text-white/70"><RefreshCw className="h-4 w-4" />{t('dashboard.refresh')}</button>
+          <button type="button" onClick={() => void load()} className="flex items-center gap-2 rounded-lg border border-border-1 bg-surface-1 px-3 py-2 text-sm text-ink-2"><RefreshCw className="h-4 w-4" />{t('dashboard.refresh')}</button>
         </div>
       </div>
       {message && <p className="mb-3 rounded-lg border border-green-400/20 bg-green-400/10 p-2 text-sm text-green-200">{message}</p>}
       {error && <p className="mb-3 rounded-lg border border-red-400/20 bg-red-500/10 p-2 text-sm text-red-200">{error}</p>}
-      {loading ? <div className="py-8 text-center text-white/40">{t('dashboard.loading')}</div> : (
+      {loading ? <div className="py-8 text-center text-ink-4">{t('dashboard.loading')}</div> : (
         <div className="grid gap-5 lg:grid-cols-[minmax(220px,0.75fr)_minmax(0,1.75fr)]">
           <div className="space-y-2">
-            {templates.length === 0 ? <div className="rounded-2xl border border-dashed border-white/15 p-5 text-sm text-white/45">{t('admin.templates_empty')}</div> : templates.map((template) => (
-              <button type="button" key={template.id} onClick={() => setSelectedId(template.id)} className={`w-full rounded-2xl border p-3 text-left transition ${selectedId === template.id ? 'border-gold/40 bg-gold/10' : 'border-white/10 bg-white/[0.03] hover:border-white/20'}`}>
-                <div className="flex items-start justify-between gap-2"><span className="font-medium text-white">{template.name}</span><span className={`rounded-full px-2 py-0.5 text-[10px] ${template.is_active ? 'bg-emerald-400/10 text-emerald-200' : 'bg-white/10 text-white/45'}`}>{template.is_active ? t('admin.active') : t('admin.archived')}</span></div>
-                <p className="mt-1 text-xs text-white/40">{template.project_template_milestones?.length || 0} {t('admin.milestones')}</p>
+            {templates.length === 0 ? <div className="rounded-2xl border border-dashed border-border-2 p-5 text-sm text-ink-4">{t('admin.templates_empty')}</div> : templates.map((template) => (
+              <button type="button" key={template.id} onClick={() => setSelectedId(template.id)} className={`w-full rounded-2xl border p-3 text-left transition ${selectedId === template.id ? 'border-gold/40 bg-gold/10' : 'border-border-1 bg-surface-1 hover:border-border-2'}`}>
+                <div className="flex items-start justify-between gap-2"><span className="font-medium text-ink-0">{template.name}</span>                <span className={`rounded-full px-2 py-0.5 text-[10px] ${template.is_active ? 'bg-green-500/10 text-green-300' : 'bg-surface-2 text-ink-4'}`}>{template.is_active ? t('admin.active') : t('admin.archived')}</span></div>
+                <p className="mt-1 text-xs text-ink-4">{template.project_template_milestones?.length || 0} {t('admin.milestones')}</p>
               </button>
             ))}
           </div>
-          <div className="rounded-2xl border border-white/10 bg-black/20 p-4">
+          <div className="rounded-2xl border border-border-1 bg-surface-inset p-4">
             <div className="mb-4 flex flex-wrap items-center justify-between gap-3">
-              <div><h3 className="font-semibold text-white">{selected ? selected.name : t('admin.new_template')}</h3><p className="text-xs text-white/40">{selected ? `${sortedMilestones.length} ${t('admin.milestones')}` : t('admin.template_create_hint')}</p></div>
-              {selected && <div className="flex gap-1"><button type="button" onClick={() => setEditingTemplate((value) => !value)} className="rounded-lg p-2 text-white/55 hover:bg-white/10 hover:text-white" title={String(t('admin.edit'))}><Edit3 className="h-4 w-4" /></button><button type="button" onClick={() => void duplicate(selected)} className="rounded-lg p-2 text-white/55 hover:bg-white/10 hover:text-white" title={String(t('admin.duplicate'))}><Copy className="h-4 w-4" /></button>{selected.is_active ? <button type="button" onClick={() => void setActive(selected, false)} className="rounded-lg p-2 text-white/55 hover:bg-red-500/10 hover:text-red-300" title={String(t('admin.archive'))}><Archive className="h-4 w-4" /></button> : <button type="button" onClick={() => void setActive(selected, true)} className="rounded-lg p-2 text-white/55 hover:bg-emerald-500/10 hover:text-emerald-300" title={String(t('admin.restore'))}><RotateCcw className="h-4 w-4" /></button>}</div>}
+              <div><h3 className="font-semibold text-ink-0">{selected ? selected.name : t('admin.new_template')}</h3><p className="text-xs text-ink-4">{selected ? `${sortedMilestones.length} ${t('admin.milestones')}` : t('admin.template_create_hint')}</p></div>
+              {selected && <div className="flex gap-1"><button type="button" onClick={() => setEditingTemplate((value) => !value)} className="rounded-lg p-2 text-ink-2 hover:bg-surface-2 hover:text-ink-0" title={String(t('admin.edit'))}><Edit3 className="h-4 w-4" /></button><button type="button" onClick={() => void duplicate(selected)} className="rounded-lg p-2 text-ink-2 hover:bg-surface-2 hover:text-ink-0" title={String(t('admin.duplicate'))}><Copy className="h-4 w-4" /></button>{selected.is_active ? <button type="button" onClick={() => void setActive(selected, false)} className="rounded-lg p-2 text-ink-2 hover:bg-red-500/10 hover:text-red-300" title={String(t('admin.archive'))}><Archive className="h-4 w-4" /></button> : <button type="button" onClick={() => void setActive(selected, true)} className="rounded-lg p-2 text-ink-2 hover:bg-green-500/10 hover:text-green-300" title={String(t('admin.restore'))}><RotateCcw className="h-4 w-4" /></button>}</div>}
             </div>
-            {(!selected || editingTemplate) && <div className="mb-5 grid gap-2 md:grid-cols-2"><input value={templateForm.name} onChange={(e) => setTemplateForm({ ...templateForm, name: e.target.value })} placeholder={String(t('admin.template_name'))} className="rounded-lg border border-white/10 bg-white/5 px-3 py-2 text-sm text-white placeholder:text-white/30 outline-none focus:border-gold/40" /><select value={templateForm.service_id} onChange={(e) => setTemplateForm({ ...templateForm, service_id: e.target.value })} className="rounded-lg border border-white/10 bg-slate-950 px-3 py-2 text-sm text-white outline-none focus:border-gold/40"><option value="">{t('admin.no_service')}</option>{services.map((service) => <option key={service.id} value={service.id}>{service.name}</option>)}</select><textarea value={templateForm.description} onChange={(e) => setTemplateForm({ ...templateForm, description: e.target.value })} placeholder={String(t('admin.description'))} rows={2} className="rounded-lg border border-white/10 bg-white/5 px-3 py-2 text-sm text-white placeholder:text-white/30 outline-none focus:border-gold/40 md:col-span-2" /><button type="button" disabled={saving} onClick={() => void saveTemplate()} className="flex w-fit items-center gap-2 rounded-lg border border-gold/30 bg-gold/15 px-4 py-2 text-sm text-gold disabled:opacity-50"><Save className="h-4 w-4" />{saving ? t('admin.updating') : t('admin.save')}</button></div>}
+            {(!selected || editingTemplate) && <div className="mb-5 grid gap-2 md:grid-cols-2"><input value={templateForm.name} onChange={(e) => setTemplateForm({ ...templateForm, name: e.target.value })} placeholder={String(t('admin.template_name'))} className="rounded-lg border border-border-1 bg-surface-1 px-3 py-2 text-sm text-ink-0 placeholder:text-ink-5 outline-none focus:border-gold/40" /><select value={templateForm.service_id} onChange={(e) => setTemplateForm({ ...templateForm, service_id: e.target.value })} className="rounded-lg border border-border-1 bg-dark px-3 py-2 text-sm text-ink-0 outline-none focus:border-gold/40"><option value="">{t('admin.no_service')}</option>{services.map((service) => <option key={service.id} value={service.id}>{service.name}</option>)}</select><textarea value={templateForm.description} onChange={(e) => setTemplateForm({ ...templateForm, description: e.target.value })} placeholder={String(t('admin.description'))} rows={2} className="rounded-lg border border-border-1 bg-surface-1 px-3 py-2 text-sm text-ink-0 placeholder:text-ink-5 outline-none focus:border-gold/40 md:col-span-2" /><button type="button" disabled={saving} onClick={() => void saveTemplate()} className="flex w-fit items-center gap-2 rounded-lg border border-gold/30 bg-gold/15 px-4 py-2 text-sm text-gold disabled:opacity-50"><Save className="h-4 w-4" />{saving ? t('admin.updating') : t('admin.save')}</button></div>}
             {selected && <>
-              <div className="mb-4 rounded-xl border border-white/10 bg-white/[0.03] p-3"><div className="mb-2 flex items-center justify-between"><h4 className="text-sm font-medium text-white">{t('admin.add_milestone')}</h4><Check className="h-4 w-4 text-gold/70" /></div><div className="grid gap-2 md:grid-cols-2"><input value={milestoneForm.title} onChange={(e) => setMilestoneForm({ ...milestoneForm, title: e.target.value })} placeholder={String(t('admin.template_milestone_title'))} className="rounded-lg border border-white/10 bg-white/5 px-3 py-2 text-sm text-white placeholder:text-white/30 outline-none focus:border-gold/40" /><input value={milestoneForm.description} onChange={(e) => setMilestoneForm({ ...milestoneForm, description: e.target.value })} placeholder={String(t('admin.description'))} className="rounded-lg border border-white/10 bg-white/5 px-3 py-2 text-sm text-white placeholder:text-white/30 outline-none focus:border-gold/40" /></div><button type="button" disabled={saving || !milestoneForm.title.trim()} onClick={() => void addMilestone()} className="mt-2 flex items-center gap-2 rounded-lg border border-white/10 px-3 py-2 text-xs text-white/70 disabled:opacity-40"><Plus className="h-3.5 w-3.5" />{t('admin.add')}</button></div>
+              <div className="mb-4 rounded-xl border border-border-1 bg-surface-1 p-3"><div className="mb-2 flex items-center justify-between"><h4 className="text-sm font-medium text-ink-0">{t('admin.add_milestone')}</h4><Check className="h-4 w-4 text-gold/70" /></div><div className="grid gap-2 md:grid-cols-2"><input value={milestoneForm.title} onChange={(e) => setMilestoneForm({ ...milestoneForm, title: e.target.value })} placeholder={String(t('admin.template_milestone_title'))} className="rounded-lg border border-border-1 bg-surface-1 px-3 py-2 text-sm text-ink-0 placeholder:text-ink-5 outline-none focus:border-gold/40" /><input value={milestoneForm.description} onChange={(e) => setMilestoneForm({ ...milestoneForm, description: e.target.value })} placeholder={String(t('admin.description'))} className="rounded-lg border border-border-1 bg-surface-1 px-3 py-2 text-sm text-ink-0 placeholder:text-ink-5 outline-none focus:border-gold/40" /></div><button type="button" disabled={saving || !milestoneForm.title.trim()} onClick={() => void addMilestone()} className="mt-2 flex items-center gap-2 rounded-lg border border-border-1 px-3 py-2 text-xs text-ink-2 disabled:opacity-40"><Plus className="h-3.5 w-3.5" />{t('admin.add')}</button></div>
               <div className="space-y-3">{sortedMilestones.map(renderMilestone)}</div>
             </>}
           </div>
         </div>
       )}
-      {selected && <button type="button" onClick={() => { resetForms(); setSelectedId(null) }} className="mt-4 flex items-center gap-2 text-xs text-white/40 hover:text-white"><X className="h-3.5 w-3.5" />{t('admin.close_editor')}</button>}
+      {selected && <button type="button" onClick={() => { resetForms(); setSelectedId(null) }} className="mt-4 flex items-center gap-2 text-xs text-ink-4 hover:text-ink-0"><X className="h-3.5 w-3.5" />{t('admin.close_editor')}</button>}
     </section>
   )
 }

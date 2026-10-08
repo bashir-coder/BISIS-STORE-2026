@@ -1,4 +1,4 @@
-﻿import React from 'react'
+import React from 'react'
 import { Check, Circle, Clock3 } from 'lucide-react'
 import { useTranslation } from 'react-i18next'
 
@@ -30,14 +30,14 @@ const OrderLifecycle: React.FC<OrderLifecycleProps> = ({ status, compact = false
           <React.Fragment key={step}>
             <div className={`flex min-w-0 ${compact ? 'items-center gap-1' : 'flex-1 flex-col gap-2'}`}>
               <div className={`flex items-center ${compact ? '' : 'gap-2'}`}>
-                <span className={`flex h-6 w-6 shrink-0 items-center justify-center rounded-full border ${complete ? 'border-green-400/40 bg-green-400/15 text-green-300' : current ? 'border-gold/50 bg-gold/15 text-gold shadow-[0_0_16px_rgba(212,175,55,0.25)]' : 'border-white/15 bg-white/5 text-white/30'}`}>
+                <span className={`flex h-6 w-6 shrink-0 items-center justify-center rounded-full border ${complete ? 'border-green-400/40 bg-green-400/15 text-green-300' : current ? 'border-gold/50 bg-gold/15 text-gold neon-glow-gold-2' : 'border-border-2 bg-surface-2 text-ink-4'}`}>
                   {complete ? <Check aria-hidden="true" className="h-3.5 w-3.5" /> : current ? <Clock3 aria-hidden="true" className="h-3.5 w-3.5" /> : <Circle aria-hidden="true" className="h-2.5 w-2.5" />}
                 </span>
-                {!compact && <span className={`text-xs ${current ? 'font-semibold text-white' : complete ? 'text-green-200/80' : 'text-white/35'}`}>{labels[step]}</span>}
+                {!compact && <span className={`text-xs ${current ? 'font-semibold text-ink-0' : complete ? 'text-green-200/80' : 'text-ink-0/35'}`}>{labels[step]}</span>}
               </div>
-              {!compact && <div className={`h-1 rounded-full ${complete ? 'bg-green-400/70' : current ? 'bg-gold/60' : 'bg-white/10'}`} />}
+              {!compact && <div className={`h-1 rounded-full ${complete ? 'bg-green-400/70' : current ? 'bg-gold/60' : 'bg-surface-2'}`} />}
             </div>
-            {index < steps.length - 1 && compact && <span aria-hidden="true" className={`h-px w-4 ${index < activeIndex ? 'bg-green-400/60' : 'bg-white/15'}`} />}
+            {index < steps.length - 1 && compact && <span aria-hidden="true" className={`h-px w-4 ${index < activeIndex ? 'bg-green-400/60' : 'bg-surface-2'}`} />}
           </React.Fragment>
         )
       })}

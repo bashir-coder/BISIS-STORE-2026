@@ -27,10 +27,10 @@ const ChatPage: React.FC = () => {
               {t('chat.page.badge')}
             </span>
           </div>
-          <h1 className="text-3xl md:text-4xl font-bold text-white mb-3">
+          <h1 className="text-3xl md:text-4xl font-bold text-ink-0 mb-3">
             {t('chat.page.title')}
           </h1>
-          <p className="text-white/50 max-w-xl mx-auto">
+          <p className="text-ink-3 max-w-xl mx-auto">
             {t('chat.page.subtitle')}
           </p>
         </motion.div>
@@ -48,7 +48,7 @@ const ChatPage: React.FC = () => {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 0.4 }}
-          className="text-center mt-8 text-white/20 text-xs"
+          className="text-center mt-8 text-ink-3 text-xs"
         >
           <p>© 2026 BİŞİŞ – {t('chat.page.footer')}</p>
         </motion.div>

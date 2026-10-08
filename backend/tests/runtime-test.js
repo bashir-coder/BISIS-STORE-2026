@@ -13,6 +13,7 @@ const SERVICE_KEY = process.env.SUPABASE_SERVICE_ROLE_KEY
 const ANON_KEY = process.env.VITE_SUPABASE_ANON_KEY
 const NOWPAYMENTS_API_KEY = process.env.NOWPAYMENTS_API_KEY || ''
 const NOWPAYMENTS_IPN_SECRET_KEY = process.env.NOWPAYMENTS_IPN_SECRET_KEY || ''
+const TEST_USER_PASSWORD = process.env.TEST_USER_PASSWORD || ''
 
 const sb = createClient(SUPABASE_URL, SERVICE_KEY, {
   auth: { autoRefreshToken: false, persistSession: false },
@@ -48,7 +49,7 @@ const testOrders = []
 const testFiles = []
 
 async function createUser(email, role) {
-  const password = 'TestPass123!'
+  const password = TEST_USER_PASSWORD
   const { data: authUser, error: authErr } = await sb.auth.admin.createUser({
     email,
     password,
@@ -73,7 +74,11 @@ function getJwtToken(token) {
   return token
 }
 
-;(async () => {
+void (async () => {
+  if (!TEST_USER_PASSWORD) {
+    throw new Error('TEST_USER_PASSWORD is not configured. Set it in ../.env')
+  }
+
   console.log('===== BİŞİŞ V1 Runtime Test =====')
   console.log('Timestamp:', new Date().toISOString())
   console.log('Supabase URL:', SUPABASE_URL)

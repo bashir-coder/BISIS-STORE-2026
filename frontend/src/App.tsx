@@ -1,5 +1,7 @@
 import React, { Suspense, lazy, useState } from 'react'
 import { AnimatePresence, motion } from 'framer-motion'
+import { Menu } from 'lucide-react'
+import { useTranslation } from 'react-i18next'
 import {
   Navigate,
   Route,
@@ -7,8 +9,11 @@ import {
   useLocation,
 } from 'react-router-dom'
 import { useLanguage } from './contexts/LanguageContext'
+import { cn } from './lib/utils'
+import { RequireRole } from './components/RequireRole'
+import AppShell from './components/shell/AppShell'
 
-import Header from './components/Header'
+import Sidebar from './components/Sidebar'
 import Footer from './components/Footer'
 import ScrollProgress from './components/ScrollProgress'
 import FloatingButtons from './components/FloatingButtons'
@@ -17,7 +22,6 @@ import LiveStatusRibbon from './components/LiveStatusRibbon'
 const HUMAN_VERIFIED_KEY = 'BİŞİŞ_human_verified'
 const HomePage = lazy(() => import('./pages/HomePage'))
 const Dashboard = lazy(() => import('./pages/Dashboard'))
-const ChatPage = lazy(() => import('./pages/ChatPage'))
 const VerifyPage = lazy(() => import('./pages/VerifyPage'))
 const VerifyEmailPage = lazy(() => import('./pages/VerifyEmailPage'))
 const NotFoundPage = lazy(() => import('./pages/NotFoundPage'))
@@ -25,13 +29,16 @@ const PackagesPage = lazy(() => import('./pages/PackagesPage'))
 const LifePlanPage = lazy(() => import('./pages/LifePlanPage'))
 const AboutPage = lazy(() => import('./pages/AboutPage'))
 const LoginPage = lazy(() => import('./pages/LoginPage'))
+const IntroductionPage = lazy(() => import('./pages/IntroductionPage'))
 const AdminPanel = lazy(() => import('./pages/AdminPanel'))
 const PaymentPage = lazy(() => import('./pages/PaymentPage'))
 const PaymentSuccess = lazy(() => import('./pages/PaymentSuccess'))
 const PaymentCancelled = lazy(() => import('./pages/PaymentCancelled'))
-const FAQPage = lazy(() => import('./pages/FAQPage'))
 const ContactPage = lazy(() => import('./pages/ContactPage'))
-const ClientPortal = lazy(() => import('./pages/ClientPortal'))
+const BlogResourcesPage = lazy(() => import('./pages/BlogResourcesPage'))
+const PortfolioPage = lazy(() => import('./pages/PortfolioPage'))
+const DigitalProductsPage = lazy(() => import('./pages/DigitalProductsPage'))
+const DonationPage = lazy(() => import('./pages/DonationPage'))
 const Client360Page = lazy(() => import('./pages/Client360Page'))
 const WorkbenchPage = lazy(() => import('./pages/WorkbenchPage'))
 const ProjectWorkspacePage = lazy(
@@ -39,6 +46,7 @@ const ProjectWorkspacePage = lazy(
 )
 
 const App: React.FC = () => {
+  const { t } = useTranslation()
   const { currentLang } = useLanguage()
   const location = useLocation()
 
@@ -50,7 +58,11 @@ const App: React.FC = () => {
     }
   })
 
+  const [collapsed, setCollapsed] = useState(false)
+  const [mobileOpen, setMobileOpen] = useState(false)
+
   const dir = currentLang === 'ar' ? 'rtl' : 'ltr'
+  const isRTL = currentLang === 'ar'
 
   /*
    * /verify is the one-time human verification page.
@@ -80,7 +92,7 @@ const App: React.FC = () => {
     return (
       <div
         dir={dir}
-        className="min-h-screen bg-[#050505] text-white"
+        className="min-h-screen bg-dark text-ink-0"
       >
         <Suspense fallback={null}>
           <VerifyEmailPage />
@@ -109,15 +121,39 @@ const App: React.FC = () => {
   }
 
   return (
-    <div
-      className="relative min-h-screen text-white"
+    <AppShell
+      navigation={
+        <>
+          <ScrollProgress />
+          <button
+            type="button"
+            onClick={() => setMobileOpen(true)}
+            aria-label={t('nav.open_menu')}
+            className={cn(
+              'lg:hidden fixed top-4 z-50 p-2 text-ink-2 hover:text-ink-0 rounded-lg border border-border-1 bg-surface-1 hover:bg-surface-2 transition-all',
+              isRTL ? 'right-4' : 'left-4'
+            )}
+          >
+            <Menu className="w-6 h-6" />
+          </button>
+          <Sidebar
+            collapsed={collapsed}
+            onToggle={() => setCollapsed(!collapsed)}
+            mobileOpen={mobileOpen}
+            setMobileOpen={setMobileOpen}
+          />
+        </>
+      }
+      globalUI={
+        <>
+          <LiveStatusRibbon />
+          <Footer />
+          <FloatingButtons />
+        </>
+      }
+      overlays={null}
       dir={dir}
     >
-      <div className="grid-pattern" />
-
-      <ScrollProgress />
-      <Header />
-
       <Suspense fallback={null}>
         <AnimatePresence
           mode="wait"
@@ -141,12 +177,19 @@ const App: React.FC = () => {
               duration: 0.22,
               ease: 'easeOut',
             }}
-            className="min-h-screen"
+            className={cn(
+              'min-h-screen pt-6 transition-all duration-300',
+            )}
           >
             <Routes location={location}>
               <Route
                 path="/"
                 element={<HomePage />}
+              />
+
+              <Route
+                path="/introduction"
+                element={<IntroductionPage />}
               />
 
               <Route
@@ -196,17 +239,29 @@ const App: React.FC = () => {
 
               <Route
                 path="/admin"
-                element={<AdminPanel />}
+                element={
+                  <RequireRole allowedRoles={['admin']}>
+                    <AdminPanel />
+                  </RequireRole>
+                }
               />
 
               <Route
                 path="/clients"
-                element={<Client360Page />}
+                element={
+                  <RequireRole allowedRoles={['admin']}>
+                    <Client360Page />
+                  </RequireRole>
+                }
               />
 
               <Route
                 path="/workbench"
-                element={<WorkbenchPage />}
+                element={
+                  <RequireRole allowedRoles={['admin']}>
+                    <WorkbenchPage />
+                  </RequireRole>
+                }
               />
 
               <Route
@@ -230,28 +285,33 @@ const App: React.FC = () => {
               />
 
               <Route
-                path="/chat"
-                element={<ChatPage />}
+                path="/dashboard"
+                element={<Dashboard />}
               />
 
               <Route
-                path="/faq"
-                element={<FAQPage />}
+                path="/blog"
+                element={<BlogResourcesPage />}
+              />
+
+              <Route
+                path="/portfolio"
+                element={<PortfolioPage />}
+              />
+
+              <Route
+                path="/digital-products"
+                element={<DigitalProductsPage />}
+              />
+
+              <Route
+                path="/donation"
+                element={<DonationPage />}
               />
 
               <Route
                 path="/contact"
                 element={<ContactPage />}
-              />
-
-              <Route
-                path="/portal"
-                element={<ClientPortal />}
-              />
-
-              <Route
-                path="/dashboard"
-                element={<Dashboard />}
               />
 
               <Route
@@ -262,11 +322,7 @@ const App: React.FC = () => {
           </motion.div>
         </AnimatePresence>
       </Suspense>
-
-      <LiveStatusRibbon />
-      <Footer />
-      <FloatingButtons />
-    </div>
+    </AppShell>
   )
 }
 

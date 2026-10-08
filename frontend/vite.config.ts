@@ -19,6 +19,7 @@ export default defineConfig({
 
   server: {
     port: 3000,
+    host: true,
     proxy: {
       '/api': {
         target: 'http://localhost:5000',
@@ -29,6 +30,6 @@ export default defineConfig({
 
   build: {
     outDir: 'dist',
-    sourcemap: true,
+    sourcemap: process.env.NODE_ENV !== 'production',
   },
 })

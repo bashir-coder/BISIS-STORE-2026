@@ -365,21 +365,21 @@ const AIChatbot: React.FC<AIChatbotProps> = ({ onClose, variant = 'floating' }) 
         isPage
           ? 'w-full max-w-3xl h-[600px] max-h-[80vh]'
           : 'w-[400px] h-[550px] max-h-[90vh]',
-        'bg-[#05070a]/95 backdrop-blur-2xl border border-gold/30 rounded-2xl overflow-hidden flex flex-col shadow-2xl shadow-gold/5 text-white'
+        'bg-[#05070a]/95 backdrop-blur-2xl border border-gold/30 rounded-2xl overflow-hidden flex flex-col shadow-2xl shadow-gold/5 text-ink-0'
       )}
       dir={isRTL ? 'rtl' : 'ltr'}
     >
       {/* Header */}
-      <div className="px-4 py-3 border-b border-white/10 flex items-center justify-between bg-gradient-to-r from-gold/15 to-transparent flex-shrink-0">
+      <div className="px-4 py-3 border-b border-border-1 flex items-center justify-between bg-gradient-to-r from-gold/15 to-transparent flex-shrink-0">
         <div className="flex items-center gap-2">
-          <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-gold to-gold-dark flex items-center justify-center shadow-md shadow-gold/20">
+          <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-gold to-gold-deep flex items-center justify-center shadow-md shadow-gold/20">
             <Sparkles className="w-4 h-4 text-dark" />
           </div>
           <div>
-            <h3 className="text-sm font-semibold text-white">{langData.title}</h3>
+            <h3 className="text-sm font-semibold text-ink-0">{langData.title}</h3>
             <div className="flex items-center gap-1">
-              <span className="w-2 h-2 rounded-full bg-emerald-light animate-pulse" />
-              <span className="text-[10px] text-white/50">{langData.online}</span>
+              <span className="w-2 h-2 rounded-full bg-green-400 animate-pulse" />
+              <span className="text-[10px] text-ink-0/50">{langData.online}</span>
             </div>
           </div>
         </div>
@@ -394,7 +394,7 @@ const AIChatbot: React.FC<AIChatbotProps> = ({ onClose, variant = 'floating' }) 
             </button>
           )}
           {onClose && variant === 'floating' && (
-            <button onClick={onClose} className="text-white/50 hover:text-white transition-colors">
+            <button onClick={onClose} className="text-ink-0/50 hover:text-ink-0 transition-colors">
               <X className="w-5 h-5" />
             </button>
           )}
@@ -414,22 +414,22 @@ const AIChatbot: React.FC<AIChatbotProps> = ({ onClose, variant = 'floating' }) 
             >
               <div className={cn(
                 'w-8 h-8 rounded-lg flex items-center justify-center flex-shrink-0',
-                isUser ? 'bg-white/10' : 'bg-gradient-to-br from-gold to-gold-dark'
+                isUser ? 'bg-surface-2' : 'bg-gradient-to-br from-gold to-gold-deep'
               )}>
-                {isUser ? <User className="w-4 h-4 text-white" /> : <Bot className="w-4 h-4 text-dark" />}
+                {isUser ? <User className="w-4 h-4 text-ink-0" /> : <Bot className="w-4 h-4 text-dark" />}
               </div>
               <div className={cn(
                 'max-w-[80%] px-4 py-3 rounded-xl text-sm leading-relaxed',
                 isUser
-                  ? 'bg-gold/20 text-white rounded-tr-none border border-gold/30'
-                  : 'bg-white/[0.05] border border-white/10 text-white/90 rounded-tl-none'
+                  ? 'bg-gold/20 text-ink-0 rounded-tr-none border border-gold/30'
+                  : 'bg-surface-1 border border-border-1 text-ink-0/90 rounded-tl-none'
               )}>
                 {message.isQuestion ? (
                   <span className="text-gold font-medium">❓ {message.content}</span>
                 ) : (
                   <div dangerouslySetInnerHTML={{ __html: message.content }} />
                 )}
-                <div className="text-[10px] text-white/30 mt-1">
+                <div className="text-[10px] text-ink-0/30 mt-1">
                   {message.timestamp.toLocaleTimeString()}
                 </div>
               </div>
@@ -446,7 +446,7 @@ const AIChatbot: React.FC<AIChatbotProps> = ({ onClose, variant = 'floating' }) 
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: 20 }}
-            className="p-4 border-t border-white/10 bg-black/40 flex-shrink-0"
+            className="p-4 border-t border-border-1 bg-surface-inset flex-shrink-0"
           >
             <div className="space-y-3">
               <div className="flex flex-wrap gap-1.5 mb-3">
@@ -458,7 +458,7 @@ const AIChatbot: React.FC<AIChatbotProps> = ({ onClose, variant = 'floating' }) 
                       'px-2.5 py-1 rounded-full text-[10px] font-medium transition-all',
                       selectedCategory === cat.id || (cat.id === 'all' && !selectedCategory)
                         ? 'bg-gold text-dark font-semibold shadow-sm shadow-gold/20'
-                        : 'bg-white/5 text-white/50 hover:bg-white/10'
+                        : 'bg-surface-1 text-ink-0/50 hover:bg-surface-2'
                     )}
                   >
                     {cat.label}
@@ -470,9 +470,9 @@ const AIChatbot: React.FC<AIChatbotProps> = ({ onClose, variant = 'floating' }) 
                   <button
                     key={faq.id}
                     onClick={(e) => handleQuestionClick(e, faq)}
-                    className="w-full text-left glass border border-white/10 hover:border-gold/30 rounded-xl px-4 py-2.5 transition-all group flex items-center justify-between"
+                    className="w-full text-left glass border border-border-1 hover:border-gold/30 rounded-xl px-4 py-2.5 transition-all group flex items-center justify-between"
                   >
-                    <span className="text-sm text-white/80 group-hover:text-white">
+                    <span className="text-sm text-ink-0/80 group-hover:text-ink-0">
                       {faq.question}
                     </span>
                     <ArrowRight className="w-4 h-4 text-gold/50 group-hover:text-gold transition-all" />
@@ -485,8 +485,8 @@ const AIChatbot: React.FC<AIChatbotProps> = ({ onClose, variant = 'floating' }) 
       </AnimatePresence>
 
       {/* Footer */}
-      <div className="px-4 py-2 border-t border-white/5 bg-black/30 text-center flex-shrink-0">
-        <span className="text-[10px] text-white/25">{langData.footer}</span>
+      <div className="px-4 py-2 border-t border-border-1 bg-surface-inset text-center flex-shrink-0">
+        <span className="text-[10px] text-ink-0/25">{langData.footer}</span>
       </div>
     </div>
   )

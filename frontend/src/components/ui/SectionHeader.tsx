@@ -28,17 +28,17 @@ export const SectionHeader: React.FC<SectionHeaderProps> = ({
       direction="up"
     >
       {eyebrow && (
-        <span className="mb-3 block text-xs font-semibold uppercase tracking-[0.18em] text-gold">
+        <span className="eyebrow mb-3 block text-xs font-semibold uppercase tracking-[0.18em] text-gold">
           {eyebrow}
         </span>
       )}
 
-      <h2 className={`text-3xl font-bold font-outfit text-white sm:text-4xl ${align === 'center' ? 'lg:text-5xl' : ''}`}>
+      <h2 className={`text-3xl font-bold font-outfit text-ink-0 sm:text-4xl ${align === 'center' ? 'lg:text-5xl' : ''}`}>
         {title}
       </h2>
 
       {subtitle && (
-        <p className={`mt-4 text-base text-white/55 sm:text-lg ${align === 'center' ? 'max-w-2xl' : 'max-w-xl'}`}>
+        <p className={`mt-4 text-base text-ink-3 sm:text-lg ${align === 'center' ? 'max-w-2xl' : 'max-w-xl'}`}>
           {subtitle}
         </p>
       )}

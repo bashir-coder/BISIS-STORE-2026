@@ -5,8 +5,37 @@ export default {
     "./index.html",
     "./src/**/*.{js,ts,jsx,tsx}",
   ],
+  // Unified card system (Phase 3). Always shipped so the whole family
+  // survives purge even before every variant has a call site.
+  safelist: [
+    "card",
+    "card-default",
+    "card-featured",
+    "card-interactive",
+    "card-pricing",
+    "card-pricing-focal",
+    "card-status",
+    "card-status-success",
+    "card-status-info",
+    "card-is-active",
+    "card-accent-bar",
+    "card-eyebrow",
+    "card-title",
+    "card-body",
+    "card-meta",
+    "card-pad",
+    "card-pad-lg",
+  ],
   theme: {
     extend: {
+      zIndex: {
+        '-10': '-10',
+        '-20': '-20',
+        '-50': '-50',
+      },
+      transitionTimingFunction: {
+        premium: 'cubic-bezier(0.22, 1, 0.36, 1)',
+      },
       colors: {
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",
@@ -45,13 +74,15 @@ export default {
           DEFAULT: "#D4AF37",
           light: "#F0C94A",
           bright: "#FFE58A",
-          dark: "#B8960C",
+          deep: "#9F7A18",
+          text: "#F0C94A",
         },
-        emerald: {
-          DEFAULT: "#00A878",
-          light: "#19D3A2",
-          bright: "#55F0C2",
-          dark: "#00684D",
+        blue: {
+          DEFAULT: "#2F7BFF",
+          light: "#60A5FA",
+          bright: "#93C5FD",
+          deep: "#1D5FD8",
+          text: "#60A5FA",
         },
         dark: {
           DEFAULT: "#020304",
@@ -63,7 +94,7 @@ export default {
       },
       boxShadow: {
         'gold-neon': '0 0 14px rgba(212, 175, 55, 0.35), 0 0 28px rgba(212, 175, 55, 0.15)',
-        'emerald-neon': '0 0 14px rgba(0, 168, 120, 0.35), 0 0 28px rgba(0, 168, 120, 0.15)',
+        'blue-neon': '0 0 14px rgba(47, 123, 255, 0.35), 0 0 28px rgba(47, 123, 255, 0.15)',
         'glass': 'inset 0 1px 0 rgba(255, 255, 255, 0.05), 0 18px 48px rgba(0, 0, 0, 0.35)',
       },
       fontFamily: {

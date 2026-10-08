@@ -9,10 +9,14 @@ import {
   ChevronDown,
   LogOut,
   ShieldCheck,
+  Sun,
+  Moon,
 } from 'lucide-react'
 import { useLanguage } from '../contexts/LanguageContext'
+import { useTheme } from '../contexts/ThemeContext'
 import { LANGUAGES } from '../utils/env'
 import { cn } from '../lib/utils'
+import { useNavLinks } from '../lib/nav-links'
 import { supabase } from '../lib/supabase'
 
 interface UserProfile {
@@ -26,6 +30,7 @@ interface UserProfile {
 const Header: React.FC = () => {
   const { t } = useTranslation()
   const { currentLang, changeLanguage } = useLanguage()
+  const { theme, toggleTheme } = useTheme()
 
   const [isScrolled, setIsScrolled] = useState(false)
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
@@ -115,24 +120,13 @@ const Header: React.FC = () => {
     }
   }, [])
 
-  // Main navigation
+  const { publicLinks, chatLink } = useNavLinks()
+
   const navLinks = [
-    {
-      to: '/',
-      label: t('nav.home'),
-    },
-    {
-      to: '/packages',
-      label: t('nav.packages'),
-    },
-    {
-      to: '/chat',
-      label: t('nav.chat'),
-    },
-    {
-      to: '/contact',
-      label: t('nav.contact'),
-    },
+    publicLinks[0],
+    publicLinks[1],
+    chatLink,
+    publicLinks[publicLinks.length - 1],
   ]
 
   const isActive = (path: string) => location.pathname === path
@@ -172,7 +166,7 @@ const Header: React.FC = () => {
       className={cn(
         'fixed top-0 left-0 right-0 z-50 transition-all duration-500',
         isScrolled
-          ? 'bg-black/60 backdrop-blur-xl border-b border-white/10 shadow-lg shadow-black/40'
+          ? 'bg-surface-inset backdrop-blur-xl border-b border-border-1 shadow-lg shadow-black/40'
           : 'bg-transparent'
       )}
     >
@@ -184,7 +178,7 @@ const Header: React.FC = () => {
             className="flex items-center gap-3 group"
             aria-label="BİŞİŞ"
           >
-            <div className="relative w-12 h-12 rounded-xl overflow-hidden border-2 border-gold/50 shadow-lg shadow-gold/40 group-hover:border-gold group-hover:shadow-[0_0_20px_rgba(212,175,55,0.55)] group-hover:scale-105 transition-all duration-300">
+            <div className="relative w-12 h-12 rounded-xl overflow-hidden border-2 border-gold/50 shadow-lg shadow-gold/40 group-hover:border-gold neon-hover-gold-4 group-hover:scale-105 transition-all duration-300 neon-active-indicator">
               <img
                 src="/BİŞİŞ-logo.jpg"
                 alt="BİŞİŞ"
@@ -192,7 +186,7 @@ const Header: React.FC = () => {
               />
             </div>
 
-            <span className="text-2xl font-bold font-outfit text-white tracking-wider group-hover:text-gold transition-colors drop-shadow-[0_0_8px_rgba(212,175,55,0.3)]">
+            <span className="text-2xl font-bold font-outfit text-ink-0 tracking-wider group-hover:text-gold transition-colors neon-drop-gold-2">
               BİŞİŞ
             </span>
           </Link>
@@ -204,12 +198,12 @@ const Header: React.FC = () => {
                 key={link.to}
                 to={link.to}
                 aria-current={isActive(link.to) ? 'page' : undefined}
-                className={cn(
-                  'relative px-4 py-2 rounded-lg text-sm font-medium transition-all duration-300',
-                  isActive(link.to)
-                    ? 'text-gold bg-gold/10'
-                    : 'text-white/70 hover:text-white hover:bg-white/5'
-                )}
+                  className={cn(
+                    'relative px-4 py-2 rounded-lg text-sm font-medium transition-all duration-300 neon-border-hover',
+                    isActive(link.to)
+                      ? 'text-gold bg-gold/10 neon-active-indicator'
+                      : 'text-ink-2 hover:text-ink-0 hover:bg-surface-1'
+                  )}
               >
                 {link.label}
               </Link>
@@ -218,6 +212,19 @@ const Header: React.FC = () => {
 
           {/* Right Section */}
           <div className="flex items-center gap-3">
+            {/* Theme Toggle */}
+            <button
+              type="button"
+              onClick={toggleTheme}
+              aria-label="Toggle theme"
+              className="flex items-center gap-2 px-3 py-2 rounded-lg text-sm text-ink-2 hover:text-ink-0 hover:bg-surface-1 transition-all"
+            >
+              {theme === 'dark' ? <Moon className="w-4 h-4" /> : <Sun className="w-4 h-4" />}
+              <span className="hidden sm:inline">
+                {theme === 'dark' ? 'Dark' : 'Light'}
+              </span>
+            </button>
+
             {/* Language Selector */}
             <div className="relative">
               <button
@@ -226,7 +233,7 @@ const Header: React.FC = () => {
                 aria-expanded={isLangOpen}
                 aria-haspopup="menu"
                 aria-label={t('nav.language')}
-                className="flex items-center gap-2 px-3 py-2 rounded-lg text-sm text-white/70 hover:text-white hover:bg-white/5 transition-all"
+              className="flex items-center gap-2 px-3 py-2 rounded-lg text-sm text-ink-2 hover:text-ink-0 hover:bg-surface-1 transition-all"
               >
                 <Globe className="w-4 h-4" />
 
@@ -254,7 +261,7 @@ const Header: React.FC = () => {
                           'w-full px-4 py-3 text-sm text-left transition-colors flex items-center justify-between',
                           currentLang === lang.code
                             ? 'text-gold bg-gold/10'
-                            : 'text-white/70 hover:text-white hover:bg-white/5'
+                              : 'text-ink-2 hover:text-ink-0 hover:bg-surface-1'
                         )}
                       >
                         {lang.name}
@@ -287,12 +294,12 @@ const Header: React.FC = () => {
                         className="w-7 h-7 rounded-full object-cover border border-gold/40"
                       />
                     ) : (
-                      <div className="w-7 h-7 rounded-full bg-gradient-to-br from-gold to-emerald-dark text-black font-bold text-xs flex items-center justify-center shadow-inner">
+                      <div className="w-7 h-7 rounded-full bg-gradient-to-br from-gold to-blue-deep text-ink-0 font-bold text-xs flex items-center justify-center shadow-inner">
                         {initialLetter}
                       </div>
                     )}
 
-                    <span className="text-sm font-medium text-white max-w-[120px] truncate">
+                    <span className="text-sm font-medium text-ink-0 max-w-[120px] truncate">
                       {displayName}
                     </span>
 
@@ -323,19 +330,19 @@ const Header: React.FC = () => {
                           scale: 0.95,
                         }}
                         transition={{ duration: 0.18 }}
-                        className="absolute top-full mt-2 right-0 w-64 glass-card border border-gold/30 rounded-2xl p-2 shadow-2xl shadow-black/80 backdrop-blur-2xl z-50 text-start"
+                        className="absolute top-full mt-2 right-0 w-64 card card-default p-2 shadow-2xl shadow-black/80 backdrop-blur-2xl z-50 text-start"
                       >
-                        <div className="px-3 py-2.5 border-b border-white/10">
-                          <p className="text-sm font-semibold text-white truncate">
+                        <div className="px-3 py-2.5 border-b border-border-1">
+                          <p className="text-sm font-semibold text-ink-0 truncate">
                             {displayName}
                           </p>
 
-                          <p className="text-xs text-white/40 truncate">
+                          <p className="text-xs text-ink-3 truncate">
                             {userProfile.email}
                           </p>
 
-                          <div className="mt-1.5 inline-flex items-center gap-1.5 px-2 py-0.5 rounded-full bg-emerald/10 border border-emerald/20 text-[10px] text-emerald-light font-medium">
-                            <span className="w-1.5 h-1.5 rounded-full bg-emerald-light animate-pulse" />
+                          <div className="mt-1.5 inline-flex items-center gap-1.5 px-2 py-0.5 rounded-full bg-gold/10 border border-gold/20 text-[10px] text-gold-light font-medium">
+                            <span className="w-1.5 h-1.5 rounded-full bg-gold-light animate-pulse" />
 
                             {userProfile.role === 'admin'
                               ? t('admin.admin')
@@ -347,14 +354,14 @@ const Header: React.FC = () => {
                             <Link
                               to="/admin"
                               onClick={() => setIsUserMenuOpen(false)}
-                              className="flex items-center gap-2.5 px-3 py-2 text-sm text-white/80 hover:text-gold hover:bg-gold/10 rounded-xl transition-colors"
+                              className="flex items-center gap-2.5 px-3 py-2 text-sm text-ink-1 hover:text-gold hover:bg-gold/10 rounded-xl transition-colors"
                             >
-                              <ShieldCheck className="w-4 h-4 text-emerald-light" />
+                              <ShieldCheck className="w-4 h-4 text-gold-light" />
                               <span>{t('admin.admin')}</span>
                             </Link>
                          )}
 
-                        <div className="pt-1.5 border-t border-white/10">
+                        <div className="pt-1.5 border-t border-border-1">
                           <button
                             type="button"
                             onClick={handleLogout}
@@ -372,7 +379,7 @@ const Header: React.FC = () => {
                 <>
                   <Link
                     to="/login"
-                    className="px-4 py-2 text-sm font-medium text-white/70 hover:text-white transition-colors"
+                    className="px-4 py-2 text-sm font-medium text-ink-2 hover:text-ink-0 transition-colors"
                   >
                     {t('nav.login')}
                   </Link>
@@ -398,7 +405,7 @@ const Header: React.FC = () => {
                   ? t('nav.close_menu')
                   : t('nav.open_menu')
               }
-              className="lg:hidden p-2 text-white/70 hover:text-white"
+              className="lg:hidden p-2 text-ink-2 hover:text-ink-0"
             >
               {isMobileMenuOpen ? (
                 <X className="w-6 h-6" />
@@ -418,7 +425,7 @@ const Header: React.FC = () => {
             animate={{ opacity: 1, height: 'auto' }}
             exit={{ opacity: 0, height: 0 }}
             id="mobile-navigation"
-            className="lg:hidden glass border-t border-white/5"
+            className="lg:hidden glass border-t border-border-1"
           >
             <div className="section-padding py-6 space-y-2">
               {userProfile && (
@@ -430,17 +437,17 @@ const Header: React.FC = () => {
                       className="w-10 h-10 rounded-full object-cover border border-gold/40"
                     />
                   ) : (
-                    <div className="w-10 h-10 rounded-full bg-gradient-to-br from-gold to-emerald-dark text-black font-bold text-sm flex items-center justify-center">
+                    <div className="w-10 h-10 rounded-full bg-gradient-to-br from-gold to-blue-deep text-ink-0 font-bold text-sm flex items-center justify-center">
                       {initialLetter}
                     </div>
                   )}
 
                   <div className="min-w-0 flex-1">
-                    <p className="text-sm font-semibold text-white truncate">
+                    <p className="text-sm font-semibold text-ink-0 truncate">
                       {displayName}
                     </p>
 
-                    <p className="text-xs text-white/40 truncate">
+                    <p className="text-xs text-ink-3 truncate">
                       {userProfile.email}
                     </p>
                   </div>
@@ -456,7 +463,7 @@ const Header: React.FC = () => {
                     'block px-4 py-3 rounded-lg text-sm font-medium transition-all',
                     isActive(link.to)
                       ? 'text-gold bg-gold/10'
-                      : 'text-white/70 hover:text-white hover:bg-white/5'
+                       : 'text-ink-2 hover:text-ink-0 hover:bg-surface-1'
                   )}
                 >
                   {link.label}
@@ -464,6 +471,15 @@ const Header: React.FC = () => {
               ))}
 
               <div className="pt-4 flex flex-col gap-2">
+                <button
+                  type="button"
+                  onClick={() => { toggleTheme(); setIsMobileMenuOpen(false) }}
+                   className="flex items-center justify-center gap-2 px-4 py-3 rounded-lg text-sm font-medium text-ink-2 hover:text-ink-0 hover:bg-surface-1 transition-all"
+                >
+                  {theme === 'dark' ? <Sun className="w-4 h-4" /> : <Moon className="w-4 h-4" />}
+                  {theme === 'dark' ? 'Light Mode' : 'Dark Mode'}
+                </button>
+
                 {userProfile ? (
                   <>
                     {userProfile.role === 'admin' && (

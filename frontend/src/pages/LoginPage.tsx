@@ -23,7 +23,7 @@ const LoginPage = () => {
   const [submitting, setSubmitting] = useState(false)
 
   useEffect(() => {
-    if (!loading && user) navigate('/dashboard', { replace: true })
+    if (!loading && user) navigate('/introduction', { replace: true })
   }, [loading, navigate, user])
 
   const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
@@ -39,11 +39,11 @@ const LoginPage = () => {
     try {
       if (mode === 'login') {
         await login(email.trim(), password)
-        navigate('/dashboard')
+        navigate('/introduction')
       } else {
         const data = await register(email.trim(), password, fullName.trim() || email.split('@')[0])
         const signupResult = data && typeof data === 'object' ? data as { session?: unknown } : null
-        if (signupResult?.session) navigate('/dashboard')
+        if (signupResult?.session) navigate('/introduction')
         else setNotice(t('auth.signup_success'))
       }
     } catch (caught: unknown) {
@@ -67,7 +67,7 @@ const LoginPage = () => {
         token: credentialResponse.credential,
       })
       if (authError) throw authError
-      navigate('/dashboard')
+      navigate('/introduction')
     } catch (caught: unknown) {
       setError(axios.isAxiosError(caught) ? caught.response?.data?.message || t('notifications.error') : caught instanceof Error ? caught.message : t('notifications.error'))
     }
@@ -77,10 +77,10 @@ const LoginPage = () => {
     <div className="min-h-screen flex items-center justify-center section-padding pt-32 pb-20">
       <motion.div initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} className="w-full max-w-md">
         <div className="glass rounded-2xl p-8 border-gold/10 text-center">
-          <h1 className="text-2xl font-bold text-white mb-2">
+          <h1 className="text-2xl font-bold text-ink-0 mb-2">
             {mode === 'login' ? t('auth.login') : t('auth.create_account')}
           </h1>
-          <p className="text-white/50 text-center text-sm mb-8">{t('brand.tagline')}</p>
+          <p className="text-ink-3 text-center text-sm mb-8">{t('brand.tagline')}</p>
 
           <form onSubmit={handleSubmit} className="space-y-3 text-start">
             {mode === 'signup' && (
@@ -89,7 +89,7 @@ const LoginPage = () => {
                 onChange={(event) => setFullName(event.target.value)}
                 aria-label={t('auth.full_name')}
                 placeholder={t('auth.full_name_placeholder')}
-                className="w-full bg-white/5 border border-white/10 rounded-lg px-4 py-3 text-white placeholder:text-white/30 focus:outline-none focus:border-gold/50"
+                className="w-full bg-surface-1 border border-border-1 rounded-lg px-4 py-3 text-ink-0 placeholder:text-ink-3 focus:outline-none focus:border-gold/50"
               />
             )}
             <input
@@ -99,7 +99,7 @@ const LoginPage = () => {
               onChange={(event) => setEmail(event.target.value)}
               aria-label={t('auth.email')}
               placeholder={t('auth.email')}
-              className="w-full bg-white/5 border border-white/10 rounded-lg px-4 py-3 text-white placeholder:text-white/30 focus:outline-none focus:border-gold/50"
+              className="w-full bg-surface-1 border border-border-1 rounded-lg px-4 py-3 text-ink-0 placeholder:text-ink-3 focus:outline-none focus:border-gold/50"
             />
             <input
               type="password"
@@ -109,7 +109,7 @@ const LoginPage = () => {
               onChange={(event) => setPassword(event.target.value)}
               aria-label={t('auth.password')}
               placeholder={t('auth.password')}
-              className="w-full bg-white/5 border border-white/10 rounded-lg px-4 py-3 text-white placeholder:text-white/30 focus:outline-none focus:border-gold/50"
+              className="w-full bg-surface-1 border border-border-1 rounded-lg px-4 py-3 text-ink-0 placeholder:text-ink-3 focus:outline-none focus:border-gold/50"
             />
             {error && <p className="text-red-300 text-sm" role="alert">{error}</p>}
             {notice && <p className="text-green-300 text-sm" role="status">{notice}</p>}
@@ -128,18 +128,18 @@ const LoginPage = () => {
 
           {GOOGLE_OAUTH_ENABLED ? (
             <>
-              <div className="flex items-center gap-3 my-6 text-white/30 text-xs">
-                <span className="h-px bg-white/10 flex-1" />
-                <span>{t('auth.or')}</span>
-                <span className="h-px bg-white/10 flex-1" />
-              </div>
-              <div className="flex justify-center">
-                <GoogleLogin onSuccess={handleGoogleSuccess} onError={() => setError(t('notifications.error'))} theme="filled_black" shape="pill" width="350" />
-              </div>
-            </>
-          ) : (
-            <p className="text-center text-sm text-white/40 mt-6" role="status">{t('auth.google_unavailable')}</p>
-          )}
+               <div className="flex items-center gap-3 my-6 text-ink-3 text-xs">
+                 <span className="h-px bg-surface-2 flex-1" />
+                 <span>{t('auth.or')}</span>
+                 <span className="h-px bg-surface-2 flex-1" />
+               </div>
+               <div className="flex justify-center">
+                 <GoogleLogin onSuccess={handleGoogleSuccess} onError={() => setError(t('notifications.error'))} theme="filled_black" shape="pill" width="350" />
+               </div>
+             </>
+           ) : (
+             <p className="text-center text-sm text-ink-3 mt-6" role="status">{t('auth.google_unavailable')}</p>
+           )}
         </div>
       </motion.div>
     </div>

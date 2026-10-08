@@ -102,6 +102,16 @@ docker-compose.override.yml
 *.pfx
 
 # ---------------------------------------------------------
+# Secret material directories
+# ---------------------------------------------------------
+secrets
+secrets/
+*.secret
+*.secrets
+credentials
+credentials/
+
+# ---------------------------------------------------------
 # Local uploads / generated files
 # ---------------------------------------------------------
 uploads/
