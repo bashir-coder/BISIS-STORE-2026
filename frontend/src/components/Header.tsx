@@ -17,70 +17,22 @@ import { useTheme } from '../contexts/ThemeContext'
 import { LANGUAGES } from '../utils/env'
 import { cn } from '../lib/utils'
 import { useNavLinks } from '../lib/nav-links'
-import { supabase } from '../lib/supabase'
-
-interface UserProfile {
-  id: string
-  email: string
-  fullName: string
-  avatarUrl: string
-  role: string
-}
+import { useAuth } from '../contexts/AuthContext'
 
 const Header: React.FC = () => {
   const { t } = useTranslation()
   const { currentLang, changeLanguage } = useLanguage()
   const { theme, toggleTheme } = useTheme()
+  const { user, logout } = useAuth()
 
   const [isScrolled, setIsScrolled] = useState(false)
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
   const [isLangOpen, setIsLangOpen] = useState(false)
   const [isUserMenuOpen, setIsUserMenuOpen] = useState(false)
-  const [userProfile, setUserProfile] = useState<UserProfile | null>(null)
 
   const userMenuRef = useRef<HTMLDivElement>(null)
   const navigate = useNavigate()
   const location = useLocation()
-
-  // Authentication
-  const checkAuth = () => {
-    void supabase.auth.getSession().then(({ data: { session } }) => {
-      if (session?.user) {
-        setUserProfile({
-          id: session.user.id,
-          email: session.user.email || '',
-          fullName:
-            session.user.user_metadata?.full_name ||
-            session.user.user_metadata?.name ||
-            '',
-          avatarUrl:
-            session.user.user_metadata?.avatar_url ||
-            session.user.user_metadata?.picture ||
-            '',
-          role:
-            session.user.app_metadata?.role ||
-            session.user.user_metadata?.role ||
-            'client',
-        })
-      } else {
-        setUserProfile(null)
-      }
-    })
-  }
-
-  useEffect(() => {
-    checkAuth()
-
-    const handleStorage = () => checkAuth()
-
-    window.addEventListener('storage', handleStorage)
-    window.addEventListener('auth-changed', handleStorage)
-
-    return () => {
-      window.removeEventListener('storage', handleStorage)
-      window.removeEventListener('auth-changed', handleStorage)
-    }
-  }, [location.pathname])
 
   // Scroll state
   useEffect(() => {
@@ -132,17 +84,9 @@ const Header: React.FC = () => {
   const isActive = (path: string) => location.pathname === path
 
   // Logout
-  const handleLogout = () => {
-    void supabase.auth.signOut()
-
-    localStorage.removeItem('BİŞİŞ_token')
-    localStorage.removeItem('BİŞİŞ_user')
-
-    setUserProfile(null)
+  const handleLogout = async () => {
+    await logout()
     setIsUserMenuOpen(false)
-
-    window.dispatchEvent(new Event('auth-changed'))
-
     navigate('/login')
   }
 
@@ -152,8 +96,8 @@ const Header: React.FC = () => {
   }
 
   const displayName =
-    userProfile?.fullName ||
-    userProfile?.email?.split('@')[0] ||
+    user?.fullName ||
+    user?.email?.split('@')[0] ||
     t('nav.dashboard')
 
   const initialLetter = (displayName || '?')[0].toUpperCase()
@@ -278,7 +222,7 @@ const Header: React.FC = () => {
 
             {/* Auth / User Profile */}
             <div className="hidden md:flex items-center gap-2">
-              {userProfile ? (
+              {user ? (
                 <div className="relative" ref={userMenuRef}>
                   <button
                     type="button"
@@ -287,9 +231,9 @@ const Header: React.FC = () => {
                     aria-haspopup="menu"
                     className="flex items-center gap-2.5 px-3 py-1.5 rounded-full border border-gold/30 bg-gold/10 hover:border-gold/60 hover:bg-gold/15 transition-all shadow-sm shadow-gold/10"
                   >
-                    {userProfile.avatarUrl ? (
+                    {user.avatarUrl ? (
                       <img
-                        src={userProfile.avatarUrl}
+                        src={user.avatarUrl}
                         alt={displayName}
                         className="w-7 h-7 rounded-full object-cover border border-gold/40"
                       />
@@ -338,19 +282,19 @@ const Header: React.FC = () => {
                           </p>
 
                           <p className="text-xs text-ink-3 truncate">
-                            {userProfile.email}
+                            {user.email}
                           </p>
 
                           <div className="mt-1.5 inline-flex items-center gap-1.5 px-2 py-0.5 rounded-full bg-gold/10 border border-gold/20 text-[10px] text-gold-light font-medium">
                             <span className="w-1.5 h-1.5 rounded-full bg-gold-light animate-pulse" />
 
-                            {userProfile.role === 'admin'
+                            {user.role === 'admin'
                               ? t('admin.admin')
                               : t('nav.client')}
                           </div>
                         </div>
 
-                        {userProfile.role === 'admin' && (
+                        {user.role === 'admin' && (
                             <Link
                               to="/admin"
                               onClick={() => setIsUserMenuOpen(false)}
@@ -428,11 +372,11 @@ const Header: React.FC = () => {
             className="lg:hidden glass border-t border-border-1"
           >
             <div className="section-padding py-6 space-y-2">
-              {userProfile && (
+              {user && (
                 <div className="mb-4 p-3 rounded-2xl border border-gold/20 bg-gold/[0.06] flex items-center gap-3">
-                  {userProfile.avatarUrl ? (
+                  {user.avatarUrl ? (
                     <img
-                      src={userProfile.avatarUrl}
+                      src={user.avatarUrl}
                       alt={displayName}
                       className="w-10 h-10 rounded-full object-cover border border-gold/40"
                     />
@@ -448,7 +392,7 @@ const Header: React.FC = () => {
                     </p>
 
                     <p className="text-xs text-ink-3 truncate">
-                      {userProfile.email}
+                      {user.email}
                     </p>
                   </div>
                 </div>
@@ -480,9 +424,9 @@ const Header: React.FC = () => {
                   {theme === 'dark' ? 'Light Mode' : 'Dark Mode'}
                 </button>
 
-                {userProfile ? (
+                {user ? (
                   <>
-                    {userProfile.role === 'admin' && (
+                    {user.role === 'admin' && (
                       <Link
                         to="/admin"
                         onClick={() => setIsMobileMenuOpen(false)}
