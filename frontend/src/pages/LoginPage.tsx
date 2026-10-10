@@ -13,13 +13,10 @@ const GOOGLE_OAUTH_ENABLED = import.meta.env.VITE_ENABLE_GOOGLE_OAUTH === 'true'
 const LoginPage = () => {
   const { t } = useTranslation()
   const navigate = useNavigate()
-  const { user, loading, login, register } = useAuth()
-  const [mode, setMode] = useState<'login' | 'signup'>(() => window.location.pathname === '/register' ? 'signup' : 'login')
+  const { user, loading, login } = useAuth()
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
-  const [fullName, setFullName] = useState('')
   const [error, setError] = useState('')
-  const [notice, setNotice] = useState('')
   const [submitting, setSubmitting] = useState(false)
 
   useEffect(() => {
@@ -29,7 +26,6 @@ const LoginPage = () => {
   const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault()
     setError('')
-    setNotice('')
     if (password.length < 8) {
       setError(t('auth.password_min'))
       return
@@ -37,15 +33,8 @@ const LoginPage = () => {
 
     setSubmitting(true)
     try {
-      if (mode === 'login') {
-        await login(email.trim(), password)
-        navigate('/introduction')
-      } else {
-        const data = await register(email.trim(), password, fullName.trim() || email.split('@')[0])
-        const signupResult = data && typeof data === 'object' ? data as { session?: unknown } : null
-        if (signupResult?.session) navigate('/introduction')
-        else setNotice(t('auth.signup_success'))
-      }
+      await login(email.trim(), password)
+      navigate('/introduction')
     } catch (caught: unknown) {
       const message = caught instanceof Error ? caught.message : t('notifications.error')
       setError(message)
@@ -60,7 +49,6 @@ const LoginPage = () => {
       return
     }
     setError('')
-    setNotice('')
     try {
       const { error: authError } = await supabase.auth.signInWithIdToken({
         provider: 'google',
@@ -78,20 +66,11 @@ const LoginPage = () => {
       <motion.div initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} className="w-full max-w-md">
         <div className="glass rounded-2xl p-8 border-gold/10 text-center">
           <h1 className="text-2xl font-bold text-ink-0 mb-2">
-            {mode === 'login' ? t('auth.login') : t('auth.create_account')}
+            {t('auth.login')}
           </h1>
           <p className="text-ink-3 text-center text-sm mb-8">{t('brand.tagline')}</p>
 
           <form onSubmit={handleSubmit} className="space-y-3 text-start">
-            {mode === 'signup' && (
-              <input
-                value={fullName}
-                onChange={(event) => setFullName(event.target.value)}
-                aria-label={t('auth.full_name')}
-                placeholder={t('auth.full_name_placeholder')}
-                className="w-full bg-surface-1 border border-border-1 rounded-lg px-4 py-3 text-ink-0 placeholder:text-ink-3 focus:outline-none focus:border-gold/50"
-              />
-            )}
             <input
               type="email"
               required
@@ -112,34 +91,25 @@ const LoginPage = () => {
               className="w-full bg-surface-1 border border-border-1 rounded-lg px-4 py-3 text-ink-0 placeholder:text-ink-3 focus:outline-none focus:border-gold/50"
             />
             {error && <p className="text-red-300 text-sm" role="alert">{error}</p>}
-            {notice && <p className="text-green-300 text-sm" role="status">{notice}</p>}
             <button type="submit" disabled={submitting} className="w-full btn-primary disabled:opacity-50">
-              {submitting ? t('dashboard.loading') : mode === 'login' ? t('auth.submit') : t('auth.create_account')}
+              {submitting ? t('dashboard.loading') : t('auth.submit')}
             </button>
           </form>
 
-          <button
-            type="button"
-            onClick={() => { setMode(mode === 'login' ? 'signup' : 'login'); setError(''); setNotice('') }}
-            className="text-gold/80 hover:text-gold text-sm mt-4"
-          >
-            {mode === 'login' ? t('auth.switch_to_signup') : t('auth.switch_to_login')}
-          </button>
-
           {GOOGLE_OAUTH_ENABLED ? (
             <>
-               <div className="flex items-center gap-3 my-6 text-ink-3 text-xs">
-                 <span className="h-px bg-surface-2 flex-1" />
-                 <span>{t('auth.or')}</span>
-                 <span className="h-px bg-surface-2 flex-1" />
-               </div>
-               <div className="flex justify-center">
-                 <GoogleLogin onSuccess={handleGoogleSuccess} onError={() => setError(t('notifications.error'))} theme="filled_black" shape="pill" width="350" />
-               </div>
-             </>
-           ) : (
-             <p className="text-center text-sm text-ink-3 mt-6" role="status">{t('auth.google_unavailable')}</p>
-           )}
+              <div className="flex items-center gap-3 my-6 text-ink-3 text-xs">
+                <span className="h-px bg-surface-2 flex-1" />
+                <span>{t('auth.or')}</span>
+                <span className="h-px bg-surface-2 flex-1" />
+              </div>
+              <div className="flex justify-center">
+                <GoogleLogin onSuccess={handleGoogleSuccess} onError={() => setError(t('notifications.error'))} theme="filled_black" shape="pill" width="350" />
+              </div>
+            </>
+          ) : (
+            <p className="text-center text-sm text-ink-3 mt-6" role="status">{t('auth.google_unavailable')}</p>
+          )}
         </div>
       </motion.div>
     </div>

@@ -17,7 +17,6 @@ interface AuthContextType {
   login: (email: string, password: string) => Promise<unknown>;
   loginWithGoogle: () => Promise<unknown>;
   logout: () => Promise<void>;
-  register: (email: string, password: string, fullName: string) => Promise<unknown>;
   updateProfile: (newData: Partial<AuthUser>) => void;
 }
 
@@ -78,16 +77,6 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
     localStorage.removeItem('BİŞİŞ_token');
   };
 
-  const register = async (email: string, password: string, fullName: string) => {
-    const { data, error } = await supabase.auth.signUp({
-      email,
-      password,
-      options: { data: { full_name: fullName } },
-    });
-    if (error) throw error;
-    return data;
-  };
-
   const updateProfile = (newData: Partial<AuthUser>) => {
     setUser((prev) => (prev ? { ...prev, ...newData } : null));
   };
@@ -100,7 +89,6 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
         login,
         loginWithGoogle,
         logout,
-        register,
         updateProfile,
       }}
     >

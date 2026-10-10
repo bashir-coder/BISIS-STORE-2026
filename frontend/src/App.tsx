@@ -228,11 +228,6 @@ const App: React.FC = () => {
               />
 
               <Route
-                path="/register"
-                element={<LoginPage />}
-              />
-
-              <Route
                 path="/verify-email"
                 element={<VerifyEmailPage />}
               />
