@@ -1,6 +1,7 @@
 import { createContext, useContext, useState, useEffect } from 'react';
 import type { User as SupabaseUser } from '@supabase/supabase-js';
-import { supabase } from '../lib/supabase';
+import { supabase } from '../lib/supabase'
+import { resolveRole } from '../lib/roles';
 
 export interface AuthUser {
   id: string;
@@ -33,7 +34,7 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
     email: authUser.email,
     fullName: authUser.user_metadata?.full_name || authUser.user_metadata?.name || '',
     avatarUrl: authUser.user_metadata?.avatar_url || authUser.user_metadata?.picture || '',
-    role: authUser.app_metadata?.role || authUser.user_metadata?.role || 'client',
+    role: resolveRole(authUser.app_metadata?.role || authUser.user_metadata?.role),
     persona_id: authUser.user_metadata?.persona_id || null,
   });
 

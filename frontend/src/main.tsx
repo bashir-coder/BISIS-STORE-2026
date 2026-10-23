@@ -12,18 +12,12 @@ import App from './App'
 import './index.css'
 
 const THEME_KEY = 'BİŞİŞ_theme'
-
-const savedTheme = (() => {
-  if (typeof window !== 'undefined') {
-    const stored = localStorage.getItem(THEME_KEY)
-    if (stored === 'light' || stored === 'dark') return stored
-  }
-  return 'dark'
-})()
-
-if (savedTheme) {
-  document.documentElement.setAttribute('data-theme', savedTheme)
+try {
+  localStorage.removeItem(THEME_KEY)
+} catch {
+  // ignore
 }
+document.documentElement.setAttribute('data-theme', 'dark')
 
 document.documentElement.classList.add('theme-transition')
 

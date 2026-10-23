@@ -9,14 +9,12 @@ import {
   ChevronRight,
   X,
   Globe,
-  Sun,
-  Moon,
 } from 'lucide-react'
 import { cn } from '../lib/utils'
 import { useNavLinks } from '../lib/nav-links'
 import { supabase } from '../lib/supabase'
+import { resolveRole } from '../lib/roles'
 import { useLanguage } from '../contexts/LanguageContext'
-import { useTheme } from '../contexts/ThemeContext'
 import { LANGUAGES } from '../utils/env'
 
 interface UserProfile {
@@ -37,7 +35,6 @@ interface SidebarProps {
 const Sidebar: React.FC<SidebarProps> = ({ collapsed, onToggle, mobileOpen, setMobileOpen }) => {
   const { t } = useTranslation()
   const { currentLang, changeLanguage } = useLanguage()
-  const { theme, toggleTheme } = useTheme()
   const location = useLocation()
   const [userProfile, setUserProfile] = useState<UserProfile | null>(null)
   const [langDropdownOpen, setLangDropdownOpen] = useState(false)
@@ -57,10 +54,10 @@ const Sidebar: React.FC<SidebarProps> = ({ collapsed, onToggle, mobileOpen, setM
             session.user.user_metadata?.avatar_url ||
             session.user.user_metadata?.picture ||
             '',
-          role:
+          role: resolveRole(
             session.user.app_metadata?.role ||
-            session.user.user_metadata?.role ||
-            'client',
+              session.user.user_metadata?.role
+          ),
         })
       } else {
         setUserProfile(null)
@@ -261,15 +258,6 @@ const Sidebar: React.FC<SidebarProps> = ({ collapsed, onToggle, mobileOpen, setM
                   </div>
                 </div>
 
-                <button
-                  type="button"
-                  onClick={toggleTheme}
-                   className="w-full flex items-center justify-center gap-2 px-3 py-2.5 rounded-xl text-sm font-medium text-ink-2 hover:text-ink-0 hover:bg-surface-1 transition-all"
-                >
-                  {theme === 'dark' ? <Sun className="w-4 h-4" /> : <Moon className="w-4 h-4" />}
-                  {!collapsed && (theme === 'dark' ? 'Light Mode' : 'Dark Mode')}
-                </button>
-
                 {userProfile ? (
                   <>
                     <div className="flex items-center gap-3 px-3 py-2 rounded-xl bg-gold/10 border border-gold/30">
@@ -469,19 +457,6 @@ const Sidebar: React.FC<SidebarProps> = ({ collapsed, onToggle, mobileOpen, setM
             </nav>
 
             <div className="p-3 border-t border-border-1 flex-shrink-0 space-y-2">
-              <button
-                type="button"
-                onClick={toggleTheme}
-                 className={cn(
-                   'w-full flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm font-medium text-ink-2 hover:text-ink-0 hover:bg-surface-1 transition-all',
-                   collapsed ? 'justify-center' : '',
-                 )}
-                title={collapsed ? 'Toggle theme' : undefined}
-              >
-                {theme === 'dark' ? <Sun className="w-5 h-5 flex-shrink-0" /> : <Moon className="w-5 h-5 flex-shrink-0" />}
-                {!collapsed && <span>{theme === 'dark' ? 'Light Mode' : 'Dark Mode'}</span>}
-              </button>
-
               {userProfile ? (
                 <>
                   <div className="flex items-center gap-3 px-3 py-2 rounded-xl bg-gold/10 border border-gold/30 mb-3">

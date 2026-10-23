@@ -7,6 +7,7 @@ import { StaggerContainer, StaggerItem } from './ui/StaggerChildren'
 
 const Footer: React.FC = () => {
   const { t } = useTranslation()
+  const isRTL = typeof document !== 'undefined' && document.documentElement.dir === 'rtl'
   const [isOpen, setIsOpen] = useState(true)
   const footerRef = useRef<HTMLElement>(null)
   const [contentHeight, setContentHeight] = useState<number | null>(null)
@@ -210,7 +211,7 @@ const Footer: React.FC = () => {
         type="button"
         onClick={toggleFooter}
         onKeyDown={handleKeyDown}
-        className="fixed bottom-6 right-6 z-50 flex h-12 w-12 items-center justify-center rounded-full border border-gold/30 bg-surface-inset backdrop-blur-xl text-gold shadow-xl shadow-black/50 transition-all duration-300 hover:border-gold neon-hover-gold-3 focus:outline-none focus:ring-2 focus:ring-gold/50 focus:ring-offset-2 focus:ring-offset-black"
+        className={`fixed bottom-6 ${isRTL ? 'left-6' : 'right-6'} z-50 flex h-12 w-12 items-center justify-center rounded-full border border-gold/30 bg-surface-inset backdrop-blur-xl text-gold shadow-xl shadow-black/50 transition-all duration-300 hover:border-gold neon-hover-gold-3 focus:outline-none focus:ring-2 focus:ring-gold/50 focus:ring-offset-2 focus:ring-offset-black`}
         aria-label={isOpen ? t('footer.collapse') : t('footer.expand')}
         aria-expanded={isOpen}
         aria-controls="footer-content"

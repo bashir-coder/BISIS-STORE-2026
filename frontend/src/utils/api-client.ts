@@ -52,12 +52,21 @@ api.interceptors.request.use(
 api.interceptors.response.use(
   (response) => response,
   (error) => {
-    // ✅ إذا كان الخطأ 401 (Unauthorized)، نعيد التوجيه إلى صفحة تسجيل الدخول
+    // 401 Unauthorized: authentication failure — log out and redirect to login.
     if (error.response?.status === 401) {
       localStorage.removeItem('BİŞİŞ_user')
       void supabase.auth.signOut()
       window.location.href = '/login'
+      return Promise.reject(error)
     }
+
+    // 403 Forbidden: authorization failure — authenticated but insufficient
+    // permissions. Do not log out; surface as a permission error so the
+    // component layer can decide how to present it.
+    if (error.response?.status === 403) {
+      return Promise.reject(error)
+    }
+
     return Promise.reject(error)
   }
 )

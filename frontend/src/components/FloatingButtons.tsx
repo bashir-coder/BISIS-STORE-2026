@@ -35,6 +35,7 @@ const FloatingButtons: React.FC = () => {
   const telegramShareUrl = 'https://t.me/share/url?url=https%3A%2F%2FBİŞİŞ.com&text=BİŞİŞ'
   const language = (document.documentElement.lang || 'en').split('-')[0] as keyof typeof socialLabels
   const labels = socialLabels[language] || socialLabels.en
+  const isRTL = language === 'ar'
 
   const scrollToTop = () => window.scrollTo({ top: 0, behavior: 'smooth' })
 
@@ -44,7 +45,7 @@ const FloatingButtons: React.FC = () => {
         initial={{ opacity: 0, x: 28, scale: 0.85 }}
         animate={{ opacity: 1, x: 0, scale: 1 }}
         transition={reducedMotion ? { duration: 0.01 } : { type: 'spring', stiffness: 260, damping: 22 }}
-        className="fixed bottom-24 right-4 z-50 flex flex-col gap-3 sm:right-6"
+        className={`fixed bottom-24 z-50 flex flex-col gap-3 ${isRTL ? 'left-4 sm:left-6' : 'right-4 sm:right-6'}`}
       >
             <a
               href={`https://wa.me/${WHATSAPP_NUMBER}`}
@@ -56,7 +57,7 @@ const FloatingButtons: React.FC = () => {
             >
               <span className="absolute inset-0 -z-10 rounded-full border border-[#25D366]/30 opacity-0 transition-all duration-300 group-hover:scale-125 group-hover:opacity-100" />
               <i aria-hidden="true" className="fa-brands fa-whatsapp text-xl" />
-              <span className="pointer-events-none absolute right-14 whitespace-nowrap rounded-lg border border-border-1 bg-surface-inset px-3 py-2 text-xs text-ink-0 opacity-0 shadow-xl transition-opacity group-hover:opacity-100 neon-glow-sm">
+              <span className={`pointer-events-none absolute ${isRTL ? 'left-14' : 'right-14'} whitespace-nowrap rounded-lg border border-border-1 bg-surface-inset px-3 py-2 text-xs text-ink-0 opacity-0 shadow-xl transition-opacity group-hover:opacity-100 neon-glow-sm`}>
                 {t('floating.whatsapp')}
               </span>
             </a>
@@ -71,24 +72,24 @@ const FloatingButtons: React.FC = () => {
             >
               <span className="absolute inset-0 -z-10 rounded-full border border-[#229ED9]/30 opacity-0 transition-all duration-300 group-hover:scale-125 group-hover:opacity-100" />
               <i aria-hidden="true" className="fa-brands fa-telegram text-xl" />
-              <span className="pointer-events-none absolute right-14 whitespace-nowrap rounded-lg border border-border-1 bg-surface-inset px-3 py-2 text-xs text-ink-0 opacity-0 shadow-xl transition-opacity group-hover:opacity-100 neon-glow-sm">
+              <span className={`pointer-events-none absolute ${isRTL ? 'left-14' : 'right-14'} whitespace-nowrap rounded-lg border border-border-1 bg-surface-inset px-3 py-2 text-xs text-ink-0 opacity-0 shadow-xl transition-opacity group-hover:opacity-100 neon-glow-sm`}>
                 {t('floating.telegram')}
               </span>
             </a>
 
             <a href="https://instagram.com/bishish_30" target="_blank" rel="noreferrer" aria-label={t('floating.instagram')} title={t('floating.instagram')} className="group relative flex h-12 w-12 items-center justify-center rounded-full border border-[#E4405F]/50 bg-[#321521]/90 text-[#E4405F] shadow-[0_0_24px_rgba(228,64,95,0.22)] backdrop-blur-xl transition-all hover:-translate-x-1 hover:bg-[#E4405F] hover:text-white">
               <i aria-hidden="true" className="fa-brands fa-instagram text-xl" />
-              <span className="pointer-events-none absolute right-14 whitespace-nowrap rounded-lg border border-border-1 bg-surface-inset px-3 py-2 text-xs text-ink-0 opacity-0 shadow-xl transition-opacity group-hover:opacity-100 neon-glow-sm">{labels.instagram}</span>
+              <span className={`pointer-events-none absolute ${isRTL ? 'left-14' : 'right-14'} whitespace-nowrap rounded-lg border border-border-1 bg-surface-inset px-3 py-2 text-xs text-ink-0 opacity-0 shadow-xl transition-opacity group-hover:opacity-100 neon-glow-sm`}>{labels.instagram}</span>
             </a>
 
             <a href="https://x.com/BİŞİŞHQ" target="_blank" rel="noreferrer" aria-label={t('floating.x')} title={t('floating.x')} className="group relative flex h-12 w-12 items-center justify-center rounded-full border border-white/25 bg-white/[0.06] text-white shadow-[0_0_24px_rgba(255,255,255,0.12)] backdrop-blur-xl transition-all hover:-translate-x-1 hover:bg-white hover:text-black">
               <i aria-hidden="true" className="fa-brands fa-x-twitter text-xl" />
-              <span className="pointer-events-none absolute right-14 whitespace-nowrap rounded-lg border border-border-1 bg-surface-inset px-3 py-2 text-xs text-ink-0 opacity-0 shadow-xl transition-opacity group-hover:opacity-100 neon-glow-sm">{labels.x}</span>
+              <span className={`pointer-events-none absolute ${isRTL ? 'left-14' : 'right-14'} whitespace-nowrap rounded-lg border border-border-1 bg-surface-inset px-3 py-2 text-xs text-ink-0 opacity-0 shadow-xl transition-opacity group-hover:opacity-100 neon-glow-sm`}>{labels.x}</span>
             </a>
 
             <a href="https://www.youtube.com/@BİŞİŞ-2030" target="_blank" rel="noreferrer" aria-label={t('floating.youtube')} title={t('floating.youtube')} className="group relative flex h-12 w-12 items-center justify-center rounded-full border border-[#FF0000]/50 bg-[#321010]/90 text-[#FF0000] shadow-[0_0_24px_rgba(255,0,0,0.22)] backdrop-blur-xl transition-all hover:-translate-x-1 hover:bg-[#FF0000] hover:text-white">
               <i aria-hidden="true" className="fa-brands fa-youtube text-xl" />
-              <span className="pointer-events-none absolute right-14 whitespace-nowrap rounded-lg border border-border-1 bg-surface-inset px-3 py-2 text-xs text-ink-0 opacity-0 shadow-xl transition-opacity group-hover:opacity-100 neon-glow-sm">{labels.youtube}</span>
+              <span className={`pointer-events-none absolute ${isRTL ? 'left-14' : 'right-14'} whitespace-nowrap rounded-lg border border-border-1 bg-surface-inset px-3 py-2 text-xs text-ink-0 opacity-0 shadow-xl transition-opacity group-hover:opacity-100 neon-glow-sm`}>{labels.youtube}</span>
             </a>
       </motion.div>}
 

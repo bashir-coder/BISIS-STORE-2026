@@ -124,7 +124,7 @@ const BisisWebGL: React.FC<BisisWebGLProps> = ({
     let bundle: SceneBundle
 
     try {
-      const sceneTheme: BisisSceneTheme = theme === 'light' ? 'light' : 'dark'
+      const sceneTheme: BisisSceneTheme = 'dark'
 
       const scene = createScene(sceneTheme)
       const camera = createCamera(width / height)
@@ -364,7 +364,7 @@ const BisisWebGL: React.FC<BisisWebGLProps> = ({
   useEffect(() => {
     const bundle = bundleRef.current
     if (!bundle) return
-    applySceneTheme(bundle.scene, theme === 'light' ? 'light' : 'dark')
+    applySceneTheme(bundle.scene, 'dark')
   }, [theme])
 
   /* Reduced motion and tab visibility only control the loop, not the scene. */
@@ -405,17 +405,10 @@ const BisisWebGL: React.FC<BisisWebGLProps> = ({
       {!webglAvailable && (
         <div
           className="absolute inset-0"
-          style={
-            theme === 'light'
-              ? {
-                  background:
-                    'linear-gradient(to bottom, rgba(140,106,30,0.16), rgba(29,95,216,0.14), transparent)',
-                }
-              : {
+          style={{
                   background:
                     'linear-gradient(to bottom, rgba(212,175,55,0.10), rgba(47,123,255,0.08), transparent)',
-                }
-          }
+                }}
         />
       )}
     </div>

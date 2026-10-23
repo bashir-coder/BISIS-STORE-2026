@@ -10,6 +10,10 @@ const __dirname = dirname(__filename)
 
 export default defineConfig({
   plugins: [react()],
+  test: {
+    environment: 'jsdom',
+    setupFiles: './src/test/setup.ts',
+  },
 
   resolve: {
     alias: {

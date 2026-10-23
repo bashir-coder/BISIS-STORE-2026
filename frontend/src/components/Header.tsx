@@ -9,11 +9,8 @@ import {
   ChevronDown,
   LogOut,
   ShieldCheck,
-  Sun,
-  Moon,
 } from 'lucide-react'
 import { useLanguage } from '../contexts/LanguageContext'
-import { useTheme } from '../contexts/ThemeContext'
 import { LANGUAGES } from '../utils/env'
 import { cn } from '../lib/utils'
 import { useNavLinks } from '../lib/nav-links'
@@ -22,7 +19,6 @@ import { useAuth } from '../contexts/AuthContext'
 const Header: React.FC = () => {
   const { t } = useTranslation()
   const { currentLang, changeLanguage } = useLanguage()
-  const { theme, toggleTheme } = useTheme()
   const { user, logout } = useAuth()
 
   const [isScrolled, setIsScrolled] = useState(false)
@@ -72,12 +68,11 @@ const Header: React.FC = () => {
     }
   }, [])
 
-  const { publicLinks, chatLink } = useNavLinks()
+  const { publicLinks } = useNavLinks()
 
   const navLinks = [
     publicLinks[0],
     publicLinks[1],
-    chatLink,
     publicLinks[publicLinks.length - 1],
   ]
 
@@ -156,19 +151,6 @@ const Header: React.FC = () => {
 
           {/* Right Section */}
           <div className="flex items-center gap-3">
-            {/* Theme Toggle */}
-            <button
-              type="button"
-              onClick={toggleTheme}
-              aria-label="Toggle theme"
-              className="flex items-center gap-2 px-3 py-2 rounded-lg text-sm text-ink-2 hover:text-ink-0 hover:bg-surface-1 transition-all"
-            >
-              {theme === 'dark' ? <Moon className="w-4 h-4" /> : <Sun className="w-4 h-4" />}
-              <span className="hidden sm:inline">
-                {theme === 'dark' ? 'Dark' : 'Light'}
-              </span>
-            </button>
-
             {/* Language Selector */}
             <div className="relative">
               <button
@@ -414,17 +396,7 @@ const Header: React.FC = () => {
                 </Link>
               ))}
 
-              <div className="pt-4 flex flex-col gap-2">
-                <button
-                  type="button"
-                  onClick={() => { toggleTheme(); setIsMobileMenuOpen(false) }}
-                   className="flex items-center justify-center gap-2 px-4 py-3 rounded-lg text-sm font-medium text-ink-2 hover:text-ink-0 hover:bg-surface-1 transition-all"
-                >
-                  {theme === 'dark' ? <Sun className="w-4 h-4" /> : <Moon className="w-4 h-4" />}
-                  {theme === 'dark' ? 'Light Mode' : 'Dark Mode'}
-                </button>
-
-                {user ? (
+              {user ? (
                   <>
                     {user.role === 'admin' && (
                       <Link
@@ -467,8 +439,7 @@ const Header: React.FC = () => {
                   </>
                 )}
               </div>
-            </div>
-          </motion.div>
+            </motion.div>
         )}
       </AnimatePresence>
     </motion.header>

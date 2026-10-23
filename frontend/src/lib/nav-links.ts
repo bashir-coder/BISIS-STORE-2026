@@ -1,5 +1,5 @@
 import { useTranslation } from 'react-i18next'
-import { Home, Package, Info, BookOpen, Briefcase, ShoppingCart, Gift, Phone, MessageSquare } from 'lucide-react'
+import { Home, Package, Info, BookOpen, Briefcase, ShoppingCart, Gift, Phone } from 'lucide-react'
 
 export type NavLink = {
   to: string
@@ -20,8 +20,6 @@ export const publicNavLinks: NavLink[] = [
   { to: '/contact', labelKey: 'nav.contact', icon: Phone },
 ]
 
-export const chatNavLink: NavLink = { to: '/chat', labelKey: 'nav.chat', icon: MessageSquare }
-
 export const authNavLinks: NavLink[] = [
   { to: '/dashboard', labelKey: 'dashboard.title', icon: Home },
   { to: '/clients', labelKey: 'nav.clients', icon: Phone },
@@ -38,11 +36,6 @@ export function useNavLinks() {
     label: t(link.labelKey),
   }))
 
-  const translatedChat = {
-    ...chatNavLink,
-    label: t(chatNavLink.labelKey),
-  }
-
   const translatedAuth = authNavLinks.map((link) => ({
     ...link,
     label: t(link.labelKey),
@@ -55,7 +48,6 @@ export function useNavLinks() {
 
   return {
     publicLinks: translatedPublic,
-    chatLink: translatedChat,
     authLinks: translatedAuth,
     adminLink: translatedAdmin,
   }

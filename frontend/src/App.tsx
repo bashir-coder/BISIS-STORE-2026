@@ -197,10 +197,10 @@ const App: React.FC = () => {
                 element={<PackagesPage />}
               />
 
-              <Route
-                path="/life-plan"
-                element={<LifePlanPage />}
-              />
+               <Route
+                 path="/life-plan"
+                 element={<LifePlanPage />}
+               />
 
               <Route
                 path="/services/life-plan"
@@ -289,10 +289,10 @@ const App: React.FC = () => {
                 element={<BlogResourcesPage />}
               />
 
-              <Route
-                path="/portfolio"
-                element={<PortfolioPage />}
-              />
+               <Route
+                 path="/portfolio"
+                 element={<PortfolioPage />}
+               />
 
               <Route
                 path="/digital-products"

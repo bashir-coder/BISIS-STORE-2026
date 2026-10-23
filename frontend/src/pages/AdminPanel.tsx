@@ -25,7 +25,7 @@ const escapeHtml = (value: unknown) => String(value ?? '')
   .replace(/"/g, '&quot;')
   .replace(/'/g, '&#039;')
 
-// ... (ط·آ¬ط¸â€¦ط¸ظ¹ط·آ¹ ط·آ§ط¸â€‍ط¸ث†ط·آ§ط·آ¬ط¸â€،ط·آ§ط·ع¾ ط·ع¾ط·آ¨ط¸â€ڑط¸â€° ط¸ئ’ط¸â€¦ط·آ§ ط¸â€،ط¸ظ¹ ط·آ¨ط·آ¯ط¸ث†ط¸â€  ط·ع¾ط·ط›ط¸ظ¹ط¸ظ¹ط·آ±)
+// ... (ط·آ¬ط¸â€¦ط¸ظ¹ط·آ¹ ط·آ§ط¸â€ط¸ث†ط·آ§ط·آ¬ط¸â€،ط·آ§ط·ع¾ ط·ع¾ط·آ¨ط¸â€ڑط¸â€° ط¸ئ’ط¸â€¦ط·آ§ ط¸â€،ط¸ظ¹ ط·آ¨ط·آ¯ط¸ث†ط¸â€  ط·ع¾ط·ط›ط¸ظ¹ط¸ظ¹ط·آ±)
 interface Order {
   id?: string
   submission_id?: string
@@ -489,7 +489,7 @@ setOrders(ordersData)
 
   // PDF generation function remains as is
   const generatePDF = async (invoiceId: number) => {
-    // ... (ط¸ئ’ط¸â€¦ط·آ§ ط¸â€،ط¸ظ¹ ط·آ¨ط·آ¯ط¸ث†ط¸â€  ط·ع¾ط·ط›ط¸ظ¹ط¸ظ¹ط·آ±) ...
+    // ... (ط¸ئ’ط¸â€¦ط·آ§ ط¸â€،ط¸ظ¹ ط·آ¨ط·آ¯ط¸ث†ط¸â€  ط·ع¾ط·ط›ط¸ظ¹ط¸ظ¹ط·آ±) ...
     try {
       const { data: invoiceData } = await api.get(`/api/invoices/${invoiceId}`)
       const container = document.createElement('div')
@@ -541,7 +541,7 @@ setOrders(ordersData)
           </tfoot>
         </table>
         <div style="margin-top: 30px; border-top: 1px solid #ddd; padding-top: 20px; text-align: center; color: #888; font-size: 12px;">
-          ط·آ´ط¸ئ’ط·آ±ط·آ§ط¸â€¹ ط¸â€‍ط·آ«ط¸â€ڑط·ع¾ط¸ئ’ ط·آ¨ط¸â€ ط·آ§. ط¸â€،ط·آ°ط¸â€، ط·آ§ط¸â€‍ط¸ظ¾ط·آ§ط·ع¾ط¸ث†ط·آ±ط·آ© ط·آµط·آ§ط·آ¯ط·آ±ط·آ© ط¸â€¦ط¸â€  Bط¤آ°ط¥â€چط¤آ°ط¥â€چ.
+          ط·آ´ط¸ئ’ط·آ±ط·آ§ط¸â€¹ ط¸â€ط·آ«ط¸â€ڑط·ع¾ط¸ئ’ ط·آ¨ط¸â€ ط·آ§. ط¸â€،ط·آ°ط¸â€، ط·آ§ط¸â€ط¸ظ¾ط·آ§ط·ع¾ط¸ث†ط·آ±ط·آ© ط·آµط·آ§ط·آ¯ط·آ±ط·آ© ط¸â€¦ط¸â€  Bط¤آ°ط¥â€چط¤آ°ط¥â€چ.
           <br>ط¸â€‍ط¸â€‍ط·ع¾ط¸ث†ط·آ§ط·آµط¸â€‍: info@Bط¤آ°ط¥â€چط¤آ°ط¥â€چ.com
         </div>
       `
