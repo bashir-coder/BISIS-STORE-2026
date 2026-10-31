@@ -36,7 +36,7 @@ const STAGING_ONLY_MIGRATIONS = new Set(['018_remove_personas_system.sql'])
 
 const migrationDir = String(
   process.env.MIGRATION_DIR ||
-    path.resolve(__dirname, '..', 'database', 'migrations'),
+    path.resolve(__dirname, '..', '..', 'database', 'migrations'),
 ).trim()
 
 async function ensureMigrationTracker() {
