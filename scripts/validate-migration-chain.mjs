@@ -27,6 +27,7 @@ const canonical = [
   '018_remove_personas_system.sql',
   '019_users_staff_policy_authoritative_role.sql',
   '020_rls_initplan_and_public_content_read.sql',
+  '021_move_execution_helpers_to_private_schema.sql',
 ]
 
 const auxiliary = ['005_execution_engine_policies.sql']
