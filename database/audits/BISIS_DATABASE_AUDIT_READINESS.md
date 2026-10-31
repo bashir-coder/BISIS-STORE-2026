@@ -288,3 +288,60 @@ reviewed working tree and must not be interpreted as validation of this
 follow-up branch. No database was modified by this work. Production remains
 untouched. Review the diff and run the project's tests plus a Staging-only
 migration dry-run/verification before merging.
+
+
+## Live Staging verification — 2026-10-31
+
+Read-only inspection was performed against Supabase project
+`ebzsffbsdezumfqlhfyq` (`bisis-platform-staging`, PostgreSQL 17.6).
+Production project was not queried or modified.
+
+Observed migration history:
+- `016_blog_post_slug_contract`
+- `014_rls_corrective_and_payment_lock_reconciled`
+- `015_rls_recursion_fix`
+- `018_remove_personas_system`
+- plus the earlier advisor-index migration.
+
+Important findings:
+- Migration `018` is present in Staging's Supabase migration history.
+- Migration `019` and `020` are not yet applied to Staging.
+- The custom `public._BİŞIŞ_migrations` tracker table is absent.
+- The public `exec_sql` RPC used by the legacy Node migration runner is also
+  absent from the inspected public function catalog. The custom runner is
+  therefore not a valid execution path for this Staging database; do not use
+  it to apply migrations. Use the supported Supabase migration workflow.
+- The live `public.users` table still has a legacy `password` column. It
+  contains no non-null values in the three currently present user rows, but
+  removal is deferred until application-wide references and deployment
+  compatibility have been verified.
+- The live `users` staff-read policy still checks
+  `auth.jwt()->>'role'`. The new `019` migration in this branch replaces
+  that check with the authoritative database role helper; it remains
+  unapplied.
+- Security Advisor reports three RLS-enabled tables with no policies:
+  `faqs`, `portfolio`, and `translations`. Migration `020` now adds
+  public SELECT access for active FAQ/portfolio rows and translations.
+- Security Advisor reports four authenticated-callable SECURITY DEFINER
+  helpers (`execution_role`, `execution_is_staff`,
+  `execution_can_access_project`, and
+  `execution_client_can_access_project`). Their RLS use is intentional in
+  the current policy architecture, but their public RPC exposure should be
+  moved behind a non-exposed schema in a separate carefully tested change.
+- Leaked-password protection is disabled in Supabase Auth. This is an Auth
+  dashboard setting and was not changed.
+- Performance Advisor reports 18 policies with row-by-row auth function
+  evaluation. Migration `020` wraps direct `auth.uid()`/`auth.jwt()`
+  calls in scalar SELECTs while preserving each policy's roles, command,
+  permissive mode, and check expressions.
+- Advisor also reports unused indexes and multiple permissive policies.
+  No indexes were dropped and no policy logic was consolidated solely from
+  lint output; these require workload and authorization review.
+
+Migration `020` was added to the GitHub feature branch and included in the
+read-only audit's canonical filename list. Its dynamic policy-recreation block
+has not yet been executed against a disposable database or Staging. Review
+and test it before application.
+
+No Staging schema changes were made during this read-only verification.
+No Production access or changes occurred.
