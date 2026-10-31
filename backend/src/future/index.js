@@ -1,12 +1,5 @@
 'use strict'
 
-/**
- * Future Core public barrel.
- * STATUS: OPT-IN ONLY — DISABLED BY DEFAULT — NOT PART OF V1 ROUTES.
- * Implementations live in focused domain modules; this file preserves the
- * existing require('../../src/future') compatibility surface.
- */
-
 const core = require('./core')
 const services = require('./services')
 const adapters = require('./adapters')

@@ -46,4 +46,3 @@ const OrderLifecycle: React.FC<OrderLifecycleProps> = ({ status, compact = false
 }
 
 export default OrderLifecycle
-

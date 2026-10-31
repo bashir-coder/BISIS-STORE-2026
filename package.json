@@ -1,8 +1,8 @@
 {
-  "name": "BİŞİŞ-platform",
+  "name": "SDACK-platform",
   "private": true,
   "version": "1.0.0",
-  "description": "BİŞİŞ V1 full-stack services platform",
+  "description": "SDACK V1 full-stack services platform",
   "scripts": {
     "typecheck": "npm --prefix frontend run typecheck",
     "build": "npm --prefix frontend run build",

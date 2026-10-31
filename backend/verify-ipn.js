@@ -34,7 +34,6 @@ function timingSafeEqualHex(expected, received) {
   return crypto.timingSafeEqual(expectedBuf, receivedBuf);
 }
 
-// Test IPN payload
 const testPayload = {
   payment_id: 123456789,
   payment_status: 'finished',
@@ -54,27 +53,22 @@ console.log('\n=== SIGNATURE TESTS ===');
 const validSig = createSignature(testPayload);
 console.log('Valid signature generated:', validSig.substring(0, 16) + '...');
 
-// Test 1: Valid signature
 console.log('\n1. Valid signature:');
 console.log('  timingSafeEqual(valid, valid):', timingSafeEqualHex(validSig, validSig));
 
-// Test 2: Invalid signature
 console.log('\n2. Invalid signature:');
 console.log('  timingSafeEqual(valid, invalid):', timingSafeEqualHex(validSig, 'invalidsignature'));
 
-// Test 3: Modified payload with old signature
 const modifiedPayload = { ...testPayload, pay_amount: 999 };
 const modifiedSig = createSignature(modifiedPayload);
 console.log('\n3. Modified payload with old signature:');
 console.log('  timingSafeEqual(validSig, modifiedSig):', timingSafeEqualHex(validSig, modifiedSig));
 
-// Test 4: Wrong currency
 const wrongCurrencyPayload = { ...testPayload, pay_currency: 'btc' };
 const wrongCurrencySig = createSignature(wrongCurrencyPayload);
 console.log('\n4. Wrong currency (btc):');
 console.log('  timingSafeEqual(validSig, wrongCurrencySig):', timingSafeEqualHex(validSig, wrongCurrencySig));
 
-// Test 5: Wrong amount
 const wrongAmountPayload = { ...testPayload, pay_amount: 50 };
 const wrongAmountSig = createSignature(wrongAmountPayload);
 console.log('\n5. Wrong amount (50 vs 100):');

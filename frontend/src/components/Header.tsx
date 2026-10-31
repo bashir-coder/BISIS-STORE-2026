@@ -30,7 +30,6 @@ const Header: React.FC = () => {
   const navigate = useNavigate()
   const location = useLocation()
 
-  // Scroll state
   useEffect(() => {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 20)
@@ -43,14 +42,12 @@ const Header: React.FC = () => {
     }
   }, [])
 
-  // Close menus on route change
   useEffect(() => {
     setIsMobileMenuOpen(false)
     setIsLangOpen(false)
     setIsUserMenuOpen(false)
   }, [location.pathname])
 
-  // Close user menu when clicking outside
   useEffect(() => {
     const handleOutsideClick = (e: MouseEvent) => {
       if (
@@ -78,7 +75,6 @@ const Header: React.FC = () => {
 
   const isActive = (path: string) => location.pathname === path
 
-  // Logout
   const handleLogout = async () => {
     await logout()
     setIsUserMenuOpen(false)
@@ -111,7 +107,7 @@ const Header: React.FC = () => {
     >
       <div className="section-padding">
         <div className="flex items-center justify-between h-20">
-          {/* Brand */}
+          {}
           <Link
             to="/"
             className="flex items-center gap-3 group"
@@ -130,7 +126,7 @@ const Header: React.FC = () => {
             </span>
           </Link>
 
-          {/* Desktop Navigation */}
+          {}
           <nav className="hidden lg:flex items-center gap-1">
             {navLinks.map((link) => (
               <Link
@@ -149,9 +145,9 @@ const Header: React.FC = () => {
             ))}
           </nav>
 
-          {/* Right Section */}
+          {}
           <div className="flex items-center gap-3">
-            {/* Language Selector */}
+            {}
             <div className="relative">
               <button
                 type="button"
@@ -202,7 +198,7 @@ const Header: React.FC = () => {
               </AnimatePresence>
             </div>
 
-            {/* Auth / User Profile */}
+            {}
             <div className="hidden md:flex items-center gap-2">
               {user ? (
                 <div className="relative" ref={userMenuRef}>
@@ -320,7 +316,7 @@ const Header: React.FC = () => {
               )}
             </div>
 
-            {/* Mobile Menu Toggle */}
+            {}
             <button
               type="button"
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
@@ -343,7 +339,7 @@ const Header: React.FC = () => {
         </div>
       </div>
 
-      {/* Mobile Menu */}
+      {}
       <AnimatePresence>
         {isMobileMenuOpen && (
           <motion.div

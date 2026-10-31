@@ -31,10 +31,6 @@ const app = express()
 const server = http.createServer(app)
 const PORT = process.env.PORT || 5000
 
-// ============================================================
-// Trust Proxy
-// ============================================================
-
 const configuredTrustProxy =
   process.env.TRUST_PROXY_HOPS
 
@@ -57,10 +53,6 @@ if (
 }
 
 app.set('trust proxy', trustProxyHops)
-
-// ============================================================
-// CORS
-// ============================================================
 
 const configuredOrigins = String(
   process.env.ALLOWED_ORIGINS || '',
@@ -111,10 +103,6 @@ app.use(
   }),
 )
 
-// ============================================================
-// Cross-Origin Opener Policy
-// ============================================================
-
 app.use((req, res, next) => {
   res.setHeader(
     'Cross-Origin-Opener-Policy',
@@ -124,36 +112,32 @@ app.use((req, res, next) => {
   next()
 })
 
-// ============================================================
-// Security Headers
-// ============================================================
-
 app.use(
   helmet({
     contentSecurityPolicy: {
       directives: {
-        defaultSrc: ["'self'"],
+        defaultSrc: ["__STRPLACEHOLDER_46__"],
 
         scriptSrc: [
-          "'self'",
-          "'unsafe-inline'",
+          "__STRPLACEHOLDER_47__",
+          "__STRPLACEHOLDER_48__",
           'https://www.google.com',
           'https://www.gstatic.com',
         ],
 
         styleSrc: [
-          "'self'",
-          "'unsafe-inline'",
+          "__STRPLACEHOLDER_51__",
+          "__STRPLACEHOLDER_52__",
         ],
 
         imgSrc: [
-          "'self'",
+          "__STRPLACEHOLDER_53__",
           'data:',
           'https://*.supabase.co',
         ],
 
         connectSrc: [
-          "'self'",
+          "__STRPLACEHOLDER_56__",
           'https://*.supabase.co',
           'https://api.openai.com',
           'https://www.google.com',
@@ -161,12 +145,12 @@ app.use(
         ],
 
         fontSrc: [
-          "'self'",
+          "__STRPLACEHOLDER_61__",
           'https://fonts.gstatic.com',
         ],
 
         frameSrc: [
-          "'self'",
+          "__STRPLACEHOLDER_63__",
           'https://www.google.com',
         ],
       },
@@ -184,15 +168,7 @@ app.use(
   }),
 )
 
-// ============================================================
-// Compression
-// ============================================================
-
 app.use(compression())
-
-// ============================================================
-// Request ID
-// ============================================================
 
 app.use((req, res, next) => {
   const incomingRequestId = String(
@@ -216,10 +192,6 @@ app.use((req, res, next) => {
   next()
 })
 
-// ============================================================
-// Body Parsing
-// ============================================================
-
 app.use(
   express.json({
     limit: '10mb',
@@ -233,10 +205,6 @@ app.use(
   }),
 )
 
-// ============================================================
-// Logging
-// ============================================================
-
 app.use(
   morgan('combined', {
     stream: {
@@ -247,14 +215,6 @@ app.use(
   }),
 )
 
-// ============================================================
-// Rate Limiting
-// ============================================================
-
-// Provider IPN endpoints are authenticated by HMAC
-// signature and must never share the client rate
-// budget: throttling them would block payment
-// confirmation for real customer orders.
 const isProviderIpnPath = (req) => {
   const url = String(req.originalUrl || '')
 
@@ -293,10 +253,6 @@ app.use(
   authLimiter,
 )
 
-// ============================================================
-// Security / reCAPTCHA v3
-// ============================================================
-
 app.post(
   '/api/security/verify-recaptcha',
   verifyRecaptcha,
@@ -309,25 +265,15 @@ app.post(
   },
 )
 
-// ============================================================
-// NOWPayments IPN
-// ============================================================
-
-// Main IPN endpoint
 app.use(
   '/api/nowpayments/ipn',
   require('./src/api/routes/nowpayments.routes'),
 )
 
-// Compatibility endpoint used by the order payment flow
 app.use(
   '/api/orders/:id/nowpayments-ipn',
   require('./src/api/routes/nowpayments.routes'),
 )
-
-// ============================================================
-// Routes
-// ============================================================
 
 app.use(
   '/api/auth',
@@ -424,10 +370,6 @@ app.use(
   require('./src/api/routes/personas.routes'),
 )
 
-// ============================================================
-// Runtime Status
-// ============================================================
-
 const runtimeStatus = () => ({
   version: backendPackage.version,
 
@@ -439,20 +381,12 @@ const runtimeStatus = () => ({
     process.env.NODE_ENV || 'development',
 })
 
-// ============================================================
-// Live
-// ============================================================
-
 app.get('/api/live', (_req, res) => {
   res.status(200).json({
     status: 'LIVE',
     ...runtimeStatus(),
   })
 })
-
-// ============================================================
-// Readiness
-// ============================================================
 
 app.get('/api/ready', async (_req, res) => {
   const databaseConfigured = Boolean(
@@ -518,10 +452,6 @@ app.get('/api/ready', async (_req, res) => {
   })
 })
 
-// ============================================================
-// Health
-// ============================================================
-
 app.get('/api/health', (_req, res) => {
   const databaseConfigured =
     Boolean(
@@ -566,15 +496,7 @@ app.get('/api/health', (_req, res) => {
   })
 })
 
-// ============================================================
-// Swagger
-// ============================================================
-
 setupSwagger(app)
-
-// ============================================================
-// Socket.IO
-// ============================================================
 
 const io = new Server(server, {
   cors: {
@@ -582,10 +504,6 @@ const io = new Server(server, {
     credentials: true,
   },
 })
-
-// ============================================================
-// Socket Authentication
-// ============================================================
 
 io.use(async (socket, next) => {
   try {
@@ -642,18 +560,14 @@ io.use(async (socket, next) => {
   }
 })
 
-// ============================================================
-// Socket Connections
-// ============================================================
-
 io.on('connection', (socket) => {
   logger.info(
     `🟢 Socket connected: ${socket.id}`,
   )
 
-  // ==========================================================
-  // Join Conversation
-  // ==========================================================
+
+
+
 
   socket.on(
     'join-conversation',
@@ -717,9 +631,9 @@ io.on('connection', (socket) => {
     },
   )
 
-  // ==========================================================
-  // Send Message
-  // ==========================================================
+
+
+
 
   socket.on(
     'send-message',
@@ -819,9 +733,9 @@ io.on('connection', (socket) => {
     },
   )
 
-  // ==========================================================
-  // Disconnect
-  // ==========================================================
+
+
+
 
   socket.on(
     'disconnect',
@@ -832,10 +746,6 @@ io.on('connection', (socket) => {
     },
   )
 })
-
-// ============================================================
-// Error Handling
-// ============================================================
 
 app.use(
   (err, req, res, _next) => {
@@ -868,10 +778,6 @@ app.use(
   },
 )
 
-// ============================================================
-// Start Server
-// ============================================================
-
 if (require.main === module) {
   server.listen(PORT, () => {
     logger.info(
@@ -889,10 +795,6 @@ if (require.main === module) {
     )
   })
 }
-
-// ============================================================
-// Graceful Shutdown
-// ============================================================
 
 let shutdownStarted = false
 
@@ -945,9 +847,5 @@ process.on(
     process.exit(1)
   },
 )
-
-// ============================================================
-// Export app for tests
-// ============================================================
 
 module.exports = app

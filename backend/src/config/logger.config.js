@@ -1,10 +1,8 @@
 const winston = require('winston')
 const path = require('path')
 
-// تحديد مستوى التسجيل حسب البيئة
 const level = process.env.LOG_LEVEL || (process.env.NODE_ENV === 'production' ? 'info' : 'debug')
 
-// تنسيق السجلات
 const format = winston.format.combine(
   winston.format.timestamp({ format: 'YYYY-MM-DD HH:mm:ss' }),
   winston.format.errors({ stack: true }),
@@ -12,7 +10,6 @@ const format = winston.format.combine(
   winston.format.json()
 )
 
-// نقل إلى Console مع تنسيق جميل في التطوير
 const transports = [
   new winston.transports.Console({
     format: winston.format.combine(
@@ -25,13 +22,12 @@ const transports = [
   })
 ]
 
-// في الإنتاج، نكتب الملفات أيضاً
 if (process.env.NODE_ENV === 'production') {
   transports.push(
     new winston.transports.File({
       filename: path.join(__dirname, '../../logs/error.log'),
       level: 'error',
-      maxsize: 5242880, // 5MB
+      maxsize: 5242880,
       maxFiles: 5,
     }),
     new winston.transports.File({
@@ -49,7 +45,6 @@ const logger = winston.createLogger({
   exitOnError: false,
 })
 
-// دالة مساعدة لإنشاء Logger مع Context
 const createLogger = (context) => {
   return {
     info: (message, meta = {}) => logger.info(`[${context}] ${message}`, meta),

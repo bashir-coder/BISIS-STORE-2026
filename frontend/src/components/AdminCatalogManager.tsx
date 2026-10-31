@@ -212,4 +212,3 @@ const AdminCatalogManager = () => {
 }
 
 export default AdminCatalogManager
-

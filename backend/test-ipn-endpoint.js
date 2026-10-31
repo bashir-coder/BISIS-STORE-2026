@@ -24,11 +24,11 @@ function createSignature(payload) {
 
 async function testIPN() {
   console.log('=== TESTING IPN ENDPOINT ===\n');
-  
-  // Use existing order 104
+
+
   const orderId = 104;
-  
-  // Test 1: Valid signature
+
+
   console.log('1. Valid signature test:');
   const validPayload = {
     payment_id: 999001,
@@ -44,7 +44,7 @@ async function testIPN() {
     created_at: new Date().toISOString(),
     updated_at: new Date().toISOString()
   };
-  
+
   const validSig = createSignature(validPayload);
   try {
     const response = await axios.post(`${BASE_URL}/api/orders/${orderId}/nowpayments-ipn`, validPayload, {
@@ -55,8 +55,8 @@ async function testIPN() {
   } catch (e) {
     console.log('  Error:', e.response?.data || e.message);
   }
-  
-  // Test 2: Invalid signature
+
+
   console.log('\n2. Invalid signature test:');
   try {
     const response = await axios.post(`${BASE_URL}/api/orders/${orderId}/nowpayments-ipn`, validPayload, {
@@ -67,8 +67,8 @@ async function testIPN() {
   } catch (e) {
     console.log('  Expected error:', e.response?.data || e.message);
   }
-  
-  // Test 3: Wrong currency
+
+
   console.log('\n3. Wrong currency (btc) test:');
   const wrongCurrencyPayload = { ...validPayload, pay_currency: 'btc' };
   const wrongCurrencySig = createSignature(wrongCurrencyPayload);
@@ -81,8 +81,8 @@ async function testIPN() {
   } catch (e) {
     console.log('  Expected error:', e.response?.data || e.message);
   }
-  
-  // Test 4: Wrong amount
+
+
   console.log('\n4. Wrong amount test:');
   const wrongAmountPayload = { ...validPayload, pay_amount: 50 };
   const wrongAmountSig = createSignature(wrongAmountPayload);
@@ -95,8 +95,8 @@ async function testIPN() {
   } catch (e) {
     console.log('  Expected error:', e.response?.data || e.message);
   }
-  
-  // Test 5: Replay protection - send same IPN twice
+
+
   console.log('\n5. Replay protection test (sending same IPN twice):');
   const replayPayload = {
     payment_id: 999002,
@@ -112,10 +112,10 @@ async function testIPN() {
     created_at: new Date().toISOString(),
     updated_at: new Date().toISOString()
   };
-  
+
   const replaySig = createSignature(replayPayload);
-  
-  // First request
+
+
   console.log('  First request:');
   try {
     const response = await axios.post(`${BASE_URL}/api/orders/${orderId}/nowpayments-ipn`, replayPayload, {
@@ -126,8 +126,8 @@ async function testIPN() {
   } catch (e) {
     console.log('  Error:', e.response?.data || e.message);
   }
-  
-  // Second request (same payload)
+
+
   console.log('  Second request (replay):');
   try {
     const response = await axios.post(`${BASE_URL}/api/orders/${orderId}/nowpayments-ipn`, replayPayload, {
@@ -138,8 +138,8 @@ async function testIPN() {
   } catch (e) {
     console.log('  Error:', e.response?.data || e.message);
   }
-  
-  // Third request (replay again)
+
+
   console.log('  Third request (replay again):');
   try {
     const response = await axios.post(`${BASE_URL}/api/orders/${orderId}/nowpayments-ipn`, replayPayload, {
@@ -150,12 +150,12 @@ async function testIPN() {
   } catch (e) {
     console.log('  Error:', e.response?.data || e.message);
   }
-  
-  // Test 6: Downgrade protection - try to change verified to pending
+
+
   console.log('\n6. Downgrade protection test (verified -> pending):');
   const downgradePayload = {
     payment_id: 999003,
-    payment_status: 'waiting', // This maps to 'pending'
+    payment_status: 'waiting',
     pay_address: '0x1234567890abcdef',
     price_amount: 300,
     price_currency: 'usd',
@@ -167,7 +167,7 @@ async function testIPN() {
     created_at: new Date().toISOString(),
     updated_at: new Date().toISOString()
   };
-  
+
   const downgradeSig = createSignature(downgradePayload);
   try {
     const response = await axios.post(`${BASE_URL}/api/orders/${orderId}/nowpayments-ipn`, downgradePayload, {

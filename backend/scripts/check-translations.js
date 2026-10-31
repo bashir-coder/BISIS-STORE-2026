@@ -5,7 +5,6 @@ const root = path.resolve(__dirname, '../..')
 const fallbackPath = path.join(root, 'frontend/src/i18n-fallback.ts')
 const fallbackText = fs.readFileSync(fallbackPath, 'utf8')
 
-// Parse the fallbackResources object from the TypeScript file
 const eqIdx = fallbackText.indexOf('= {')
 const objStart = eqIdx + 2
 let depth = 0
@@ -19,7 +18,6 @@ for (let i = objStart; i < fallbackText.length; i++) {
 }
 const resources = JSON.parse(fallbackText.slice(objStart, objEnd).replace(/,\s*([}\]])/g, '$1'))
 
-// Collect all keys across languages
 const allKeys = new Set([
   ...Object.keys(resources.ar?.common || {}),
   ...Object.keys(resources.en?.common || {}),

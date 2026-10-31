@@ -19,7 +19,7 @@ const adminClient = createClient(supabaseUrl, serviceRoleKey, {
   console.log('===== POST-015 FIX VERIFICATION =====')
   console.log('Testing if RLS recursion is fixed...\n')
 
-  // Create a real authenticated user to test with
+
   const testEmail = `postfix-verify-${Date.now()}@test.com`
   const { data: createData } = await adminClient.auth.admin.createUser({
     email: testEmail,
@@ -42,7 +42,7 @@ const adminClient = createClient(supabaseUrl, serviceRoleKey, {
   const token = signInData.session.access_token
   console.log('Test user created and authenticated:', createData.user.id)
 
-  // Test 1: SELECT users (was RECURSION before fix)
+
   console.log('\n--- TEST 1: SELECT /users as authenticated ---')
   const res1 = await fetch(`${supabaseUrl}/rest/v1/users?select=id,email,role&limit=3`, {
     headers: {
@@ -57,7 +57,7 @@ const adminClient = createClient(supabaseUrl, serviceRoleKey, {
   console.log(`Recursion: ${hasRecursion1 ? 'YES - FIX FAILED' : 'NO - FIX WORKING'}`)
   console.log(`Response: ${text1.substring(0, 200)}`)
 
-  // Test 2: SELECT orders (was RECURSION before fix)
+
   console.log('\n--- TEST 2: SELECT /orders as authenticated ---')
   const res2 = await fetch(`${supabaseUrl}/rest/v1/orders?select=id,user_id,status&limit=3`, {
     headers: {
@@ -72,7 +72,7 @@ const adminClient = createClient(supabaseUrl, serviceRoleKey, {
   console.log(`Recursion: ${hasRecursion2 ? 'YES - FIX FAILED' : 'NO - FIX WORKING'}`)
   console.log(`Response: ${text2.substring(0, 200)}`)
 
-  // Test 3: SELECT invoices (was RECURSION before fix)
+
   console.log('\n--- TEST 3: SELECT /invoices as authenticated ---')
   const res3 = await fetch(`${supabaseUrl}/rest/v1/invoices?select=id,order_id&limit=3`, {
     headers: {
@@ -87,7 +87,7 @@ const adminClient = createClient(supabaseUrl, serviceRoleKey, {
   console.log(`Recursion: ${hasRecursion3 ? 'YES - FIX FAILED' : 'NO - FIX WORKING'}`)
   console.log(`Response: ${text3.substring(0, 200)}`)
 
-  // Test 4: SELECT payments (was RECURSION before fix)
+
   console.log('\n--- TEST 4: SELECT /payments as authenticated ---')
   const res4 = await fetch(`${supabaseUrl}/rest/v1/payments?select=id,order_id&limit=3`, {
     headers: {
@@ -102,7 +102,7 @@ const adminClient = createClient(supabaseUrl, serviceRoleKey, {
   console.log(`Recursion: ${hasRecursion4 ? 'YES - FIX FAILED' : 'NO - FIX WORKING'}`)
   console.log(`Response: ${text4.substring(0, 200)}`)
 
-  // Test 5: SELECT order_events (was RECURSION before fix)
+
   console.log('\n--- TEST 5: SELECT /order_events as authenticated ---')
   const res5 = await fetch(`${supabaseUrl}/rest/v1/order_events?select=id,order_id&limit=3`, {
     headers: {
@@ -117,7 +117,7 @@ const adminClient = createClient(supabaseUrl, serviceRoleKey, {
   console.log(`Recursion: ${hasRecursion5 ? 'YES - FIX FAILED' : 'NO - FIX WORKING'}`)
   console.log(`Response: ${text5.substring(0, 200)}`)
 
-  // Test 6: DELETE orders as authenticated
+
   console.log('\n--- TEST 6: DELETE /orders as authenticated ---')
   const res6 = await fetch(`${supabaseUrl}/rest/v1/orders?id=eq.99999`, {
     method: 'DELETE',
@@ -134,7 +134,7 @@ const adminClient = createClient(supabaseUrl, serviceRoleKey, {
   console.log(`Recursion: ${hasRecursion6 ? 'YES - FIX FAILED' : 'NO - FIX WORKING'}`)
   console.log(`Response: ${text6.substring(0, 200)}`)
 
-  // Test 7: Verify super_admin can see all users (staff policy still works)
+
   console.log('\n--- TEST 7: Verify staff policy works (super_admin sees users) ---')
   const res7 = await fetch(`${supabaseUrl}/rest/v1/users?select=id,email,role&limit=5`, {
     headers: {
@@ -148,9 +148,9 @@ const adminClient = createClient(supabaseUrl, serviceRoleKey, {
   console.log(`Can see users: ${data7 !== '[]' ? 'YES' : 'NO (empty)'}`)
   console.log(`Response: ${data7.substring(0, 300)}`)
 
-  // Test 8: IDOR - verify user can only see their own orders
+
   console.log('\n--- TEST 8: IDOR check (should see 0 or own orders only) ---')
-  // The test user is new and has no orders, so should see empty or be blocked
+
   const res8 = await fetch(`${supabaseUrl}/rest/v1/orders?select=id,user_id&limit=5`, {
     headers: {
       'apikey': anonKey,
@@ -162,7 +162,7 @@ const adminClient = createClient(supabaseUrl, serviceRoleKey, {
   console.log(`Status: ${res8.status}`)
   console.log(`Orders visible: ${data8}`)
 
-  // Summary
+
   console.log('\n===== VERIFICATION SUMMARY =====')
   const allFixed = !hasRecursion1 && !hasRecursion2 && !hasRecursion3 && !hasRecursion4 && !hasRecursion5 && !hasRecursion6
   console.log(`Users table:     ${hasRecursion1 ? 'STILL RECURSES' : 'FIXED'}`)
@@ -175,7 +175,7 @@ const adminClient = createClient(supabaseUrl, serviceRoleKey, {
   console.log('')
   console.log(allFixed ? '✅ ALL RECURSION ISSUES FIXED!' : '❌ SOME ISSUES REMAIN')
 
-  // Clean up
+
   await adminClient.auth.admin.deleteUser(createData.user.id)
   console.log('\nTest user cleaned up')
 })().catch(e => console.error('Fatal:', e.message))

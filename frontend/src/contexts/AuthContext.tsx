@@ -48,7 +48,6 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
       setLoading(false);
     });
 
-    // تحقق أولي
     supabase.auth.getSession().then(({ data: { session } }) => {
       if (session?.user) {
         setUser(mapUser(session.user));

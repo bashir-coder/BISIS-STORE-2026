@@ -3,9 +3,6 @@ const { authenticate } = require('../middleware/auth.middleware')
 const supabase = require('../../config/supabase.config')
 const router = express.Router()
 
-// ============================================================
-// GET /api/donations – جلب التبرعات (مع تصفية حسب المستخدم)
-// ============================================================
 router.get('/', authenticate, async (req, res) => {
   try {
     let query = supabase.from('donations').select('*')
@@ -20,9 +17,6 @@ router.get('/', authenticate, async (req, res) => {
   }
 })
 
-// ============================================================
-// POST /api/donations – إنشاء تبرع جديد
-// ============================================================
 router.post('/', authenticate, async (req, res) => {
   try {
     const { amount, cause, message, is_anonymous, txid } = req.body

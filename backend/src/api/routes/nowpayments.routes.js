@@ -5,17 +5,9 @@ const supabase = require('../../config/supabase.config')
 
 const router = express.Router()
 
-// ============================================================
-// Configuration
-// ============================================================
-
 const IPN_SECRET = String(
   process.env.NOWPAYMENTS_IPN_SECRET_KEY || '',
 ).trim()
-
-// ============================================================
-// Helpers
-// ============================================================
 
 function sortObject(value) {
   if (Array.isArray(value)) {
@@ -154,11 +146,6 @@ function normalizeOrderId(orderId) {
   return null
 }
 
-// ============================================================
-// POST /
-// NOWPayments IPN callback
-// ============================================================
-
 router.post(
   '/',
   async (req, res) => {
@@ -213,9 +200,9 @@ router.post(
         })
       }
 
-      // ========================================================
-      // Validate payment currency
-      // ========================================================
+
+
+
 
       const payCurrency = String(
         payload.pay_currency || '',
@@ -251,9 +238,9 @@ router.post(
         })
       }
 
-      // ========================================================
-      // Resolve order
-      // ========================================================
+
+
+
 
       const orderId = normalizeOrderId(
         payload.order_id,
@@ -288,9 +275,9 @@ router.post(
         })
       }
 
-      // ========================================================
-      // Map NOWPayments status
-      // ========================================================
+
+
+
 
       const paymentStatus =
         normalizeStatus(
@@ -298,10 +285,10 @@ router.post(
         )
 
       if (!paymentStatus) {
-        // Unknown status:
-        // acknowledge it so NOWPayments does not keep
-        // retrying forever, but do not alter the order.
-        // Still record the IPN receipt timestamp for audit.
+
+
+
+
         const nowIso =
           new Date().toISOString()
 
@@ -321,20 +308,20 @@ router.post(
         })
       }
 
-      // ========================================================
-      // Verify the provider-reported invoice amount against
-      // the server-side order amount.
-      //
-      // Invoices are always created server-side with
-      // Number(order.amount ?? order.price) in USD, so a
-      // legitimate IPN must report the same price_amount.
-      // A validly-signed IPN with a different amount must
-      // never transition the order to a paid state.
-      //
-      // expected amount   = order.amount ?? order.price
-      // provider-reported = payload.price_amount
-      // actual paid       = payload.actually_paid
-      // ========================================================
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
       const expectedAmount = Number(
         order.amount ?? order.price,
@@ -360,9 +347,9 @@ router.post(
         })
       }
 
-      // A payment in progress must report a positive paid
-      // amount. Waiting, failure and expiry states
-      // legitimately report zero or no paid amount.
+
+
+
       if (
         paymentStatus === 'verified' ||
         paymentStatus === 'submitted'
@@ -384,9 +371,9 @@ router.post(
         }
       }
 
-      // ========================================================
-      // Extract useful payment data
-      // ========================================================
+
+
+
 
       const payAddress =
         payload.pay_address
@@ -420,9 +407,9 @@ router.post(
             ).trim()
           : null
 
-      // ========================================================
-      // Prevent unnecessary downgrade
-      // ========================================================
+
+
+
 
       if (
         order.payment_status ===
@@ -448,9 +435,9 @@ router.post(
         })
       }
 
-      // ========================================================
-      // Update order
-      // ========================================================
+
+
+
 
       const nowIso =
         new Date().toISOString()
@@ -475,15 +462,15 @@ router.post(
           payinHash
       }
 
-      // ========================================================
-      // Atomic state transition
-      //
-      // The update is guarded so a concurrent or later IPN
-      // can never downgrade an order that another request
-      // already moved to "verified". Refunds are exempt
-      // because a refund must be able to supersede a
-      // verified state.
-      // ========================================================
+
+
+
+
+
+
+
+
+
 
       const updateQuery = supabase
         .from('orders')
@@ -508,10 +495,10 @@ router.post(
       }
 
       if (!updatedOrder) {
-        // Another IPN already transitioned this order to a
-        // protected state. Re-read the authoritative state
-        // and acknowledge the notification idempotently
-        // instead of overwriting it.
+
+
+
+
         const {
           data: currentOrder,
         } = await supabase
@@ -555,10 +542,10 @@ router.post(
         })
       }
 
-      // ========================================================
-      // Record payment event
-      // Guard against duplicate events from NOWPayments retries
-      // ========================================================
+
+
+
+
 
       const eventPayload = {
         provider: 'nowpayments',
@@ -674,8 +661,8 @@ router.post(
           ])
 
         if (eventError) {
-          // Do not fail the IPN after the actual order
-          // update succeeded.
+
+
           console.error(
             'NOWPayments order event error:',
             eventError,
@@ -683,9 +670,9 @@ router.post(
         }
       }
 
-      // ========================================================
-      // Notifications
-      // ========================================================
+
+
+
 
       if (
         paymentStatus ===
@@ -785,9 +772,9 @@ router.post(
         }
       }
 
-      // ========================================================
-      // Success
-      // ========================================================
+
+
+
 
       return res.status(200).json({
         success: true,
@@ -830,9 +817,5 @@ router.post(
     }
   },
 )
-
-// ============================================================
-// Export
-// ============================================================
 
 module.exports = router

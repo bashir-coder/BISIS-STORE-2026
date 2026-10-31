@@ -13,9 +13,9 @@ describe('ThemeContext (dark-only)', () => {
   beforeEach(() => {
     try {
       localStorage.removeItem('BİŞİŞ_theme')
-    } catch {
-      // ignore
-    }
+} catch {
+  // ignore
+}
     document.documentElement.removeAttribute('data-theme')
   })
 

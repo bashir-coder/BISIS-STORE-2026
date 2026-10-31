@@ -63,4 +63,3 @@ describe('RequireRole', () => {
     expect(screen.getByText('dashboard')).toBeTruthy()
   })
 })
-

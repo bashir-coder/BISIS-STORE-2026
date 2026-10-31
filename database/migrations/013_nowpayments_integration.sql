@@ -1,5 +1,5 @@
 -- ============================================================
--- BİŞİŞ V1
+-- SDACK V1
 -- Migration 012: NOWPayments Integration
 -- ============================================================
 --
@@ -153,7 +153,7 @@ WHERE payment_provider IS NULL
 -- ============================================================
 
 COMMENT ON COLUMN public.orders.payment_provider IS
-  'Payment provider used for this order. BİŞİŞ V1 uses NOWPayments.';
+  'Payment provider used for this order. SDACK V1 uses NOWPayments.';
 
 COMMENT ON COLUMN public.orders.nowpayments_payment_id IS
   'NOWPayments payment identifier.';

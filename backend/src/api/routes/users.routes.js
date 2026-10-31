@@ -4,9 +4,6 @@ const supabase = require('../../config/supabase.config')
 const router = express.Router()
 const UUID_PATTERN = /^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i
 
-// ============================================================
-// GET /api/users/me – جلب profile المستخدم الحالي
-// ============================================================
 router.get('/me', authenticate, async (req, res) => {
   try {
     const { data, error } = await supabase
@@ -22,9 +19,6 @@ router.get('/me', authenticate, async (req, res) => {
   }
 })
 
-// ============================================================
-// PATCH /api/users/me/persona – حفظ تفضيل الشخصية للمستخدم الحالي
-// ============================================================
 router.patch('/me/persona', authenticate, async (req, res) => {
   try {
     const { persona_id: personaId } = req.body || {}
@@ -54,9 +48,6 @@ router.patch('/me/persona', authenticate, async (req, res) => {
   }
 })
 
-// ============================================================
-// GET /api/users – قائمة العملاء الآمنة لـClient 360 (Admin only)
-// ============================================================
 router.get('/', authenticate, authorize('admin', 'super_admin'), async (req, res) => {
   try {
     let query = supabase
@@ -80,9 +71,6 @@ router.get('/', authenticate, authorize('admin', 'super_admin'), async (req, res
   }
 })
 
-// ============================================================
-// GET /api/users/:id – جلب معلومات مستخدم
-// ============================================================
 router.get('/:id', authenticate, async (req, res) => {
   try {
     const { id } = req.params
@@ -106,9 +94,6 @@ router.get('/:id', authenticate, async (req, res) => {
   }
 })
 
-// ============================================================
-// PATCH /api/users/:id/status – تعطيل/تفعيل حساب (Admin فقط)
-// ============================================================
 router.patch('/:id/status', authenticate, authorize('admin', 'super_admin'), async (req, res) => {
   try {
     const { id } = req.params
@@ -118,7 +103,7 @@ router.patch('/:id/status', authenticate, authorize('admin', 'super_admin'), asy
       return res.status(400).json({ message: 'is_active must be a boolean' })
     }
 
-    // منع تعطيل الحساب الخاص بك
+
     if (id === req.user.id) {
       return res.status(403).json({ message: 'You cannot deactivate your own account' })
     }
@@ -134,9 +119,9 @@ router.patch('/:id/status', authenticate, authorize('admin', 'super_admin'), asy
     const { data, error } = await query.select('id, full_name, email, role, is_active').single()
 
     if (error) throw error
-    res.json({ 
+    res.json({
       message: `User ${is_active ? 'activated' : 'deactivated'} successfully`,
-      user: data 
+      user: data
     })
   } catch (err) {
     res.status(400).json({ message: 'Invalid request' })

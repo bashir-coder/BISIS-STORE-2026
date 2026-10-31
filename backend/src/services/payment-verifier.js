@@ -1,5 +1,3 @@
-// Ethereum uses Keccak-256 rather than standardized SHA3-256. Keep the known
-// canonical topic explicit so verification does not depend on a crypto package.
 const ERC20_TRANSFER_TOPIC = '0xddf252ad1be2c89b69c2b068fc378daa952ba7f163c4a11628f55a9df523b3ef'
 const HEX_ADDRESS = /^0x[0-9a-fA-F]{40}$/
 const TX_HASH = /^0x[0-9a-fA-F]{64}$/

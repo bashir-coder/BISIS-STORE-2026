@@ -3,9 +3,6 @@ const { authenticate, authorize } = require('../middleware/auth.middleware')
 const supabase = require('../../config/supabase.config')
 const router = express.Router()
 
-// ============================================================
-// GET /api/blog – جلب جميع المقالات (منشورة فقط للعامة)
-// ============================================================
 router.get('/', async (req, res) => {
   try {
     const { data, error } = await supabase
@@ -21,9 +18,6 @@ router.get('/', async (req, res) => {
   }
 })
 
-// ============================================================
-// GET /api/blog/:slug – جلب مقالة واحدة (عامة)
-// ============================================================
 router.get('/:slug', async (req, res) => {
   try {
     const { slug } = req.params
@@ -36,7 +30,7 @@ router.get('/:slug', async (req, res) => {
     if (error) throw error
     if (!data) return res.status(404).json({ message: 'Article not found' })
 
-    // زيادة عدد المشاهدات
+
     await supabase
       .from('blog_posts')
       .update({ views: (data.views || 0) + 1 })
@@ -48,9 +42,6 @@ router.get('/:slug', async (req, res) => {
   }
 })
 
-// ============================================================
-// POST /api/blog – إنشاء مقالة جديدة (Admin فقط)
-// ============================================================
 router.post('/', authenticate, authorize('admin', 'super_admin'), async (req, res) => {
   try {
     const { title, slug, content, excerpt, cover_image, tags, status } = req.body
@@ -82,9 +73,6 @@ router.post('/', authenticate, authorize('admin', 'super_admin'), async (req, re
   }
 })
 
-// ============================================================
-// PUT /api/blog/:slug – تحديث مقالة (Admin فقط)
-// ============================================================
 router.put('/:slug', authenticate, authorize('admin', 'super_admin'), async (req, res) => {
   try {
     const { slug } = req.params
@@ -118,9 +106,6 @@ router.put('/:slug', authenticate, authorize('admin', 'super_admin'), async (req
   }
 })
 
-// ============================================================
-// DELETE /api/blog/:slug – حذف مقالة (Admin فقط)
-// ============================================================
 router.delete('/:slug', authenticate, authorize('admin', 'super_admin'), async (req, res) => {
   try {
     const { slug } = req.params

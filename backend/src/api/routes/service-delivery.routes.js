@@ -150,8 +150,8 @@ const applyTemplate = async ({ projectId, templateId, actorId }) => {
 }
 
 const cleanupInitializedProject = async ({ projectId }) => {
-  // The project is newly created in this operation, so project-scoped cleanup
-  // is safer than relying on in-memory inserted-id tracking after a partial failure.
+
+
   const taskCleanup = await supabase.from('project_tasks').delete().eq('project_id', projectId)
   if (taskCleanup.error) throw taskCleanup.error
   const milestoneCleanup = await supabase.from('project_milestones').delete().eq('project_id', projectId)

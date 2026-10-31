@@ -81,7 +81,6 @@ function fail(res, status, message, code) {
   return res.status(status).json({ message, ...(code ? { code } : {}) })
 }
 
-// ---------------- Templates ----------------
 router.get('/templates', ...staffOnly, async (req, res) => {
   try {
     let query = supabase
@@ -370,7 +369,6 @@ router.delete('/templates/:templateId/milestones/:milestoneId/tasks/:taskId', ..
   }
 })
 
-// ---------------- Project structure ----------------
 router.get('/projects/:projectId/structure', ...staffOnly, async (req, res) => {
   try {
     const project = await getProjectForUser(req.params.projectId, req.user)
@@ -459,7 +457,6 @@ router.post('/projects/:projectId/apply-template', ...staffOnly, async (req, res
   }
 })
 
-// ---------------- Milestones ----------------
 router.post('/projects/:projectId/milestones', ...staffOnly, async (req, res) => {
   const { title, description = '', position, status = 'not_started', due_date: dueDate = null } = req.body || {}
   if (!textValue(title, 160) || !milestoneStatuses.includes(status)) return fail(res, 400, 'Valid milestone title and status are required')
@@ -505,7 +502,6 @@ router.patch('/projects/:projectId/milestones/:milestoneId', ...staffOnly, async
   }
 })
 
-// ---------------- Tasks ----------------
 router.post('/projects/:projectId/tasks', ...staffOnly, async (req, res) => {
   const { title, description = '', milestone_id: milestoneId = null, order_id: orderId = null, status = 'todo', priority = 'medium', assignee_id: assigneeId = null, due_at: dueAt = null, client_visible: clientVisible = false } = req.body || {}
   if (!textValue(title, 180) || !taskStatuses.includes(status) || !priorities.includes(priority)) return fail(res, 400, 'Valid task title, status, and priority are required')

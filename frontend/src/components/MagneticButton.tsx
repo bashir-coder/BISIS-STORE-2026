@@ -36,4 +36,3 @@ const MagneticButton: React.FC<MagneticButtonProps> = ({ children, className, st
 }
 
 export default MagneticButton
-

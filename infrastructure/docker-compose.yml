@@ -18,7 +18,7 @@ services:
       timeout: 10s
       retries: 3
     networks:
-      - BİŞİŞ-network
+      - SDACK-network
 
   backend:
     build:
@@ -45,7 +45,7 @@ services:
       timeout: 10s
       retries: 3
     networks:
-      - BİŞİŞ-network
+      - SDACK-network
 
   nginx:
     image: nginx:alpine
@@ -65,8 +65,8 @@ services:
       backend:
         condition: service_healthy
     networks:
-      - BİŞİŞ-network
+      - SDACK-network
 
 networks:
-  BİŞİŞ-network:
+  SDACK-network:
     driver: bridge

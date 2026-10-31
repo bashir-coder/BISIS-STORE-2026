@@ -3,9 +3,6 @@ const { authenticate, authorize } = require('../middleware/auth.middleware')
 const supabase = require('../../config/supabase.config')
 const router = express.Router()
 
-// ============================================================
-// GET /api/digital-products – جلب جميع المنتجات الرقمية (عام)
-// ============================================================
 router.get('/', async (req, res) => {
   try {
     const { data, error } = await supabase
@@ -21,9 +18,6 @@ router.get('/', async (req, res) => {
   }
 })
 
-// ============================================================
-// GET /api/digital-products/:id – جلب منتج واحد
-// ============================================================
 router.get('/:id', async (req, res) => {
   try {
     const { id } = req.params
@@ -41,9 +35,6 @@ router.get('/:id', async (req, res) => {
   }
 })
 
-// ============================================================
-// POST /api/digital-products – إنشاء منتج (Admin)
-// ============================================================
 router.post('/', authenticate, authorize('admin', 'super_admin'), async (req, res) => {
   try {
     const { name, description, price, file_url, thumbnail, category } = req.body

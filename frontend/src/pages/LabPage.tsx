@@ -246,9 +246,7 @@ const LabPage: React.FC = () => {
     <main className="min-h-screen overflow-hidden pb-24">
       <Hero />
 
-      {/* =========================================================
-          WHAT IS BİŞİŞ
-      ========================================================== */}
+      {}
       <section className="px-4 py-20 sm:px-6 lg:px-8">
         <motion.div
           {...fadeUp}
@@ -344,9 +342,7 @@ const LabPage: React.FC = () => {
 
       <div className="section-divider my-12 mx-auto" />
 
-      {/* =========================================================
-          HOW IT WORKS
-      ========================================================== */}
+      {}
       <section
         id="how-it-works"
         className="border-y border-border-1 bg-surface-1 px-4 py-20 sm:px-6 lg:px-8"
@@ -433,9 +429,7 @@ const LabPage: React.FC = () => {
         </div>
       </section>
 
-      {/* =========================================================
-          SERVICES
-      ========================================================== */}
+      {}
       <section className="px-4 py-20 sm:px-6 lg:px-8">
         <div className="mx-auto max-w-6xl">
           <motion.div
@@ -574,9 +568,7 @@ const LabPage: React.FC = () => {
 
       <div className="section-divider my-12 mx-auto" />
 
-      {/* =========================================================
-          PACKAGES
-      ========================================================== */}
+      {}
       <section className="border-y border-border-1 bg-surface-1 px-4 py-20 sm:px-6 lg:px-8">
         <div className="mx-auto max-w-6xl">
           <motion.div {...fadeUp} className="text-center">
@@ -654,9 +646,7 @@ const LabPage: React.FC = () => {
 
       <div className="section-divider my-12 mx-auto" />
 
-      {/* =========================================================
-          SERVICE ANATOMY
-      ========================================================== */}
+      {}
       <section className="px-4 py-20 sm:px-6 lg:px-8">
         <div className="mx-auto max-w-6xl">
           <motion.div {...fadeUp} className="max-w-2xl">
@@ -720,9 +710,7 @@ const LabPage: React.FC = () => {
         </div>
       </section>
 
-      {/* =========================================================
-          PAYMENTS
-      ========================================================== */}
+      {}
       <section className="border-y border-border-1 bg-surface-1 px-4 py-20 sm:px-6 lg:px-8">
         <div className="mx-auto max-w-6xl">
           <motion.div
@@ -808,9 +796,7 @@ const LabPage: React.FC = () => {
 
       <div className="section-divider my-12 mx-auto" />
 
-      {/* =========================================================
-          ORDER JOURNEY
-      ========================================================== */}
+      {}
       <section className="px-4 py-20 sm:px-6 lg:px-8">
         <div className="mx-auto max-w-6xl">
           <motion.div {...fadeUp} className="text-center">
@@ -885,9 +871,7 @@ const LabPage: React.FC = () => {
         </div>
       </section>
 
-      {/* =========================================================
-          CLIENT WORKSPACE
-      ========================================================== */}
+      {}
       <section className="border-y border-border-1 bg-surface-1 px-4 py-20 sm:px-6 lg:px-8">
         <motion.div
           {...fadeUp}
@@ -976,9 +960,7 @@ const LabPage: React.FC = () => {
 
       <div className="section-divider my-12 mx-auto" />
 
-      {/* =========================================================
-          SECURITY
-      ========================================================== */}
+      {}
       <section className="px-4 py-20 sm:px-6 lg:px-8">
         <div className="mx-auto max-w-6xl">
           <motion.div {...fadeUp} className="text-center">
@@ -1035,9 +1017,7 @@ const LabPage: React.FC = () => {
         </div>
       </section>
 
-      {/* =========================================================
-          FAQ
-      ========================================================== */}
+      {}
       <section className="border-y border-border-1 bg-surface-1 px-4 py-20 sm:px-6 lg:px-8">
         <div className="mx-auto max-w-4xl">
           <motion.div {...fadeUp} className="text-center">
@@ -1101,9 +1081,7 @@ const LabPage: React.FC = () => {
 
       <div className="section-divider my-12 mx-auto" />
 
-      {/* =========================================================
-          SYSTEM STATUS
-      ========================================================== */}
+      {}
       <section className="px-4 py-20 sm:px-6 lg:px-8">
         <motion.div
           {...fadeUp}
@@ -1177,9 +1155,7 @@ const LabPage: React.FC = () => {
         </motion.div>
       </section>
 
-      {/* =========================================================
-          ABOUT + START
-      ========================================================== */}
+      {}
       <section className="px-4 pb-10 sm:px-6 lg:px-8">
         <motion.div
           {...fadeUp}

@@ -1,4 +1,3 @@
-// frontend/src/pages/PackagesPage.tsx
 import React, { useCallback, useEffect, useMemo, useState } from 'react'
 import { AnimatePresence, motion } from 'framer-motion'
 import { ArrowRight, Check, Sparkles, SlidersHorizontal, Table2, X } from 'lucide-react'
@@ -43,7 +42,6 @@ const PackagesPage: React.FC = () => {
   const [showCalculator, setShowCalculator] = useState(false)
   const [showComparison, setShowComparison] = useState(false)
 
-  // Scope Calculator State
   const [calcSlug, setCalcSlug] = useState('growth')
 
   const fetchPackages = useCallback(async () => {
@@ -110,7 +108,7 @@ const PackagesPage: React.FC = () => {
   return (
     <div className="min-h-screen px-4 pb-36 pt-24 sm:px-6 lg:px-8">
       <div className="mx-auto max-w-7xl">
-        {/* Header Badge & Title */}
+        {}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -133,7 +131,7 @@ const PackagesPage: React.FC = () => {
             {String(t('packages.subtitle'))}
           </p>
 
-          {/* Action Bar: Calculator & Comparison Buttons */}
+          {}
           {packages.length > 0 && <div className="mt-8 flex flex-wrap items-center justify-center gap-3">
             <button
               type="button"
@@ -155,7 +153,7 @@ const PackagesPage: React.FC = () => {
           </div>}
         </motion.div>
 
-        {/* Interactive Scope Calculator */}
+        {}
         <AnimatePresence>
           {packages.length > 0 && showCalculator && (
             <motion.div
@@ -204,7 +202,7 @@ const PackagesPage: React.FC = () => {
                     </div>
                   </div>
 
-                  {/* Recommendation Card */}
+                  {}
                   <div className="rounded-2xl border border-gold/40 bg-gradient-to-br from-gold/[0.08] to-transparent p-5 flex flex-col justify-between">
                     <div>
                       <span className="text-xs uppercase tracking-widest text-gold font-semibold">
@@ -302,7 +300,7 @@ const PackagesPage: React.FC = () => {
           </section>
         )}
 
-        {/* Packages Grid */}
+        {}
         {loading ? (
           <div
             className="mx-auto max-w-2xl rounded-2xl border border-border-1 bg-surface-1 py-16 text-center text-ink-3"
@@ -425,7 +423,7 @@ const PackagesPage: React.FC = () => {
         )}
       </div>
 
-      {/* Comparison Modal */}
+      {}
       <AnimatePresence>
         {packages.length > 0 && showComparison && (
           <motion.div
@@ -497,7 +495,7 @@ const PackagesPage: React.FC = () => {
         )}
       </AnimatePresence>
 
-      {/* Selected Package Floating Bar */}
+      {}
       <AnimatePresence>
         {(selectedPackage || selectedService) && (
           <motion.div

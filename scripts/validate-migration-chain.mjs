@@ -22,6 +22,9 @@ const canonical = [
   '013_nowpayments_integration.sql',
   '014_rls_corrective_and_payment_lock.sql',
   '015_rls_recursion_fix.sql',
+  '016_blog_post_slug_contract.sql',
+  '017_persona_service_lookup_hardening.sql',
+  '018_remove_personas_system.sql',
 ]
 
 const auxiliary = ['005_execution_engine_policies.sql']

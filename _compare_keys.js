@@ -17,14 +17,13 @@ function walk(dir) {
 const allKeys = new Set();
 const noisePatterns = [
   /^\.\/pages\/|^[a-z-]+\/$/,
-  /^\/api\//,
+  /^\/api\
   /^2d$/, /^@$/, /^div$/, /^code$/, /^type$/, /^key, value$/, /^token_hash$/,
   /^html2canvas$/, /^jspdf$/, /^<br \/>$/, /^\n$/,
   /\.jsx$/, /\.ar$/, /\.en$/, /\.tr$/,
 ];
 
-const regex = /t\(['"`]([^'"`]+)['"`]\)/g;
-const regexTemplate = /t\(`([^`]+)`\)/g;
+const regex = /t\(['"__PROTECT_0__]+)['"__PROTECT_1__([^__PROTECT_2__\)/g;
 
 const files = walk(srcDir);
 const missing = [];
@@ -32,49 +31,16 @@ const present = [];
 const noise = [];
 
 // Read i18n-fallback.ts
-const fallbackContent = fs.readFileSync(path.join(srcDir, 'i18n-fallback.ts'), 'utf8');
+const fallbackContent = fs.readFileSync(path.join(srcDir, __PROTECT_10__), __PROTECT_11__);
 
 for (const file of files) {
-  const content = fs.readFileSync(file, 'utf8');
+  const content = fs.readFileSync(file, __PROTECT_12__);
   let m;
   // Simple string keys
-  const re = new RegExp(regex.source, 'g');
+  const re = new RegExp(regex.source, __PROTECT_13__);
   while ((m = re.exec(content)) !== null) {
     const key = m[1];
-    // Check if it's a template literal or interpolation
-    if (key.includes('$') || key.includes('.') === false && key.includes('/') ) {
-      noise.push({ file: path.relative(srcDir, file), key });
-      continue;
-    }
-    allKeys.add(key);
-  }
-  // Template literal keys
-  const reT = new RegExp(regexTemplate.source, 'g');
-  while ((m = reT.exec(content)) !== null) {
-    const key = m[1];
-    noise.push({ file: path.relative(srcDir, file), key, type: 'template-literal' });
-  }
-}
-
-// Remove obvious noise - keys that are not dotted
-const realKeys = new Set();
-for (const k of allKeys) {
-  if (k.includes('.') || k.includes('-') || k.includes('_')) {
-    realKeys.add(k);
-  } else if (k.length <= 3) {
-    noise.push({ key: k, reason: 'too short, no separator' });
-  } else {
-    realKeys.add(k);
-  }
-}
-
-console.log('Real keys total:', realKeys.size);
-console.log('Noise entries:', noise.length);
-
-const missingKeys = [];
-const found = [];
-for (const k of [...realKeys].sort()) {
-  if (fallbackContent.includes('"' + k + '"')) {
+    // Check if it__PROTECT_14__$__PROTECT_15__.__PROTECT_16__/__PROTECT_17__g__PROTECT_18__template-literal__PROTECT_19__.__PROTECT_20__-__PROTECT_21_____PROTECT_22__too short, no separator__PROTECT_23__Real keys total:__PROTECT_24__Noise entries:__PROTECT_25__"' + k + '"')) {
     found.push(k);
   } else {
     missingKeys.push(k);

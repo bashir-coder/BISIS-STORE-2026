@@ -115,4 +115,3 @@ const FloatingButtons: React.FC = () => {
 }
 
 export default FloatingButtons
-

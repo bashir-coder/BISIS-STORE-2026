@@ -1,4 +1,4 @@
--- BİŞİŞ Database Schema for Supabase (PostgreSQL)
+-- SDACK Database Schema for Supabase (PostgreSQL)
 
 CREATE TABLE IF NOT EXISTS users (
     id UUID PRIMARY KEY DEFAULT gen_random_uuid(),

@@ -14,7 +14,6 @@ import { useTranslate } from '../hooks/useTranslate'
 import { useAuth } from '../contexts/AuthContext'
 import ClientDeliveryHome from '../components/ClientDeliveryHome'
 
-// ====== الواجهات (Interfaces) ======
 interface Order {
   id: string
   submission_id: string
@@ -87,7 +86,6 @@ const Dashboard: React.FC = () => {
   const { user: authUser, loading: authLoading } = useAuth()
   const currentUserId = authUser?.id || null
 
-  // ====== حالات البيانات ======
   const [orders, setOrders] = useState<Order[]>([])
   const [notifications, setNotifications] = useState<Notification[]>([])
   const [tickets, setTickets] = useState<Ticket[]>([])
@@ -104,7 +102,6 @@ const Dashboard: React.FC = () => {
   const [faqs, setFaqs] = useState<FAQ[]>([])
   const [selectedFaq, setSelectedFaq] = useState<FAQ | null>(null)
 
-  // ====== جلب البيانات ======
   useEffect(() => {
     if (authLoading || !authUser) return
 
@@ -447,7 +444,7 @@ const getTicketStatusBadge = (status: string) => {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
         >
-          {/* Header */}
+          {}
           <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4 mb-8">
             <div className="flex items-center gap-4">
               <button
@@ -506,7 +503,7 @@ const getTicketStatusBadge = (status: string) => {
             </div>
           </div>
 
-          {/* Notifications Panel */}
+          {}
           {showNotifications && (
             <div className="mb-6 glass rounded-2xl border-gold/10 p-4">
               <div className="flex items-center justify-between mb-3">
@@ -618,7 +615,7 @@ const getTicketStatusBadge = (status: string) => {
 
           <ClientDeliveryHome />
 
-          {/* Stats Cards */}
+          {}
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8">
             <div className="glass rounded-2xl border-gold/5 p-4">
               <p className="text-ink-3 text-sm">
@@ -739,7 +736,7 @@ const getTicketStatusBadge = (status: string) => {
             </div>
           )}
 
-          {/* Orders List */}
+          {}
           <div className="glass rounded-3xl border-gold/5 p-6">
             <h2 className="text-lg font-semibold text-ink-0 mb-4">
               {String(t('dashboard.orders'))}
@@ -841,7 +838,7 @@ const getTicketStatusBadge = (status: string) => {
             )}
           </div>
 
-          {/* Tickets Section */}
+          {}
           <div
             id="dashboard-tickets-section"
             className="mt-8 glass rounded-3xl border-gold/5 p-6"
@@ -936,7 +933,7 @@ const getTicketStatusBadge = (status: string) => {
             )}
           </div>
 
-          {/* FAQ Section */}
+          {}
           <div className="mt-8 glass rounded-3xl border-gold/5 p-6">
             <div className="flex items-center gap-2 mb-4">
               <Sparkles className="w-5 h-5 text-gold" />
@@ -1019,7 +1016,7 @@ const getTicketStatusBadge = (status: string) => {
             </div>
           </div>
 
-          {/* Order Detail Modal */}
+          {}
           {selectedOrder && (
             <div
               className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-surface-inset backdrop-blur-sm"

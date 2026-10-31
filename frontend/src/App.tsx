@@ -64,9 +64,6 @@ const App: React.FC = () => {
   const dir = currentLang === 'ar' ? 'rtl' : 'ltr'
   const isRTL = currentLang === 'ar'
 
-  /*
-   * /verify is the one-time human verification page.
-   */
   if (location.pathname === '/verify') {
     return (
       <div dir={dir}>
@@ -85,9 +82,6 @@ const App: React.FC = () => {
     )
   }
 
-  /*
-   * Keep Supabase email verification accessible.
-   */
   if (location.pathname === '/verify-email') {
     return (
       <div
@@ -101,9 +95,6 @@ const App: React.FC = () => {
     )
   }
 
-  /*
-   * Every normal route requires one-time human verification.
-   */
   if (!verified) {
     return (
       <Navigate

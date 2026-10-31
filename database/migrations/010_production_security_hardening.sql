@@ -1,8 +1,8 @@
--- BİŞİŞ V1 — Production security hardening
+-- SDACK V1 — Production security hardening
 -- Additive/non-destructive hardening only. Do not modify historical migrations.
 -- Safe to run after migrations 001–009.
 
--- public.table_name is not part of the BİŞİŞ V1 runtime contract. If it exists
+-- public.table_name is not part of the SDACK V1 runtime contract. If it exists
 -- in an environment, fail closed without deleting any rows or the table itself.
 DO $$
 BEGIN
@@ -29,6 +29,44 @@ GRANT EXECUTE ON FUNCTION public.execution_client_can_access_project(BIGINT) TO 
 REVOKE ALL ON FUNCTION public.handle_supabase_auth_user() FROM PUBLIC, anon, authenticated;
 REVOKE ALL ON FUNCTION public.verify_payment_and_order(UUID, TEXT, TEXT, TEXT, NUMERIC, INTEGER, TEXT, TEXT, TEXT) FROM PUBLIC, anon, authenticated;
 GRANT EXECUTE ON FUNCTION public.verify_payment_and_order(UUID, TEXT, TEXT, TEXT, NUMERIC, INTEGER, TEXT, TEXT, TEXT) TO service_role;
+
+-- Ensure functions exist before hardening their search_path.
+CREATE OR REPLACE FUNCTION public.update_updated_at_column()
+RETURNS trigger
+LANGUAGE plpgsql
+SET search_path TO 'public'
+AS $function$
+BEGIN
+    NEW.updated_at = NOW();
+    RETURN NEW;
+END;
+$function$;
+
+CREATE OR REPLACE FUNCTION public.get_services_by_persona(persona_id_input integer)
+RETURNS SETOF services
+LANGUAGE sql
+SET search_path TO 'public'
+AS $function$
+    SELECT s.*
+    FROM services s
+    WHERE s.persona_ids @> jsonb_build_array(persona_id_input)
+    OR s.id IN (
+        SELECT DISTINCT
+          CASE
+            WHEN orders.service ~ '^[0-9]{1,19}$' THEN
+              CASE
+                WHEN orders.service::numeric <= 9223372036854775807
+                  THEN orders.service::bigint
+              END
+          END
+        FROM orders
+        WHERE orders.service IS NOT NULL
+          AND orders.user_id IN (
+              SELECT id FROM users
+              WHERE persona_id::text = persona_id_input::text
+          )
+    );
+$function$;
 
 -- Remove mutable search_path warnings for existing non-definer functions.
 ALTER FUNCTION public.update_updated_at_column() SET search_path = public;

@@ -44,4 +44,3 @@ const CursorAura: React.FC = () => {
 }
 
 export default CursorAura
-

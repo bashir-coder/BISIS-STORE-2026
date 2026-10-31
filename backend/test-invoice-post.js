@@ -34,17 +34,17 @@ async function run() {
     throw new Error('Missing test credentials: set BISIS_TEST_ADMIN_EMAIL, BISIS_TEST_ADMIN_PASSWORD, BISIS_TEST_CLIENT_EMAIL and BISIS_TEST_CLIENT_PASSWORD in ../.env');
   }
 
-  // Admin login
+
   const { data: adminAuth } = await supabase.auth.signInWithPassword({
     email: ADMIN_EMAIL,
     password: ADMIN_PASSWORD
   });
   const adminToken = adminAuth.session.access_token;
   const adminHeaders = { Authorization: 'Bearer ' + adminToken };
-  
+
   console.log('=== PHASE 2: INVOICE POST REGRESSION TEST ===\n');
-  
-  // Step 1: Create an order
+
+
   console.log('1. Creating order...');
   const orderRes = await axios.post(API + '/orders', {
     full_name: 'Invoice Test User',
@@ -54,8 +54,8 @@ async function run() {
   }, { headers: adminHeaders });
   const orderId = orderRes.data.id;
   console.log('   Order created:', orderId);
-  
-  // Step 2: Test POST /api/invoices (admin only endpoint)
+
+
   console.log('\n2. Testing POST /api/invoices...');
   try {
     const invoiceRes = await axios.post(API + '/invoices', {
@@ -73,8 +73,8 @@ async function run() {
     console.log('   Status:', e.response?.status);
     console.log('   Data:', e.response?.data);
   }
-  
-  // Step 3: Test duplicate protection
+
+
   console.log('\n3. Testing duplicate invoice protection...');
   try {
     await axios.post(API + '/invoices', { order_id: orderId }, { headers: adminHeaders });
@@ -82,8 +82,8 @@ async function run() {
   } catch (e) {
     console.log('   ✅ Blocked:', e.response?.data?.message || e.message);
   }
-  
-  // Step 4: Test GET invoice
+
+
   console.log('\n4. Testing GET /api/invoices/order/:orderId...');
   try {
     const getRes = await axios.get(API + '/invoices/order/' + orderId, { headers: adminHeaders });
@@ -91,27 +91,27 @@ async function run() {
   } catch (e) {
     console.log('   ❌ FAILED:', e.response?.data?.message || e.message);
   }
-  
-  // Step 5: Test PATCH invoice status
+
+
   console.log('\n5. Testing PATCH /api/invoices/:id (status transitions)...');
   try {
-    // First get the invoice ID
+
     const getRes = await axios.get(API + '/invoices/order/' + orderId, { headers: adminHeaders });
     const invoiceId = getRes.data.id;
-    
-    // Test void
+
+
     const voidRes = await axios.patch(API + '/invoices/' + invoiceId, { status: 'void' }, { headers: adminHeaders });
     console.log('   ✅ void:', voidRes.data.status);
-    
-    // Test refunded
+
+
     const refundRes = await axios.patch(API + '/invoices/' + invoiceId, { status: 'refunded' }, { headers: adminHeaders });
     console.log('   ✅ refunded:', refundRes.data.status);
-    
-    // Test issued (back)
+
+
     const issuedRes = await axios.patch(API + '/invoices/' + invoiceId, { status: 'issued' }, { headers: adminHeaders });
     console.log('   ✅ issued:', issuedRes.data.status);
-    
-    // Test invalid status
+
+
     try {
       await axios.patch(API + '/invoices/' + invoiceId, { status: 'cancelled' }, { headers: adminHeaders });
       console.log('   ❌ UNEXPECTED: Invalid status allowed');
@@ -121,8 +121,8 @@ async function run() {
   } catch (e) {
     console.log('   ❌ FAILED:', e.response?.data?.message || e.message);
   }
-  
-  // Step 6: Test client access (should work for own order)
+
+
   console.log('\n6. Testing client access to own invoice...');
   const { data: clientAuth } = await supabase.auth.signInWithPassword({
     email: CLIENT_EMAIL,
@@ -135,7 +135,7 @@ async function run() {
   } catch (e) {
     console.log('   ❌ FAILED:', e.response?.data?.message || e.message);
   }
-  
+
   console.log('\n=== PHASE 2 COMPLETE ===');
 }
 

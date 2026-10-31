@@ -54,9 +54,6 @@ const validateFaq = (body, partial = false) => {
   return { payload }
 }
 
-// ============================================================
-// Admin FAQ management
-// ============================================================
 router.get('/admin', authenticate, authorize('admin', 'super_admin'), async (req, res) => {
   try {
     const { data, error } = await supabase.from('faqs').select('*').order('order_index', { ascending: true })
@@ -115,9 +112,6 @@ router.delete('/:id', authenticate, authorize('admin', 'super_admin'), async (re
   }
 })
 
-// ============================================================
-// Public FAQs
-// ============================================================
 router.get('/', cache(600), async (req, res) => {
   try {
     const { data, error } = await supabase

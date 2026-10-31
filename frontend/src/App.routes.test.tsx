@@ -52,6 +52,3 @@ describe('App routes', () => {
     await waitFor(() => expect(screen.getAllByTestId('lifeplan-page').length).toBeGreaterThan(0))
   })
 })
-
-
-

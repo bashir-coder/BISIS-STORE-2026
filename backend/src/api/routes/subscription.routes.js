@@ -3,9 +3,6 @@ const { authenticate } = require('../middleware/auth.middleware')
 const supabase = require('../../config/supabase.config')
 const router = express.Router()
 
-// ============================================================
-// GET /api/subscriptions – جلب اشتراكات المستخدم
-// ============================================================
 router.get('/', authenticate, async (req, res) => {
   try {
     const { data, error } = await supabase
@@ -21,14 +18,11 @@ router.get('/', authenticate, async (req, res) => {
   }
 })
 
-// ============================================================
-// POST /api/subscriptions – إنشاء اشتراك جديد (Life Plan)
-// ============================================================
 router.post('/', authenticate, async (req, res) => {
   try {
     const { plan_type = 'life_plan' } = req.body
 
-    // التحقق من عدم وجود اشتراك نشط
+
     const { data: existing, error: checkError } = await supabase
       .from('subscriptions')
       .select('id')
@@ -48,7 +42,7 @@ router.post('/', authenticate, async (req, res) => {
         status: 'active',
         price: 49.00,
         started_at: new Date().toISOString(),
-        expires_at: new Date(Date.now() + 365 * 24 * 60 * 60 * 1000).toISOString() // سنة
+        expires_at: new Date(Date.now() + 365 * 24 * 60 * 60 * 1000).toISOString()
       }])
       .select()
       .single()
@@ -60,9 +54,6 @@ router.post('/', authenticate, async (req, res) => {
   }
 })
 
-// ============================================================
-// PATCH /api/subscriptions/:id – إلغاء الاشتراك
-// ============================================================
 router.patch('/:id/cancel', authenticate, async (req, res) => {
   try {
     const { id } = req.params

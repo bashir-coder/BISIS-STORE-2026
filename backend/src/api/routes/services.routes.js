@@ -67,9 +67,6 @@ const validateService = (body, partial = false) => {
   return { payload }
 }
 
-// ============================================================
-// Public catalog
-// ============================================================
 router.get('/', cache(300), async (req, res) => {
   try {
     const { data, error } = await supabase.from('services').select('*').eq('is_active', true).order('category', { ascending: true })
@@ -96,9 +93,6 @@ router.get('/filter', cache(300), async (req, res) => {
   }
 })
 
-// ============================================================
-// Admin catalog management
-// ============================================================
 router.get('/admin', authenticate, authorize('admin', 'super_admin'), async (req, res) => {
   try {
     const { data, error } = await supabase.from('services').select('*').eq('is_active', true).order('category', { ascending: true })

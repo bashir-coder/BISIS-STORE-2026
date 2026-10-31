@@ -2,10 +2,8 @@ const { createClient } = require('@supabase/supabase-js');
 require('dotenv').config({ path: '.env' });
 const supabase = createClient(process.env.SUPABASE_URL, process.env.SUPABASE_SERVICE_ROLE_KEY);
 
-// Try to get constraint via raw query using select from pg_constraint
-const query = `SELECT conname, pg_get_constraintdef(oid) as definition FROM pg_constraint WHERE conrelid = 'public.invoices'::regclass AND contype = 'c';`;
+const query = __PROTECT_0__;
 
-// Use Supabase REST API directly
 fetch(process.env.SUPABASE_URL + '/rest/v1/rpc/exec_sql', {
   method: 'POST',
   headers: {

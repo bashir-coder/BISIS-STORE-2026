@@ -16,19 +16,11 @@ const {
 
 const router = express.Router()
 
-// ============================================================
-// CONFIGURATION
-// ============================================================
-
 const staffRoles = new Set([
   'admin',
   'super_admin',
   'manager',
 ])
-
-// ============================================================
-// ACCESS CONTROL
-// ============================================================
 
 const canAccessOrder = (user, order) => {
   if (!user || !order) {
@@ -97,10 +89,6 @@ const requireStaffWorkspace = (
 
   return true
 }
-
-// ============================================================
-// MULTER
-// ============================================================
 
 const storage =
   multer.memoryStorage()
@@ -183,10 +171,6 @@ const uploadFile = (
     },
   )
 }
-
-// ============================================================
-// HELPERS
-// ============================================================
 
 const createOrder = async (
   basePayload,
@@ -275,11 +259,6 @@ const normalizeOptionalString = (
   return normalized || null
 }
 
-// ============================================================
-// 1. POST /
-// إنشاء طلب جديد
-// ============================================================
-
 router.post(
   '/',
   authenticate,
@@ -313,9 +292,9 @@ router.post(
       let selectedPackage = null
       let selectedService = null
 
-      // --------------------------------------------------------
-      // Package
-      // --------------------------------------------------------
+
+
+
 
       if (package_id) {
         const result =
@@ -350,9 +329,9 @@ router.post(
           })
         }
       } else {
-        // ------------------------------------------------------
-        // Service
-        // ------------------------------------------------------
+
+
+
 
         const result =
           await supabase
@@ -387,9 +366,9 @@ router.post(
         }
       }
 
-      // --------------------------------------------------------
-      // Amount
-      // --------------------------------------------------------
+
+
+
 
       const numericAmount =
         Number(
@@ -409,18 +388,18 @@ router.post(
         })
       }
 
-      // --------------------------------------------------------
-      // User
-      // --------------------------------------------------------
+
+
+
 
       const fullName =
         req.user?.full_name ||
         req.user?.name ||
         'Anonymous'
 
-      // --------------------------------------------------------
-      // Order payload
-      // --------------------------------------------------------
+
+
+
 
       const basePayload = {
         amount: numericAmount,
@@ -471,9 +450,9 @@ router.post(
         throw error
       }
 
-      // --------------------------------------------------------
-      // Event
-      // --------------------------------------------------------
+
+
+
 
       const {
         error: eventError,
@@ -524,11 +503,6 @@ router.post(
   },
 )
 
-// ============================================================
-// 2. POST /:id/create-payment
-// إنشاء NOWPayments Invoice
-// ============================================================
-
 router.post(
   '/:id/create-payment',
   authenticate,
@@ -538,9 +512,9 @@ router.post(
       const orderId =
         req.params.id
 
-      // --------------------------------------------------------
-      // Load order
-      // --------------------------------------------------------
+
+
+
 
       const {
         data: order,
@@ -596,9 +570,9 @@ router.post(
         })
       }
 
-      // --------------------------------------------------------
-      // Ownership
-      // --------------------------------------------------------
+
+
+
 
       if (
         order.user_id !==
@@ -610,9 +584,9 @@ router.post(
         })
       }
 
-      // --------------------------------------------------------
-      // Status protection
-      // --------------------------------------------------------
+
+
+
 
       if (
         [
@@ -637,9 +611,9 @@ router.post(
         })
       }
 
-      // --------------------------------------------------------
-      // Reuse an already-created invoice when possible
-      // --------------------------------------------------------
+
+
+
 
       if (
         order.payment_url &&
@@ -702,13 +676,13 @@ router.post(
         })
       }
 
-      // --------------------------------------------------------
-      // Acquire payment-creation lock
-      // Prevents concurrent requests from creating
-      // duplicate NOWPayments invoices for the same order.
-      // Falls back gracefully if the column does not exist yet
-      // (migration 014 not yet applied).
-      // --------------------------------------------------------
+
+
+
+
+
+
+
 
       const { data: lockClaim, error: lockError } =
         await supabase
@@ -734,13 +708,13 @@ router.post(
           ].join(', '))
           .single()
 
-      // PGRST116 ("multiple (or no) rows") means the
-      // guarded UPDATE matched zero rows: the lock is
-      // held by another request (or is stuck after a
-      // crash). Treat it as "lock held" and fail
-      // closed. Only unrelated errors (for example a
-      // missing column before migration 014) fall
-      // back to the legacy no-lock path.
+
+
+
+
+
+
+
       const lockHeldByAnotherRequest = Boolean(
         lockError &&
           (lockError.code === 'PGRST116' ||
@@ -757,8 +731,8 @@ router.post(
       } else if (lockClaim?.nowpayments_creating_lock === true) {
         lockAcquired = true
       } else if (lockClaim?.payment_url) {
-        // Another request acquired the lock and created
-        // an invoice while we were waiting
+
+
         return res.status(200).json({
           order_id: lockClaim.id || order.id,
 
@@ -805,9 +779,9 @@ router.post(
              lockClaim.nowpayments_last_ipn_at,
          })
        } else {
-         // Lock is held by another request; the UPDATE matched
-         // zero rows (lockClaim is null). Re-check for an invoice
-         // that may have been saved while we waited.
+
+
+
          const {
            data: relock,
          } = await supabase
@@ -863,8 +837,8 @@ router.post(
            })
          }
 
-         // Invoice still being created by another
-         // request — return 423 Locked
+
+
          return res.status(423).json({
            message:
              'Payment creation is in progress. ' +
@@ -874,9 +848,9 @@ router.post(
          })
        }
 
-      // --------------------------------------------------------
-      // Amount
-      // --------------------------------------------------------
+
+
+
 
       const amount = Number(
         order.amount ??
@@ -895,9 +869,9 @@ router.post(
         })
       }
 
-      // --------------------------------------------------------
-      // Public URLs
-      // --------------------------------------------------------
+
+
+
 
       const publicApiUrl =
         getPublicApiUrl()
@@ -924,9 +898,9 @@ router.post(
             )}`
           : undefined
 
-      // --------------------------------------------------------
-      // Create NOWPayments Invoice
-      // --------------------------------------------------------
+
+
+
 
       const payment =
         await createInvoice({
@@ -953,9 +927,9 @@ router.post(
             undefined,
         })
 
-      // --------------------------------------------------------
-      // Normalize response
-      // --------------------------------------------------------
+
+
+
 
       const invoiceId =
         normalizeOptionalString(
@@ -1018,9 +992,9 @@ router.post(
             )
           : null
 
-      // --------------------------------------------------------
-      // Save NOWPayments data
-      // --------------------------------------------------------
+
+
+
 
       const updatePayload = {
         payment_provider:
@@ -1112,9 +1086,9 @@ router.post(
         }
       }
 
-      // --------------------------------------------------------
-      // Event
-      // --------------------------------------------------------
+
+
+
 
       const {
         error: eventError,
@@ -1177,9 +1151,9 @@ router.post(
         )
       }
 
-      // --------------------------------------------------------
-      // Response
-      // --------------------------------------------------------
+
+
+
 
       return res
         .status(201)
@@ -1285,11 +1259,6 @@ router.post(
   },
 )
 
-// ============================================================
-// 3. GET /my-orders
-// طلبات المستخدم
-// ============================================================
-
 router.get(
   '/my-orders',
   authenticate,
@@ -1322,10 +1291,6 @@ router.get(
     }
   },
 )
-
-// ============================================================
-// 4. GET /notifications
-// ============================================================
 
 router.get(
   '/notifications',
@@ -1389,10 +1354,6 @@ router.get(
   },
 )
 
-// ============================================================
-// 5. PATCH /notifications/read-all
-// ============================================================
-
 router.patch(
   '/notifications/read-all',
   authenticate,
@@ -1440,10 +1401,6 @@ router.patch(
   },
 )
 
-// ============================================================
-// 6. PATCH /notifications/:id
-// ============================================================
-
 router.patch(
   '/notifications/:id',
   authenticate,
@@ -1488,10 +1445,6 @@ router.patch(
     }
   },
 )
-
-// ============================================================
-// 7. GET /admin/analytics
-// ============================================================
 
 router.get(
   '/admin/analytics',
@@ -1739,11 +1692,6 @@ router.get(
   },
 )
 
-// ============================================================
-// 8. GET /
-// جميع الطلبات للمدير
-// ============================================================
-
 router.get(
   '/',
   authenticate,
@@ -1904,10 +1852,6 @@ router.get(
   },
 )
 
-// ============================================================
-// 8b. GET /:id
-// جلب تفاصيل طلب (المالك أو الموظف)
-// ============================================================
 router.get(
   '/:id',
   authenticate,
@@ -1937,11 +1881,6 @@ router.get(
     }
   },
 )
-
-// ============================================================
-// 9. PATCH /:id
-// تحديث حالة الطلب
-// ============================================================
 
 router.patch(
   '/:id',
@@ -2226,9 +2165,9 @@ router.patch(
         )
       }
 
-      // --------------------------------------------------------
-      // Create invoice when order is completed
-      // --------------------------------------------------------
+
+
+
 
       if (
         status ===
@@ -2349,11 +2288,6 @@ router.patch(
     }
   },
 )
-
-// ============================================================
-// 10. POST /:id/upload
-// رفع ملف للطلب
-// ============================================================
 
 router.post(
   '/:id/upload',
@@ -2594,11 +2528,6 @@ router.post(
   },
 )
 
-// ============================================================
-// 11. GET /:id/files/:fileId/download
-// تنزيل ملف
-// ============================================================
-
 router.get(
   '/:id/files/:fileId/download',
   authenticate,
@@ -2713,9 +2642,5 @@ router.get(
     }
   },
 )
-
-// ============================================================
-// EXPORT
-// ============================================================
 
 module.exports = router

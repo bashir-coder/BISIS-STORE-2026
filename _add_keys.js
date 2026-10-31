@@ -1,21 +1,18 @@
 const fs = require('fs');
 let c = fs.readFileSync('frontend/src/i18n-fallback.ts', 'utf8');
 
-// AR: insert before admin.error_load_orders
-const arInsert = '      "admin.catalog_error": "تعذر تحميل الكتالوج الآن. يمكنك الانتقال إلى لوحة الباقات وال المحاولة مرة أخرى.",\n';
+const arInsert = __PROTECT_3__;
 c = c.replace(
-  '      "admin.error_load_orders": "تعذر تحميل_pedidos",',
-  arInsert + '      "admin.error_load_orders": "تعذر تحميل_pedidos",'
+  __PROTECT_4__,
+  arInsert + __PROTECT_5__
 );
 
-// EN: insert before admin.error_load_orders
-const enInsert = '      "admin.catalog_error": "Unable to load catalog. You can navigate to the packages page and try again.",\n';
+const enInsert = __PROTECT_6__;
 c = c.replace(
-  '      "admin.error_load_orders": "Unable to load orders",',
-  enInsert + '      "admin.error_load_orders": "Unable to load orders",'
+  __PROTECT_7__,
+  enInsert + __PROTECT_8__
 );
 
-// TR: insert before admin.error_load_orders
 const trInsert = '      "admin.catalog_error": "Katalog yüklenemedi. Paket sayfasına gidip tekrar deneyebilirsiniz.",\n';
 c = c.replace(
   '      "admin.error_load_orders": "Siparişler yüklenemiyor",',

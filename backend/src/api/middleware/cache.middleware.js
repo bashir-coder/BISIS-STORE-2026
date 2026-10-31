@@ -1,4 +1,3 @@
-// backend/src/api/middleware/cache.middleware.js
 const { logger } = require('../../config/logger.config')
 const cacheStore = new Map()
 
@@ -46,7 +45,6 @@ const clearCache = (pattern) => {
   }
 }
 
-// ✅ تصدير الدالة مباشرة
 module.exports = cache
-// ✅ تصدير clearCache كخاصية إضافية
+
 module.exports.clearCache = clearCache

@@ -1,4 +1,4 @@
--- BİŞİŞ V1 — Tickets policy isolation hotfix
+-- SDACK V1 — Tickets policy isolation hotfix
 -- Corrective only. Drops only legacy broad policies identified by read-only metadata.
 
 DROP POLICY IF EXISTS "Admins can update all tickets" ON public.tickets;

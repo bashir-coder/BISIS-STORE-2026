@@ -21,10 +21,6 @@ type SceneThemeConfig = {
   spriteScale: number
 }
 
-/**
- * Theme only ever shifts atmosphere. Brand hues are fixed in gold + blue;
- * nothing here introduces an accent colour.
- */
 const SCENE_THEME: Record<BisisSceneTheme, SceneThemeConfig> = {
   dark: {
     fog: 0x020304,
@@ -44,10 +40,6 @@ const SCENE_THEME: Record<BisisSceneTheme, SceneThemeConfig> = {
   },
 }
 
-/**
- * The scene background stays transparent so the global canvas composites over
- * the AppShell background layer instead of blacking out the page.
- */
 export const createScene = (theme: BisisSceneTheme = 'dark') => {
   const scene = new THREE.Scene()
 
@@ -59,10 +51,6 @@ export const createScene = (theme: BisisSceneTheme = 'dark') => {
   return scene
 }
 
-/**
- * Mutates atmosphere in place. Never rebuilds geometry, so a theme switch
- * cannot recreate the scene.
- */
 export const applySceneTheme = (
   scene: THREE.Scene,
   theme: BisisSceneTheme,
@@ -131,7 +119,6 @@ export const createRenderer = (
   renderer.setPixelRatio(dpr)
   renderer.setSize(width, height, false)
 
-  // Fully transparent clear. The AppShell background layer shows through.
   renderer.setClearColor(0x000000, 0)
 
   return renderer

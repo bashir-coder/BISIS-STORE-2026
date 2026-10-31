@@ -1,21 +1,4 @@
 #!/usr/bin/env node
-/**
- * BİŞİŞ V1 — Migration Runner
- *
- * Applies pending SQL migrations from database/migrations/ to the
- * configured Supabase/PostgreSQL database using the service role key.
- *
- * Migrations are applied in numeric order and are idempotent:
- * each migration is wrapped in a transaction and uses
- * ADD COLUMN IF NOT EXISTS / DROP CONSTRAINT IF EXISTS patterns.
- *
- * This script is safe to run on existing containers.
- *
- * Environment variables:
- *   SUPABASE_URL            - Supabase project URL (required)
- *   SUPABASE_SERVICE_ROLE_KEY - Service role JWT (required)
- *   MIGRATION_DIR           - Optional override for migration directory
- */
 
 const { createClient } = require('@supabase/supabase-js')
 const fs = require('fs')
@@ -64,7 +47,7 @@ async function ensureMigrationTracker() {
   })
 
   if (error) {
-    // Fallback: try direct SQL via REST if RPC is not available
+
     console.warn(
       'RPC exec_sql unavailable, using REST fallback',
     )
@@ -108,7 +91,7 @@ async function applyMigration(filename) {
 
   console.log(`Applying migration: ${filename}`)
 
-  // Split on semicolons but respect DO $$ blocks
+
   const statements = splitSql(sql)
 
   for (const statement of statements) {
@@ -142,7 +125,7 @@ function splitSql(sql) {
     const char = sql[i]
 
     if (!inDollarBlock && char === '$' && sql[i - 1] !== '$') {
-      // Check for $$ or $tag$
+
       let j = i + 1
       while (j < sql.length && /[a-zA-Z0-9_]/.test(sql[j])) {
         j++

@@ -26,7 +26,6 @@ router.get('/', authenticate, authorize('admin', 'super_admin', 'manager'), asyn
   } catch (err) { res.status(400).json({ message: 'Invalid request' }) }
 })
 
-// This is before /:id so Express cannot shadow it with the parameter route.
 router.get('/order/:orderId', authenticate, async (req, res) => {
   try {
     const { data: order, error } = await supabase.from('orders').select('id, user_id, workspace_id').eq('id', req.params.orderId).maybeSingle()

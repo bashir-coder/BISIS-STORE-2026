@@ -26,4 +26,3 @@ describe('resolveRole', () => {
     expect(resolveRole(() => {})).toBe('client')
   })
 })
-

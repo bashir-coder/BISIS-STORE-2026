@@ -15,9 +15,9 @@ export const ThemeProvider: React.FC<{ children: React.ReactNode }> = ({ childre
     document.documentElement.setAttribute('data-theme', 'dark')
     try {
       localStorage.removeItem(THEME_KEY)
-    } catch {
-      // ignore
-    }
+} catch {
+  // ignore
+}
   }, [])
 
   return <ThemeContext.Provider value={{ theme: 'dark' }}>{children}</ThemeContext.Provider>

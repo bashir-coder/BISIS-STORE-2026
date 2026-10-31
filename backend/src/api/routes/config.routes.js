@@ -2,7 +2,6 @@ const express = require('express')
 const { getPaymentConfig } = require('../../services/payment-verifier')
 const router = express.Router()
 
-// GET /api/config/wallet-address
 router.get('/wallet-address', (req, res) => {
   const config = getPaymentConfig()
   if (!config) {

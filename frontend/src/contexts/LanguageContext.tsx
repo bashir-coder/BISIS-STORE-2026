@@ -1,9 +1,9 @@
-﻿// src/contexts/LanguageContext.tsx
+﻿
 import React, { createContext, useContext, useState, useEffect } from 'react';
 import i18n from '../i18n';
 
 interface LanguageContextType {
-  currentLang: string;          // ✅ بدلاً من language
+  currentLang: string;
   changeLanguage: (lang: string) => void;
 }
 

@@ -2,9 +2,6 @@ const express = require('express')
 const supabase = require('../../config/supabase.config')
 const router = express.Router()
 
-// ============================================================
-// GET /api/personas – جلب جميع الشخصيات
-// ============================================================
 router.get('/', async (req, res) => {
   try {
     const { data, error } = await supabase

@@ -1,28 +1,22 @@
 const fs = require('fs');
 const path = require('path');
 
-// =====================================================
-// COMPREHENSIVE TRANSLATABLE TEXT INVENTORY SCANNER
-// =====================================================
+const i18nContent = fs.readFileSync(__PROTECT_2__, __PROTECT_3__);
 
-const i18nContent = fs.readFileSync('frontend/src/i18n-fallback.ts', 'utf8');
-
-// Build set of all keys in i18n-fallback.ts
 const fileKeys = new Set();
 const keyRegex = /"([^"]+)":\s+(?:"|true|false|null|\[|\d)/g;
 let m;
 while ((m = keyRegex.exec(i18nContent)) !== null) {
   fileKeys.add(m[1]);
 }
-// Remove artifacts
-['ar', 'en', 'tr', 'common'].forEach(k => fileKeys.delete(k));
 
-// Build map of key -> {ar, en, tr} values
+[__PROTECT_4__, __PROTECT_5__, __PROTECT_6__, __PROTECT_7__].forEach(k => fileKeys.delete(k));
+
 const keyValues = {};
 const langStart = {};
-langStart['ar'] = i18nContent.indexOf('"ar": {');
-langStart['en'] = i18nContent.indexOf('"en": {');
-langStart['tr'] = i18nContent.indexOf('"tr": {');
+langStart[__PROTECT_8__] = i18nContent.indexOf(__PROTECT_9__);
+langStart[__PROTECT_10__] = i18nContent.indexOf(__PROTECT_11__);
+langStart[__PROTECT_12__] = i18nContent.indexOf(__PROTECT_13__);
 const sorted = Object.entries(langStart).sort((a, b) => a[1] - b[1]);
 
 sorted.forEach(([lang, start], i) => {
@@ -33,13 +27,12 @@ sorted.forEach(([lang, start], i) => {
   while ((m = re.exec(sectionText)) !== null) {
     const key = m[1];
     const val = m[2];
-    if (['ar', 'en', 'tr', 'common'].includes(key)) continue;
+    if ([__PROTECT_14__, __PROTECT_15__, __PROTECT_16__, __PROTECT_17__].includes(key)) continue;
     if (!keyValues[key]) keyValues[key] = {};
     keyValues[key][lang] = val;
   }
 });
 
-// Walk frontend source
 function walkDir(dir) {
   let results = [];
   if (!fs.existsSync(dir)) return results;
@@ -48,71 +41,49 @@ function walkDir(dir) {
     const filePath = path.join(dir, file);
     const stat = fs.statSync(filePath);
     if (stat && stat.isDirectory()) results = results.concat(walkDir(filePath));
-    else if (path.extname(file) === '.tsx' || path.extname(file) === '.ts') results.push(filePath);
+    else if (path.extname(file) === __PROTECT_18__ || path.extname(file) === __PROTECT_19__) results.push(filePath);
   }
   return results;
 }
 
-const frontendFiles = walkDir('frontend/src');
+const frontendFiles = walkDir(__PROTECT_20__);
 
-// Detection patterns for hardcoded text
 const arabicRegex = /[\u0600-\u06FF\u0750-\u077F\u08A0-\u08FF\uFB50-\uFDFF\uFE70-\uFEFF]/;
 const latinRegex = /[a-zA-Z]/;
-const turkishChars = 'çğıİöşüÇĞİÖŞÜ';
+const turkishChars = __PROTECT_21__;
 
 function detectLanguage(str) {
-  if (arabicRegex.test(str)) return 'AR';
-  if (/[İığçöşü]/.test(str)) return 'TR';
-  if (/\b(the|and|to|of|in|for|a|is|with|you|your|this|that|we|are)\b/i.test(str)) return 'EN';
-  if (latinRegex.test(str)) return 'EN';
+  if (arabicRegex.test(str)) return __PROTECT_22__;
+  if (/[İığçöşü]/.test(str)) return __PROTECT_23__;
+  if (/\b(the|and|to|of|in|for|a|is|with|you|your|this|that|we|are)\b/i.test(str)) return __PROTECT_24__;
+  if (latinRegex.test(str)) return __PROTECT_25__;
   return null;
 }
 
 const inventory = [];
 
 frontendFiles.forEach(filePath => {
-  const code = fs.readFileSync(filePath, 'utf8');
-  const relPath = path.relative('frontend/src', filePath).replace(/\\/g, '/');
-  
-  // Skip files that are pure type definitions or configs
-  if (relPath.includes('lib/supabase') || relPath.includes('i18n.ts') || relPath.includes('i18n-fallback.ts')) return;
-  
+  const code = fs.readFileSync(filePath, __PROTECT_26__);
+  const relPath = path.relative(__PROTECT_27__, filePath).replace(/\\/g, __PROTECT_28__);
+
+  if (relPath.includes(__PROTECT_29__) || relPath.includes(__PROTECT_30__) || relPath.includes(__PROTECT_31__)) return;
+
   let lineNum = 0;
-  const lines = code.split('\n');
-  
+  const lines = code.split(__PROTECT_32__);
+
   lines.forEach((line, idx) => {
     lineNum = idx + 1;
-    
-    // Skip comments
+
     const trimmed = line.trim();
-    if (trimmed.startsWith('//') || trimmed.startsWith('*') || trimmed.startsWith('/*')) return;
-    
-    // 1. String literals in JS/TS (single or double quotes, not template literals)
+    if (trimmed.startsWith(__PROTECT_33__) || trimmed.startsWith(__PROTECT_34__) || trimmed.startsWith(__PROTECT_35__)) return;
+
     const stringRegexes = [
-      /'([^']*)'/g,
-      /"([^"]*)"/g,
-    ];
-    
-    stringRegexes.forEach(regex => {
-      let match;
-      while ((match = regex.exec(line)) !== null) {
-        const text = match[1];
-        if (text.length < 2) return; // skip single chars and empty
-        
-        const lang = detectLanguage(text);
-        if (lang) {
-          // Check if this is a key reference (t('key.subkey'))
-          const isTKey = code.substring(Math.max(0, match.index - 10), match.index).includes('t(');
-          const isAlreadyI18n = [...fileKeys].some(k => k === text);
-          
-          if (!isAlreadyI18n && !text.includes('http') && !text.includes('src=') && 
-              !text.includes('className=') && !text.includes('data-') &&
-              !text.includes('@') && !text.includes('/') && !text.includes('BİŞIŞ') &&
+      /__PROTECT_36__]*)__PROTECT_37__key.subkey__PROTECT_38__t(__PROTECT_39__http__PROTECT_40__src=__PROTECT_41__className=__PROTECT_42__data-__PROTECT_43__@__PROTECT_44__/') && !text.includes('BİŞIŞ') &&
               !text.includes('BISHISH') && !text.includes('svg') && !text.includes('jsx') &&
               !text.includes('import') && !text.includes('export') &&
               !text.includes('require') && !text.includes('process') &&
               !text.match(/^[\d\s\-_.]+$/) && !text.match(/^[A-Z][a-z]+$/)) {
-            
+
             if (!isTKey && text.length > 3) {
               inventory.push({
                 file: relPath,
@@ -127,16 +98,16 @@ frontendFiles.forEach(filePath => {
         }
       }
     });
-    
+
     // 2. JSX text content (text between > and < that isn't code)
-    // Simple heuristic: find text between closing > and opening <
+
     const jsxTextRegex = />\s*([a-zA-Z\u0600-\u06FF\u0750-\u077FçğıİöşüÇĞİÖŞÜ\s.,!?:'\u201C\u201D\u2018\u2019-]+)\s*</g;
     let jsxMatch;
     while ((jsxMatch = jsxTextRegex.exec(line)) !== null) {
       const text = jsxMatch[1].trim();
       if (text.length < 2) continue;
       if (text.includes('{') || text.includes('}')) continue;
-      
+
       const lang = detectLanguage(text);
       if (lang) {
         inventory.push({
@@ -203,7 +174,7 @@ hardcodedOnly.forEach(item => {
 
 console.log('Unique texts:', uniqueByText.size);
 uniqueByText.forEach(item => {
-  console.log('  [' + item.lang + '] "' + item.text.substring(0, 80) + '" -> ' + item.files.join(', '));
+  console.log('  [' + item.lang + '] "__PROTECT_80__" -> ' + item.files.join(', '));
 });
 
 // Save full inventory to JSON

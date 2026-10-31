@@ -24,9 +24,6 @@ interface AIChatbotProps {
   variant?: 'floating' | 'page'
 }
 
-// ============================================================
-// ✅ الترجمات المباشرة للواجهة (العنوان، الأزرار، التصنيفات)
-// ============================================================
 const uiTranslations = {
   ar: {
     greeting: 'مرحباً! أنا مساعد منصة BİŞİŞ. اختر سؤالاً من الأسفل للحصول على إجابة مفصلة.',
@@ -75,9 +72,6 @@ const uiTranslations = {
   },
 }
 
-// ============================================================
-// 📚 الأسئلة والأجوبة بثلاث لغات (كاملة)
-// ============================================================
 const faqsByLang: Record<string, FAQItem[]> = {
   ar: [
     {
@@ -269,11 +263,9 @@ const faqsByLang: Record<string, FAQItem[]> = {
 
 const AIChatbot: React.FC<AIChatbotProps> = ({ onClose, variant = 'floating' }) => {
   const { i18n } = useTranslation()
-  
-  // ✅ اللغة من i18n مباشرة (تتغير تلقائياً)
+
   const [currentLang, setCurrentLang] = useState(i18n.language || 'ar')
 
-  // ✅ مراقبة تغيير اللغة
   useEffect(() => {
     const handleLanguageChange = () => {
       setCurrentLang(i18n.language || 'ar')
@@ -284,7 +276,7 @@ const AIChatbot: React.FC<AIChatbotProps> = ({ onClose, variant = 'floating' }) 
 
   const langData = uiTranslations[currentLang as keyof typeof uiTranslations] || uiTranslations.ar
   const faqs = faqsByLang[currentLang] || faqsByLang.ar
-  
+
   const [messages, setMessages] = useState<Message[]>([
     { id: 'welcome', role: 'assistant', content: langData.greeting, timestamp: new Date() },
   ])
@@ -294,7 +286,6 @@ const AIChatbot: React.FC<AIChatbotProps> = ({ onClose, variant = 'floating' }) 
   const messagesEndRef = useRef<HTMLDivElement>(null)
   const isRTL = ['ar'].includes(currentLang)
 
-  // تحديث رسالة الترحيب عند تغير اللغة
   useEffect(() => {
     setMessages(prev => {
       const updated = [...prev]
@@ -369,7 +360,7 @@ const AIChatbot: React.FC<AIChatbotProps> = ({ onClose, variant = 'floating' }) 
       )}
       dir={isRTL ? 'rtl' : 'ltr'}
     >
-      {/* Header */}
+      {}
       <div className="px-4 py-3 border-b border-border-1 flex items-center justify-between bg-gradient-to-r from-gold/15 to-transparent flex-shrink-0">
         <div className="flex items-center gap-2">
           <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-gold to-gold-deep flex items-center justify-center shadow-md shadow-gold/20">
@@ -401,7 +392,7 @@ const AIChatbot: React.FC<AIChatbotProps> = ({ onClose, variant = 'floating' }) 
         </div>
       </div>
 
-      {/* Messages */}
+      {}
       <div className="flex-1 overflow-y-auto p-4 space-y-4 scrollbar-hide">
         {messages.map((message) => {
           const isUser = message.role === 'user'
@@ -439,7 +430,7 @@ const AIChatbot: React.FC<AIChatbotProps> = ({ onClose, variant = 'floating' }) 
         <div ref={messagesEndRef} />
       </div>
 
-      {/* Questions Section */}
+      {}
       <AnimatePresence>
         {showQuestions && (
           <motion.div
@@ -484,7 +475,7 @@ const AIChatbot: React.FC<AIChatbotProps> = ({ onClose, variant = 'floating' }) 
         )}
       </AnimatePresence>
 
-      {/* Footer */}
+      {}
       <div className="px-4 py-2 border-t border-border-1 bg-surface-inset text-center flex-shrink-0">
         <span className="text-[10px] text-ink-0/25">{langData.footer}</span>
       </div>

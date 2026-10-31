@@ -22,9 +22,6 @@ async function getOwnedProject(projectId, userId) {
   return data || null
 }
 
-// ============================================================
-// POST / – إنشاء تذكرة جديدة
-// ============================================================
 router.post('/', authenticate, async (req, res) => {
   try {
     const title = normalizeText(req.body?.title, 160)
@@ -64,9 +61,6 @@ router.post('/', authenticate, async (req, res) => {
   }
 })
 
-// ============================================================
-// GET /my – تذاكر المستخدم
-// ============================================================
 router.get('/my', authenticate, async (req, res) => {
   try {
     const projectId = validProjectId(req.query.project_id)
@@ -86,9 +80,6 @@ router.get('/my', authenticate, async (req, res) => {
   }
 })
 
-// ============================================================
-// GET / – كل التذاكر (للمدير)
-// ============================================================
 router.get('/', authenticate, authorize('admin', 'super_admin'), async (req, res) => {
   try {
     let query = supabase
@@ -112,9 +103,6 @@ router.get('/', authenticate, authorize('admin', 'super_admin'), async (req, res
   }
 })
 
-// ============================================================
-// PATCH /:id – تحديث التذكرة (رد أو تغيير حالة)
-// ============================================================
 router.patch('/:id', authenticate, authorize('admin', 'super_admin'), async (req, res) => {
   try {
     const { id } = req.params

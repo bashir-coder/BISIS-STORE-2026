@@ -1,4 +1,4 @@
--- BİŞİŞ V1 services seed reconciliation.
+-- SDACK V1 services seed reconciliation.
 -- Adds the canonical metadata column that the launch contract and seed system use.
 ALTER TABLE public.services
   ADD COLUMN IF NOT EXISTS metadata JSONB NOT NULL DEFAULT '{}'::jsonb;

@@ -111,4 +111,3 @@ const OperationalPulse: React.FC<OperationalPulseProps> = ({ greeting, subtitle,
 }
 
 export default OperationalPulse
-

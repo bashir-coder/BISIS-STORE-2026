@@ -1,25 +1,5 @@
 'use strict'
 
-/**
- * AI OS integration boundary — error types.
- *
- * STATUS: SCAFFOLD ONLY. Not activated. No real AI OS request is made.
- *
- * These errors follow the existing backend convention established in
- * `backend/src/services/nowpayments.service.js`:
- *   const error = new Error('message')
- *   error.status = <HTTP status>
- *   error.code = '<CODE>'
- *   throw error
- *
- * The global error handler in `backend/server.js:825-854` maps `err.status`
- * and `err.code` into the JSON response and logs `[requestId]` with the error.
- *
- * IMPORTANT: These error codes describe the INTEGRATION BOUNDARY, not the
- * external AI OS. They must not be confused with AI-OS-internal error semantics,
- * which remain UNKNOWN (see AIOS-2 audit, Section K).
- */
-
 function makeError(message, status, code, extra) {
   const error = new Error(message)
   error.status = status
@@ -31,8 +11,6 @@ function makeError(message, status, code, extra) {
   }
   return error
 }
-
-// Configuration / activation boundary.
 
 function integrationDisabled() {
   return makeError(
@@ -50,8 +28,6 @@ function configurationMissing(detail) {
   )
 }
 
-// Request validation boundary (backend-side, before any transport).
-
 function requestValidationFailed(detail) {
   return makeError(
     `AI OS request validation failed: ${detail || 'invalid request'}`,
@@ -59,8 +35,6 @@ function requestValidationFailed(detail) {
     'AI_OS_REQUEST_VALIDATION_FAILED',
   )
 }
-
-// Transport boundary.
 
 function transportFailure(detail) {
   return makeError(
@@ -77,8 +51,6 @@ function timeout(detail) {
     'AI_OS_TIMEOUT',
   )
 }
-
-// Response boundary.
 
 function invalidResponse(detail) {
   return makeError(

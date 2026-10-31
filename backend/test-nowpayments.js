@@ -3,7 +3,7 @@ const apiKey = process.env.NOWPAYMENTS_API_KEY;
 
 async function test() {
   await new Promise(r => setTimeout(r, 5000));
-  
+
   const payload = {
     price_amount: 149,
     price_currency: 'usd',
@@ -12,7 +12,7 @@ async function test() {
     order_description: 'The 30-Minute Session',
     customer_email: 'test@example.com'
   };
-  
+
   const response = await fetch(NOWPAYMENTS_API_URL + '/v1/invoice', {
     method: 'POST',
     headers: {
@@ -22,7 +22,7 @@ async function test() {
     },
     body: JSON.stringify(payload)
   });
-  
+
   const text = await response.text();
   console.log('Response:', response.status, text);
 }

@@ -2,9 +2,6 @@ const express = require('express')
 const supabase = require('../../config/supabase.config')
 const router = express.Router()
 
-// ============================================================
-// GET /api/public/services – جلب آخر الخدمات (عام)
-// ============================================================
 router.get('/services', async (req, res) => {
   try {
     const { data, error } = await supabase
@@ -21,13 +18,10 @@ router.get('/services', async (req, res) => {
   }
 })
 
-// ============================================================
-// GET /api/public/health – حالة الخادم (عام)
-// ============================================================
 router.get('/health', (req, res) => {
-  res.json({ 
-    status: 'OK', 
-    version: '1.0.0', 
+  res.json({
+    status: 'OK',
+    version: '1.0.0',
     timestamp: new Date().toISOString(),
     uptime: process.uptime()
   })

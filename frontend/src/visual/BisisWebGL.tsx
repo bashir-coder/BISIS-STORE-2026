@@ -69,13 +69,6 @@ type SceneBundle = {
   running: boolean
 }
 
-/**
- * Single persistent global visual layer.
- *
- * The scene is created once for the lifetime of the mount. Theme, reduced
- * motion, device tier and loop state are all applied by mutating the existing
- * bundle, never by rebuilding it. Resources are disposed only on real unmount.
- */
 const BisisWebGL: React.FC<BisisWebGLProps> = ({
   className = '',
   intensity = 'medium',
@@ -93,7 +86,6 @@ const BisisWebGL: React.FC<BisisWebGLProps> = ({
   const device = useDeviceDetection()
   const { theme } = useTheme()
 
-  /* Tier is resolved once. Changing it later must never rebuild the scene. */
   const tierRef = useRef<Tier | null>(null)
   if (tierRef.current === null) {
     tierRef.current = device.isLowEnd
@@ -106,7 +98,6 @@ const BisisWebGL: React.FC<BisisWebGLProps> = ({
   }
   const tier = tierRef.current
 
-  /* Live flags. Read by the loop; never keys for initialisation. */
   const reducedMotionRef = useRef(reducedMotion)
   const interactiveRef = useRef(interactive)
   const pausedRef = useRef(false)
@@ -360,14 +351,12 @@ const BisisWebGL: React.FC<BisisWebGLProps> = ({
     return dispose
   }, [])
 
-  /* Theme switches mutate the live scene; geometry is never rebuilt. */
   useEffect(() => {
     const bundle = bundleRef.current
     if (!bundle) return
     applySceneTheme(bundle.scene, 'dark')
   }, [theme])
 
-  /* Reduced motion and tab visibility only control the loop, not the scene. */
   useEffect(() => {
     const bundle = bundleRef.current
     if (!bundle) return

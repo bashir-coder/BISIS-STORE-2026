@@ -71,7 +71,7 @@ const Footer: React.FC = () => {
         <div className="neon-line-gold h-px w-full" />
 
         <div className="section-padding relative pt-16 pb-10 overflow-hidden">
-          {/* CTA Section - only visible when open */}
+          {}
           {isOpen && (
             <FadeIn delay={0.1}>
               <section className="relative mb-20 overflow-hidden rounded-[2rem] border border-gold/20 bg-gradient-to-br from-gold/15 via-white/[0.04] to-transparent p-8 sm:p-10 lg:p-12">
@@ -101,7 +101,7 @@ const Footer: React.FC = () => {
             </FadeIn>
           )}
 
-          {/* Main Content - collapsible */}
+          {}
           <div className={`transition-all duration-500 ease-premium ${isOpen ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4 pointer-events-none'}`}>
             <StaggerContainer stagger={0.06} delay={isOpen ? 0.15 : 0}>
               <div className="lg:col-span-2">
@@ -186,7 +186,7 @@ const Footer: React.FC = () => {
             </StaggerContainer>
           </div>
 
-          {/* Collapsed brand bar - always visible when closed */}
+          {}
           {!isOpen && (
             <div className="flex items-center justify-between py-4">
               <Link to="/" className="group inline-flex items-center gap-3" aria-label="BİŞİŞ">
@@ -206,7 +206,7 @@ const Footer: React.FC = () => {
         </div>
       </footer>
 
-      {/* Toggle Button */}
+      {}
       <button
         type="button"
         onClick={toggleFooter}

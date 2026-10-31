@@ -1,12 +1,10 @@
-/** @type {import('tailwindcss').Config} */
 export default {
   darkMode: ["class"],
   content: [
     "./index.html",
     "./src/**/*.{js,ts,jsx,tsx}",
   ],
-  // Unified card system (Phase 3). Always shipped so the whole family
-  // survives purge even before every variant has a call site.
+
   safelist: [
     "card",
     "card-default",

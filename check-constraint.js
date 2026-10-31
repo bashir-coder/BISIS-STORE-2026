@@ -2,19 +2,13 @@ const { createClient } = require('@supabase/supabase-js');
 require('dotenv').config({ path: '.env' });
 const supabase = createClient(process.env.SUPABASE_URL, process.env.SUPABASE_SERVICE_ROLE_KEY);
 
-// Try pg_constraint
-const sql = `
-    SELECT conname, pg_get_constraintdef(oid) as def
-    FROM pg_constraint
-    WHERE conname = 'invoices_status_check';
-`;
+const sql = __PROTECT_0__;
 
 supabase
-  .rpc('exec_sql', { sql })
-  .then(r => console.log('PG_CONSTRAINT:', JSON.stringify(r, null, 2)))
-  .catch(e => console.log('PG_CONSTRAINT error:', e.message));
+  .rpc(__PROTECT_4__, { sql })
+  .then(r => console.log(__PROTECT_5__, JSON.stringify(r, null, 2)))
+  .catch(e => console.log(__PROTECT_6__, e.message));
 
-// Get all invoices with details
 supabase
   .from('invoices')
   .select('*')

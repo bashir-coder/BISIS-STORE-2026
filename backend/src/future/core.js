@@ -2,13 +2,6 @@
 
 const crypto = require('crypto')
 
-/**
- * Future Implementation Sprint boundary.
- * STATUS: OPT-IN ONLY — DISABLED BY DEFAULT — NOT PART OF V1 ROUTES.
- * This module is deliberately dependency-free and does not access Supabase,
- * the filesystem, external providers, payment networks, or production data.
- */
-
 const FUTURE_ENABLED = String(process.env.BİŞİŞ_FUTURE_ENABLED || '').toLowerCase() === 'true'
 
 function assertTenantContext(context) {

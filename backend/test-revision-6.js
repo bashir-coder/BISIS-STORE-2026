@@ -40,24 +40,24 @@ async function run() {
   });
   const adminToken = adminAuth.session.access_token;
   const adminHeaders = { Authorization: 'Bearer ' + adminToken };
-  
+
   const { data: clientAuth } = await supabase.auth.signInWithPassword({
     email: CLIENT_EMAIL,
     password: CLIENT_PASSWORD
   });
   const clientToken = clientAuth.session.access_token;
   const clientHeaders = { Authorization: 'Bearer ' + clientToken };
-  
+
   console.log('=== TEST 6TH REVISION BLOCKING ===\n');
-  
-  // Use the project from previous test (124) which should have 5 revisions done
+
+
   const projectId = 124;
-  
-  // Check current state
+
+
   const state = await axios.get(API + '/service-delivery/projects/' + projectId + '/client-view', { headers: clientHeaders });
   console.log('Current delivery:', state.data.delivery);
-  
-  // Try 6th revision (should be blocked)
+
+
   console.log('\n--- Attempting 6th revision ---');
   try {
     const rev6 = await axios.post(API + '/service-delivery/projects/' + projectId + '/delivery/revision', {

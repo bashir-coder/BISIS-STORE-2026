@@ -1,4 +1,4 @@
--- BİŞİŞ V1 — Project-aware support tickets
+-- SDACK V1 — Project-aware support tickets
 -- Additive only. Existing tickets remain valid with project_id = NULL.
 
 ALTER TABLE public.tickets
