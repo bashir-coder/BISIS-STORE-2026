@@ -28,6 +28,7 @@ const canonical = [
   '019_users_staff_policy_authoritative_role.sql',
   '020_rls_initplan_and_public_content_read.sql',
   '021_move_execution_helpers_to_private_schema.sql',
+  '022_secure_remaining_definer_search_paths.sql',
 ]
 
 const auxiliary = ['005_execution_engine_policies.sql']
