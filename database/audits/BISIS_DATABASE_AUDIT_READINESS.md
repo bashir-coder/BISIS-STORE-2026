@@ -252,3 +252,39 @@ have an authorized operator run the prepared SQL pack using a role whose
 effective privileges have been verified. Return only scrubbed catalog and
 migration-ledger results. Until then, the live database comparison is blocked;
 do not run the migration runner or use a service-role credential for the audit.
+
+
+## Follow-up hardening — 2026-10-31
+
+Changes prepared on branch `db-hardening/2026-10-31`, based on
+`2c5613cd39179d145736c7d0969ad9a1040fd889`:
+
+- The migration runner now resolves the repository-root
+  `database/migrations` directory (the previous default incorrectly pointed
+  inside `backend/database`).
+- The runner excludes the auxiliary
+  `005_execution_engine_policies.sql` SQL pack from automatic execution.
+- The runner now stops if it cannot initialize or read the migration tracker;
+  it no longer treats a tracker read error as an empty migration history.
+- Migration `018_remove_personas_system.sql` is gated to the known Staging
+  project ref and requires `MIGRATION_ENV=staging`. It is skipped elsewhere.
+- Added migration `019_users_staff_policy_authoritative_role.sql`. It replaces
+  the users staff-read policy that trusted the top-level JWT `role` claim
+  (normally the Postgres role, not the application's staff role) with the
+  existing fixed-search-path `execution_role()` helper, which resolves the
+  authoritative `public.users.role` without recursive RLS evaluation.
+- Marked `database/legacy/schema.sql` as a deprecated historical snapshot;
+  it contains a legacy password column and must not be used as a bootstrap.
+- Extended the read-only schema audit's canonical migration list through 019.
+
+## Verification limits for follow-up branch
+
+The branch changes are committed to the remote feature branch, but no local
+checkout or PostgreSQL runtime is available through this GitHub-only pass.
+Therefore Node tests, migration-chain validation, SQL parsing, Supabase
+advisors, and live Staging verification have NOT been run for these changes.
+The previous report's earlier local PASS results apply only to the earlier
+reviewed working tree and must not be interpreted as validation of this
+follow-up branch. No database was modified by this work. Production remains
+untouched. Review the diff and run the project's tests plus a Staging-only
+migration dry-run/verification before merging.
