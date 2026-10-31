@@ -175,11 +175,24 @@ async function main() {
   await ensureMigrationTracker()
 
   const files = fs.readdirSync(migrationDir)
-    .filter((f) => /^\d{3}_.*\.sql$/.test(f))
+    .filter((filename) => /^\d{3}_[a-z0-9][a-z0-9_-]*\.sql$/.test(filename))
+    .filter((filename) => !EXCLUDED_MIGRATIONS.has(filename))
     .sort()
 
+  const targetRef = new URL(SUPABASE_URL).hostname.split('.')[0]
+  const isStaging = process.env.MIGRATION_ENV === 'staging'
+    && targetRef === STAGING_PROJECT_REF
+
+  const eligibleFiles = files.filter((filename) => {
+    if (STAGING_ONLY_MIGRATIONS.has(filename) && !isStaging) {
+      console.warn(`Skipping staging-only migration outside verified Staging target: ${filename}`)
+      return false
+    }
+    return true
+  })
+
   const applied = await getAppliedMigrations()
-  const pending = files.filter((f) => !applied.has(f))
+  const pending = eligibleFiles.filter((filename) => !applied.has(filename))
 
   if (pending.length === 0) {
     console.log('No pending migrations.')
