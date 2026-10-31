@@ -345,3 +345,46 @@ and test it before application.
 
 No Staging schema changes were made during this read-only verification.
 No Production access or changes occurred.
+
+
+## Post-migration Staging verification — 2026-10-31
+
+Migrations corresponding to `019` and `020` were applied successfully to
+Staging only using the Supabase migration operation:
+
+- `users_staff_policy_authoritative_role`
+- `rls_initplan_and_public_content_read`
+
+Post-apply read-only checks confirmed:
+- Staging migration history now records both changes.
+- `users` staff-read policy uses `public.execution_role()` and no longer
+  trusts the JWT top-level `role` claim.
+- The `faqs`, `portfolio`, and `translations` tables retain RLS enabled
+  and now have the intended public SELECT policies (active rows only for
+  FAQs and portfolio; translations are public read-only).
+- Direct `auth.uid()` / `auth.jwt()` calls in policies were converted to
+  scalar SELECT forms. The Performance Advisor no longer reports the prior
+  18 `auth_rls_initplan` findings.
+- No rows were deleted or modified by these two migrations.
+
+Remaining Supabase security findings after the changes:
+- Four authenticated-callable SECURITY DEFINER helpers remain in the
+  exposed `public` schema. They are used by RLS policies; moving them to a
+  non-exposed schema requires a coordinated policy/function migration and
+  frontend RPC compatibility review.
+- Leaked-password protection remains disabled; this is an Auth configuration
+  setting and was not changed.
+- Performance Advisor still reports multiple permissive policies and unused
+  indexes. These were deliberately not changed without behavior/workload
+  evidence.
+- The legacy `users.password` column remains present (currently NULL for all
+  three rows); removal is deferred pending full application and deployment
+  reference checks.
+
+The old `backend/scripts/run-migrations.js` has now been replaced by a
+fail-closed deprecation stub because the custom `exec_sql` RPC and custom
+migration tracker it expected do not exist in Staging. It must not be used.
+The canonical chain validator now includes migrations 019 and 020.
+
+The migration files are committed on the GitHub feature branch. The two
+corresponding changes are live on Staging. Production remains untouched.
