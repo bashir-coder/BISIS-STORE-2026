@@ -388,3 +388,35 @@ The canonical chain validator now includes migrations 019 and 020.
 
 The migration files are committed on the GitHub feature branch. The two
 corresponding changes are live on Staging. Production remains untouched.
+
+
+## Private authorization helpers — 2026-10-31
+
+Migration `021_move_execution_helpers_to_private_schema.sql` was applied to
+Staging only. It creates the non-exposed `private` schema, moves the four
+execution authorization helpers into it with an empty fixed search path and
+fully qualified object references, updates all dependent public RLS policy
+expressions, revokes PUBLIC execute, grants only the roles needed for RLS
+evaluation, and drops the former public functions.
+
+Post-apply catalog verification:
+- All four helpers exist only in `private`, remain SECURITY DEFINER, and
+  have an empty fixed search path.
+- All 19 policy expressions referencing execution helpers now reference
+  `private.execution_*`; zero stale `public.execution_*` policy references.
+- The private schema has USAGE for anon/authenticated so existing policies
+  can be evaluated for both roles. The schema must remain excluded from
+  Supabase Data API exposed schemas; do not add it to exposed schemas.
+- Security Advisor no longer reports the four public SECURITY DEFINER
+  helper functions. The remaining security warning is disabled leaked-password
+  protection in Supabase Auth.
+- Performance Advisor still reports 36 multiple-permissive-policy notices
+  and 45 unused-index notices. These are informational/performance findings,
+  not automatically safe cleanup candidates.
+
+Storage catalog checks returned no bucket rows in Staging. This confirms no
+configured buckets were visible in the queried project; the app's
+`order-files` reference therefore still needs a product decision and a
+separate Storage design before enabling uploads.
+
+No application rows were changed. Production was not queried or modified.
