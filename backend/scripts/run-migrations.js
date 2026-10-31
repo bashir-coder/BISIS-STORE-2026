@@ -30,6 +30,10 @@ const supabase = createClient(
   },
 )
 
+const STAGING_PROJECT_REF = 'ebzsffbsdezumfqlhfyq'
+const EXCLUDED_MIGRATIONS = new Set(['005_execution_engine_policies.sql'])
+const STAGING_ONLY_MIGRATIONS = new Set(['018_remove_personas_system.sql'])
+
 const migrationDir = String(
   process.env.MIGRATION_DIR ||
     path.resolve(__dirname, '..', 'database', 'migrations'),
@@ -47,10 +51,7 @@ async function ensureMigrationTracker() {
   })
 
   if (error) {
-
-    console.warn(
-      'RPC exec_sql unavailable, using REST fallback',
-    )
+    throw new Error(`Could not initialize migration tracker: ${error.message}`)
   }
 }
 
@@ -61,11 +62,7 @@ async function getAppliedMigrations() {
     .order('filename', { ascending: true })
 
   if (error) {
-    console.warn(
-      'Could not read migration tracker, assuming no migrations applied',
-      error.message,
-    )
-    return new Set()
+    throw new Error(`Could not read migration tracker; refusing to assume an empty history: ${error.message}`)
   }
 
   return new Set((data || []).map((row) => row.filename))
