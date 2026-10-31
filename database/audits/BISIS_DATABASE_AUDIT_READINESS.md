@@ -420,3 +420,45 @@ configured buckets were visible in the queried project; the app's
 separate Storage design before enabling uploads.
 
 No application rows were changed. Production was not queried or modified.
+
+
+## Staging continuation — 2026-10-31
+
+- Scope: Supabase staging project only. Production was not queried or modified.
+- Staging confirms 30 public base tables; all 30 have RLS enabled.
+- The Storage bucket `order-files` is absent (zero matching bucket rows). The
+  application references this bucket; file upload/download cannot be
+  considered ready until an operator creates it as private through the
+  Supabase Storage API or Dashboard and verifies server-side access. Do not
+  insert directly into `storage.buckets`.
+- `public.order_files` exists and currently has zero rows. Its columns are
+  `id, order_id, uploaded_by, object_path, original_name, mime_type,
+  byte_size, file_kind, created_at`.
+- `public.users.password` remains nullable and all three current user rows
+  have NULL there. The column was not dropped; complete repository-wide
+  dependency review is still required.
+- Two remaining public SECURITY DEFINER functions were found:
+  `handle_supabase_auth_user()` and
+  `verify_payment_and_order(uuid,text,text,text,numeric,integer,text,text,text)`.
+  Both had EXECUTE granted only to `service_role` (plus owner), not PUBLIC,
+  anon, or authenticated. Migration 022 sets their `search_path` to empty;
+  the change was applied to staging and committed to the hardening branch.
+  Verification confirms all six SECURITY DEFINER functions in public/private
+  now use an empty search_path; the two public functions retain service-role
+  only execution.
+- Staging Security Advisor now reports only leaked-password protection
+  disabled. This requires an Auth dashboard setting; it was not changed.
+- Performance Advisor still reports 36 multiple-permissive-policy notices and
+  45 unused-index notices. These were not mass-edited: several policy pairs
+  represent distinct staff/client authorization paths, and unused-index
+  status is not sufficient evidence for safe removal.
+- Migration history records the new `secure_remaining_definer_search_paths`
+  migration. The repository now includes
+  `022_secure_remaining_definer_search_paths.sql`, and the canonical
+  validator includes migration 022.
+- This continuation does not certify production readiness. Remaining
+  blockers include Storage bucket setup/verification, enabling leaked-password
+  protection, complete application-code review, RLS integration tests under
+  real anon/authenticated identities, and resolving or explicitly accepting
+  migration history ordering/gaps (notably 017 absent from the observed
+  staging ledger). No Production connection or merge to master was made.
