@@ -1,3 +1,9 @@
+-- DEPRECATED HISTORICAL REFERENCE ONLY — DO NOT EXECUTE.
+-- Canonical schema evolution lives in database/migrations/.
+-- This file is an obsolete pre-Supabase/Auth-era snapshot. It contains a
+-- plaintext password column and incomplete RLS coverage; it is not safe as
+-- a bootstrap script and must never be used to create or reconcile a live DB.
+--
 -- SDACK Database Schema for Supabase (PostgreSQL)
 
 CREATE TABLE IF NOT EXISTS users (
