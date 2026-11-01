@@ -462,3 +462,63 @@ No application rows were changed. Production was not queried or modified.
   real anon/authenticated identities, and resolving or explicitly accepting
   migration history ordering/gaps (notably 017 absent from the observed
   staging ledger). No Production connection or merge to master was made.
+
+
+## Fresh continuation — 2026-11-01
+
+### Verified live Staging state
+
+Read-only checks were performed against Staging project
+`ebzsffbsdezumfqlhfyq` (PostgreSQL 17.6). Production was not queried.
+
+- Staging project status: ACTIVE_HEALTHY.
+- Supabase migration ledger currently contains the advisor-index migration,
+  016, 014, 015, 018, and the migrations corresponding to 019–022.
+- Migration 017 is absent from the live ledger. Its SQL adds a UUID persona
+  lookup function that depends on `users.persona_id` and
+  `services.persona_ids`. Migration 018 explicitly removes those persona
+  columns, the personas table, and the lookup overloads. Therefore 017 must
+  NOT be blindly applied to the current database; doing so after 018 would
+  reference removed objects. The ledger gap requires a documented migration
+  reconciliation decision, not replay of 017.
+- `public.users.password` still exists; current non-null count is zero.
+  Column removal remains deferred until all backend, frontend, migrations,
+  triggers, views, and deployment compatibility references have been
+  reviewed.
+- Storage bucket `order-files` is still absent. Upload/download readiness
+  remains blocked until a private bucket is created through the Supabase
+  Storage API or Dashboard and access is verified.
+- `private` schema exists.
+- Security Advisor reports only the Auth leaked-password-protection warning.
+  This is a Dashboard/Auth configuration item and was not changed.
+- Performance Advisor reports 36 multiple-permissive-policy notices and
+  45 unused-index notices. No policy or index was removed based solely on
+  advisor output.
+
+### Backend/database contract issue fixed on the hardening branch
+
+The database retirement migration 018 removes the Personas model, but the
+backend still mounted `/api/personas` and queried `public.personas`.
+The frontend App, AdminPanel, and AdminCatalogManager files were checked and
+contain no persona references. The backend route was changed to return HTTP
+410 with code `PERSONAS_RETIRED` instead of querying the dropped table.
+
+Commit: `a07d7de639b12eda2be3c994103213646d26df87`
+
+This change is committed only to `db-hardening/2026-10-31`. It has not been
+merged to master or deployed. Runtime/API tests have not yet been executed
+in this environment.
+
+### Remaining work
+
+- Complete a repository-wide backend/database contract review, especially
+  orders, payment verification, file metadata and Storage upload/download.
+- Resolve the migration ledger discrepancy with an explicit, supported
+  reconciliation plan. Do not replay 017.
+- Complete password-column dependency scan before considering removal.
+- Create and verify private `order-files` bucket via supported Storage UI/API.
+- Enable leaked-password protection in Auth settings.
+- Add/execute authenticated and anonymous RLS integration tests.
+- Re-run advisors and relevant backend test suites after fixes.
+
+Production remains untouched. No merge to master was performed.
