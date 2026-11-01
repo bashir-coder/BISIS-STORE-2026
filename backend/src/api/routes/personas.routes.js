@@ -1,20 +1,13 @@
 const express = require('express')
-const supabase = require('../../config/supabase.config')
 const router = express.Router()
 
-router.get('/', async (req, res) => {
-  try {
-    const { data, error } = await supabase
-      .from('personas')
-      .select('*')
-      .order('id', { ascending: true })
-
-    if (error) throw error
-    res.json(data || [])
-  } catch (err) {
-    console.error('Error fetching personas:', err)
-    res.status(500).json({ message: 'Unable to complete request' })
-  }
+// The Personas database model was retired by migration 018.
+// Keep an explicit response for stale clients instead of querying a dropped table.
+router.get('/', (_req, res) => {
+  res.status(410).json({
+    code: 'PERSONAS_RETIRED',
+    message: 'The Personas feature is no longer available.',
+  })
 })
 
 module.exports = router
