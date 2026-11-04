@@ -37,15 +37,8 @@ const buildPackagePayload = (body) => {
     price: basePrice,
     features: normalizeArray(body.features).length ? normalizeArray(body.features) : starterFeatures,
     services: normalizeArray(body.services),
-    persona_ids: normalizeArray(body.persona_ids),
     is_popular: body.is_popular === true,
     is_active: body.is_active !== false,
-    tier_starter_price: body.tier_starter_price || `$${basePrice}`,
-    tier_starter_features: starterFeatures,
-    tier_growth_price: body.tier_growth_price || '$0',
-    tier_growth_features: normalizeArray(body.tier_growth_features),
-    tier_investor_price: body.tier_investor_price || '$0',
-    tier_investor_features: normalizeArray(body.tier_investor_features),
   }
 }
 
@@ -83,7 +76,6 @@ router.post(
     body('name').notEmpty().withMessage('Name is required'),
     body('description').optional().isString(),
     body('price').optional().isNumeric(),
-    body('persona_ids').optional().isArray(),
   ],
   async (req, res) => {
     const errors = validationResult(req)
@@ -112,7 +104,6 @@ router.put(
     body('name').optional().notEmpty(),
     body('description').optional().isString(),
     body('price').optional().isNumeric(),
-    body('persona_ids').optional().isArray(),
   ],
   async (req, res) => {
     const errors = validationResult(req)
@@ -121,9 +112,8 @@ router.put(
     try {
       const updateData = { updated_at: new Date().toISOString() }
       const fields = [
-        'category', 'name', 'description', 'price', 'features', 'services', 'persona_ids',
-        'is_popular', 'is_active', 'tier_starter_price', 'tier_starter_features',
-        'tier_growth_price', 'tier_growth_features', 'tier_investor_price', 'tier_investor_features'
+        'category', 'name', 'description', 'price', 'features', 'services',
+        'is_popular', 'is_active'
       ]
       fields.forEach((field) => {
         if (req.body[field] !== undefined) updateData[field] = req.body[field]

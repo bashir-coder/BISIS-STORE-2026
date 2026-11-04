@@ -53,10 +53,6 @@ const validateService = (body, partial = false) => {
     if (typeof body.is_active !== 'boolean') return { error: 'is_active must be boolean' }
     payload.is_active = body.is_active
   }
-  if (body.persona_ids !== undefined) {
-    if (!Array.isArray(body.persona_ids)) return { error: 'persona_ids must be an array' }
-    payload.persona_ids = body.persona_ids
-  }
   if (body.metadata !== undefined) {
     if (!body.metadata || typeof body.metadata !== 'object' || Array.isArray(body.metadata)) return { error: 'metadata must be an object' }
     payload.metadata = body.metadata

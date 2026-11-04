@@ -304,6 +304,37 @@
   --dur-slow:   0.55s;
   --dur-xslow:  0.85s;
 
+  /* ------ Tailwind hsl() color references ------
+     These back the Tailwind color palette (border, background,
+     primary, secondary, etc.) so @apply and arbitrary variants
+     resolve correctly. Values mirror the CSS variable ramp above. */
+  --border:       210 20% 12%;
+  --input:        210 20% 18%;
+  --ring:         213 94% 60%;
+  --background:   212 82% 4%;
+  --foreground:   210 20% 94%;
+
+  --primary:        213 94% 60%;
+  --primary-foreground: 212 82% 4%;
+
+  --secondary:      45 93% 53%;
+  --secondary-foreground: 212 82% 4%;
+
+  --destructive:      0 84% 60%;
+  --destructive-foreground: 0 0% 100%;
+
+  --muted:          210 20% 16%;
+  --muted-foreground: 210 20% 65%;
+
+  --accent:         45 93% 53%;
+  --accent-foreground: 212 82% 4%;
+
+  --popover:        212 82% 10%;
+  --popover-foreground: 210 20% 94%;
+
+  --card:           212 82% 8%;
+  --card-foreground: 210 20% 94%;
+
   color-scheme: dark;
 }
 
@@ -544,6 +575,34 @@
   --radius-card:  var(--radius-xl);
   --card-pad:     1.25rem;
   --card-pad-lg:  1.5rem;
+
+  /* ------ Tailwind hsl() color references (light) ------ */
+  --border:       210 20% 88%;
+  --input:        210 20% 82%;
+  --ring:         213 94% 50%;
+  --background:   210 20% 97%;
+  --foreground:   212 40% 8%;
+
+  --primary:        213 94% 50%;
+  --primary-foreground: 210 20% 97%;
+
+  --secondary:      45 60% 35%;
+  --secondary-foreground: 210 20% 97%;
+
+  --destructive:      0 84% 50%;
+  --destructive-foreground: 0 0% 100%;
+
+  --muted:          210 20% 78%;
+  --muted-foreground: 210 20% 45%;
+
+  --accent:         45 60% 35%;
+  --accent-foreground: 210 20% 97%;
+
+  --popover:        0 0% 100%;
+  --popover-foreground: 212 40% 8%;
+
+  --card:           0 0% 100%;
+  --card-foreground: 212 40% 8%;
 
   color-scheme: light;
 }
@@ -1519,6 +1578,122 @@ small {
 
 [data-theme="light"] .eyebrow { color: var(--gold); }
 
+/* ------------------------------------------------------------
+   Heading scale · Outfit for English headings, Cairo for Arabic
+   Uses font-display family. Each heading token maps to a
+   consistent size/weight/line-height/letter-spacing.
+   ------------------------------------------------------------ */
+
+.text-h1 {
+  font-family: var(--font-display);
+  font-size: 3rem;
+  font-weight: 700;
+  line-height: 1;
+  letter-spacing: -0.022em;
+}
+
+.text-h2 {
+  font-family: var(--font-display);
+  font-size: 2.25rem;
+  font-weight: 700;
+  line-height: 1.12;
+  letter-spacing: -0.022em;
+}
+
+.text-h3 {
+  font-family: var(--font-display);
+  font-size: 1.875rem;
+  font-weight: 600;
+  line-height: 1.2;
+  letter-spacing: -0.018em;
+}
+
+.text-h4 {
+  font-family: var(--font-display);
+  font-size: 1.5rem;
+  font-weight: 600;
+  line-height: 1.25;
+  letter-spacing: -0.018em;
+}
+
+.text-h5 {
+  font-family: var(--font-display);
+  font-size: 1.25rem;
+  font-weight: 600;
+  line-height: 1.3;
+  letter-spacing: -0.01em;
+}
+
+.text-h6 {
+  font-family: var(--font-display);
+  font-size: 1rem;
+  font-weight: 600;
+  line-height: 1.4;
+  letter-spacing: -0.005em;
+}
+
+/* ------------------------------------------------------------
+   Body scale · Inter for English/Turkish, Cairo for Arabic
+   ------------------------------------------------------------ */
+
+.text-body-lg {
+  font-family: var(--font-body);
+  font-size: 1.125rem;
+  font-weight: 400;
+  line-height: 1.75;
+  letter-spacing: 0.005em;
+}
+
+.text-body {
+  font-family: var(--font-body);
+  font-size: 1rem;
+  font-weight: 400;
+  line-height: 1.75;
+  letter-spacing: 0.005em;
+}
+
+.text-body-sm {
+  font-family: var(--font-body);
+  font-size: 0.875rem;
+  font-weight: 400;
+  line-height: 1.6;
+  letter-spacing: 0.005em;
+}
+
+.text-label {
+  font-family: var(--font-body);
+  font-size: 0.875rem;
+  font-weight: 600;
+  line-height: 1.5;
+  letter-spacing: 0.025em;
+  text-transform: uppercase;
+}
+
+.text-caption {
+  font-family: var(--font-body);
+  font-size: 0.8125rem;
+  font-weight: 400;
+  line-height: 1.5;
+  letter-spacing: 0.005em;
+}
+
+.text-data {
+  font-family: var(--font-body);
+  font-size: 1rem;
+  font-weight: 600;
+  line-height: 1.2;
+  letter-spacing: -0.01em;
+}
+
+/* Font family CSS variables referenced by typography utilities */
+:root,
+[data-theme="dark"],
+[data-theme="light"] {
+  --font-display: 'Outfit', 'Cairo', sans-serif;
+  --font-body: 'Inter', 'Cairo', sans-serif;
+  --font-arabic: 'Cairo', sans-serif;
+}
+
 
 /* ============================================================
    11 · BUTTON SYSTEM
@@ -2103,6 +2278,270 @@ small {
     --card-status-ring: var(--status-info-ring);
     --card-status-soft: var(--status-info-soft);
   }
+}
+
+/* ============================================================
+   11b · INPUT SYSTEM
+   ============================================================ */
+
+.input {
+  display: block;
+  width: 100%;
+  padding: 0.75rem 1rem;
+  font-family: var(--font-body);
+  font-size: 0.9375rem;
+  font-weight: 400;
+  color: var(--ink-1);
+  background: var(--surface-1);
+  border: 1px solid var(--border-1);
+  border-radius: var(--radius);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  transition:
+    border-color var(--dur-fast) var(--ease-standard),
+    box-shadow var(--dur-fast) var(--ease-standard),
+    background-color var(--dur-fast) var(--ease-standard);
+}
+
+.input::placeholder {
+  color: var(--ink-4);
+}
+
+.input:focus {
+  outline: none;
+  border-color: var(--border-blue);
+  box-shadow:
+    0 0 0 3px rgba(47, 123, 255, 0.14),
+    var(--shadow-sm);
+}
+
+.input:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+  background: var(--surface-1);
+}
+
+.input-error {
+  border-color: rgba(239, 68, 68, 0.5);
+}
+
+.input-error:focus {
+  box-shadow:
+    0 0 0 3px rgba(239, 68, 68, 0.14),
+    var(--shadow-sm);
+}
+
+.input-label {
+  display: block;
+  font-family: var(--font-body);
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--ink-1);
+  letter-spacing: 0.01em;
+  margin-bottom: 0.5rem;
+}
+
+.input-helper {
+  font-family: var(--font-body);
+  font-size: 0.8125rem;
+  color: var(--ink-3);
+  margin-top: 0.375rem;
+}
+
+.input-error-text {
+  font-family: var(--font-body);
+  font-size: 0.8125rem;
+  color: rgba(239, 68, 68, 0.8);
+  margin-top: 0.375rem;
+}
+
+[data-theme="light"] .input {
+  color: var(--ink-1);
+  background: rgba(255, 255, 255, 0.78);
+  border-color: rgba(140, 106, 30, 0.14);
+}
+
+[data-theme="light"] .input:focus {
+  border-color: #1d5fd8;
+  box-shadow:
+    0 0 0 3px rgba(29, 95, 216, 0.12),
+    0 1px 2px rgba(60, 45, 15, 0.05);
+}
+
+[data-theme="light"] .input::placeholder {
+  color: var(--ink-4);
+}
+
+/* ============================================================
+   11c · BADGE SYSTEM
+   ============================================================ */
+
+.badge {
+  display: inline-flex;
+  align-items: center;
+  font-family: var(--font-body);
+  font-size: 0.75rem;
+  font-weight: 600;
+  line-height: 1;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  padding: 0.25rem 0.625rem;
+  border-radius: var(--radius-pill);
+  white-space: nowrap;
+}
+
+.badge-default {
+  background: var(--surface-1);
+  color: var(--ink-1);
+  border: 1px solid var(--border-1);
+}
+
+.badge-gold {
+  background: color-mix(in srgb, var(--gold) 12%, transparent);
+  color: var(--gold-light);
+  border: 1px solid var(--border-gold);
+}
+
+.badge-blue {
+  background: color-mix(in srgb, var(--blue) 12%, transparent);
+  color: var(--blue-light);
+  border: 1px solid var(--border-blue);
+}
+
+.badge-success {
+  background: var(--status-success-soft);
+  color: var(--status-success);
+  border: 1px solid var(--status-success-ring);
+}
+
+.badge-info {
+  background: var(--status-info-soft);
+  color: var(--blue);
+  border: 1px solid var(--status-info-ring);
+}
+
+.badge-outline {
+  background: transparent;
+  color: var(--ink-1);
+  border: 1px solid var(--border-1);
+}
+
+/* ============================================================
+   11d · ALERT / NOTIFICATION SYSTEM
+   ============================================================ */
+
+.alert {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.75rem;
+  padding: 0.875rem 1rem;
+  border-radius: var(--radius);
+  border: 1px solid transparent;
+  font-family: var(--font-body);
+  font-size: 0.9375rem;
+  line-height: 1.5;
+}
+
+.alert-icon {
+  flex-shrink: 0;
+  width: 1.25rem;
+  height: 1.25rem;
+}
+
+.alert-body {
+  flex: 1;
+}
+
+.alert-title {
+  font-weight: 600;
+  margin-bottom: 0.125rem;
+}
+
+.alert-default {
+  background: var(--surface-1);
+  border-color: var(--border-1);
+  color: var(--ink-1);
+}
+
+.alert-info {
+  background: color-mix(in srgb, var(--blue) 10%, transparent);
+  border-color: var(--border-blue);
+  color: var(--blue-light);
+}
+
+.alert-success {
+  background: var(--status-success-soft);
+  border-color: var(--status-success-ring);
+  color: var(--status-success);
+}
+
+.alert-error {
+  background: color-mix(in srgb, rgba(239, 68, 68) 10%, transparent);
+  border-color: rgba(239, 68, 68, 0.5);
+  color: rgba(239, 68, 68, 0.9);
+}
+
+.alert-dismissible {
+  padding-right: 2rem;
+}
+
+/* ============================================================
+   11e · TABLE SYSTEM
+   ============================================================ */
+
+.table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  font-family: var(--font-body);
+  font-size: 0.9375rem;
+}
+
+.table th,
+.table td {
+  padding: 0.75rem 1rem;
+  text-align: left;
+  border-bottom: 1px solid var(--border-1);
+}
+
+.table th {
+  font-weight: 600;
+  font-size: 0.8125rem;
+  letter-spacing: 0.025em;
+  text-transform: uppercase;
+  color: var(--ink-2);
+  background: var(--surface-1);
+}
+
+.table td {
+  color: var(--ink-1);
+}
+
+.table tr:last-child td {
+  border-bottom: none;
+}
+
+.table tr:hover td {
+  background: color-mix(in srgb, var(--ink-1) 4%, transparent);
+}
+
+[data-theme="light"] .table th {
+  background: rgba(255, 255, 255, 0.6);
+  color: var(--ink-2);
+}
+
+[data-theme="light"] .table td {
+  color: var(--ink-1);
+}
+
+[data-theme="light"] .table tr:hover td {
+  background: rgba(0, 0, 0, 0.03);
+}
+
+/* RTL table alignment */
+[dir="rtl"] .table th,
+[dir="rtl"] .table td {
+  text-align: right;
 }
 
 

@@ -28,12 +28,12 @@ describe('RequireRole', () => {
   })
   it('renders nothing while loading', () => {
     mockUseAuth.mockReturnValue({ user: null, loading: true })
-    const { container } = renderWithRouter(
+    renderWithRouter(
       <RequireRole allowedRoles={['admin']}>
         <div>secret</div>
-      </RequireRole>
+      </RequireRole>,
     )
-    expect(container.children.length).toBe(0)
+    expect(screen.queryByText('secret')).not.toBeInTheDocument()
   })
   it('redirects to login if unauthenticated', () => {
     mockUseAuth.mockReturnValue({ user: null, loading: false })

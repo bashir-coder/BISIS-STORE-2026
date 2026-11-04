@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
 import { motion } from 'framer-motion'
 import { Sparkles } from 'lucide-react'
+import { Button } from '../components/ui/Button'
 
 const INTRODUCTION_SHOWN_KEY = 'BİŞİŞ_introduction_shown'
 
@@ -50,12 +51,9 @@ const IntroductionPage: React.FC = () => {
             })}
           </p>
 
-          <button
-            onClick={handleComplete}
-            className="btn-primary w-full flex items-center justify-center gap-2"
-          >
+          <Button variant="primary" size="lg" className="w-full text-center" onClick={handleComplete}>
             {t('nav.start')}
-          </button>
+          </Button>
         </div>
       </motion.div>
     </div>

@@ -101,7 +101,7 @@ const Header: React.FC = () => {
       className={cn(
         'fixed top-0 left-0 right-0 z-50 transition-all duration-500',
         isScrolled
-          ? 'bg-surface-inset backdrop-blur-xl border-b border-border-1 shadow-lg shadow-black/40'
+          ? 'bg-surface-inset backdrop-blur-xl border-b border-border-1 shadow-lg'
           : 'bg-transparent'
       )}
     >
@@ -113,7 +113,7 @@ const Header: React.FC = () => {
             className="flex items-center gap-3 group"
             aria-label="BİŞİŞ"
           >
-            <div className="relative w-12 h-12 rounded-xl overflow-hidden border-2 border-gold/50 shadow-lg shadow-gold/40 group-hover:border-gold neon-hover-gold-4 group-hover:scale-105 transition-all duration-300 neon-active-indicator">
+            <div className="relative w-12 h-12 rounded-xl overflow-hidden border-2 border-gold/50 shadow-lg group-hover:border-gold neon-hover-gold-4 group-hover:scale-105 transition-all duration-300 neon-active-indicator">
               <img
                 src="/BİŞİŞ-logo.jpg"
                 alt="BİŞİŞ"
@@ -207,7 +207,7 @@ const Header: React.FC = () => {
                     onClick={() => setIsUserMenuOpen(!isUserMenuOpen)}
                     aria-expanded={isUserMenuOpen}
                     aria-haspopup="menu"
-                    className="flex items-center gap-2.5 px-3 py-1.5 rounded-full border border-gold/30 bg-gold/10 hover:border-gold/60 hover:bg-gold/15 transition-all shadow-sm shadow-gold/10"
+                    className="flex items-center gap-2.5 px-3 py-1.5 rounded-full border border-gold/30 bg-gold/10 hover:border-gold/60 hover:bg-gold/15 transition-all shadow-sm"
                   >
                     {user.avatarUrl ? (
                       <img
@@ -252,7 +252,7 @@ const Header: React.FC = () => {
                           scale: 0.95,
                         }}
                         transition={{ duration: 0.18 }}
-                        className="absolute top-full mt-2 right-0 w-64 card card-default p-2 shadow-2xl shadow-black/80 backdrop-blur-2xl z-50 text-start"
+                        className="absolute top-full mt-2 right-0 w-64 card card-default p-2 shadow-2xl backdrop-blur-2xl z-50 text-start"
                       >
                         <div className="px-3 py-2.5 border-b border-border-1">
                           <p className="text-sm font-semibold text-ink-0 truncate">
@@ -287,7 +287,7 @@ const Header: React.FC = () => {
                           <button
                             type="button"
                             onClick={handleLogout}
-                            className="w-full flex items-center gap-2.5 px-3 py-2 text-sm text-red-400 hover:text-red-300 hover:bg-red-500/10 rounded-xl transition-colors"
+                            className="w-full flex items-center gap-2.5 px-3 py-2 text-sm text-destructive hover:bg-destructive/10 rounded-xl transition-colors"
                           >
                             <LogOut className="w-4 h-4" />
                             <span>{t('nav.logout')}</span>

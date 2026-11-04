@@ -101,6 +101,9 @@ const BisisWebGL: React.FC<BisisWebGLProps> = ({
   const reducedMotionRef = useRef(reducedMotion)
   const interactiveRef = useRef(interactive)
   const pausedRef = useRef(false)
+  const startRef = useRef<(() => void) | null>(null)
+  const stopRef = useRef<(() => void) | null>(null)
+  const syncLoopRef = useRef<(() => void) | null>(null)
   reducedMotionRef.current = reducedMotion
   interactiveRef.current = interactive
 
@@ -190,8 +193,9 @@ const BisisWebGL: React.FC<BisisWebGLProps> = ({
     }
 
     const handleResize = () => {
-      const nextWidth = Math.max(1, window.innerWidth)
-      const nextHeight = Math.max(1, window.innerHeight)
+      const rect = canvas.getBoundingClientRect()
+      const nextWidth = Math.max(1, Math.round(rect.width || window.innerWidth))
+      const nextHeight = Math.max(1, Math.round(rect.height || window.innerHeight))
 
       bundle.renderer.setSize(nextWidth, nextHeight)
       bundle.camera.aspect = nextWidth / nextHeight
@@ -219,11 +223,12 @@ const BisisWebGL: React.FC<BisisWebGLProps> = ({
         if (!staticFrame) {
           const positions = bundle.particles.geometry.attributes.position
           for (let i = 0; i < positions.count; i++) {
-            const idx = i * 3
-            positions.setZ(idx + 2, positions.getZ(idx + 2) + 0.0005)
+            // setZ/getZ take a vertex index, not a FlatBuffer component offset.
+            // Using i * 3 + 2 addressed the wrong vertex and corrupted particle data.
+            positions.setZ(i, positions.getZ(i) + 0.0005)
 
-            if (positions.getZ(idx + 2) > 20) {
-              positions.setZ(idx + 2, -30)
+            if (positions.getZ(i) > 20) {
+              positions.setZ(i, -30)
             }
           }
           positions.needsUpdate = true
@@ -302,6 +307,10 @@ const BisisWebGL: React.FC<BisisWebGLProps> = ({
       start()
     }
 
+    startRef.current = start
+    stopRef.current = stop
+    syncLoopRef.current = syncLoop
+
     const handleVisibility = () => {
       pausedRef.current = document.visibilityState === 'hidden'
       syncLoop()
@@ -325,6 +334,9 @@ const BisisWebGL: React.FC<BisisWebGLProps> = ({
       window.removeEventListener('orientationchange', handleResize)
       document.removeEventListener('visibilitychange', handleVisibility)
 
+      const ownedTextures = new Set<THREE.Texture>()
+      const materialsToDispose = new Set<THREE.Material>()
+
       bundle.scene.traverse((child) => {
         if (
           child instanceof THREE.Mesh ||
@@ -336,13 +348,29 @@ const BisisWebGL: React.FC<BisisWebGLProps> = ({
           child.geometry?.dispose()
 
           const material = (child as THREE.Mesh).material
-          if (Array.isArray(material)) {
-            material.forEach((m) => m.dispose())
-          } else {
-            material?.dispose()
-          }
+          const materialList = Array.isArray(material) ? material : [material]
+          materialList.forEach((m) => {
+            if (materialsToDispose.has(m)) return
+            materialsToDispose.add(m)
+
+            const mat = m as THREE.Material & {
+              map?: THREE.Texture | null
+              alphaMap?: THREE.Texture | null
+            }
+            if (mat.map) ownedTextures.add(mat.map)
+            if (mat.alphaMap) ownedTextures.add(mat.alphaMap)
+          })
         }
       })
+
+      // Dispose each owned texture exactly once. This scene exclusively owns
+      // its textures (one CanvasTexture created in createGlowSprite, assigned
+      // to the sprite material's map). No texture is shared with another
+      // scene or material, so disposal here is safe and complete.
+      ownedTextures.forEach((texture) => texture.dispose())
+
+      // Dispose each material exactly once.
+      materialsToDispose.forEach((material) => material.dispose())
 
       bundle.renderer.dispose()
       bundleRef.current = null
@@ -362,19 +390,13 @@ const BisisWebGL: React.FC<BisisWebGLProps> = ({
     if (!bundle) return
 
     if (pausedRef.current || reducedMotionRef.current) {
-      if (bundle.frameId !== null) {
-        cancelAnimationFrame(bundle.frameId)
-        bundle.frameId = null
-      }
-      bundle.running = false
+      stopRef.current?.()
       bundle.renderer.render(bundle.scene, bundle.camera)
       return
     }
 
-    if (!bundle.running) {
-      bundle.running = true
-      bundle.renderer.render(bundle.scene, bundle.camera)
-    }
+    // Restart (or start) the controlled animation loop when motion is allowed.
+    syncLoopRef.current?.()
   }, [reducedMotion])
 
   if (!webglAvailable && reducedMotionFallback) {

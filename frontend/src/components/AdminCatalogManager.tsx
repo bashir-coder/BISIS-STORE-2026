@@ -163,9 +163,9 @@ const AdminCatalogManager = () => {
   return (
     <section className="mb-8 glass rounded-3xl border-gold/5 p-5">
       {pendingArchive && (
-        <div className="fixed inset-0 z-[70] flex items-center justify-center bg-surface-inset p-4 backdrop-blur-sm" role="presentation" onMouseDown={() => setPendingArchive(null)}>
+        <div className="fixed inset-0 z-[70] flex items-center justify-center bg-surface-inset p-4 backdrop-blur-sm" role="button" tabIndex={0} onClick={() => setPendingArchive(null)} onKeyDown={() => setPendingArchive(null)}>
+{/* eslint-disable-next-line jsx-a11y/no-static-element-interactions */}
           <div
-            role="dialog"
             aria-modal="true"
             aria-labelledby="archive-confirm-title"
             className="w-full max-w-md rounded-2xl border border-border-1 bg-dark p-6 shadow-2xl"

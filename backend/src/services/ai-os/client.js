@@ -1,10 +1,8 @@
 'use strict'
 
 const { validateRequest, normalizeRequest } = require('./request')
-const { getAIOSConfig, requireAIOSConfig } = require('./config')
+const { requireAIOSConfig } = require('./config')
 const {
-  integrationDisabled,
-  configurationMissing,
   requestValidationFailed,
   transportFailure,
   timeout,

@@ -207,7 +207,35 @@ router.post('/orders/:orderId/initialize', authenticate, authorize('admin', 'sup
     const orderId = safeId(req.params.orderId)
     const templateId = safeId(req.body?.template_id)
     if (!orderId || !templateId) return errorResponse(res, 400, 'order_id and template_id are required')
-    const { data: order, error: orderError } = await supabase.from('orders').select('*').eq('id', orderId).maybeSingle()
+
+    const isSuperAdmin = req.user?.role === 'super_admin'
+
+    if (!isSuperAdmin) {
+      if (!req.user?.workspace_id) {
+        return errorResponse(res, 403, 'An active workspace is required')
+      }
+
+      const { data: membershipRows, error: membershipError } = await supabase
+        .from('workspace_members')
+        .select('workspace_id, user_id')
+        .eq('workspace_id', req.user.workspace_id)
+        .eq('user_id', req.user.id)
+
+      if (membershipError) {
+        return errorResponse(res, 403, 'Insufficient permissions')
+      }
+
+      const membershipList = Array.isArray(membershipRows) ? membershipRows : (membershipRows ? [membershipRows] : [])
+      if (!membershipList.length) {
+        return errorResponse(res, 403, 'Insufficient permissions')
+      }
+    }
+
+    let orderQuery = supabase.from('orders').select('*').eq('id', orderId)
+    if (!isSuperAdmin) {
+      orderQuery = orderQuery.eq('workspace_id', req.user.workspace_id)
+    }
+    const { data: order, error: orderError } = await orderQuery.maybeSingle()
     if (orderError) throw orderError
     if (!order) return errorResponse(res, 404, 'Order not found')
     if (!['verified', 'paid', 'completed'].includes(order.payment_status) && order.status !== 'processing') return errorResponse(res, 409, 'Order is not ready for project initialization', 'ORDER_NOT_READY')
@@ -217,7 +245,9 @@ router.post('/orders/:orderId/initialize', authenticate, authorize('admin', 'sup
     const template = await supabase.from('project_templates').select('id,service_id,name').eq('id', templateId).eq('is_active', true).maybeSingle()
     if (template.error) throw template.error
     if (!template.data) return errorResponse(res, 404, 'Template not found', 'TEMPLATE_NOT_FOUND')
-    const workspaceId = order.workspace_id || req.user.workspace_id
+    const workspaceId = isSuperAdmin
+      ? (order.workspace_id || req.user.workspace_id)
+      : req.user.workspace_id
     if (!workspaceId) return errorResponse(res, 403, 'An active workspace is required')
     const projectName = String(req.body?.name || order.service || order.package || `Order #${order.id}`).trim().slice(0, 180)
     const { data: project, error: projectError } = await supabase.from('projects').insert([{
@@ -231,8 +261,13 @@ router.post('/orders/:orderId/initialize', authenticate, authorize('admin', 'sup
     }]).select().single()
     if (projectError) throw projectError
     createdProjectId = project.id
-    const { error: orderLinkError } = await supabase.from('orders').update({ project_id: project.id }).eq('id', order.id).is('project_id', null)
+    const { data: orderLinkData, error: orderLinkError } = await supabase.from('orders').update({ project_id: project.id }).eq('id', order.id).is('project_id', null).select()
     if (orderLinkError) throw orderLinkError
+    const linkedRows = Array.isArray(orderLinkData) ? orderLinkData : (orderLinkData ? [orderLinkData] : [])
+    if (!linkedRows.length) {
+      await cleanupInitializedProject({ projectId: project.id })
+      return errorResponse(res, 409, 'Order link conflict', 'ORDER_LINK_CONFLICT')
+    }
     const applied = await applyTemplate({ projectId: project.id, templateId: templateId, actorId: req.user.id })
     createdMilestoneIds.push(...applied.milestones.map((item) => item.id))
     createdTaskIds.push(...applied.tasks.map((item) => item.id))

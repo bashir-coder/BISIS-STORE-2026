@@ -73,7 +73,7 @@ export default {
           light: "#F0C94A",
           bright: "#FFE58A",
           deep: "#9F7A18",
-          text: "#F0C94A",
+          text: "#D4AF37",
         },
         blue: {
           DEFAULT: "#2F7BFF",
@@ -83,11 +83,11 @@ export default {
           text: "#60A5FA",
         },
         dark: {
-          DEFAULT: "#020304",
-          lighter: "#05070A",
-          panel: "#090C10",
-          panel2: "#0D1217",
-          card: "#12171E",
+          DEFAULT: "#02040A",
+          lighter: "#050914",
+          panel: "#081020",
+          panel2: "#0B1428",
+          card: "#0F1A32",
         },
       },
       boxShadow: {
@@ -96,9 +96,11 @@ export default {
         'glass': 'inset 0 1px 0 rgba(255, 255, 255, 0.05), 0 18px 48px rgba(0, 0, 0, 0.35)',
       },
       fontFamily: {
-        outfit: ['Outfit', 'sans-serif'],
-        inter: ['Inter', 'sans-serif'],
-        cairo: ['Cairo', 'sans-serif'],
+        outfit: ["'Outfit'", "'Cairo'", 'sans-serif'],
+        inter: ["'Inter'", "'Cairo'", 'sans-serif'],
+        cairo: ["'Cairo'", 'sans-serif'],
+        bebas: ["'Bebas Neue'", 'sans-serif'],
+        serif: ["'Fraunces'", 'serif'],
       },
       borderRadius: {
         lg: "var(--radius)",

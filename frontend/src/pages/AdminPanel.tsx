@@ -825,7 +825,7 @@ setOrders(ordersData)
               {projects.map(p => (
                 <div key={p.id} className={`glass rounded-xl border p-3 transition ${selectedProject?.id === p.id ? 'border-gold/40 bg-gold/5' : 'border-border-1 hover:border-gold/20'}`}>
                   <div className="flex items-center justify-between gap-4">
-                    <div className="cursor-pointer" onClick={() => setSelectedProject(p)}>
+                    <div className="cursor-pointer" role="button" tabIndex={0} onClick={() => setSelectedProject(p)} onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') setSelectedProject(p) }}>
                       <Link to={`/projects/${p.id}`} onClick={(event) => event.stopPropagation()} className="text-sm font-medium text-ink-0 hover:text-gold">{p.name}</Link>
                       <p className="text-xs text-ink-4">{p.description || t('projects.no_description')}</p>
                       <div className="flex items-center gap-2 mt-1">
@@ -979,8 +979,8 @@ setOrders(ordersData)
       </div>
 
       {/* Project Modal */}
-      <div className={`fixed inset-0 z-50 flex items-center justify-center p-4 bg-surface-inset backdrop-blur-sm transition ${showProjectModal ? 'opacity-100' : 'opacity-0 pointer-events-none'}`} onClick={() => setShowProjectModal(false)}>
-        <div className="glass rounded-3xl border-gold/10 p-6 max-w-md w-full" onClick={(e) => e.stopPropagation()}>
+      <div className={`fixed inset-0 z-50 flex items-center justify-center p-4 bg-surface-inset backdrop-blur-sm transition ${showProjectModal ? 'opacity-100' : 'opacity-0 pointer-events-none'}`} role="button" tabIndex={-1} onClick={() => setShowProjectModal(false)} onKeyDown={() => setShowProjectModal(false)}>
+        <div className="glass rounded-3xl border-gold/10 p-6 max-w-md w-full" role="presentation" onClick={(e) => e.stopPropagation()}>
           <h3 className="text-xl font-bold text-ink-0 mb-4">{editingProject ? t('projects.edit') : t('projects.new')}</h3>
           <div className="space-y-3">
             <input type="text" placeholder={t('projects.name')} value={projectForm.name} onChange={(e) => setProjectForm(prev => ({ ...prev, name: e.target.value }))} className="w-full bg-surface-1 border border-border-1 rounded-lg px-4 py-2 text-ink-0 placeholder:text-ink-5 focus:outline-none focus:border-gold/50" />

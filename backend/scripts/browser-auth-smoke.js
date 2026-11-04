@@ -77,9 +77,9 @@ async function main() {
   const created = await admin.auth.admin.createUser({ email, password, email_confirm: true, user_metadata: { full_name: 'BİŞİŞ Browser QA' } })
   if (created.error || !created.data.user) throw created.error || new Error('Unable to create browser QA user')
   const userId = created.data.user.id
-  const persona = await admin.from('personas').select('id').limit(1).single()
-  if (persona.error || !persona.data?.id) throw persona.error || new Error('No real persona available for browser QA')
-  const profile = await admin.from('users').update({ persona_id: persona.data.id }).eq('id', userId)
+  // Persona system retired by migration 018_remove_personas_system.sql;
+  // the personas table no longer exists, so profile provisioning skips persona assignment.
+  const profile = await admin.from('users').update({}).eq('id', userId)
   if (profile.error) throw profile.error
   const browser = await cdpWs()
   const { send } = browser

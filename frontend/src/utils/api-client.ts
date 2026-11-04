@@ -23,7 +23,6 @@ api.interceptors.request.use((config) => {
 
 api.interceptors.request.use(
   async (config: InternalAxiosRequestConfig): Promise<InternalAxiosRequestConfig> => {
-
     const { data: { session } } = await supabase.auth.getSession()
     if (session?.access_token) {
       config.headers.Authorization = `Bearer ${session.access_token}`
@@ -41,20 +40,41 @@ api.interceptors.request.use(
   }
 )
 
+let isHandling401 = false
+const FORTY_ONE_RESET_MS = 2000
+
+// Exported for test-only use: resets the 401 deduplication flag so that
+// successive tests start with a clean dedup state. Does not affect production
+// behavior outside of tests that import and call it.
+export const __reset401Dedup = () => {
+  isHandling401 = false
+}
+
 api.interceptors.response.use(
   (response) => response,
-  (error) => {
-
-    if (error.response?.status === 401) {
-      localStorage.removeItem('BİŞİŞ_user')
-      void supabase.auth.signOut()
-      window.location.href = '/login'
+  async (error) => {
+    if (error.response?.status !== 401) {
       return Promise.reject(error)
     }
 
-    if (error.response?.status === 403) {
+    if (isHandling401) {
       return Promise.reject(error)
     }
+    isHandling401 = true
+    setTimeout(() => {
+      isHandling401 = false
+    }, FORTY_ONE_RESET_MS)
+
+    const { data: { session } } = await supabase.auth.getSession()
+    if (!session?.access_token) {
+      return Promise.reject(error)
+    }
+
+    window.dispatchEvent(
+      new CustomEvent('auth-session-expired', {
+        detail: { from: window.location.pathname },
+      })
+    )
 
     return Promise.reject(error)
   }

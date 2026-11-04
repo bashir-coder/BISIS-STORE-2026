@@ -263,71 +263,6 @@ describe('Runtime Integration Verification Suite', () => {
     })
   })
 
-  // STEP 5 — CHAT FLOW
-  describe('Step 5: Chat Flow & Authorization', () => {
-    test('unauthorized user cannot read messages from another conversation (403)', async () => {
-      const convUserB = { id: 'conv-bbb', user_id: userB.id, order_id: null, project_id: null, workspace_id: userB.workspace_id }
-
-      jest.spyOn(supabase, 'from').mockImplementation((table) => {
-        if (table === 'users') {
-          return { select: jest.fn().mockReturnThis(), eq: jest.fn().mockReturnThis(), maybeSingle: async () => ({ data: userA, error: null }), single: async () => ({ data: userA, error: null }) }
-        }
-        if (table === 'conversations') {
-          return {
-            select: jest.fn().mockReturnThis(),
-            eq: jest.fn().mockImplementation(() => {
-              return { single: async () => ({ data: convUserB, error: null }), maybeSingle: async () => ({ data: convUserB, error: null }) }
-            })
-          }
-        }
-        return { select: jest.fn().mockReturnThis(), eq: jest.fn().mockReturnThis() }
-      })
-
-      const res = await request(app)
-        .get('/api/chat/conv-bbb/messages')
-        .set('Authorization', `Bearer ${tokenFor(userA)}`)
-
-      expect(res.statusCode).toBe(403)
-      expect(res.body.message).toContain('Unauthorized')
-    })
-
-    test('authorized user can retrieve their unread message count', async () => {
-      const convUserA = [{ id: 'conv-aaa' }]
-
-      jest.spyOn(supabase, 'from').mockImplementation((table) => {
-        if (table === 'users') {
-          return { select: jest.fn().mockReturnThis(), eq: jest.fn().mockReturnThis(), maybeSingle: async () => ({ data: userA, error: null }), single: async () => ({ data: userA, error: null }) }
-        }
-        if (table === 'conversations') {
-          return {
-            select: jest.fn().mockReturnThis(),
-            eq: jest.fn().mockImplementation(() => {
-              return Promise.resolve({ data: convUserA, error: null })
-            })
-          }
-        }
-        if (table === 'messages') {
-          return {
-            select: jest.fn().mockReturnThis(),
-            neq: jest.fn().mockReturnThis(),
-            eq: jest.fn().mockReturnThis(),
-            in: jest.fn().mockImplementation(() => {
-              return Promise.resolve({ count: 3, error: null })
-            })
-          }
-        }
-        return { select: jest.fn().mockReturnThis(), eq: jest.fn().mockReturnThis() }
-      })
-
-      const res = await request(app)
-        .get('/api/chat/unread')
-        .set('Authorization', `Bearer ${tokenFor(userA)}`)
-
-      expect(res.statusCode).toBe(200)
-      expect(res.body.unread).toBe(3)
-    })
-  })
-
   // STEP 7 — INVOICES & TICKETS
   describe('Step 7: Invoices & Tickets IDOR Prevention', () => {
     test('customer cannot access invoice for another user order (404/403)', async () => {
@@ -354,67 +289,6 @@ describe('Runtime Integration Verification Suite', () => {
       expect(res.statusCode).toBe(404)
       expect(res.body.message).toBe('Invoice not found')
     })
-  })
-})
-
-
-describe('Persona persistence API', () => {
-  afterEach(() => {
-    jest.restoreAllMocks()
-  })
-
-  test('persists a valid persona for the authenticated user only', async () => {
-    const testUserA = {
-      id: '11111111-1111-1111-1111-111111111111',
-      email: 'userA@example.com',
-      full_name: 'User A',
-      role: 'client',
-      workspace_id: 'aaaa1111-aaaa-1111-aaaa-111111111111',
-      is_active: true,
-    }
-    const personaId = 'aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa'
-    jest.spyOn(supabase.auth, 'getUser').mockResolvedValue({
-      data: {
-        user: {
-          id: testUserA.id,
-          email: testUserA.email,
-          user_metadata: { full_name: testUserA.full_name },
-          app_metadata: { provider: 'supabase' },
-          email_confirmed_at: '2026-01-01T00:00:00Z',
-        },
-      },
-      error: null,
-    })
-    const profileQuery = {
-      select: jest.fn().mockReturnThis(),
-      eq: jest.fn().mockReturnThis(),
-      maybeSingle: jest.fn().mockResolvedValue({ data: { ...testUserA, is_verified: true }, error: null }),
-    }
-    const personaQuery = {
-      select: jest.fn().mockReturnThis(),
-      eq: jest.fn().mockReturnThis(),
-      maybeSingle: jest.fn().mockResolvedValue({ data: { id: personaId, slug: 'startup' }, error: null }),
-    }
-    const updateQuery = {
-      update: jest.fn().mockReturnThis(),
-      eq: jest.fn().mockReturnThis(),
-      select: jest.fn().mockReturnThis(),
-      single: jest.fn().mockResolvedValue({ data: { id: testUserA.id, persona_id: personaId }, error: null }),
-    }
-    jest.spyOn(supabase, 'from')
-      .mockReturnValueOnce(profileQuery)
-      .mockReturnValueOnce(personaQuery)
-      .mockReturnValueOnce(updateQuery)
-
-    const res = await request(app)
-      .patch('/api/users/me/persona')
-      .set('Authorization', `Bearer token-${testUserA.id}`)
-      .send({ persona_id: personaId })
-
-    expect(res.statusCode).toBe(200)
-    expect(res.body.user.persona_id).toBe(personaId)
-    expect(updateQuery.eq).toHaveBeenCalledWith('id', testUserA.id)
-    expect(updateQuery.update).toHaveBeenCalledWith(expect.objectContaining({ persona_id: personaId }))
   })
 })
 

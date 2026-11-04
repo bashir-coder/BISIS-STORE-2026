@@ -15,6 +15,7 @@ import { useNavLinks } from '../lib/nav-links'
 import { supabase } from '../lib/supabase'
 import { resolveRole } from '../lib/roles'
 import { useLanguage } from '../contexts/LanguageContext'
+import { useAuth } from '../contexts/AuthContext'
 import { LANGUAGES } from '../utils/env'
 
 interface UserProfile {
@@ -85,15 +86,7 @@ const Sidebar: React.FC<SidebarProps> = ({ collapsed, onToggle, mobileOpen, setM
 
   const isActive = (path: string) => location.pathname === path
 
-  const handleLogout = () => {
-    void supabase.auth.signOut()
-    localStorage.removeItem('BİŞİŞ_token')
-    localStorage.removeItem('BİŞİŞ_user')
-    localStorage.removeItem('BİŞİŞ_human_verified')
-    localStorage.removeItem('BİŞİŞ_introduction_shown')
-    setUserProfile(null)
-    window.dispatchEvent(new Event('auth-changed'))
-  }
+  const { logout } = useAuth()
 
   const { publicLinks, authLinks, adminLink } = useNavLinks()
 
@@ -113,6 +106,11 @@ const Sidebar: React.FC<SidebarProps> = ({ collapsed, onToggle, mobileOpen, setM
   const handleMobileNavClose = () => setMobileOpen(false)
 
   const handleMobileClose = () => setMobileOpen(false)
+
+  const handleLogout = async () => {
+    await logout()
+    setUserProfile(null)
+  }
 
   return (
     <>

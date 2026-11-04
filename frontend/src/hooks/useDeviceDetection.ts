@@ -29,12 +29,32 @@ const readProfile = (): DeviceProfile => {
   const isCoarsePointer = window.matchMedia(COARSE_QUERY).matches
   const isTouch = isCoarsePointer || hasTouchEvents()
 
+  const deviceMemory = (navigator as { deviceMemory?: number }).deviceMemory
+  const hardwareConcurrency = navigator.hardwareConcurrency
+
+  const memoryKnown = deviceMemory !== undefined
+  const concurrencyKnown = hardwareConcurrency !== undefined && hardwareConcurrency > 0
+
+  const memoryIsLow = memoryKnown && deviceMemory < 4
+  const memoryIsCapable = memoryKnown && deviceMemory >= 4
+  const concurrencyIsLow = concurrencyKnown && hardwareConcurrency < 6
+  const concurrencyIsCapable = concurrencyKnown && hardwareConcurrency >= 6
+
+  // Positive evidence of low-end requires both known capabilities to indicate low-end.
+  const isKnownLowEnd = memoryIsLow && concurrencyIsLow
+  // Positive evidence of capable requires either known capability to indicate capable.
+  const isKnownCapable = memoryIsCapable || concurrencyIsCapable
+
+  // Unknown capability defaults to not low-end (reasonable quality tier),
+  // so browsers without deviceMemory/hardwareConcurrency are not downgraded.
+  const isLowEnd = (isMobile || isCoarsePointer) && isKnownLowEnd && !isKnownCapable
+
   return {
     isMobile,
     isTouch,
     isCoarsePointer,
     isDesktop: !isMobile,
-    isLowEnd: isMobile || isCoarsePointer,
+    isLowEnd,
   }
 }
 

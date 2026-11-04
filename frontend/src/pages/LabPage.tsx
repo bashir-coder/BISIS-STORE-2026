@@ -21,6 +21,7 @@ import { api } from '../utils/api-client'
 import { useTranslation } from 'react-i18next'
 import { useReducedMotion } from '../hooks/useReducedMotion'
 import Hero from '../sections/Hero'
+import { Card } from '../components/ui/Card'
 
 interface Service {
   id: number
@@ -45,7 +46,6 @@ interface Package {
   price: number
   features: string[]
   services: string[]
-  persona_ids: string[]
   is_popular: boolean
   is_active: boolean
 }
@@ -323,9 +323,11 @@ const LabPage: React.FC = () => {
                 ),
               },
             ].map((card) => (
-              <div
+              <Card
                 key={card.title}
-                className="card card-interactive p-5 transition-colors hover:border-gold/20"
+                variant="interactive"
+                padded
+                className="transition-colors hover:border-gold/20"
               >
                 <card.icon className="h-5 w-5 text-gold" />
                 <h3 className="mt-4 text-sm font-bold text-ink-0">
@@ -334,7 +336,7 @@ const LabPage: React.FC = () => {
                 <p className="mt-2 text-xs leading-6 text-ink-3">
                   {card.text}
                 </p>
-              </div>
+              </Card>
             ))}
           </div>
         </motion.div>
@@ -407,7 +409,7 @@ const LabPage: React.FC = () => {
               <motion.div
                 key={step.number}
                 {...fadeUp}
-                className="relative rounded-2xl border border-border-1 bg-[#0d0d0d] p-6"
+                className="relative rounded-2xl border border-border-1 bg-surface-1 p-6"
               >
                 <div className="flex items-center justify-between">
                   <step.icon className="h-5 w-5 text-gold icon-hover" />
@@ -621,7 +623,7 @@ const LabPage: React.FC = () => {
                       key={feature}
                       className="flex items-start gap-2 text-xs text-ink-2"
                     >
-                      <Check className="mt-0.5 h-3.5 w-3.5 shrink-0 text-green-300" />
+                      <Check className="mt-0.5 h-3.5 w-3.5 shrink-0 text-gold" />
                       <span>{feature}</span>
                     </div>
                   ))}
@@ -740,7 +742,7 @@ const LabPage: React.FC = () => {
                     key={point}
                     className="flex items-start gap-3 text-sm text-ink-2"
                   >
-                    <Check className="mt-0.5 h-4 w-4 shrink-0 text-green-300" />
+                    <Check className="mt-0.5 h-4 w-4 shrink-0 text-gold" />
                     <span>{point}</span>
                   </div>
                 ))}
@@ -755,7 +757,7 @@ const LabPage: React.FC = () => {
               </Link>
             </div>
 
-            <div className="rounded-3xl border border-gold/15 bg-[#0c0c0c] p-6">
+              <div className="rounded-3xl border border-gold/15 bg-surface-1 p-6">
               <div className="flex items-center gap-3">
                 <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-gold/10 text-gold">
                   <WalletCards className="h-5 w-5" />
@@ -941,9 +943,10 @@ const LabPage: React.FC = () => {
                 ),
               },
             ].map((item) => (
-              <div
+              <Card
                 key={item.title}
-                className="card card-interactive p-5"
+                variant="interactive"
+                padded
               >
                 <item.icon className="h-5 w-5 text-gold icon-hover" />
                 <div className="mt-4 text-sm font-bold text-ink-0">
@@ -952,7 +955,7 @@ const LabPage: React.FC = () => {
                 <div className="mt-1 text-xs leading-6 text-ink-3">
                   {item.text}
                 </div>
-              </div>
+              </Card>
             ))}
           </div>
         </motion.div>
@@ -1000,9 +1003,11 @@ const LabPage: React.FC = () => {
                 ),
               },
             ].map((item) => (
-              <div
+              <Card
                 key={item.title}
-                className="card card-interactive p-6"
+                variant="interactive"
+                padded
+                paddingSize="lg"
               >
                 <item.icon className="h-5 w-5 text-blue-light icon-hover" />
                 <h3 className="mt-5 text-base font-bold text-ink-0">
@@ -1011,7 +1016,7 @@ const LabPage: React.FC = () => {
                 <p className="mt-2 text-xs leading-6 text-ink-3">
                   {item.text}
                 </p>
-              </div>
+              </Card>
             ))}
           </div>
         </div>
@@ -1085,7 +1090,7 @@ const LabPage: React.FC = () => {
       <section className="px-4 py-20 sm:px-6 lg:px-8">
         <motion.div
           {...fadeUp}
-          className="mx-auto max-w-6xl overflow-hidden rounded-3xl border border-border-1 bg-[#0b0b0b]"
+          className="mx-auto max-w-6xl overflow-hidden rounded-3xl border border-border-1 bg-surface-1"
         >
           <div className="border-b border-border-1 p-6 sm:p-8">
             <div className="flex flex-col justify-between gap-5 sm:flex-row sm:items-center">
@@ -1121,7 +1126,7 @@ const LabPage: React.FC = () => {
           </div>
 
           <div className="grid gap-px bg-surface-1 md:grid-cols-3">
-            <div className="bg-[#0b0b0b] p-6">
+              <div className="bg-surface-1 p-6">
               <div className="text-xs text-ink-3">
                 {t('lab.status.service')}
               </div>
@@ -1130,7 +1135,7 @@ const LabPage: React.FC = () => {
               </div>
             </div>
 
-            <div className="bg-[#0b0b0b] p-6">
+              <div className="bg-surface-1 p-6">
               <div className="text-xs text-ink-3">
                 {t('lab.status.database')}
               </div>
@@ -1139,7 +1144,7 @@ const LabPage: React.FC = () => {
               </div>
             </div>
 
-            <div className="bg-[#0b0b0b] p-6">
+              <div className="bg-surface-1 p-6">
               <div className="text-xs text-ink-3">
                 {t('lab.status.readiness')}
               </div>

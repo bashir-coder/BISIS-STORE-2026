@@ -3,6 +3,7 @@ import { useSearchParams, useNavigate } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
 import { api } from '../utils/api-client'
 import { motion } from 'framer-motion'
+import { Button } from '../components/ui/Button'
 import {
   CheckCircle,
   Clock,
@@ -114,13 +115,9 @@ const PaymentSuccess: React.FC = () => {
               {t('payment_success.error_title')}
             </h1>
             <p className="text-ink-0/60 mb-6">{error || t('payment_success.unknown_error')}</p>
-            <button
-              onClick={handleGoToDashboard}
-              className="btn-primary flex items-center justify-center gap-2 mx-auto"
-            >
-              <ArrowLeft className="w-4 h-4" />
+            <Button variant="primary" size="lg" className="mx-auto" leftIcon={<ArrowLeft className="w-4 h-4" />} onClick={handleGoToDashboard}>
               {t('payment_success.back_to_dashboard')}
-            </button>
+            </Button>
           </motion.div>
         </div>
       </div>
@@ -162,13 +159,9 @@ const PaymentSuccess: React.FC = () => {
           </div>
 
           <div className="space-y-3">
-            <button
-              onClick={handleGoToDashboard}
-              className="w-full btn-primary flex items-center justify-center gap-2"
-            >
-              <ArrowLeft className="w-4 h-4" />
+            <Button variant="primary" size="lg" className="w-full" leftIcon={<ArrowLeft className="w-4 h-4" />} onClick={handleGoToDashboard}>
               {t('payment_success.back_to_dashboard')}
-            </button>
+            </Button>
 
             <button
               onClick={handleGoToOrder}

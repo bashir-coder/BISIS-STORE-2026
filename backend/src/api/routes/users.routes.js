@@ -2,13 +2,12 @@ const express = require('express')
 const { authenticate, authorize } = require('../middleware/auth.middleware')
 const supabase = require('../../config/supabase.config')
 const router = express.Router()
-const UUID_PATTERN = /^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i
 
 router.get('/me', authenticate, async (req, res) => {
   try {
     const { data, error } = await supabase
       .from('users')
-      .select('id, full_name, email, avatar, role, is_active, is_verified, persona_id, workspace_id, created_at, updated_at')
+      .select('id, full_name, email, avatar, role, is_active, is_verified, workspace_id, created_at, updated_at')
       .eq('id', req.user.id)
       .single()
     if (error || !data) return res.status(404).json({ message: 'User profile not found' })
@@ -19,40 +18,20 @@ router.get('/me', authenticate, async (req, res) => {
   }
 })
 
+// Persona persistence retired by migration 018_remove_personas_system.sql.
+// Kept as a backward-compatible stub so existing clients hitting
+// /api/users/me/persona receive a deterministic rejection instead of a
+// 500. No database queries are issued.
+
 router.patch('/me/persona', authenticate, async (req, res) => {
-  try {
-    const { persona_id: personaId } = req.body || {}
-    if (!UUID_PATTERN.test(String(personaId || ''))) {
-      return res.status(400).json({ message: 'A valid persona_id is required' })
-    }
-
-    const { data: persona, error: personaError } = await supabase
-      .from('personas')
-      .select('id, slug')
-      .eq('id', personaId)
-      .maybeSingle()
-    if (personaError) throw personaError
-    if (!persona) return res.status(404).json({ message: 'Persona not found' })
-
-    const { data, error } = await supabase
-      .from('users')
-      .update({ persona_id: persona.id, updated_at: new Date().toISOString() })
-      .eq('id', req.user.id)
-      .select('id, persona_id, updated_at')
-      .single()
-    if (error || !data) throw error || new Error('Profile update returned no row')
-    res.json({ user: data, persona })
-  } catch (err) {
-    console.error('Persona update failed:', err)
-    res.status(500).json({ message: 'Unable to save persona preference' })
-  }
+  res.status(410).json({ message: 'Persona preference is no longer supported' })
 })
 
 router.get('/', authenticate, authorize('admin', 'super_admin'), async (req, res) => {
   try {
     let query = supabase
       .from('users')
-      .select('id, full_name, email, avatar, role, is_active, is_verified, persona_id, workspace_id, created_at, updated_at')
+      .select('id, full_name, email, avatar, role, is_active, is_verified, workspace_id, created_at, updated_at')
       .eq('role', 'client')
       .order('created_at', { ascending: false })
       .limit(100)

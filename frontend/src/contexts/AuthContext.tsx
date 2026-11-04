@@ -1,4 +1,4 @@
-import { createContext, useContext, useState, useEffect } from 'react';
+import { createContext, useContext, useState, useEffect, useCallback } from 'react';
 import type { User as SupabaseUser } from '@supabase/supabase-js';
 import { supabase } from '../lib/supabase'
 import { resolveRole } from '../lib/roles';
@@ -19,6 +19,8 @@ interface AuthContextType {
   loginWithGoogle: () => Promise<unknown>;
   logout: () => Promise<void>;
   updateProfile: (newData: Partial<AuthUser>) => void;
+  sessionExpired?: boolean;
+  clearSessionExpired?: () => void;
 }
 
 const AuthContext = createContext<AuthContextType>({} as AuthContextType);
@@ -28,6 +30,8 @@ export const useAuth = () => useContext(AuthContext);
 export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
   const [user, setUser] = useState<AuthUser | null>(null);
   const [loading, setLoading] = useState(true);
+  const [sessionExpired, setSessionExpired] = useState(false);
+  const clearSessionExpired = useCallback(() => setSessionExpired(false), []);
 
   const mapUser = (authUser: SupabaseUser): AuthUser => ({
     id: authUser.id,
@@ -44,6 +48,7 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
         setUser(mapUser(session.user));
       } else {
         setUser(null);
+        setSessionExpired(true);
       }
       setLoading(false);
     });
@@ -61,6 +66,7 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
   const login = async (email: string, password: string) => {
     const { data, error } = await supabase.auth.signInWithPassword({ email, password });
     if (error) throw error;
+    clearSessionExpired();
     return data;
   };
 
@@ -75,6 +81,7 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
     if (error) throw error;
     localStorage.removeItem('BİŞİŞ_user');
     localStorage.removeItem('BİŞİŞ_token');
+    window.dispatchEvent(new Event('auth-changed'));
   };
 
   const updateProfile = (newData: Partial<AuthUser>) => {
@@ -90,6 +97,8 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
         loginWithGoogle,
         logout,
         updateProfile,
+        sessionExpired,
+        clearSessionExpired,
       }}
     >
       {children}

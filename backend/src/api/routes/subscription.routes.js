@@ -20,7 +20,17 @@ router.get('/', authenticate, async (req, res) => {
 
 router.post('/', authenticate, async (req, res) => {
   try {
-    const { plan_type = 'life_plan' } = req.body
+    const body = req.body || {}
+
+    if (body.status === 'active' && body.user_id && body.user_id !== req.user.id) {
+      return res.status(409).json({ code: 'SUBSCRIPTION_CHECKOUT_UNAVAILABLE' })
+    }
+
+    if (body.status === 'active') {
+      return res.status(409).json({ code: 'SUBSCRIPTION_CHECKOUT_UNAVAILABLE' })
+    }
+
+    const { plan_type = 'life_plan' } = body
 
 
     const { data: existing, error: checkError } = await supabase
@@ -28,7 +38,7 @@ router.post('/', authenticate, async (req, res) => {
       .select('id')
       .eq('user_id', req.user.id)
       .eq('status', 'active')
-      .single()
+      .maybeSingle()
 
     if (!checkError && existing) {
       return res.status(400).json({ message: 'You already have an active subscription' })

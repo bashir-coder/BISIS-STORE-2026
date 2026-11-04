@@ -5,6 +5,7 @@ import { Link } from 'react-router-dom'
 import MagneticButton from '../components/MagneticButton'
 import { api } from '../utils/api-client'
 import { useTranslate } from '../hooks/useTranslate'
+import { Card } from '../components/ui/Card'
 
 interface Package {
   id: number
@@ -15,7 +16,6 @@ interface Package {
   price: number
   features: string[]
   services: string[]
-  persona_ids: string[]
   is_popular: boolean
   is_active: boolean
 }
@@ -136,7 +136,7 @@ const PackagesPage: React.FC = () => {
             <button
               type="button"
               onClick={() => setShowCalculator(!showCalculator)}
-              className="inline-flex items-center gap-2 rounded-full border border-gold/30 bg-gold/10 px-4 py-2 text-xs sm:text-sm font-medium text-gold hover:bg-gold/20 transition-all shadow-sm shadow-gold/10"
+              className="inline-flex items-center gap-2 rounded-full border border-gold/30 bg-gold/10 px-4 py-2 text-xs sm:text-sm font-medium text-gold hover:bg-gold/20 transition-all shadow-sm"
             >
               <SlidersHorizontal className="h-4 w-4" />
               <span>{showCalculator ? t('packages.calc.hide') : t('packages.calc.calculator')}</span>
@@ -192,7 +192,7 @@ const PackagesPage: React.FC = () => {
                           onClick={() => setCalcSlug(pkg.slug)}
                           className={`w-full p-3 rounded-xl border text-sm text-start font-medium transition-all ${
                             calcSlug === pkg.slug
-                               ? 'border-gold bg-gold/15 text-gold shadow-md shadow-gold/10'
+                               ? 'border-gold bg-gold/15 text-gold shadow-md'
                                : 'border-border-1 bg-surface-1 text-ink-2 hover:border-gold/30 hover:bg-surface-1'
                           }`}
                         >
@@ -224,7 +224,7 @@ const PackagesPage: React.FC = () => {
                           if (matched) setSelectedPackageId(matched.id)
                           setShowCalculator(false)
                         }}
-                        className="w-full py-2.5 px-4 rounded-xl bg-gold text-dark text-xs font-bold uppercase tracking-wider hover:bg-gold-light transition-all shadow-lg shadow-gold/20"
+                        className="w-full py-2.5 px-4 rounded-xl bg-gold text-dark text-xs font-bold uppercase tracking-wider hover:bg-gold-light transition-all shadow-lg"
                       >
                         {t('packages.calc.select')}
                       </button>
@@ -250,32 +250,37 @@ const PackagesPage: React.FC = () => {
             {uniqueServices.map((service) => {
               const isSubscription = service.metadata?.service_type === 'signature_subscription'
               return (
-                <article key={service.id} className={`card card-interactive p-5 ${selectedServiceId === service.id ? 'card-is-active' : ''}`}>
+                <Card
+                  key={service.id}
+                  variant="interactive"
+                  padded
+                  className={selectedServiceId === service.id ? 'card-is-active' : ''}
+                >
                    <div className="flex items-start justify-between gap-3">
-                     <h3 className="font-semibold text-ink-0">{service.name}</h3>
-                     {isSubscription && <span className="shrink-0 rounded-full border border-gold/30 bg-gold/10 px-2 py-1 text-[10px] font-semibold text-gold">Signature Subscription</span>}
-                   </div>
-                   <p className="mt-2 min-h-12 text-sm leading-6 text-ink-3">{service.description || t(`services.${service.metadata?.source_id || 'svc-000'}.description`)}</p>
-                   <div className="mt-4 flex items-center justify-between border-t border-border-1 pt-4 text-sm">
-                     <span className="font-semibold text-gold">${Number(service.price).toFixed(0)}{isSubscription ? '/month' : ''}</span>
-                     <span className="text-ink-3">{service.delivery}</span>
-                   </div>
-                  <button
-                    type="button"
-                    onClick={() => {
-                      if (isSubscription) {
-                        window.location.assign('/services/life-plan')
-                        return
-                      }
-                      setSelectedServiceId(selectedServiceId === service.id ? null : service.id)
-                      setSelectedPackageId(null)
-                    }}
-                    className="mt-5 flex w-full items-center justify-center gap-2 rounded-xl border border-gold/30 bg-gold/10 py-3 text-sm font-semibold text-gold transition-all hover:bg-gold hover:text-dark"
-                  >
-                    {selectedServiceId === service.id ? String(t('packages.selected')) : String(t('packages.select'))}
-                    {selectedServiceId === service.id && <Check className="h-4 w-4" />}
-                  </button>
-                </article>
+                      <h3 className="font-semibold text-ink-0">{service.name}</h3>
+                      {isSubscription && <span className="shrink-0 rounded-full border border-gold/30 bg-gold/10 px-2 py-1 text-[10px] font-semibold text-gold">Signature Subscription</span>}
+                    </div>
+                    <p className="mt-2 min-h-12 text-sm leading-6 text-ink-3">{service.description || t(`services.${service.metadata?.source_id || 'svc-000'}.description`)}</p>
+                    <div className="mt-4 flex items-center justify-between border-t border-border-1 pt-4 text-sm">
+                      <span className="font-semibold text-gold">${Number(service.price).toFixed(0)}{isSubscription ? '/month' : ''}</span>
+                      <span className="text-ink-3">{service.delivery}</span>
+                    </div>
+                   <button
+                     type="button"
+                     onClick={() => {
+                       if (isSubscription) {
+                         window.location.assign('/services/life-plan')
+                         return
+                       }
+                       setSelectedServiceId(selectedServiceId === service.id ? null : service.id)
+                       setSelectedPackageId(null)
+                     }}
+                     className="mt-5 flex w-full items-center justify-center gap-2 rounded-xl border border-gold/30 bg-gold/10 py-3 text-sm font-semibold text-gold transition-all hover:bg-gold hover:text-dark"
+                   >
+                     {selectedServiceId === service.id ? String(t('packages.selected')) : String(t('packages.select'))}
+                     {selectedServiceId === service.id && <Check className="h-4 w-4" />}
+                   </button>
+                </Card>
               )
             })}
           </div>
@@ -283,7 +288,7 @@ const PackagesPage: React.FC = () => {
 
         {lifePlan && (
           <section className="mb-14" aria-labelledby="life-plan-feature-title">
-            <article className="mx-auto max-w-4xl rounded-2xl border border-gold/50 bg-gradient-to-br from-gold/[0.12] via-white/[0.04] to-transparent p-6 shadow-2xl shadow-gold/10 sm:p-8">
+            <article className="mx-auto max-w-4xl rounded-2xl border border-gold/50 bg-gradient-to-br from-gold/[0.12] via-white/[0.04] to-transparent p-6 shadow-2xl sm:p-8">
               <div className="flex flex-col gap-6 md:flex-row md:items-center md:justify-between">
                 <div>
                   <span className="inline-flex rounded-full border border-gold/30 bg-gold/10 px-3 py-1 text-xs font-semibold uppercase tracking-[0.14em] text-gold">Signature Subscription</span>
@@ -502,7 +507,7 @@ const PackagesPage: React.FC = () => {
             initial={{ opacity: 0, y: 28, scale: 0.96 }}
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: 28, scale: 0.96 }}
-            className="fixed bottom-5 left-1/2 z-40 w-[calc(100%-2rem)] max-w-2xl -translate-x-1/2 rounded-2xl border border-gold/30 bg-surface-inset p-4 shadow-2xl shadow-black/40 backdrop-blur-xl sm:p-5"
+            className="fixed bottom-5 left-1/2 z-40 w-[calc(100%-2rem)] max-w-2xl -translate-x-1/2 rounded-2xl border border-gold/30 bg-surface-inset p-4 shadow-xl backdrop-blur-xl sm:p-5"
           >
             <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
               <div>

@@ -337,7 +337,7 @@ router.post(
           await supabase
             .from('services')
             .select(
-              'id, name, price, is_active',
+              'id, name, price, is_active, metadata',
             )
             .eq(
               'id',
@@ -362,6 +362,18 @@ router.post(
           return res.status(400).json({
             message:
               'A valid active service is required',
+          })
+        }
+
+        if (
+          selectedService?.metadata?.service_type ===
+          'signature_subscription'
+        ) {
+          return res.status(409).json({
+            message:
+              'Subscription checkout is unavailable',
+            code:
+              'SUBSCRIPTION_CHECKOUT_UNAVAILABLE',
           })
         }
       }
@@ -508,6 +520,7 @@ router.post(
   authenticate,
   async (req, res) => {
     let lockAcquired = false
+    let lockReleaseFailed = false
     try {
       const orderId =
         req.params.id
@@ -582,6 +595,30 @@ router.post(
           message:
             'Not allowed',
         })
+      }
+
+      if (order.service) {
+        const { data: matchedServiceResult } = await supabase
+          .from('services')
+          .select('metadata')
+          .eq('name', order.service)
+          .eq('is_active', true)
+
+        const matchedService = Array.isArray(matchedServiceResult)
+          ? matchedServiceResult[0]
+          : matchedServiceResult
+
+        if (
+          matchedService?.metadata?.service_type ===
+          'signature_subscription'
+        ) {
+          return res.status(409).json({
+            message:
+              'Subscription checkout is unavailable',
+            code:
+              'SUBSCRIPTION_CHECKOUT_UNAVAILABLE',
+          })
+        }
       }
 
 
@@ -724,10 +761,12 @@ router.post(
       )
 
       if (lockError && !lockHeldByAnotherRequest) {
-        console.warn(
-          'nowpayments_creating_lock column not available, ' +
-            'proceeding without lock',
-        )
+        return res.status(500).json({
+          message:
+            'Payment lock unavailable',
+          code:
+            'PAYMENT_LOCK_UNAVAILABLE',
+        })
       } else if (lockClaim?.nowpayments_creating_lock === true) {
         lockAcquired = true
       } else if (lockClaim?.payment_url) {
@@ -1068,20 +1107,29 @@ router.post(
       }
 
       if (lockAcquired) {
-        const {
-          error: releaseError,
-        } = await supabase
-          .from('orders')
-          .update({
-            nowpayments_creating_lock:
-              false,
-          })
-          .eq('id', order.id)
+        try {
+          const {
+            error: releaseError,
+          } = await supabase
+            .from('orders')
+            .update({
+              nowpayments_creating_lock:
+                false,
+            })
+            .eq('id', order.id)
 
-        if (releaseError) {
-          console.warn(
-            'Failed to release nowpayments_creating_lock:',
-            releaseError,
+          if (releaseError) {
+            lockReleaseFailed = true
+            console.error(
+              'Failed to release nowpayments_creating_lock for order ' + order.id + ':',
+              releaseError,
+            )
+          }
+        } catch (releaseException) {
+          lockReleaseFailed = true
+          console.error(
+            'Failed to release nowpayments_creating_lock for order ' + order.id + ':',
+            releaseException,
           )
         }
       }
@@ -1212,6 +1260,9 @@ router.post(
             payment?.expiration_estimate_date ||
             null,
 
+          lockReleaseFailed:
+            lockReleaseFailed,
+
           order:
             updatedOrder,
         })
@@ -1222,21 +1273,29 @@ router.post(
       )
 
       if (lockAcquired) {
-        const {
-          error: releaseError,
-        } = await supabase
-          .from('orders')
-          .update({
-            nowpayments_creating_lock:
-              false,
-          })
-          .eq('id', req.params.id)
+        try {
+          const {
+            error: releaseError,
+          } = await supabase
+            .from('orders')
+            .update({
+              nowpayments_creating_lock:
+                false,
+            })
+            .eq('id', req.params.id)
 
-        if (releaseError) {
-          console.warn(
-            'Failed to release nowpayments_creating_lock ' +
-              'in catch:',
-            releaseError,
+          if (releaseError) {
+            lockReleaseFailed = true
+            console.error(
+              'Failed to release nowpayments_creating_lock for order ' + req.params.id + ' in catch:',
+              releaseError,
+            )
+          }
+        } catch (releaseException) {
+          lockReleaseFailed = true
+          console.error(
+            'Failed to release nowpayments_creating_lock for order ' + req.params.id + ' in catch:',
+            releaseException,
           )
         }
       }
@@ -1254,6 +1313,9 @@ router.post(
           code:
             err?.code ||
             'NOWPAYMENTS_PAYMENT_CREATION_FAILED',
+
+          lockReleaseFailed:
+            lockReleaseFailed,
         })
     }
   },

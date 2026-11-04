@@ -145,7 +145,7 @@ const Hero: React.FC = () => {
         >
           <motion.div
             variants={itemVariants}
-            className="glass mb-8 inline-flex items-center gap-2.5 rounded-full border border-gold/30 bg-gold/[0.06] px-4 py-2 shadow-lg shadow-gold/10 neon-glow-sm"
+            className="glass mb-8 inline-flex items-center gap-2.5 rounded-full border border-gold/30 bg-gold/[0.06] px-4 py-2 shadow-lg neon-glow-sm"
           >
             <span className="relative flex h-2 w-2">
               <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-gold-light opacity-75" />

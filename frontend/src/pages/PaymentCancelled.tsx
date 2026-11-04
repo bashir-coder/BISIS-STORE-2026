@@ -3,6 +3,7 @@ import { useSearchParams, useNavigate } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
 import { api } from '../utils/api-client'
 import { motion } from 'framer-motion'
+import { Button } from '../components/ui/Button'
 import {
   XCircle,
   ArrowLeft,
@@ -86,13 +87,9 @@ const PaymentCancelled: React.FC = () => {
               {t('payment_cancelled.error_title')}
             </h1>
             <p className="text-ink-0/60 mb-6">{error || t('payment_cancelled.unknown_error')}</p>
-            <button
-              onClick={handleGoToDashboard}
-              className="btn-primary flex items-center justify-center gap-2 mx-auto"
-            >
-              <ArrowLeft className="w-4 h-4" />
+            <Button variant="primary" size="lg" className="mx-auto" leftIcon={<ArrowLeft className="w-4 h-4" />} onClick={handleGoToDashboard}>
               {t('payment_cancelled.back_to_dashboard')}
-            </button>
+            </Button>
           </motion.div>
         </div>
       </div>
@@ -129,13 +126,9 @@ const PaymentCancelled: React.FC = () => {
           </div>
 
           <div className="space-y-3">
-            <button
-              onClick={handleRetryPayment}
-              className="w-full btn-primary flex items-center justify-center gap-2"
-            >
-              <RotateCcw className="w-4 h-4" />
+            <Button variant="primary" size="lg" className="w-full" leftIcon={<RotateCcw className="w-4 h-4" />} onClick={handleRetryPayment}>
               {t('payment_cancelled.try_again')}
-            </button>
+            </Button>
 
             <button
               onClick={handleGoToDashboard}

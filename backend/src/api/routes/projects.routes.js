@@ -5,6 +5,9 @@ const router = express.Router()
 
 router.get('/', authenticate, authorize('admin', 'super_admin'), async (req, res) => {
   try {
+    if (req.user.role !== 'super_admin' && !req.user.workspace_id) {
+      return res.status(403).json({ message: 'An active workspace is required' })
+    }
     let query = supabase.from('projects').select('*')
 
     if (req.user.role !== 'super_admin' && req.user.workspace_id) {
@@ -22,6 +25,9 @@ router.get('/', authenticate, authorize('admin', 'super_admin'), async (req, res
 router.get('/:id', authenticate, authorize('admin', 'super_admin'), async (req, res) => {
   try {
     const { id } = req.params
+    if (req.user.role !== 'super_admin' && !req.user.workspace_id) {
+      return res.status(403).json({ message: 'An active workspace is required' })
+    }
     let query = supabase
       .from('projects')
       .select('*')
@@ -76,6 +82,9 @@ router.post('/', authenticate, authorize('admin', 'super_admin'), async (req, re
 router.patch('/:id', authenticate, authorize('admin', 'super_admin'), async (req, res) => {
   try {
     const { id } = req.params
+    if (req.user.role !== 'super_admin' && !req.user.workspace_id) {
+      return res.status(403).json({ message: 'An active workspace is required' })
+    }
     const { name, description, status } = req.body
 
     const updatePayload = {
@@ -110,6 +119,10 @@ router.patch('/:id', authenticate, authorize('admin', 'super_admin'), async (req
 router.delete('/:id', authenticate, authorize('admin', 'super_admin'), async (req, res) => {
   try {
     const { id } = req.params
+
+    if (req.user.role !== 'super_admin' && !req.user.workspace_id) {
+      return res.status(403).json({ message: 'An active workspace is required' })
+    }
 
     let projectQuery = supabase.from('projects').select('id, workspace_id').eq('id', id)
     if (req.user.role !== 'super_admin') {
@@ -146,12 +159,27 @@ router.get('/:id/orders', authenticate, authorize('admin', 'super_admin'), async
   try {
     const { id } = req.params
 
+    if (req.user.role !== 'super_admin' && !req.user.workspace_id) {
+      return res.status(403).json({ message: 'An active workspace is required' })
+    }
+
+    let projectQuery = supabase.from('projects').select('id, workspace_id').eq('id', id)
+    if (req.user.role !== 'super_admin' && req.user.workspace_id) {
+      projectQuery = projectQuery.eq('workspace_id', req.user.workspace_id)
+    }
+    const { data: project, error: projectError } = await projectQuery.maybeSingle()
+    if (projectError || !project) return res.status(404).json({ message: 'Project not found' })
+
+    const workspaceId = project.workspace_id
+
     let query = supabase
       .from('orders')
       .select('*')
       .eq('project_id', id)
 
-    if (req.user.role !== 'super_admin' && req.user.workspace_id) {
+    if (workspaceId) {
+      query = query.eq('workspace_id', workspaceId)
+    } else if (req.user.role !== 'super_admin' && req.user.workspace_id) {
       query = query.eq('workspace_id', req.user.workspace_id)
     }
 
@@ -167,10 +195,13 @@ router.patch('/:projectId/assign/:orderId', authenticate, authorize('admin', 'su
   try {
     const { projectId, orderId } = req.params
 
+    if (req.user.role !== 'super_admin' && !req.user.workspace_id) {
+      return res.status(403).json({ message: 'An active workspace is required' })
+    }
 
     let projectQuery = supabase
       .from('projects')
-      .select('id')
+      .select('id, workspace_id')
       .eq('id', projectId)
 
     if (req.user.role !== 'super_admin' && req.user.workspace_id) {
@@ -185,7 +216,7 @@ router.patch('/:projectId/assign/:orderId', authenticate, authorize('admin', 'su
 
     let orderQuery = supabase
       .from('orders')
-      .select('id')
+      .select('id, workspace_id')
       .eq('id', orderId)
 
     if (req.user.role !== 'super_admin' && req.user.workspace_id) {
@@ -197,11 +228,22 @@ router.patch('/:projectId/assign/:orderId', authenticate, authorize('admin', 'su
       return res.status(404).json({ message: 'Order not found' })
     }
 
+    if (project.workspace_id && order.workspace_id && project.workspace_id !== order.workspace_id) {
+      return res.status(400).json({ message: 'Invalid request' })
+    }
 
-    const { data, error } = await supabase
+    const updateQuery = supabase
       .from('orders')
       .update({ project_id: projectId })
       .eq('id', orderId)
+
+    if (project.workspace_id) {
+      updateQuery.eq('workspace_id', project.workspace_id)
+    } else if (req.user.role !== 'super_admin' && req.user.workspace_id) {
+      updateQuery.eq('workspace_id', req.user.workspace_id)
+    }
+
+    const { data, error } = await updateQuery
       .select()
       .single()
 

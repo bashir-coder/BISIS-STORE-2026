@@ -30,14 +30,13 @@ const flattenServices = () => {
     price: service.price,
     duration_days: null,
     is_active: true,
-    metadata: {
+metadata: {
       source_id: service.id,
       category_name: category.name,
       delivery: service.delivery,
       billing_period: service.billing_period || null,
       service_type: service.service_type || 'one_time',
     },
-    persona_ids: [],
     requirements: null,
     prompt: null,
     name_en: service.name,
@@ -92,11 +91,10 @@ const ensurePackages = async () => {
   return { upserted: data?.length || rows.length, archived: legacyIds.length }
 }
 
+// Persona system retired by migration 018_remove_personas_system.sql.
+// The personas table no longer exists, so persona seeding is skipped.
 const ensurePersonas = async () => {
-  const rows = readJson('personas.json')
-  const { data, error } = await supabase.from('personas').upsert(rows, { onConflict: 'slug' }).select('id, slug')
-  if (error) throw error
-  return { upserted: data?.length || rows.length }
+  return { upserted: 0, retired: true }
 }
 
 const ensureTranslations = async () => {
@@ -147,7 +145,11 @@ const ensureFaqs = async () => {
 
 const countRows = async (table) => {
   const { count, error } = await supabase.from(table).select('id', { count: 'exact', head: true })
-  if (error) throw error
+  if (error) {
+    // Migration 018 drops the personas table; treat a missing table as zero.
+    if (table === 'personas') return 0
+    throw error
+  }
   return count || 0
 }
 

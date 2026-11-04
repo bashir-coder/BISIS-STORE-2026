@@ -1,19 +1,14 @@
-const express = require('express')
+﻿const express = require('express')
 const crypto = require('crypto')
-
 const supabase = require('../../config/supabase.config')
-
 const router = express.Router()
-
 const IPN_SECRET = String(
   process.env.NOWPAYMENTS_IPN_SECRET_KEY || '',
 ).trim()
-
 function sortObject(value) {
   if (Array.isArray(value)) {
     return value.map(sortObject)
   }
-
   if (
     value !== null &&
     typeof value === 'object'
@@ -25,34 +20,26 @@ function sortObject(value) {
         return sorted
       }, {})
   }
-
   return value
 }
-
 function createSignature(payload) {
   if (!IPN_SECRET) {
     const error = new Error(
       'NOWPAYMENTS_IPN_SECRET_KEY is not configured',
     )
-
     error.status = 503
     error.code = 'NOWPAYMENTS_IPN_SECRET_KEY_MISSING'
-
     throw error
   }
-
   const sortedPayload = sortObject(payload)
-
   const payloadString = JSON.stringify(
     sortedPayload,
   )
-
   return crypto
     .createHmac('sha512', IPN_SECRET)
     .update(payloadString)
     .digest('hex')
 }
-
 function timingSafeEqualHex(
   expectedSignature,
   receivedSignature,
@@ -61,32 +48,27 @@ function timingSafeEqualHex(
     String(expectedSignature || ''),
     'utf8',
   )
-
   const received = Buffer.from(
     String(receivedSignature || ''),
     'utf8',
   )
-
   if (
     expected.length === 0 ||
     received.length === 0
   ) {
     return false
   }
-
   if (
     expected.length !==
     received.length
   ) {
     return false
   }
-
   return crypto.timingSafeEqual(
     expected,
     received,
   )
 }
-
 function normalizeStatus(
   paymentStatus,
 ) {
@@ -95,57 +77,43 @@ function normalizeStatus(
   )
     .trim()
     .toLowerCase()
-
   switch (status) {
     case 'waiting':
       return 'pending'
-
     case 'confirming':
     case 'confirmed':
     case 'sending':
       return 'submitted'
-
     case 'finished':
       return 'verified'
-
     case 'partially_paid':
       return 'submitted'
-
     case 'failed':
       return 'failed'
-
     case 'expired':
       return 'failed'
-
     case 'refunded':
       return 'refunded'
-
     default:
       return null
   }
 }
-
 function normalizeOrderId(orderId) {
   const value = String(
     orderId ?? '',
   ).trim()
-
   if (!value) {
     return null
   }
-
   const numericId = Number(value)
-
   if (
     Number.isInteger(numericId) &&
     numericId > 0
   ) {
     return numericId
   }
-
   return null
 }
-
 router.post(
   '/',
   async (req, res) => {
@@ -157,11 +125,9 @@ router.post(
             'NOWPayments IPN secret is not configured',
         })
       }
-
       const receivedSignature = String(
         req.get('x-nowpayments-sig') || '',
       ).trim()
-
       if (!receivedSignature) {
         return res.status(401).json({
           success: false,
@@ -169,9 +135,7 @@ router.post(
             'Missing NOWPayments IPN signature',
         })
       }
-
       const payload = req.body
-
       if (
         !payload ||
         typeof payload !== 'object' ||
@@ -183,10 +147,8 @@ router.post(
             'Invalid NOWPayments IPN payload',
         })
       }
-
       const expectedSignature =
         createSignature(payload)
-
       if (
         !timingSafeEqualHex(
           expectedSignature,
@@ -199,23 +161,16 @@ router.post(
             'Invalid NOWPayments IPN signature',
         })
       }
-
-
-
-
-
       const payCurrency = String(
         payload.pay_currency || '',
       )
         .trim()
         .toLowerCase()
-
       const priceCurrency = String(
         payload.price_currency || '',
       )
         .trim()
         .toLowerCase()
-
       if (
         payCurrency &&
         payCurrency !== 'usdcbsc'
@@ -226,7 +181,6 @@ router.post(
             'Unsupported payment currency',
         })
       }
-
       if (
         priceCurrency &&
         priceCurrency !== 'usd'
@@ -237,15 +191,9 @@ router.post(
             'Unsupported price currency',
         })
       }
-
-
-
-
-
       const orderId = normalizeOrderId(
         payload.order_id,
       )
-
       if (!orderId) {
         return res.status(400).json({
           success: false,
@@ -253,7 +201,6 @@ router.post(
             'Invalid or missing order_id',
         })
       }
-
       const {
         data: order,
         error: orderError,
@@ -262,11 +209,9 @@ router.post(
         .select('*')
         .eq('id', orderId)
         .maybeSingle()
-
       if (orderError) {
         throw orderError
       }
-
       if (!order) {
         return res.status(404).json({
           success: false,
@@ -274,24 +219,13 @@ router.post(
             'Order not found',
         })
       }
-
-
-
-
-
       const paymentStatus =
         normalizeStatus(
           payload.payment_status,
         )
-
       if (!paymentStatus) {
-
-
-
-
         const nowIso =
           new Date().toISOString()
-
         await supabase
           .from('orders')
           .update({
@@ -299,7 +233,6 @@ router.post(
               nowIso,
           })
           .eq('id', orderId)
-
         return res.status(200).json({
           success: true,
           ignored: true,
@@ -307,30 +240,12 @@ router.post(
             'Unsupported payment status',
         })
       }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
       const expectedAmount = Number(
         order.amount ?? order.price,
       )
-
       const reportedPriceAmount = Number(
         payload.price_amount,
       )
-
       if (
         !Number.isFinite(expectedAmount) ||
         expectedAmount <= 0 ||
@@ -346,10 +261,6 @@ router.post(
           code: 'IPN_AMOUNT_MISMATCH',
         })
       }
-
-
-
-
       if (
         paymentStatus === 'verified' ||
         paymentStatus === 'submitted'
@@ -357,7 +268,6 @@ router.post(
         const actualPaidAmount = Number(
           payload.actually_paid,
         )
-
         if (
           !Number.isFinite(actualPaidAmount) ||
           actualPaidAmount <= 0
@@ -370,25 +280,18 @@ router.post(
           })
         }
       }
-
-
-
-
-
       const payAddress =
         payload.pay_address
           ? String(
               payload.pay_address,
             ).trim()
           : null
-
       const payinHash =
         payload.payin_hash
           ? String(
               payload.payin_hash,
             ).trim()
           : null
-
       const paymentId =
         payload.payment_id !==
         undefined &&
@@ -397,7 +300,6 @@ router.post(
               payload.payment_id,
             ).trim()
           : null
-
       const purchaseId =
         payload.purchase_id !==
         undefined &&
@@ -406,11 +308,6 @@ router.post(
               payload.purchase_id,
             ).trim()
           : null
-
-
-
-
-
       if (
         order.payment_status ===
           'verified' &&
@@ -418,7 +315,6 @@ router.post(
       ) {
         const nowIso =
           new Date().toISOString()
-
         await supabase
           .from('orders')
           .update({
@@ -426,7 +322,6 @@ router.post(
               nowIso,
           })
           .eq('id', orderId)
-
         return res.status(200).json({
           success: true,
           ignored: true,
@@ -434,71 +329,41 @@ router.post(
             'Order is already verified',
         })
       }
-
-
-
-
-
       const nowIso =
         new Date().toISOString()
-
       const updatePayload = {
         payment_status:
           paymentStatus,
-
         network: 'bsc',
-
         currency: 'USDC',
-
         updated_at:
           nowIso,
-
         nowpayments_last_ipn_at:
           nowIso,
       }
-
       if (payinHash) {
         updatePayload.txid =
           payinHash
       }
-
-
-
-
-
-
-
-
-
-
-
       const updateQuery = supabase
         .from('orders')
         .update(updatePayload)
         .eq('id', orderId)
-
       if (
         paymentStatus !== 'refunded'
       ) {
         updateQuery.neq('payment_status', 'verified')
       }
-
       const {
         data: updatedOrder,
         error: updateError,
       } = await updateQuery
         .select()
         .maybeSingle()
-
       if (updateError) {
         throw updateError
       }
-
       if (!updatedOrder) {
-
-
-
-
         const {
           data: currentOrder,
         } = await supabase
@@ -506,100 +371,71 @@ router.post(
           .select('payment_status')
           .eq('id', orderId)
           .maybeSingle()
-
         const alreadyVerified = Boolean(
           currentOrder?.payment_status === 'verified' &&
             paymentStatus !== 'refunded',
         )
-
         return res.status(200).json({
           success: true,
-
           order_id:
             orderId,
-
           payment_id:
             paymentId,
-
           payment_status:
             payload.payment_status ||
             null,
-
           internal_status:
             paymentStatus,
-
           updated:
             false,
-
           reason:
             alreadyVerified
               ? 'Order is already verified'
               : 'Payment state changed concurrently',
-
           current_payment_status:
             currentOrder?.payment_status ||
             null,
         })
       }
-
-
-
-
-
-
       const eventPayload = {
         provider: 'nowpayments',
-
         payment_id:
           paymentId,
-
         purchase_id:
           purchaseId,
-
         payment_status:
           payload.payment_status ||
           null,
-
         price_amount:
           payload.price_amount ??
           null,
-
         price_currency:
           payload.price_currency ??
           null,
-
         pay_amount:
           payload.pay_amount ??
           null,
-
         actually_paid:
           payload.actually_paid ??
           payload.amount_received ??
           null,
-
         pay_currency:
           payload.pay_currency ??
           null,
-
         pay_address:
           payAddress,
-
         payin_hash:
           payinHash,
-
         network:
           'bsc',
-
         raw:
           payload,
       }
-
       const normalizedRawStatus = String(
         payload.payment_status || '',
       )
         .trim()
         .toLowerCase()
-
       const eventAlreadyExists =
         paymentId || purchaseId
           ? Boolean(
@@ -635,7 +471,6 @@ router.post(
               ).data
             )
           : false
-
       if (!eventAlreadyExists) {
         const {
           error: eventError,
@@ -645,35 +480,23 @@ router.post(
             {
               order_id:
                 orderId,
-
               actor_id:
                 null,
-
               event_type:
                 `payment.nowpayments.${normalizedRawStatus}`,
-
               payload:
                 eventPayload,
-
               created_at:
                 nowIso,
             },
           ])
-
         if (eventError) {
-
-
           console.error(
             'NOWPayments order event error:',
             eventError,
           )
         }
       }
-
-
-
-
-
       if (
         paymentStatus ===
         'verified'
@@ -685,16 +508,11 @@ router.post(
               {
                 user_id:
                   order.user_id,
-
                 type:
                   'payment',
-
                 message:
-                  `Payment for order #${orderId} has been confirmed.`,
-
                 read:
                   false,
-
                 created_at:
                   new Date().toISOString(),
               },
@@ -706,7 +524,6 @@ router.post(
           )
         }
       }
-
       if (
         paymentStatus === 'failed'
       ) {
@@ -717,16 +534,12 @@ router.post(
               {
                 user_id:
                   order.user_id,
-
                 type:
                   'payment',
-
                 message:
                   `Payment for order #${orderId} failed or expired.`,
-
                 read:
                   false,
-
                 created_at:
                   new Date().toISOString(),
               },
@@ -738,7 +551,6 @@ router.post(
           )
         }
       }
-
       if (
         paymentStatus ===
         'refunded'
@@ -750,16 +562,12 @@ router.post(
               {
                 user_id:
                   order.user_id,
-
                 type:
                   'payment',
-
                 message:
                   `Payment for order #${orderId} has been refunded.`,
-
                 read:
                   false,
-
                 created_at:
                   new Date().toISOString(),
               },
@@ -771,30 +579,19 @@ router.post(
           )
         }
       }
-
-
-
-
-
       return res.status(200).json({
         success: true,
-
         order_id:
           orderId,
-
         payment_id:
           paymentId,
-
         payment_status:
           payload.payment_status ||
           null,
-
         internal_status:
           paymentStatus,
-
         updated:
           true,
-
         order:
           updatedOrder,
       })
@@ -803,7 +600,6 @@ router.post(
         'NOWPayments IPN error:',
         error,
       )
-
       return res.status(
         Number(error?.status) >= 400
           ? Number(error.status)
@@ -817,5 +613,54 @@ router.post(
     }
   },
 )
-
 module.exports = router
+        if (paymentStatus === 'verified') {
+          try {
+          } catch (notificationError) {
+            console.error('NOWPayments notification error:', notificationError)
+          }
+
+      if (paymentStatus === 'verified') {
+        try {
+          await supabase
+            .from('notifications')
+            .insert([{
+              user_id: order.user_id,
+              type: 'payment',
+              message: 'Payment for order #' + orderId + ' has been confirmed.',
+              read: false,
+              created_at: new Date().toISOString(),
+            }])
+        } catch (notificationError) {
+          console.error('NOWPayments notification error:', notificationError)
+        }
+        if (order.digital_product_id) {
+          try {
+            const { grantDigitalProductAccess } = require('../../services/digital-product-grant.service')
+            await grantDigitalProductAccess({ orderId: order.id, productId: order.digital_product_id, userId: order.user_id, price: order.amount || order.price })
+          } catch (grantError) {
+            console.error('Digital product grant error:', grantError)
+          }
+        }
+      }
+
+      return res.status(200).json({
+        success: true,
+        order_id: orderId,
+        payment_id: paymentId,
+        payment_status: payload.payment_status || null,
+        internal_status: paymentStatus,
+        updated: true,
+        order: updatedOrder,
+      })
+    } catch (error) {
+      console.error('NOWPayments IPN error:', error)
+      return res.status(Number(error?.status) >= 400 ? Number(error.status) : 500).json({
+        success: false,
+        message: error?.message || 'NOWPayments IPN processing failed',
+      })
+    }
+  },
+)
+module.exports = router
+

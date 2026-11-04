@@ -3,6 +3,7 @@ import { useLocation, useNavigate } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
 import axios from 'axios'
 import { motion } from 'framer-motion'
+import { Button } from '../components/ui/Button'
 import {
   ArrowRight,
   Check,
@@ -490,18 +491,9 @@ const PaymentPage: React.FC = () => {
               {t('packages.subtitle')}
             </p>
 
-            <button
-              onClick={() =>
-                navigate(
-                  '/packages'
-                )
-              }
-              className="btn-primary"
-            >
-              {t(
-                'payment.choose_package'
-              )}
-            </button>
+            <Button variant="primary" onClick={() => navigate('/packages')}>
+              {t('payment.choose_package')}
+            </Button>
           </div>
         </div>
       </div>
@@ -588,15 +580,7 @@ const PaymentPage: React.FC = () => {
                 </div>
               )}
 
-              <button
-                onClick={
-                  handleCreatePayment
-                }
-                disabled={
-                  creatingPayment
-                }
-                className="w-full btn-primary flex items-center justify-center gap-2"
-              >
+              <Button variant="primary" size="lg" className="w-full" disabled={creatingPayment} onClick={handleCreatePayment}>
                 {creatingPayment ? (
                   <>
                     <Loader2 className="w-5 h-5 animate-spin" />
@@ -608,7 +592,7 @@ const PaymentPage: React.FC = () => {
                     <ArrowRight className="w-4 h-4" />
                   </>
                 )}
-              </button>
+              </Button>
             </>
           )}
 
@@ -833,17 +817,9 @@ const PaymentPage: React.FC = () => {
                 </div>
               )}
 
-              <button
-                onClick={
-                  handleGoToDashboard
-                }
-                className="w-full btn-primary flex items-center justify-center gap-2 mt-6"
-              >
-                {t(
-                  'payment.go_to_dashboard'
-                )}
-                <ArrowRight className="w-4 h-4" />
-              </button>
+              <Button variant="primary" size="lg" className="w-full mt-6" onClick={handleGoToDashboard}>
+                {t('payment.go_to_dashboard')}
+              </Button>
             </>
           )}
         </motion.div>

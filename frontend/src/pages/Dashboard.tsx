@@ -13,6 +13,7 @@ import OrderLifecycle from '../components/OrderLifecycle'
 import { useTranslate } from '../hooks/useTranslate'
 import { useAuth } from '../contexts/AuthContext'
 import ClientDeliveryHome from '../components/ClientDeliveryHome'
+import { Button } from '../components/ui/Button'
 
 interface Order {
   id: string
@@ -267,7 +268,7 @@ const Dashboard: React.FC = () => {
   const getStatusBadge = (status: string) => {
     const styles = {
       new: 'bg-blue-500/20 text-blue-300 border-blue-500/30',
-      processing: 'bg-yellow-500/20 text-yellow-300 border-yellow-500/30',
+      processing: 'bg-gold/20 text-gold border-gold/30',
       completed: 'bg-green-500/20 text-green-300 border-green-500/30',
     }
 
@@ -280,7 +281,7 @@ const Dashboard: React.FC = () => {
 const getTicketStatusBadge = (status: string) => {
     const styles = {
       open: 'bg-red-500/20 text-red-300 border-red-500/30',
-      in_progress: 'bg-yellow-500/20 text-yellow-300 border-yellow-500/30',
+      in_progress: 'bg-gold/20 text-gold border-gold/30',
       resolved: 'bg-green-500/20 text-green-300 border-green-500/30',
       closed: 'bg-gray-500/20 text-gray-300 border-gray-500/30',
     }
@@ -296,10 +297,10 @@ const getTicketStatusBadge = (status: string) => {
     const styles: Record<string, string> = {
       verified: 'bg-green-500/20 text-green-300 border-green-500/30',
       finished: 'bg-green-500/20 text-green-300 border-green-500/30',
-      confirming: 'bg-yellow-500/20 text-yellow-300 border-yellow-500/30',
-      confirmed: 'bg-yellow-500/20 text-yellow-300 border-yellow-500/30',
-      sending: 'bg-yellow-500/20 text-yellow-300 border-yellow-500/30',
-      submitted: 'bg-yellow-500/20 text-yellow-300 border-yellow-500/30',
+      confirming: 'bg-gold/20 text-gold border-gold/30',
+      confirmed: 'bg-gold/20 text-gold border-gold/30',
+      sending: 'bg-gold/20 text-gold border-gold/30',
+      submitted: 'bg-gold/20 text-gold border-gold/30',
       waiting: 'bg-blue-500/20 text-blue-300 border-blue-500/30',
       pending: 'bg-blue-500/20 text-blue-300 border-blue-500/30',
       failed: 'bg-red-500/20 text-red-300 border-red-500/30',
@@ -484,13 +485,9 @@ const getTicketStatusBadge = (status: string) => {
                 )}
               </button>
 
-              <button
-                onClick={() => navigate('/packages')}
-                className="btn-primary flex items-center gap-2 text-sm px-4 py-2"
-              >
-                <Plus className="w-4 h-4" />
+              <Button variant="primary" size="sm" leftIcon={<Plus className="w-4 h-4" />} onClick={() => navigate('/packages')}>
                 {String(t('dashboard.new_request'))}
-              </button>
+              </Button>
 
               <button
                 type="button"
@@ -639,7 +636,7 @@ const getTicketStatusBadge = (status: string) => {
               <p className="text-ink-3 text-sm">
                 {String(t('dashboard.processing'))}
               </p>
-              <p className="text-2xl font-bold text-yellow-400">
+              <p className="text-2xl font-bold text-gold">
                 {orders.filter(o => o.status === 'processing').length}
               </p>
             </div>
@@ -723,13 +720,13 @@ const getTicketStatusBadge = (status: string) => {
           </section>
 
           {loadError && (
-            <div className="mb-6 flex flex-wrap items-center justify-between gap-3 rounded-2xl border border-red-400/20 bg-red-500/10 p-4 text-sm text-red-200">
+            <div className="mb-6 flex flex-wrap items-center justify-between gap-3 rounded-2xl border border-destructive/20 bg-destructive/10 p-4 text-sm text-destructive">
               <span>{String(t('dashboard.server_unavailable'))}</span>
 
               <button
                 type="button"
                 onClick={() => void fetchAllDataSafe()}
-                className="rounded-lg border border-red-300/30 px-3 py-1.5 hover:bg-red-400/10"
+                className="rounded-lg border border-destructive/30 px-3 py-1.5 hover:bg-destructive/20"
               >
                 {String(t('dashboard.retry'))}
               </button>
@@ -775,12 +772,9 @@ const getTicketStatusBadge = (status: string) => {
                   )}
                 </p>
 
-                <button
-                  onClick={() => navigate('/packages')}
-                  className="mt-4 btn-primary text-sm px-4 py-2"
-                >
+                <Button variant="primary" size="sm" className="mt-4" onClick={() => navigate('/packages')}>
                   {String(t('dashboard.start_first_order'))}
-                </button>
+                </Button>
               </div>
             ) : (
               <div className="space-y-3">
@@ -791,8 +785,11 @@ const getTicketStatusBadge = (status: string) => {
                   return (
                     <div
                       key={order.id}
+                      role="button"
+                      tabIndex={0}
                       className="bg-surface-1 border border-border-1 rounded-xl p-4 hover:border-gold/20 transition-all cursor-pointer"
                       onClick={() => setSelectedOrder(order)}
+                      onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') setSelectedOrder(order) }}
                     >
                       <div className="flex flex-wrap items-center justify-between gap-3">
                         <div className="flex items-center gap-3">
@@ -1020,10 +1017,14 @@ const getTicketStatusBadge = (status: string) => {
           {selectedOrder && (
             <div
               className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-surface-inset backdrop-blur-sm"
+              role="button"
+              tabIndex={-1}
               onClick={() => setSelectedOrder(null)}
+              onKeyDown={() => setSelectedOrder(null)}
             >
               <div
                 className="glass rounded-3xl border-gold/10 p-6 max-w-2xl w-full max-h-[90vh] overflow-y-auto"
+                role="presentation"
                 onClick={e => e.stopPropagation()}
               >
                 <div className="flex items-center justify-between mb-4">
@@ -1196,15 +1197,12 @@ const getTicketStatusBadge = (status: string) => {
                     </div>
                   </div>
 
-                  <button
-                    onClick={() => {
-                      setSelectedOrder(null)
-                      navigate('/packages')
-                    }}
-                    className="w-full btn-primary text-center"
-                  >
+                  <Button variant="primary" size="lg" className="w-full text-center" onClick={() => {
+                    setSelectedOrder(null)
+                    navigate('/packages')
+                  }}>
                     {String(t('dashboard.new_request'))}
-                  </button>
+                  </Button>
                 </div>
               </div>
             </div>

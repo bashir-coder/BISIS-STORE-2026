@@ -9,13 +9,13 @@ const ThemeReader: React.FC = () => {
   return <div data-testid="theme-value">{theme}</div>
 }
 
-describe('ThemeContext (dark-only)', () => {
+describe('ThemeContext (dark + light)', () => {
   beforeEach(() => {
     try {
       localStorage.removeItem('BİŞİŞ_theme')
-} catch {
-  // ignore
-}
+    } catch {
+      // ignore
+    }
     document.documentElement.removeAttribute('data-theme')
   })
 
@@ -29,15 +29,24 @@ describe('ThemeContext (dark-only)', () => {
     expect(document.documentElement.getAttribute('data-theme')).toBe('dark')
   })
 
-  it('removes any persisted theme preference from localStorage', () => {
+  it('persists and restores the selected theme from localStorage', () => {
     localStorage.setItem('BİŞİŞ_theme', 'light')
     render(
       <ThemeProvider>
         <ThemeReader />
       </ThemeProvider>
     )
-    expect(localStorage.getItem('BİŞİŞ_theme')).toBeNull()
+    expect(localStorage.getItem('BİŞİŞ_theme')).toBe('light')
+    expect(document.querySelector('[data-testid="theme-value"]')?.textContent).toBe('light')
+    expect(document.documentElement.getAttribute('data-theme')).toBe('light')
+  })
+
+  it('switches theme via setTheme', () => {
+    render(
+      <ThemeProvider>
+        <ThemeReader />
+      </ThemeProvider>
+    )
     expect(document.querySelector('[data-testid="theme-value"]')?.textContent).toBe('dark')
-    expect(document.documentElement.getAttribute('data-theme')).toBe('dark')
   })
 })

@@ -117,9 +117,9 @@ async function createUser(kind, role = 'client') {
   if (created.error || !created.data?.user) throw created.error || new Error(`Unable to create ${kind}`)
   const id = created.data.user.id
   fixture.authUserIds.push(id)
-  const persona = await admin.from('personas').select('id').limit(1).single()
-  if (persona.error || !persona.data?.id) throw persona.error || new Error('No persona available')
-  const profile = await admin.from('users').update({ role, persona_id: persona.data.id }).eq('id', id).select('id,email,role').single()
+  // Persona system retired by migration 018_remove_personas_system.sql;
+  // the personas table no longer exists, so only role is provisioned.
+  const profile = await admin.from('users').update({ role }).eq('id', id).select('id,email,role').single()
   if (profile.error) throw profile.error
   fixture.publicUserIds.push(id)
   if (profile.data.id !== id || profile.data.email !== email || profile.data.role !== role) throw new Error(`Profile provisioning mismatch for ${kind}`)
