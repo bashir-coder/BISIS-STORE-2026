@@ -571,7 +571,6 @@ const getTicketStatusBadge = (status: string) => {
                             type="button"
                             key={notif.id}
                             aria-label={`${notif.read ? '' : `${String(t('dashboard.unread'))}: `}${notif.message}`}
-                            aria-pressed={notif.read}
                             className={`flex w-full items-center gap-3 rounded-lg p-3 text-start transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold/70 ${
                               notif.read
                                 ? 'bg-surface-1'
@@ -952,27 +951,32 @@ const getTicketStatusBadge = (status: string) => {
                     className="border border-border-1 rounded-lg overflow-hidden"
                   >
                     <button
+                      type="button"
                       onClick={() =>
                         setSelectedFaq(
                           selectedFaq?.id === faq.id ? null : faq
                         )
                       }
+                      aria-expanded={selectedFaq?.id === faq.id}
+                      aria-controls={`faq-answer-${faq.id}`}
                       className="w-full text-start px-4 py-3 bg-surface-1 hover:bg-surface-2 transition-all flex justify-between items-center"
                     >
                       <span className="text-sm text-ink-0">
                         {localizedText(faq.question, i18n.language)}
                       </span>
 
-                      <span className="text-ink-5">
+                      <span aria-hidden="true" className="text-ink-5">
                         {selectedFaq?.id === faq.id ? '▲' : '▼'}
                       </span>
                     </button>
 
-                    {selectedFaq?.id === faq.id && (
-                      <div className="px-4 py-3 bg-surface-inset text-sm text-ink-2 border-t border-border-1">
-                        {localizedText(faq.answer, i18n.language)}
-                      </div>
-                    )}
+                    <div
+                      id={`faq-answer-${faq.id}`}
+                      hidden={selectedFaq?.id !== faq.id}
+                      className="px-4 py-3 bg-surface-inset text-sm text-ink-2 border-t border-border-1"
+                    >
+                      {localizedText(faq.answer, i18n.language)}
+                    </div>
                   </div>
                 ))}
               </div>

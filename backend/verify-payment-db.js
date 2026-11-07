@@ -76,7 +76,7 @@ const anonSb = createClient(process.env.SUPABASE_URL, ANON_KEY, {
 
 
   console.log('\n--- RLS behavioral check (anon vs service role) ---')
-  const paymentTables = ['orders', 'order_events', 'invoices', 'payments', 'donations', 'subscriptions']
+  const paymentTables = ['orders', 'order_events', 'invoices', 'payments', 'subscriptions']
   for (const t of paymentTables) {
     const { count: svcCount } = await sb.from(t).select('*', { count: 'exact', head: true })
     const { count: anonCount } = await anonSb.from(t).select('*', { count: 'exact', head: true })

@@ -51,8 +51,6 @@ export const PACKAGES = [
 
 export const LIFE_PLAN_PRICE = 150
 
-export const DONATION_PERCENTAGE = 0.10
-
 export const STEPS = [
   { icon: '💡', titleKey: 'steps.step1.title', descKey: 'steps.step1.desc' },
   { icon: '📋', titleKey: 'steps.step2.title', descKey: 'steps.step2.desc' },

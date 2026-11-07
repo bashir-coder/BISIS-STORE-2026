@@ -6,10 +6,16 @@
 -- No CASCADE on purchases; digital_products rows are soft-deleted via is_active.
 
 -- ============================================================
--- 1. storage_key on digital_products
+-- 1. storage_key + file metadata on digital_products
 -- ============================================================
 ALTER TABLE public.digital_products
     ADD COLUMN IF NOT EXISTS storage_key TEXT;
+
+ALTER TABLE public.digital_products
+    ADD COLUMN IF NOT EXISTS file_mime_type TEXT;
+
+ALTER TABLE public.digital_products
+    ADD COLUMN IF NOT EXISTS file_size BIGINT;
 
 -- ============================================================
 -- 2. Purchase ledger
@@ -51,3 +57,20 @@ CREATE POLICY "Staff can manage digital product purchases"
     );
 
 GRANT SELECT, INSERT, UPDATE ON public.digital_product_purchases TO authenticated;
+
+-- ============================================================
+-- 4. Translations — public read access for anonymous users
+-- ============================================================
+-- The frontend (i18n) loads translations with the anon key, so anonymous
+-- frontend users must be able to SELECT from public.translations.
+
+ALTER TABLE public.translations ENABLE ROW LEVEL SECURITY;
+
+DROP POLICY IF EXISTS "Anyone can view translations" ON public.translations;
+CREATE POLICY "Anyone can view translations"
+    ON public.translations
+    FOR SELECT
+    TO anon, authenticated
+    USING (true);
+
+GRANT SELECT ON public.translations TO anon, authenticated;

@@ -37,8 +37,7 @@ const PaymentCancelled = lazy(() => import('./pages/PaymentCancelled'))
 const ContactPage = lazy(() => import('./pages/ContactPage'))
 const BlogResourcesPage = lazy(() => import('./pages/BlogResourcesPage'))
 const PortfolioPage = lazy(() => import('./pages/PortfolioPage'))
-const DigitalProductsPage = lazy(() => import('./pages/DigitalProductsPage'))
-const DonationPage = lazy(() => import('./pages/DonationPage'))
+
 const Client360Page = lazy(() => import('./pages/Client360Page'))
 const WorkbenchPage = lazy(() => import('./pages/WorkbenchPage'))
 const ProjectWorkspacePage = lazy(
@@ -284,16 +283,6 @@ const App: React.FC = () => {
                  path="/portfolio"
                  element={<PortfolioPage />}
                />
-
-              <Route
-                path="/digital-products"
-                element={<DigitalProductsPage />}
-              />
-
-              <Route
-                path="/donation"
-                element={<DonationPage />}
-              />
 
               <Route
                 path="/contact"

@@ -1,8 +1,9 @@
 #!/usr/bin/env node
 
-const { createClient } = require('@supabase/supabase-js')
 const fs = require('fs')
 const path = require('path')
+
+const { createClient } = require('@supabase/supabase-js')
 
 const SUPABASE_URL = String(
   process.env.SUPABASE_URL || '',
@@ -35,24 +36,12 @@ const migrationDir = String(
     path.resolve(__dirname, '..', 'database', 'migrations'),
 ).trim()
 
-async function ensureMigrationTracker() {
-  const { error } = await supabase.rpc('exec_sql', {
-    sql: `
-      CREATE TABLE IF NOT EXISTS public._BİŞİŞ_migrations (
-        id SERIAL PRIMARY KEY,
-        filename TEXT NOT NULL UNIQUE,
-        applied_at TIMESTAMPTZ NOT NULL DEFAULT now()
-      )
-    `,
-  })
+// Auxiliary SQL files are documentation/batching copies of a canonical
+// migration and must never be discovered or executed as a separate migration.
+// Canonical source of truth: 005_execution_engine.sql.
+const AUXILIARY_FILES = new Set(['005_execution_engine_policies.sql'])
 
-  if (error) {
-
-    console.warn(
-      'RPC exec_sql unavailable, using REST fallback',
-    )
-  }
-}
+const migrationFileRe = /^\d{3}_.*\.sql$/
 
 async function getAppliedMigrations() {
   const { data, error } = await supabase
@@ -61,8 +50,12 @@ async function getAppliedMigrations() {
     .order('filename', { ascending: true })
 
   if (error) {
+    // The migration tracker is created/maintained by the supported Supabase
+    // CLI (or the SQL Editor). If it does not exist yet, treat every
+    // migration as pending.
     console.warn(
-      'Could not read migration tracker, assuming no migrations applied',
+      'Could not read migration tracker (ensure migrations have been applied '
+        + 'via the supported Supabase CLI/SQL Editor):',
       error.message,
     )
     return new Set()
@@ -71,48 +64,10 @@ async function getAppliedMigrations() {
   return new Set((data || []).map((row) => row.filename))
 }
 
-async function recordMigration(filename) {
-  const { error } = await supabase
-    .from('_BİŞİŞ_migrations')
-    .insert([{ filename }])
-
-  if (error) {
-    console.error(
-      `Failed to record migration ${filename}:`,
-      error.message,
-    )
-    throw error
-  }
-}
-
-async function applyMigration(filename) {
-  const filePath = path.join(migrationDir, filename)
-  const sql = fs.readFileSync(filePath, 'utf8')
-
-  console.log(`Applying migration: ${filename}`)
-
-
-  const statements = splitSql(sql)
-
-  for (const statement of statements) {
-    const trimmed = statement.trim()
-    if (!trimmed) continue
-
-    const { error } = await supabase.rpc('exec_sql', {
-      sql: trimmed,
-    })
-
-    if (error) {
-      console.error(
-        `Migration ${filename} failed on statement:`,
-        error.message,
-      )
-      throw error
-    }
-  }
-
-  await recordMigration(filename)
-  console.log(`Migration ${filename} applied successfully`)
+function discoverMigrations() {
+  return fs.readdirSync(migrationDir)
+    .filter((f) => migrationFileRe.test(f) && !AUXILIARY_FILES.has(f))
+    .sort()
 }
 
 function splitSql(sql) {
@@ -125,7 +80,6 @@ function splitSql(sql) {
     const char = sql[i]
 
     if (!inDollarBlock && char === '$' && sql[i - 1] !== '$') {
-
       let j = i + 1
       while (j < sql.length && /[a-zA-Z0-9_]/.test(sql[j])) {
         j++
@@ -172,41 +126,57 @@ function splitSql(sql) {
 }
 
 async function main() {
-  console.log('BİŞİŞ V1 Migration Runner')
+  console.log('BİŞİŞ V1 Migration Planner')
   console.log(`Migration directory: ${migrationDir}`)
 
-  await ensureMigrationTracker()
-
-  const files = fs.readdirSync(migrationDir)
-    .filter((f) => /^\d{3}_.*\.sql$/.test(f))
-    .sort()
-
+  const files = discoverMigrations()
   const applied = await getAppliedMigrations()
   const pending = files.filter((f) => !applied.has(f))
+
+  // Surface any auxiliary file that is still present so operators know it is
+  // intentionally excluded from execution.
+  const auxiliaryPresent = fs.readdirSync(migrationDir).filter((f) =>
+    AUXILIARY_FILES.has(f),
+  )
+  if (auxiliaryPresent.length) {
+    console.warn(
+      'Auxiliary SQL present (excluded from execution): '
+        + auxiliaryPresent.join(', ')
+        + '. Canonical source: 005_execution_engine.sql.',
+    )
+  }
 
   if (pending.length === 0) {
     console.log('No pending migrations.')
     return
   }
 
-  console.log(`Pending migrations: ${pending.length}`)
-
+  console.log(`Pending migrations (${pending.length}):`)
   for (const filename of pending) {
-    try {
-      await applyMigration(filename)
-    } catch (error) {
-      console.error(
-        `Migration ${filename} failed. Stopping.`,
-        error,
-      )
-      process.exit(1)
-    }
+    console.log(`  - ${filename}`)
+    const sql = fs.readFileSync(path.join(migrationDir, filename), 'utf8')
+    const statements = splitSql(sql)
+    console.log(`     statements: ${statements.length}`)
   }
 
-  console.log('All migrations applied successfully.')
+  console.log('')
+  console.log('Execution method:')
+  console.log(
+    'Apply pending migrations through the supported Supabase path:',
+  )
+  console.log('  1. Supabase CLI:  supabase db push  (or supabase migration up)')
+  console.log('  2. SQL Editor:    run each migration file as the service_role.')
+  console.log('')
+  console.log(
+    'Do not create an unrestricted exec_sql RPC. This runner intentionally does '
+      + 'not depend on exec_sql, which is neither a supported nor a safe '
+      + 'execution path.',
+  )
+
+  process.exitCode = pending.length ? 1 : 0
 }
 
 main().catch((error) => {
-  console.error('Migration runner failed:', error)
+  console.error('Migration planner failed:', error)
   process.exit(1)
 })

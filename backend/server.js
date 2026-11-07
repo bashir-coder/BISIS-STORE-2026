@@ -300,16 +300,6 @@ app.use(
 )
 
 app.use(
-  '/api/donations',
-  require('./src/api/routes/donation.routes'),
-)
-
-app.use(
-  '/api/digital-products',
-  require('./src/api/routes/digital-products.routes'),
-)
-
-app.use(
   '/api/subscriptions',
   require('./src/api/routes/subscription.routes'),
 )

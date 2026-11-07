@@ -1,5 +1,5 @@
 import { useTranslation } from 'react-i18next'
-import { Home, Package, Info, BookOpen, Briefcase, ShoppingCart, Gift, Phone } from 'lucide-react'
+import { Home, Package, Info, BookOpen, Briefcase, Phone } from 'lucide-react'
 
 export type NavLink = {
   to: string
@@ -15,8 +15,6 @@ export const publicNavLinks: NavLink[] = [
   { to: '/about', labelKey: 'nav.about', icon: Info },
   { to: '/blog', labelKey: 'nav.blog', icon: BookOpen },
   { to: '/portfolio', labelKey: 'nav.portfolio', icon: Briefcase },
-  { to: '/digital-products', labelKey: 'nav.digital_products', icon: ShoppingCart },
-  { to: '/donation', labelKey: 'nav.donation', icon: Gift },
   { to: '/contact', labelKey: 'nav.contact', icon: Phone },
 ]
 

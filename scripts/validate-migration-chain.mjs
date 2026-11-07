@@ -26,6 +26,7 @@ const canonical = [
 '017_persona_service_lookup_hardening.sql',
   '018_remove_personas_system.sql',
   '019_digital_products_storage_contract.sql',
+  '020_digital_commerce_p0.sql',
 ]
 
 const auxiliary = ['005_execution_engine_policies.sql']

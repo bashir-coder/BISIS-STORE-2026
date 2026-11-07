@@ -14,15 +14,17 @@ const LoginPage = () => {
   const { t } = useTranslation()
   const navigate = useNavigate()
   const location = useLocation()
-  const { user, loading, login, sessionExpired } = useAuth()
+  const { user, loading, login, sessionExpired, clearSessionExpired } = useAuth()
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const [error, setError] = useState('')
   const [submitting, setSubmitting] = useState(false)
 
   useEffect(() => {
-    if (!loading && user) navigate('/introduction', { replace: true })
-  }, [loading, navigate, user])
+    if (!loading && user && !location.state?.from) {
+      navigate('/introduction', { replace: true })
+    }
+  }, [loading, navigate, user, location])
 
   const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault()
@@ -33,24 +35,19 @@ const LoginPage = () => {
     }
 
     setSubmitting(true)
-    let loginSucceeded = false
     try {
       await login(email.trim(), password)
-      loginSucceeded = true
+      // Let React flush auth state updates (user set via onAuthStateChange
+      // during login) before navigating. Without this, RequireRole may still
+      // see user === null and bounce us back to /login.
+      await new Promise((resolve) => setTimeout(resolve, 0))
+      await new Promise((resolve) => setTimeout(resolve, 0))
+      navigate(getRedirectDestination(location))
     } catch (caught: unknown) {
       const message = caught instanceof Error ? caught.message : t('notifications.error')
       setError(message)
     } finally {
       setSubmitting(false)
-    }
-    // Schedule navigation as a macrotask so React flushes auth state
-    // updates (user set via onAuthStateChange during login) before we
-    // navigate. Without this, RequireRole may still see user === null
-    // and bounce us back to /login.
-    if (loginSucceeded) {
-      setTimeout(() => {
-        navigate(getRedirectDestination(location))
-      }, 0)
     }
   }
 
@@ -60,21 +57,19 @@ const LoginPage = () => {
       return
     }
     setError('')
-    let loginSucceeded = false
     try {
       const { error: authError } = await supabase.auth.signInWithIdToken({
         provider: 'google',
         token: credentialResponse.credential,
       })
       if (authError) throw authError
-      loginSucceeded = true
+      clearSessionExpired?.()
+      // Let React flush auth state updates before navigating.
+      await new Promise((resolve) => setTimeout(resolve, 0))
+      await new Promise((resolve) => setTimeout(resolve, 0))
+      navigate(getRedirectDestination(location))
     } catch (caught: unknown) {
       setError(axios.isAxiosError(caught) ? caught.response?.data?.message || t('notifications.error') : caught instanceof Error ? caught.message : t('notifications.error'))
-    }
-    if (loginSucceeded) {
-      setTimeout(() => {
-        navigate(getRedirectDestination(location))
-      }, 0)
     }
   }
 

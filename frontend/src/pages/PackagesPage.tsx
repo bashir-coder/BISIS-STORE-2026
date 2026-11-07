@@ -136,6 +136,7 @@ const PackagesPage: React.FC = () => {
             <button
               type="button"
               onClick={() => setShowCalculator(!showCalculator)}
+              aria-expanded={showCalculator}
               className="inline-flex items-center gap-2 rounded-full border border-gold/30 bg-gold/10 px-4 py-2 text-xs sm:text-sm font-medium text-gold hover:bg-gold/20 transition-all shadow-sm"
             >
               <SlidersHorizontal className="h-4 w-4" />
@@ -145,6 +146,7 @@ const PackagesPage: React.FC = () => {
             <button
               type="button"
               onClick={() => setShowComparison(true)}
+              aria-expanded={showComparison}
               className="inline-flex items-center gap-2 rounded-full border border-border-1 bg-surface-1 px-4 py-2 text-xs sm:text-sm font-medium text-ink-1 hover:border-gold/30 hover:bg-surface-2 transition-all"
             >
               <Table2 className="h-4 w-4 text-blue-light" />
@@ -172,7 +174,9 @@ const PackagesPage: React.FC = () => {
                      </h3>
                   </div>
                   <button
+                    type="button"
                     onClick={() => setShowCalculator(false)}
+                    aria-label={String(t('common.close'))}
                      className="p-1.5 text-ink-2 hover:text-ink-0 rounded-lg hover:bg-surface-2 transition-colors"
                   >
                     <X className="h-4 w-4" />
@@ -452,10 +456,12 @@ const PackagesPage: React.FC = () => {
                      {t('packages.calc.compare_hint')}
                    </p>
                 </div>
-                   <button
-                     onClick={() => setShowComparison(false)}
-                     className="p-2 text-ink-2 hover:text-ink-0 rounded-xl hover:bg-surface-2 transition-colors"
-                   >
+                    <button
+                      type="button"
+                      onClick={() => setShowComparison(false)}
+                      aria-label={String(t('common.close'))}
+                      className="p-2 text-ink-2 hover:text-ink-0 rounded-xl hover:bg-surface-2 transition-colors"
+                    >
                      <X className="h-5 w-5" />
                    </button>
               </div>
@@ -489,7 +495,9 @@ const PackagesPage: React.FC = () => {
 
               <div className="mt-6 flex justify-end">
                 <button
+                  type="button"
                   onClick={() => setShowComparison(false)}
+                  aria-label={String(t('packages.calc.close'))}
                   className="px-6 py-2.5 rounded-xl bg-gold/15 border border-gold/30 text-gold text-sm font-semibold hover:bg-gold/25 transition-all"
                 >
                     {t('packages.calc.close')}

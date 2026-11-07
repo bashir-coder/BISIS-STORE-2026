@@ -13,7 +13,9 @@ const mockGetSession = vi.hoisted(() =>
   vi.fn(() => Promise.resolve({ data: { session: null } })),
 )
 const mockSignInWithPassword = vi.hoisted(() => vi.fn())
-let onAuthStateChangeCb: ((params: { session: any }) => void) | null = null
+const mockSignInWithIdToken = vi.hoisted(() => vi.fn())
+let onAuthStateChangeCb: ((event: any, session?: any) => void) | null = null
+let mockGoogleOnSuccess: ((resp: { credential?: string }) => void) | null = null
 const mockOnAuthStateChange = vi.hoisted(() =>
   vi.fn((cb: any) => {
     onAuthStateChangeCb = cb
@@ -27,19 +29,22 @@ vi.mock('../../lib/supabase', () => ({
       getSession: mockGetSession,
       signInWithPassword: mockSignInWithPassword,
       signInWithOAuth: vi.fn(),
-      signInWithIdToken: vi.fn(),
+      signInWithIdToken: mockSignInWithIdToken,
       signOut: vi.fn(() => Promise.resolve({ error: null })),
       onAuthStateChange: mockOnAuthStateChange,
     },
   },
 }))
 
-// Mock @react-oauth/google so GoogleLogin renders nothing without a provider
+// Mock @react-oauth/google so GoogleLogin captures its onSuccess handler
 vi.mock('@react-oauth/google', () => ({
   GoogleOAuthProvider: ({ children }: { children: React.ReactNode }) => (
     <>{children}</>
   ),
-  GoogleLogin: () => null,
+  GoogleLogin: ({ onSuccess }: { onSuccess?: (resp: { credential?: string }) => void }) => {
+    if (onSuccess) mockGoogleOnSuccess = onSuccess
+    return null
+  },
 }))
 
 const AdminDashboard = () => <div data-testid="admin-dashboard">Admin Dashboard</div>
@@ -158,10 +163,13 @@ describe('LoginPage redirect integration (real router state)', () => {
   beforeEach(() => {
     mockSignInWithPassword.mockReset()
     mockSignInWithPassword.mockResolvedValue({ data: { user: { id: '1' } } })
+    mockSignInWithIdToken.mockReset()
+    mockSignInWithIdToken.mockResolvedValue({ data: { user: { id: '1' } } })
     mockGetSession.mockReset()
     mockGetSession.mockResolvedValue({ data: { session: null } })
     // mockOnAuthStateChange keeps its capture implementation; do not reset it
     onAuthStateChangeCb = null
+    mockGoogleOnSuccess = null
   })
 
   afterEach(() => {
@@ -291,14 +299,13 @@ describe('LoginPage redirect integration (real router state)', () => {
     mockSignInWithPassword.mockImplementation(() => {
       const cb = onAuthStateChangeCb
       if (cb) {
-        cb({
-          session: {
-            user: {
-              id: '1',
-              email: 'admin@example.com',
-              user_metadata: {},
-              app_metadata: { role: 'admin' },
-            },
+        // Supabase calls onAuthStateChange(event, session): session is the 2nd arg.
+        cb('SIGNED_IN', {
+          user: {
+            id: '1',
+            email: 'admin@example.com',
+            user_metadata: {},
+            app_metadata: { role: 'admin' },
           },
         })
       }
@@ -334,6 +341,115 @@ describe('LoginPage redirect integration (real router state)', () => {
     // After login, user should be returned to the original dashboard destination
     await waitFor(() =>
       expect(screen.getByTestId('admin-dashboard')).toBeInTheDocument(),
+    )
+  })
+
+  it('Google login preserves a valid internal destination after sign-in', async () => {
+    mockSignInWithIdToken.mockImplementation(() => {
+      const cb = onAuthStateChangeCb
+      if (cb) {
+        cb('SIGNED_IN', {
+          user: {
+            id: '1',
+            email: 'admin@example.com',
+            user_metadata: {},
+            app_metadata: { role: 'admin' },
+          },
+        })
+      }
+      return Promise.resolve({ data: { user: { id: '1' } } })
+    })
+    render(
+      <AuthProvider>
+        <MemoryRouter
+          initialEntries={[{ pathname: '/login', state: { from: '/dashboard' } }]}
+        >
+          <Routes>
+            <Route path="/login" element={<LoginPage />} />
+            <Route path="/dashboard" element={<AdminDashboard />} />
+            <Route path="/introduction" element={<Introduction />} />
+          </Routes>
+        </MemoryRouter>
+      </AuthProvider>,
+    )
+
+    expect(mockGoogleOnSuccess).toBeTruthy()
+    mockGoogleOnSuccess?.({ credential: 'fake-google-credential' })
+
+    await waitFor(() =>
+      expect(screen.getByTestId('admin-dashboard')).toBeInTheDocument(),
+    )
+  })
+
+  it('Google login falls back to /introduction when no from state is present', async () => {
+    mockSignInWithIdToken.mockImplementation(() => {
+      const cb = onAuthStateChangeCb
+      if (cb) {
+        cb('SIGNED_IN', {
+          user: {
+            id: '1',
+            email: 'admin@example.com',
+            user_metadata: {},
+            app_metadata: { role: 'admin' },
+          },
+        })
+      }
+      return Promise.resolve({ data: { user: { id: '1' } } })
+    })
+    render(
+      <AuthProvider>
+        <MemoryRouter initialEntries={[{ pathname: '/login' }]}>
+          <Routes>
+            <Route path="/login" element={<LoginPage />} />
+            <Route path="/dashboard" element={<AdminDashboard />} />
+            <Route path="/introduction" element={<Introduction />} />
+          </Routes>
+        </MemoryRouter>
+      </AuthProvider>,
+    )
+
+    expect(mockGoogleOnSuccess).toBeTruthy()
+    mockGoogleOnSuccess?.({ credential: 'fake-google-credential' })
+
+    await waitFor(() =>
+      expect(screen.getByTestId('introduction')).toBeInTheDocument(),
+    )
+  })
+
+  it('Google login rejects an external URL destination and falls back to /introduction', async () => {
+    mockSignInWithIdToken.mockImplementation(() => {
+      const cb = onAuthStateChangeCb
+      if (cb) {
+        cb('SIGNED_IN', {
+          user: {
+            id: '1',
+            email: 'admin@example.com',
+            user_metadata: {},
+            app_metadata: { role: 'admin' },
+          },
+        })
+      }
+      return Promise.resolve({ data: { user: { id: '1' } } })
+    })
+    render(
+      <AuthProvider>
+        <MemoryRouter
+          initialEntries={[{ pathname: '/login', state: { from: 'https://evil.example' } }]}
+        >
+          <Routes>
+            <Route path="/login" element={<LoginPage />} />
+            <Route path="/dashboard" element={<AdminDashboard />} />
+            <Route path="/introduction" element={<Introduction />} />
+          </Routes>
+        </MemoryRouter>
+      </AuthProvider>,
+    )
+
+    expect(mockGoogleOnSuccess).toBeTruthy()
+    mockGoogleOnSuccess?.({ credential: 'fake-google-credential' })
+
+    await waitFor(() =>
+      expect(screen.getByTestId('introduction')).toBeInTheDocument(),
     )
   })
 })

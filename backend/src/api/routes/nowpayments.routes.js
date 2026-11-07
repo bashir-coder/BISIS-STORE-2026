@@ -310,6 +310,29 @@ router.post(
           : null
       if (
         order.payment_status ===
+          'refunded' &&
+        paymentStatus !== 'refunded'
+      ) {
+        // A confirmed refund is final. A delayed or repeated successful
+        // webhook must not restore revoked access.
+        const nowIso =
+          new Date().toISOString()
+        await supabase
+          .from('orders')
+          .update({
+            nowpayments_last_ipn_at:
+              nowIso,
+          })
+          .eq('id', orderId)
+        return res.status(200).json({
+          success: true,
+          ignored: true,
+          reason:
+            'Order is already refunded; access revoked',
+        })
+      }
+      if (
+        order.payment_status ===
           'verified' &&
         paymentStatus !== 'refunded'
       ) {
@@ -499,6 +522,33 @@ router.post(
       }
       if (
         paymentStatus ===
+        'refunded'
+      ) {
+        try {
+          await supabase
+            .from('notifications')
+            .insert([
+              {
+                user_id:
+                  order.user_id,
+                type:
+                  'payment',
+                message:
+                  `Payment for order #${orderId} has been refunded.`,
+                read: false,
+                created_at:
+                  new Date().toISOString(),
+              },
+            ])
+        } catch (notificationError) {
+          console.error(
+            'NOWPayments notification error:',
+            notificationError,
+          )
+        }
+      }
+      if (
+        paymentStatus ===
         'verified'
       ) {
         try {
@@ -511,8 +561,8 @@ router.post(
                 type:
                   'payment',
                 message:
-                read:
-                  false,
+                  `Payment for order #${orderId} has been confirmed.`,
+                read: false,
                 created_at:
                   new Date().toISOString(),
               },
@@ -538,34 +588,6 @@ router.post(
                   'payment',
                 message:
                   `Payment for order #${orderId} failed or expired.`,
-                read:
-                  false,
-                created_at:
-                  new Date().toISOString(),
-              },
-            ])
-        } catch (notificationError) {
-          console.error(
-            'NOWPayments notification error:',
-            notificationError,
-          )
-        }
-      }
-      if (
-        paymentStatus ===
-        'refunded'
-      ) {
-        try {
-          await supabase
-            .from('notifications')
-            .insert([
-              {
-                user_id:
-                  order.user_id,
-                type:
-                  'payment',
-                message:
-                  `Payment for order #${orderId} has been refunded.`,
                 read:
                   false,
                 created_at:
@@ -614,53 +636,5 @@ router.post(
   },
 )
 module.exports = router
-        if (paymentStatus === 'verified') {
-          try {
-          } catch (notificationError) {
-            console.error('NOWPayments notification error:', notificationError)
-          }
 
-      if (paymentStatus === 'verified') {
-        try {
-          await supabase
-            .from('notifications')
-            .insert([{
-              user_id: order.user_id,
-              type: 'payment',
-              message: 'Payment for order #' + orderId + ' has been confirmed.',
-              read: false,
-              created_at: new Date().toISOString(),
-            }])
-        } catch (notificationError) {
-          console.error('NOWPayments notification error:', notificationError)
-        }
-        if (order.digital_product_id) {
-          try {
-            const { grantDigitalProductAccess } = require('../../services/digital-product-grant.service')
-            await grantDigitalProductAccess({ orderId: order.id, productId: order.digital_product_id, userId: order.user_id, price: order.amount || order.price })
-          } catch (grantError) {
-            console.error('Digital product grant error:', grantError)
-          }
-        }
-      }
-
-      return res.status(200).json({
-        success: true,
-        order_id: orderId,
-        payment_id: paymentId,
-        payment_status: payload.payment_status || null,
-        internal_status: paymentStatus,
-        updated: true,
-        order: updatedOrder,
-      })
-    } catch (error) {
-      console.error('NOWPayments IPN error:', error)
-      return res.status(Number(error?.status) >= 400 ? Number(error.status) : 500).json({
-        success: false,
-        message: error?.message || 'NOWPayments IPN processing failed',
-      })
-    }
-  },
-)
-module.exports = router
 
